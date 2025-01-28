@@ -20,7 +20,7 @@ public interface ValoracionService {
 	public Results<ValoracionDTO> findByLibro(Long libroId, int pos, int pageSize)
 			throws DataException;
 	
-	public void create (ValoracionDTO v)
+	public void create (ValoracionDTO v, String locale)
 			throws DataException;
 	
 	public boolean delete (Long clienteId, Long libroId)
