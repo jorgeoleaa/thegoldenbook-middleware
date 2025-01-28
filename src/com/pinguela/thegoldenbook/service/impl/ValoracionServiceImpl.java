@@ -8,8 +8,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.pinguela.thegoldenbook.dao.DataException;
+import com.pinguela.thegoldenbook.dao.LibroDAO;
 import com.pinguela.thegoldenbook.dao.ValoracionDAO;
+import com.pinguela.thegoldenbook.dao.impl.LibroDAOImpl;
 import com.pinguela.thegoldenbook.dao.impl.ValoracionDAOImpl;
+import com.pinguela.thegoldenbook.model.LibroDTO;
 import com.pinguela.thegoldenbook.model.Results;
 import com.pinguela.thegoldenbook.model.ValoracionDTO;
 import com.pinguela.thegoldenbook.service.ValoracionCriteria;
@@ -20,9 +23,11 @@ public class ValoracionServiceImpl implements ValoracionService {
 
 	private static Logger logger = LogManager.getLogger(ValoracionServiceImpl.class);
 	private ValoracionDAO valoracionDAO = null;
-
+	private LibroDAO libroDAO = null;
+	
 	public ValoracionServiceImpl() {
 		valoracionDAO = new ValoracionDAOImpl();
+		libroDAO = new LibroDAOImpl();
 	}
 
 	public ValoracionDTO findByValoracion(Long clienteId, Long libroId) throws DataException {
@@ -114,17 +119,23 @@ public class ValoracionServiceImpl implements ValoracionService {
 	}
 
 
-	public void create(ValoracionDTO v) throws DataException{
+	public void create(ValoracionDTO v, String locale) throws DataException{
 
 		Connection con = null;
 		boolean commit = false;
+		boolean flag = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
 			valoracionDAO.create(con, v);
-			commit = true;
-
+			LibroDTO libro = libroDAO.findByLibro(con, locale, v.getLibroId());
+			libro.setValoracionMedia(calcularMedia(valoracionDAO.findByLibro(con, v.getLibroId(), 1, Integer.MAX_VALUE).getPage()));
+			flag = libroDAO.update(con, libro);
+			if(flag) {
+				commit = true;
+			}
+			
 		} catch(SQLException e) {
 			logger.error(e.getMessage(), e);
 			throw new DataException(e);
