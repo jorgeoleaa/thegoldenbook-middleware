@@ -151,6 +151,9 @@ public class ValoracionServiceTest {
 	
 	@Test
 	public void testCreate() throws Exception{
+		
+		String locale = "it";
+		
 		ValoracionDTO v = new ValoracionDTO();
 		v.setClienteId(2l);
 		v.setLibroId(1l);
@@ -158,7 +161,7 @@ public class ValoracionServiceTest {
 		v.setAsunto("Una buena lectura");
 		v.setCuerpo("Un libro muy interesante!");
 		v.setFechaPublicacion(new Date());
-		valoracionService.create(v);
+		valoracionService.create(v, locale);
 		assertNotNull(valoracionService.findByValoracion(2l, 1l));
 	}
 	

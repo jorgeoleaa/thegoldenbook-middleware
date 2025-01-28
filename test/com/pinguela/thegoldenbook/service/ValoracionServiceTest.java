@@ -174,14 +174,17 @@ public class ValoracionServiceTest {
 
 	public void testCreate() throws Exception{
 		logger.traceEntry("Testing create...");
+		
+		String locale = "it";
+		
 		ValoracionDTO v = new ValoracionDTO();
-		v.setClienteId(2l);
+		v.setClienteId(1l);
 		v.setLibroId(1l);
-		v.setNumeroEstrellas(4.2d);
+		v.setNumeroEstrellas(4.0d);
 		v.setAsunto("Una buena lectura");
 		v.setCuerpo("Un libro muy interesante!");
 		v.setFechaPublicacion(new Date());
-		valoracionService.create(v);
+		valoracionService.create(v, locale);
 		logger.info("Creada correctamente la valoración: "+v);
 	}
 
@@ -226,9 +229,9 @@ public class ValoracionServiceTest {
 		//test.testFindByEmptyCriteria();
 		//test.testFindByCliente();
 		//test.testFindByLibro();
-		//test.testCreate();
+		test.testCreate();
 		//test.testDelete();
 		//test.testUpdate();
-		test.testCalcularMedia();
+//		test.testCalcularMedia();
 	}
 }
