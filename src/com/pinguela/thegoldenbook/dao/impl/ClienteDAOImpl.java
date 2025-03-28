@@ -36,7 +36,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		ClienteDTO c = null;
 
 		try {
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD")
+			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
 					.append(" FROM CLIENTE c ")
 					.append(" WHERE c.ID = ? ");
 
@@ -69,7 +69,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		ClienteDTO c = null;
 
 		try {
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD")
+			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, C.JWT")
 					.append(" FROM CLIENTE c ")
 					.append(" WHERE c.EMAIL = ? ");
 
@@ -101,7 +101,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		Results<ClienteDTO> resultados = new Results<ClienteDTO>();
 
 		try {
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD")
+			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
 					.append(" FROM CLIENTE c ")
 					.append(" ORDER BY NOMBRE ASC");
 
@@ -163,7 +163,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 		try {
 
-			pst = conn.prepareStatement("UPDATE CLIENTE SET NICKNAME = ?,  NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, DNI_NIE = ?, EMAIL = ?, TELEFONO = ? "
+			pst = conn.prepareStatement("UPDATE CLIENTE SET NICKNAME = ?,  NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, DNI_NIE = ?, EMAIL = ?, TELEFONO = ?, JWT = ? "
 					+" WHERE ID = ?");
 
 			int i = 1;
@@ -174,6 +174,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 			pst.setString(i++, c.getDniNie());
 			pst.setString(i++, c.getEmail());
 			pst.setString(i++, c.getTelefono());
+			pst.setString(i++, c.getJwt());
 			pst.setLong(i++, c.getId());
 
 			int updatedRows = pst.executeUpdate();
@@ -229,8 +230,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 		try {
 
-			pst = conn.prepareStatement("INSERT INTO CLIENTE(NICKNAME, NOMBRE, APELLIDO1, APELLIDO2, DNI_NIE, EMAIL, TELEFONO, PASSWORD)"
-					+" VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			pst = conn.prepareStatement("INSERT INTO CLIENTE(NICKNAME, NOMBRE, APELLIDO1, APELLIDO2, DNI_NIE, EMAIL, TELEFONO, PASSWORD, JWT)"
+					+" VALUES(?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 			int i = 1;
 			pst.setString(i++, c.getNickname());
@@ -241,6 +242,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 			pst.setString(i++, c.getEmail());
 			pst.setString(i++, c.getTelefono());
 			pst.setString(i++, c.getPassword());
+			pst.setString(i++, c.getJwt());
 
 			int insertedRows = pst.executeUpdate();
 
@@ -273,7 +275,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		ClienteDTO c = null;
 		try {
 
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD")
+			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
 					.append(" FROM CLIENTE c ")
 					.append(" WHERE c.NICKNAME = ? ");
 
@@ -314,6 +316,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		c.setEmail(rs.getString(i++));
 		c.setTelefono(rs.getString(i++));
 		c.setPassword(rs.getString(i++));
+		c.setJwt(rs.getString(i++));
 		c.setDirecciones(direcciones);;
 //		c.setDirecciones(direccionDAO.findByClienteId(con, c.getId()));
 		

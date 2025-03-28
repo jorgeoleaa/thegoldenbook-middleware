@@ -106,6 +106,8 @@ public class PedidoServiceImpl implements PedidoService {
 	            p.setPrecio(calcularPrecio(p));
 	            id = pedidoDAO.create(con, p);
 	            if (id != null) {
+	            	ClienteDTO cliente = clienteService.findById(id);
+	            	mailService.sendPedidoRealizado(cliente.getEmail(), cliente, p);
 	                commit = true;
 	            }
 	        }

@@ -13,7 +13,7 @@ public class MailServiceTest {
 	public void testEnviarEmailSimple() {
 
 		try {
-			mailService.enviar("joroleacasanova@gmail.com", "Testing email", "Estoy testeando si funciona el MailService");
+			mailService.enviar("jorgeoleacasanova@gmail.com", "Testing email", "Estoy testeando si funciona el MailService");
 			System.out.println("Email enviado!");
 			
 		} catch(MailException e) {

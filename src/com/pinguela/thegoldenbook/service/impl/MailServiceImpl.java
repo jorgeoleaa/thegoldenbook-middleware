@@ -26,20 +26,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.pinguela.thegoldenbook.config.ConfigurationParametersManager;
-import com.pinguela.thegoldenbook.dao.DataException;
 import com.pinguela.thegoldenbook.model.ClienteDTO;
 import com.pinguela.thegoldenbook.model.Pedido;
-import com.pinguela.thegoldenbook.service.ClienteService;
 import com.pinguela.thegoldenbook.service.MailException;
 import com.pinguela.thegoldenbook.service.MailService;
 
 public class MailServiceImpl implements MailService {
 
 	private Logger logger = LogManager.getLogger(MailServiceImpl.class);
-	private static String SERVER_NAME = "mail.server.url";
-	private static String SERVER_PORT = "mail.server.port";
-	private static String USER = "mail.server.user";
-	private static String PASSWORD = "mail.server.password";
+	private static String SERVER_NAME = "mail.smtp.host";
+	private static String SERVER_PORT = "mail.smtp.port";
+	private static String USER = "mail.username";
+	private static String PASSWORD = "mail.password";
 
 	public MailServiceImpl() {
 	}
@@ -107,19 +105,23 @@ public class MailServiceImpl implements MailService {
 				.append("</html>");
 
 
-		MimeBodyPart logoPart = new MimeBodyPart();
-		try {
-			InputStream inputStream = getClass().getResourceAsStream("/icons/logotiendalibrospequeño.jpg");
-			if (inputStream == null) {
+		//MimeBodyPart logoPart = new MimeBodyPart();
+		//try {
+			
+			/*
+			 * InputStream inputStream = getClass().getResourceAsStream("/icons/logotiendalibrospequeño.jpg");
+			 * if (inputStream == null) {
 				throw new MailException("No se pudo cargar la imagen desde resources");
 			}
+			 */
+			
 
-			logoPart.setDataHandler(new DataHandler(new ByteArrayDataSource(inputStream, "image/jpeg")));
-			logoPart.setHeader("Content-ID", "<logo>");
-
-		} catch (MessagingException | IOException e) {
-			throw new MailException("Error attaching logo", e);
-		}
+			//logoPart.setDataHandler(new DataHandler(new ByteArrayDataSource(inputStream, "image/jpeg")));
+//			//logoPart.setHeader("Content-ID", "<logo>");
+//
+//		} catch (MessagingException | IOException e) {
+//			throw new MailException("Error attaching logo", e);
+//		}
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", ConfigurationParametersManager.getParameterValue(SERVER_NAME));
@@ -148,7 +150,7 @@ public class MailServiceImpl implements MailService {
 
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
-			multipart.addBodyPart(logoPart);
+//			multipart.addBodyPart(logoPart);
 
 			message.setContent(multipart);
 
@@ -263,19 +265,19 @@ public class MailServiceImpl implements MailService {
 			.append("</html>");
 		}
 
-		MimeBodyPart logoPart = new MimeBodyPart();
-		try {
-			InputStream inputStream = getClass().getResourceAsStream("/icons/logotiendalibrospequeño.jpg");
-			if (inputStream == null) {
-				throw new MailException("No se pudo cargar la imagen desde resources");
-			}
-
-			logoPart.setDataHandler(new DataHandler(new ByteArrayDataSource(inputStream, "image/jpeg")));
-			logoPart.setHeader("Content-ID", "<logo>");
-
-		} catch (MessagingException | IOException e) {
-			throw new MailException("Error attaching logo", e);
-		}
+//		MimeBodyPart logoPart = new MimeBodyPart();
+//		try {
+//			InputStream inputStream = getClass().getResourceAsStream("/icons/logotiendalibrospequeño.jpg");
+//			if (inputStream == null) {
+//				throw new MailException("No se pudo cargar la imagen desde resources");
+//			}
+//
+//			logoPart.setDataHandler(new DataHandler(new ByteArrayDataSource(inputStream, "image/jpeg")));
+//			logoPart.setHeader("Content-ID", "<logo>");
+//
+//		} catch (MessagingException | IOException e) {
+//			throw new MailException("Error attaching logo", e);
+//		}
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", ConfigurationParametersManager.getParameterValue(SERVER_NAME));
@@ -304,7 +306,7 @@ public class MailServiceImpl implements MailService {
 
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
-			multipart.addBodyPart(logoPart);
+//			multipart.addBodyPart(logoPart);
 
 			message.setContent(multipart);
 

@@ -139,7 +139,7 @@ public class ClienteServiceImpl implements ClienteService {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
 			id = clienteDAO.create(con, c);
-			//mailService.sendBienvenida(c.getEmail(), c);
+			mailService.sendBienvenida(c.getEmail(), c);
 
 			commit = true;
 

@@ -31,7 +31,7 @@ public class ClienteServiceTest {
 
 		logger.traceEntry("Testing findById...");
 		ClienteDTO cliente = new ClienteDTO();
-		cliente = clienteService.findById(null);
+		cliente = clienteService.findById(1l);
 
 		logger.info(cliente);
 
@@ -50,7 +50,7 @@ public class ClienteServiceTest {
 
 		logger.traceEntry("Testing findByNickname...");
 		ClienteDTO cliente = new ClienteDTO();
-		cliente = clienteService.findByEmail("juan@gmail.com");
+		cliente = clienteService.findByEmail("aa@gmail.com");
 		logger.info(cliente);
 	}
 
@@ -139,10 +139,10 @@ public class ClienteServiceTest {
 		//test.testFindAll();
 		//test.testFindById();
 		//test.testFindByNick();
-		//test.testFindByEmail();
+		test.testFindByEmail();
 		//test.testRegistrar();
 		//test.testUpdate();
-		test.testUpdatePassword();
+		//test.testUpdatePassword();
 		//test.testDelete();
 		//test.testAutenticacionOK();
 

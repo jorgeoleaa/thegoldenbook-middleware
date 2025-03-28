@@ -13,6 +13,7 @@ public class ClienteDTO extends AbstractValueObject{
 	private String email;
 	private String telefono;
 	private String password;
+	private String jwt;
 	private List<DireccionDTO> direcciones;
 	
 	public ClienteDTO() {
@@ -90,6 +91,14 @@ public class ClienteDTO extends AbstractValueObject{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getJwt() {
+		return jwt;
+	}
+	
+	public void setJwt(String jwt) {
+		this.jwt = jwt;
 	}
 
 	public List<DireccionDTO> getDirecciones() {
