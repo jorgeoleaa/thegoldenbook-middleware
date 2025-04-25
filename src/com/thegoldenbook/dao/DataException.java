@@ -1,13 +1,13 @@
 package com.thegoldenbook.dao;
 
-import com.thegoldenbook.PinguelaException;
+import com.thegoldenbook.TheGoldenBookException;
 
 /**
  * Exception raíz de la capa de datos.
  */
 
 
-public class DataException extends PinguelaException {
+public class DataException extends TheGoldenBookException {
 	
 	public DataException() {
 	}

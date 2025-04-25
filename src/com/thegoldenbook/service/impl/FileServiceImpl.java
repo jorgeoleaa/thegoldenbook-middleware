@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.PinguelaException;
+import com.thegoldenbook.TheGoldenBookException;
 import com.thegoldenbook.config.ConfigurationParametersManager;
 import com.thegoldenbook.model.ClienteDTO;
 import com.thegoldenbook.model.Idioma;
@@ -120,7 +120,7 @@ public class FileServiceImpl implements FileService{
 		
 		try {
 			cliente = clienteService.findById(clienteId);
-		}catch(PinguelaException pe) {
+		}catch(TheGoldenBookException pe) {
 			logger.error(pe.getMessage(), pe);
 		}
 		
