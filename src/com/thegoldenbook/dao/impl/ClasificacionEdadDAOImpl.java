@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.ClasificacionEdadDAO;
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.ClasificacionEdad;
+import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class ClasificacionEdadDAOImpl implements ClasificacionEdadDAO{
@@ -23,11 +23,11 @@ public class ClasificacionEdadDAOImpl implements ClasificacionEdadDAO{
 		
 	}
 	
-	public List<ClasificacionEdad> findAll(Connection con, String locale) throws DataException {
+	public List<ReadingAgeGroup> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<ClasificacionEdad> resultados = new ArrayList<ClasificacionEdad>();
+		List<ReadingAgeGroup> resultados = new ArrayList<ReadingAgeGroup>();
 		
 		try {
 			
@@ -58,9 +58,9 @@ public class ClasificacionEdadDAOImpl implements ClasificacionEdadDAO{
 	}
 	
 	
-	protected ClasificacionEdad loadNext (ResultSet rs) throws SQLException{
+	protected ReadingAgeGroup loadNext (ResultSet rs) throws SQLException{
 		
-		ClasificacionEdad cd = new ClasificacionEdad();
+		ReadingAgeGroup cd = new ReadingAgeGroup();
 		int i = 1;
 		
 		cd.setId(rs.getInt(i++));

@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.ClasificacionEdad;
+import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.service.ClasificacionEdadService;
 import com.thegoldenbook.service.impl.ClasificacionEdadServiceImpl;
 
@@ -21,11 +21,11 @@ public class ClasificacionEdadServiceTest {
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing findAll...");
 		String locale = "it";
-		List<ClasificacionEdad> resultados = clasificacionEdadService.findAll(locale);
+		List<ReadingAgeGroup> resultados = clasificacionEdadService.findAll(locale);
 		if(resultados.isEmpty()) {
 			logger.trace("no se han encontrado resultados");
 		}else {
-			for(ClasificacionEdad ce : resultados) {
+			for(ReadingAgeGroup ce : resultados) {
 				logger.info(ce);
 			}
 		}
