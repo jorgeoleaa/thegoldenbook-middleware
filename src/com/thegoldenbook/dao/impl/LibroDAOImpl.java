@@ -15,7 +15,7 @@ import com.thegoldenbook.dao.AutorDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LibroDAO;
 import com.thegoldenbook.dao.TematicaDAO;
-import com.thegoldenbook.model.Autor;
+import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.LibroDTO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Tematica;
@@ -295,7 +295,7 @@ public class LibroDAOImpl implements LibroDAO {
 				l.setId(id);
 
 				List<Long> ids = new ArrayList<Long>();
-				for(Autor a : l.getAutores()) {
+				for(Author a : l.getAutores()) {
 					ids.add(a.getId());
 				}
 				asignarAutor(con, id, ids);
@@ -365,7 +365,7 @@ public class LibroDAOImpl implements LibroDAO {
 	public void asignarAutor(Connection con, Long libroId, List<Long>autoresId) throws DataException {
 
 		PreparedStatement pst = null;
-		List<Autor> autoresLibro = autorDAO.findByLibro(con, libroId);
+		List<Author> autoresLibro = autorDAO.findByLibro(con, libroId);
 		
 		
 		if(autoresLibro.isEmpty()) {

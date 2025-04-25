@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.Autor;
+import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.AutorService;
 import com.thegoldenbook.service.impl.AutorServiceImpl;
@@ -22,16 +22,16 @@ public class AutorServiceTest {
 	
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing findAll...");
-		Results<Autor> autores = autorService.findAll(1, 500);
+		Results<Author> autores = autorService.findAll(1, 500);
 		
-		for(Autor a : autores.getPage()) {
+		for(Author a : autores.getPage()) {
 			logger.trace(a);
 		}
 	}
 	
 	public void testFindByAutorId() throws Exception{
 		logger.traceEntry("Testing findByAutorId...");
-		Autor a = autorService.findByAutor(2l);
+		Author a = autorService.findByAutor(2l);
 		
 		if(a.getId() == null) {
 			logger.trace("No se han encontrado autores a partir del ID proporcionado");
@@ -43,7 +43,7 @@ public class AutorServiceTest {
 	
 	public void testFindByLibroId() throws Exception{
 		logger.traceEntry("Testing findByLibroId...");
-		List<Autor> resultados = autorService.findByLibro(3l);
+		List<Author> resultados = autorService.findByLibro(3l);
 		
 		if(resultados.isEmpty()) {
 			logger.trace("No se han encontrado autores para el ID de libro proporcionado");
@@ -54,7 +54,7 @@ public class AutorServiceTest {
 	
 	public void testCreate() throws Exception{
 		logger.traceEntry("Testing create...");
-		Autor a = new Autor();
+		Author a = new Author();
 		a.setNombre("Haruki");
 		a.setApellido1("Murakami");
 		a.setFechaNacimiento(DateUtils.getDate(1949, 0, 12));
@@ -68,7 +68,7 @@ public class AutorServiceTest {
 	
 	public void testUpdate() throws Exception{
 		logger.traceEntry("Testing update...");
-		Autor a = autorService.findByAutor(29l);
+		Author a = autorService.findByAutor(29l);
 		a.setApellido1("aaaaaa");
 		autorService.update(a);
 		logger.trace("El autor con ID "+a.getId()+" ha sido actualizado correctamente");

@@ -22,12 +22,12 @@ public class LibroDTO extends AbstractValueObject {
 	private String idiomaNombre;
 	private Integer formatoId;
 	private String formatoNombre;
-	private List<Autor> autores;
+	private List<Author> autores;
 	private List<Tematica> tematicas;
 
 	
 	public LibroDTO() {
-		autores = new ArrayList<Autor>();
+		autores = new ArrayList<Author>();
 		tematicas = new ArrayList<Tematica>();
 	}
 
@@ -143,11 +143,11 @@ public class LibroDTO extends AbstractValueObject {
 		this.formatoNombre = formatoNombre;
 	}
 
-	public List<Autor> getAutores() {
+	public List<Author> getAutores() {
 		return autores;
 	}
 
-	public void setAutores(List<Autor> autores) {
+	public void setAutores(List<Author> autores) {
 		this.autores = autores;
 	}
 

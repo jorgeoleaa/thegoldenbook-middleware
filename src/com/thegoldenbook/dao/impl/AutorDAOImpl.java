@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.AutorDAO;
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.Autor;
+import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -25,11 +25,11 @@ public class AutorDAOImpl implements AutorDAO{
 
 	}
 
-	public Results<Autor> findAll(Connection con, int pos, int pageSize) throws Exception {
+	public Results<Author> findAll(Connection con, int pos, int pageSize) throws Exception {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Results<Autor> resultados = new Results<Autor>();
+		Results<Author> resultados = new Results<Author>();
 
 		try {
 
@@ -59,11 +59,11 @@ public class AutorDAOImpl implements AutorDAO{
 		return resultados;
 	}
 
-	public Autor findByAutor(Connection con, Long id) throws DataException{
+	public Author findByAutor(Connection con, Long id) throws DataException{
 
 		ResultSet rs = null;
 		PreparedStatement pst = null;
-		Autor a = null;
+		Author a = null;
 
 		try {
 			StringBuilder query = new StringBuilder("SELECT ID, NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO")
@@ -91,11 +91,11 @@ public class AutorDAOImpl implements AutorDAO{
 
 	}
 
-	public List<Autor> findByLibro(Connection con, Long libroId) throws DataException {
+	public List<Author> findByLibro(Connection con, Long libroId) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<Autor> resultados = new ArrayList<Autor>();
+		List<Author> resultados = new ArrayList<Author>();
 
 		try {
 
@@ -126,7 +126,7 @@ public class AutorDAOImpl implements AutorDAO{
 		return resultados;
 	}
 
-	public Long create(Connection con, Autor a) throws DataException{
+	public Long create(Connection con, Author a) throws DataException{
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -166,7 +166,7 @@ public class AutorDAOImpl implements AutorDAO{
 		return null;
 	}
 
-	public boolean update(Connection con, Autor a) throws DataException{
+	public boolean update(Connection con, Author a) throws DataException{
 
 		PreparedStatement pst = null;
 
@@ -197,9 +197,9 @@ public class AutorDAOImpl implements AutorDAO{
 		return true;
 	}
 
-	protected Autor loadNext (ResultSet rs) throws SQLException{
+	protected Author loadNext (ResultSet rs) throws SQLException{
 
-		Autor a = new Autor();
+		Author a = new Author();
 		int i = 1;
 
 		a.setId(rs.getLong(i++));

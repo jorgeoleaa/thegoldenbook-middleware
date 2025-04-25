@@ -4,23 +4,23 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.Autor;
+import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 
 public interface AutorService {
 	
-	public Results<Autor> findAll (int pos, int pageSize)
+	public Results<Author> findAll (int pos, int pageSize)
 			throws Exception;
 	
-	public Autor findByAutor(Long id)
+	public Author findByAutor(Long id)
 			throws DataException;
 	
-	public List<Autor> findByLibro(Long id)
+	public List<Author> findByLibro(Long id)
 			throws DataException;
 	
-	public Long create (Autor a)
+	public Long create (Author a)
 			throws DataException;
 	
-	public boolean update(Autor a)
+	public boolean update(Author a)
 			throws DataException;
 }
