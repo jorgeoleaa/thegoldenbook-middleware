@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.Autor;
+import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.LibroDTO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Tematica;
@@ -318,7 +318,7 @@ public class LibroServiceTest {
 		logger.traceEntry("Testing create...");
 
 
-		List<Autor> autores = new ArrayList<Autor>();
+		List<Author> autores = new ArrayList<Author>();
 		List<Tematica>tematicas = new ArrayList<Tematica>(); 
 
 		Tematica t = new Tematica();
@@ -329,7 +329,7 @@ public class LibroServiceTest {
 		t2.setId(2);
 		tematicas.add(t2);
 
-		Autor a = new Autor();
+		Author a = new Author();
 		a.setId(24l);
 		autores.add(a);
 

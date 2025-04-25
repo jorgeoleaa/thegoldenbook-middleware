@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.AutorDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.impl.AutorDAOImpl;
-import com.thegoldenbook.model.Autor;
+import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.AutorService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -24,7 +24,7 @@ public class AutorServiceImpl implements AutorService{
 		autorDAO = new AutorDAOImpl();
 	}
 
-	public Long create (Autor a) throws DataException{
+	public Long create (Author a) throws DataException{
 
 		Connection con = null;
 		Long id = null;
@@ -46,9 +46,9 @@ public class AutorServiceImpl implements AutorService{
 	}
 
 
-	public Autor findByAutor(Long id) throws DataException {
+	public Author findByAutor(Long id) throws DataException {
 
-		Autor a = null;
+		Author a = null;
 		Connection con = null;
 		boolean commit = false;
 
@@ -68,7 +68,7 @@ public class AutorServiceImpl implements AutorService{
 
 	}
 
-	public boolean update(Autor a) throws DataException {
+	public boolean update(Author a) throws DataException {
 
 		Connection con = null;
 		boolean autor = false;
@@ -89,10 +89,10 @@ public class AutorServiceImpl implements AutorService{
 	}
 
 
-	public List<Autor> findByLibro(Long id) throws DataException {
+	public List<Author> findByLibro(Long id) throws DataException {
 
 		Connection con = null;
-		List<Autor> autores = null;
+		List<Author> autores = null;
 		boolean commit = false;
 
 		try {
@@ -111,11 +111,11 @@ public class AutorServiceImpl implements AutorService{
 	}
 
 	
-	public Results<Autor> findAll(int pos, int pageSize) throws Exception {
+	public Results<Author> findAll(int pos, int pageSize) throws Exception {
 		
 		Connection con = null;
 		boolean commit = false;
-		Results<Autor> autores = null;
+		Results<Author> autores = null;
 		
 		try {
 			con = JDBCUtils.getConnection();

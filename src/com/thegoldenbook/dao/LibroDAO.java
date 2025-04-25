@@ -3,7 +3,7 @@ package com.thegoldenbook.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import com.thegoldenbook.model.Autor;
+import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.LibroDTO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.LibroCriteria;
