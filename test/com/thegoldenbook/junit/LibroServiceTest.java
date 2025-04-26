@@ -12,9 +12,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Author;
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.Tematica;
+import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.LibroCriteria;
 import com.thegoldenbook.service.LibroService;
 import com.thegoldenbook.service.impl.LibroServiceImpl;
@@ -32,7 +32,7 @@ public class LibroServiceTest {
 	public void findByCriteriaNombre() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setNombre("Lolita");
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
 	}
 
@@ -40,7 +40,7 @@ public class LibroServiceTest {
 	public void testFindByCriteriaId() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setId(4l);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
 	}
 
@@ -48,7 +48,7 @@ public class LibroServiceTest {
 	public void testFindByCriteraIsbn() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setIsbn("978-0060913076");
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
 	}
 
@@ -56,9 +56,9 @@ public class LibroServiceTest {
 	public void testFindByPrecioDesde() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setDesdePrecio(25.00);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getPrecio() >= 25, "El precio es mayor de 25.00");
 		}
 	}
@@ -67,9 +67,9 @@ public class LibroServiceTest {
 	public void testFindByPrecioHasta() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setHastaPrecio(15.00);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getPrecio() <= 15, "El precio es menor de 15.00");
 		}
 	}
@@ -78,9 +78,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaUnidadesDesde() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setUnidadesDesde(12);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getUnidades() >= 12, "Hay 12 o más unidades disponibles de ese libro");
 		}
 	}
@@ -89,9 +89,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaUnidadesHasta() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setUnidadesHasta(5);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getUnidades() <=5, "Hay 5 o menos unidades disponibles de ese libro");
 		}
 	}
@@ -100,9 +100,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaFechaDesde() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setDesdeFecha(DateUtils.getDate(1960, 01, 1));
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			Date fechaPublicacion = l.getFechaPublicacion();
 			Date fechaLimite = DateUtils.getDate(1960, 01, 01);
 
@@ -114,9 +114,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaFechaHasta() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setDesdeFecha(DateUtils.getDate(1950, 0, 1));
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			Date fechaPublicacion = l.getFechaPublicacion();
 			Date fechaLimite = DateUtils.getDate(1950, 0, 1);
 
@@ -128,9 +128,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaGeneroLiterarioId() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setGeneroLiterarioId(1);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getGeneroLiterarioId() == 1, "Libros que pertenecen al género literario con id = 1");
 		}
 	}
@@ -139,9 +139,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaClasificacionEdadId() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setClasificacionEdadId(1);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getClasificacionEdadId() == 1, "Libros que pertenecen a la clasificación por edad con id = 1");
 		}
 	}
@@ -150,9 +150,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaIdiomaId() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setIdiomaId(1);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getIdiomaId() == 1, "Libros que tienen idioma con id = 1");
 		}
 	}
@@ -161,9 +161,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaFormatoId() throws Exception{
 		LibroCriteria c = new LibroCriteria();
 		c.setFormatoId(1);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getFormatoId() == 1, "Libros que tienen formato con id = 1");
 		}
 	}
@@ -173,9 +173,9 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setDesdeFecha(DateUtils.getDate(1940, 0, 1));
 		c.setDesdePrecio(20.00);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(LibroDTO l : resultados.getPage()) {
+		for(Book l : resultados.getPage()) {
 			assertTrue(l.getPrecio() > 20.00, "Libros que tienen un precio > 20");
 			assertTrue(l.getFechaPublicacion().after(DateUtils.getDate(1940, 0, 1)), "Libros que tienen un precio > 20");
 		}
@@ -184,7 +184,7 @@ public class LibroServiceTest {
 	@Test
 	public void testFindByCriteriaWithoutParameters() throws Exception{
 		LibroCriteria c = new LibroCriteria();
-		Results<LibroDTO> libros = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Book> libros = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
 		assertEquals(11, libros.getTotal());
 	}
@@ -192,14 +192,14 @@ public class LibroServiceTest {
 	@Test
 	public void testFindById01() throws Exception{
 		String locale = "it";
-		LibroDTO l = libroService.findByLibro(locale, 3l);
+		Book l = libroService.findByLibro(locale, 3l);
 		assertEquals(3, l.getId());
 	}
 
 	@Test
 	public void testFindById02() throws Exception{
 		String locale = "it";
-		LibroDTO l = libroService.findByLibro(locale, 200l);
+		Book l = libroService.findByLibro(locale, 200l);
 		assertEquals(null, l);
 	}
 
@@ -207,13 +207,13 @@ public class LibroServiceTest {
 	public void testCreate() throws Exception{
 
 		List<Author> autores = new ArrayList<Author>();
-		List<Tematica>tematicas = new ArrayList<Tematica>(); 
+		List<Subject>tematicas = new ArrayList<Subject>(); 
 
-		Tematica t = new Tematica();
+		Subject t = new Subject();
 		t.setId(8);
 		tematicas.add(t);
 
-		Tematica t2 = new Tematica();
+		Subject t2 = new Subject();
 		t2.setId(2);
 		tematicas.add(t2);
 
@@ -223,7 +223,7 @@ public class LibroServiceTest {
 		
 		String locale = "it";
 
-		LibroDTO l = new LibroDTO();
+		Book l = new Book();
 		l.setIsbn("978-8445076538");
 		l.setNombre("Crónicas Marcianas");
 		l.setUnidades(10);
@@ -244,7 +244,7 @@ public class LibroServiceTest {
 	@Test 
 	public void testUpdate()throws Exception{
 		String locale = "it";
-		LibroDTO l = libroService.findByLibro(locale, 3l);
+		Book l = libroService.findByLibro(locale, 3l);
 		String nombre1 = l.getNombre();
 		l.setNombre("CRONICAS MARCIANAS");
 		libroService.update(l);

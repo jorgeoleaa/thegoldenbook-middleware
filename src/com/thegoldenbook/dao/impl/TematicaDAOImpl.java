@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.TematicaDAO;
-import com.thegoldenbook.model.Tematica;
+import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class TematicaDAOImpl implements TematicaDAO{
@@ -23,11 +23,11 @@ public class TematicaDAOImpl implements TematicaDAO{
 		
 	}
 	
-	public List<Tematica> findAll(Connection con, String locale) throws DataException {
+	public List<Subject> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<Tematica> resultados = new ArrayList<Tematica>();
+		List<Subject> resultados = new ArrayList<Subject>();
 		
 		try {
 			
@@ -59,11 +59,11 @@ public class TematicaDAOImpl implements TematicaDAO{
 	}
 
 	
-	public List<Tematica> findByLibro(Connection con, String locale,  Long libroId) throws DataException {
+	public List<Subject> findByLibro(Connection con, String locale,  Long libroId) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<Tematica> resultados = new ArrayList<Tematica>();
+		List<Subject> resultados = new ArrayList<Subject>();
 		
 		try {
 			StringBuilder query = new StringBuilder("SELECT T.ID, TI.NOMBRE ")
@@ -98,11 +98,11 @@ public class TematicaDAOImpl implements TematicaDAO{
 	}
 	
 	
-	public Tematica findById(Connection con, int id) throws DataException {
+	public Subject findById(Connection con, int id) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Tematica t = null;
+		Subject t = null;
 		
 		try {
 			
@@ -130,9 +130,9 @@ public class TematicaDAOImpl implements TematicaDAO{
 		return t;	
 	}
 	
-	protected Tematica loadNext(ResultSet rs) throws SQLException{
+	protected Subject loadNext(ResultSet rs) throws SQLException{
 		
-		Tematica t = new Tematica();
+		Subject t = new Subject();
 		int i = 1;
 		
 		t.setId(rs.getInt(i++));

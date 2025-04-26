@@ -12,7 +12,7 @@ import com.thegoldenbook.dao.LibroDAO;
 import com.thegoldenbook.dao.ValoracionDAO;
 import com.thegoldenbook.dao.impl.LibroDAOImpl;
 import com.thegoldenbook.dao.impl.ValoracionDAOImpl;
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.ValoracionDTO;
 import com.thegoldenbook.service.ValoracionCriteria;
@@ -129,7 +129,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
 			valoracionDAO.create(con, v);
-			LibroDTO libro = libroDAO.findByLibro(con, locale, v.getLibroId());
+			Book libro = libroDAO.findByLibro(con, locale, v.getLibroId());
 			libro.setValoracionMedia(calcularMedia(valoracionDAO.findByLibro(con, v.getLibroId(), 1, Integer.MAX_VALUE).getPage()));
 			flag = libroDAO.update(con, libro);
 			if(flag) {

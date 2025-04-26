@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.LineaPedido;
 import com.thegoldenbook.model.Pedido;
 import com.thegoldenbook.model.Results;
@@ -189,7 +189,7 @@ public class PedidoServiceTest {
 		LineaPedido lp1 = new LineaPedido();
 		LineaPedido lp2 = new LineaPedido();
 		LineaPedido lp3 = new LineaPedido();
-		LibroDTO libro = libroService.findByLibro("es", 6l);
+		Book libro = libroService.findByLibro("es", 6l);
 
 		p.setFechaRealizacion(new Date());
 		p.setClienteId(11l);

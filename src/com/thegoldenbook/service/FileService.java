@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.Icon;
 
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 
 public interface FileService {
 	
@@ -23,7 +23,7 @@ public interface FileService {
 	
 	public List<File> getImagesByBookId(String locale, Long libroId);
 	
-	public void uploadImages(LibroDTO libro, String locale, List<File> selectedFiles);
+	public void uploadImages(Book libro, String locale, List<File> selectedFiles);
 	
 	public List<File> getProfileImageByClienteId(Long clienteId);
 	

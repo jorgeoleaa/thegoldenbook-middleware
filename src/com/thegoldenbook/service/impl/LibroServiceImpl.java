@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LibroDAO;
 import com.thegoldenbook.dao.impl.LibroDAOImpl;
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.LibroCriteria;
 import com.thegoldenbook.service.LibroService;
@@ -24,9 +24,9 @@ public class LibroServiceImpl implements LibroService{
 		libroDAO = new LibroDAOImpl();
 	}
 
-	public LibroDTO findByLibro(String locale, Long libroId) throws DataException{
+	public Book findByLibro(String locale, Long libroId) throws DataException{
 
-		LibroDTO l = null;
+		Book l = null;
 		Connection con = null;
 		boolean commit = false;
 		try {
@@ -44,10 +44,10 @@ public class LibroServiceImpl implements LibroService{
 		return l;
 	}
 
-	public Results<LibroDTO> findByCriteria(LibroCriteria l, int pos, int pageSize) throws DataException{
+	public Results<Book> findByCriteria(LibroCriteria l, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
-		Results<LibroDTO> resultados = null;
+		Results<Book> resultados = null;
 		boolean commit = false;
 		try {
 			con = JDBCUtils.getConnection();
@@ -64,7 +64,7 @@ public class LibroServiceImpl implements LibroService{
 		return resultados;
 	}
 
-	public Long create (String locale, LibroDTO l) throws DataException{
+	public Long create (String locale, Book l) throws DataException{
 
 		Connection con = null;
 		Long id = null;
@@ -84,7 +84,7 @@ public class LibroServiceImpl implements LibroService{
 		return id;
 	}
 
-	public boolean update(LibroDTO l) throws DataException {
+	public boolean update(Book l) throws DataException {
 
 		Connection con = null;
 		boolean li = false;

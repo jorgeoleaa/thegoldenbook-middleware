@@ -3,14 +3,14 @@ package com.thegoldenbook.service;
 import java.util.List;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.Tematica;
+import com.thegoldenbook.model.Subject;
 
 public interface TematicaService {
 	
-	public List<Tematica> findAll(String locale)
+	public List<Subject> findAll(String locale)
 			throws DataException;
 	
-	public List<Tematica> findByLibro(String locale, Long libroId)
+	public List<Subject> findByLibro(String locale, Long libroId)
 			throws DataException;
 
 }

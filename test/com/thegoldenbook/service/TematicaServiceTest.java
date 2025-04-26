@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.Tematica;
+import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.TematicaService;
 import com.thegoldenbook.service.impl.TematicaServiceImpl;
 
@@ -21,13 +21,13 @@ public class TematicaServiceTest {
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing FindAll...");
 		String locale = "it";
-		List<Tematica> tematicas = tematicaService.findAll(locale);
+		List<Subject> tematicas = tematicaService.findAll(locale);
 
 		if(tematicas.isEmpty()) {
 			logger.trace("No se han encontrado resultados");
 		}else {
 
-			for(Tematica t : tematicas) {
+			for(Subject t : tematicas) {
 				logger.info(t);
 			}
 		}
@@ -37,12 +37,12 @@ public class TematicaServiceTest {
 	public void testFindByLibroId() throws Exception{
 		logger.traceEntry("Testing findByLibroId...");
 		String locale = "it";
-		List<Tematica> tematicas = tematicaService.findByLibro(locale, 3l);
+		List<Subject> tematicas = tematicaService.findByLibro(locale, 3l);
 		
 		if(tematicas.isEmpty()) {
 			logger.trace("No se han encontrado resultados");
 		}else {
-			for(Tematica t : tematicas) {
+			for(Subject t : tematicas) {
 				logger.info(t);
 			}
 		}

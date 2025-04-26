@@ -24,7 +24,7 @@ import com.thegoldenbook.TheGoldenBookException;
 import com.thegoldenbook.config.ConfigurationParametersManager;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Language;
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.FileService;
 import com.thegoldenbook.service.IdiomaService;
@@ -90,7 +90,7 @@ public class FileServiceImpl implements FileService{
 		 List<File> imageFiles = new ArrayList<>();
 		    try {
 		       
-		        LibroDTO libro = libroService.findByLibro(locale, libroId);
+		        Book libro = libroService.findByLibro(locale, libroId);
 		        Language idioma = idiomaService.findById(locale, libro.getIdiomaId());
 
 		       
@@ -154,7 +154,7 @@ public class FileServiceImpl implements FileService{
 	}
 
 	@Override
-	public void uploadImages(LibroDTO libro, String locale, List<File> selectedFiles) {
+	public void uploadImages(Book libro, String locale, List<File> selectedFiles) {
 	    if (selectedFiles != null && !selectedFiles.isEmpty()) {
 	        try {
 	            Language idioma = idiomaService.findById(locale, libro.getIdiomaId());

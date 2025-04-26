@@ -4,21 +4,21 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.thegoldenbook.model.Author;
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.LibroCriteria;
 public interface LibroDAO {
 	
-	public Long create(Connection con, String locale, LibroDTO l)
+	public Long create(Connection con, String locale, Book l)
 			throws DataException;
 	
-	public boolean update(Connection con, LibroDTO l)
+	public boolean update(Connection con, Book l)
 			throws DataException;
 	
-	public Results<LibroDTO> findByCriteria(Connection con, LibroCriteria libro, int pos, int pageSize)
+	public Results<Book> findByCriteria(Connection con, LibroCriteria libro, int pos, int pageSize)
 			throws DataException;
 	
-	public LibroDTO findByLibro (Connection con, String locale, Long id)
+	public Book findByLibro (Connection con, String locale, Long id)
 			throws DataException;
 	
 	public void asignarAutor (Connection con, Long libroId, List<Long> autoresId)

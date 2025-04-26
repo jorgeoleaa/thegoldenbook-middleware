@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.TematicaDAO;
 import com.thegoldenbook.dao.impl.TematicaDAOImpl;
-import com.thegoldenbook.model.Tematica;
+import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.TematicaService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -25,11 +25,11 @@ public class TematicaServiceImpl implements TematicaService{
 	}
 
 	
-	public List<Tematica> findAll(String locale) throws DataException {
+	public List<Subject> findAll(String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Tematica>tematicas = new ArrayList<Tematica>();
+		List<Subject>tematicas = new ArrayList<Subject>();
 		
 		try {
 			con = JDBCUtils.getConnection();
@@ -47,11 +47,11 @@ public class TematicaServiceImpl implements TematicaService{
 	}
 
 
-	public List<Tematica> findByLibro(String locale, Long libroId) throws DataException {
+	public List<Subject> findByLibro(String locale, Long libroId) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Tematica> tematicas = new ArrayList<Tematica>();
+		List<Subject> tematicas = new ArrayList<Subject>();
 		
 		try {
 			con =JDBCUtils.getConnection();

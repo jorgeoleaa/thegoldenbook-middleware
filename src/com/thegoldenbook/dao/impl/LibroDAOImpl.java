@@ -16,9 +16,9 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LibroDAO;
 import com.thegoldenbook.dao.TematicaDAO;
 import com.thegoldenbook.model.Author;
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.Tematica;
+import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.LibroCriteria;
 import com.thegoldenbook.util.JDBCUtils;
 import com.thegoldenbook.util.SQLUtils;
@@ -34,11 +34,11 @@ public class LibroDAOImpl implements LibroDAO {
 		tematicaDAO = new TematicaDAOImpl();
 	}
 
-	public LibroDTO findByLibro(Connection con, String locale, Long id) throws DataException {
+	public Book findByLibro(Connection con, String locale, Long id) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		LibroDTO l = null;
+		Book l = null;
 
 		try {
 			StringBuilder query = new StringBuilder("SELECT L.ID, L.ISBN,L.NOMBRE AS TITULO, L.FECHA_PUBLICACION, L.SINOPSIS, L.VALORACION_MEDIA, L.UNIDADES, L.PRECIO, GLI.GENERO_LITERARIO_ID ,GLI.NOMBRE AS GENERO_LITERARIO, CEI.CLASIFICACION_EDAD_ID ,"
@@ -77,11 +77,11 @@ public class LibroDAOImpl implements LibroDAO {
 		return l;
 	}
 
-	public Results<LibroDTO> findByCriteria(Connection con, LibroCriteria l, int pos, int pageSize) throws DataException {
+	public Results<Book> findByCriteria(Connection con, LibroCriteria l, int pos, int pageSize) throws DataException {
 
 		ResultSet rs = null;
 		PreparedStatement preparedStatement = null;
-		Results<LibroDTO> resultados = new Results<LibroDTO>();
+		Results<Book> resultados = new Results<Book>();
 		List<String> condiciones = new ArrayList<String>();
 
 		try {
@@ -258,7 +258,7 @@ public class LibroDAOImpl implements LibroDAO {
 		return resultados;
 	}
 
-	public Long create(Connection con, String locale,LibroDTO l) throws DataException {
+	public Long create(Connection con, String locale,Book l) throws DataException {
 
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
@@ -301,7 +301,7 @@ public class LibroDAOImpl implements LibroDAO {
 				asignarAutor(con, id, ids);
 
 				List<Integer> idsT = new ArrayList<Integer>();
-				for (Tematica t : l.getTematicas()) {
+				for (Subject t : l.getTematicas()) {
 					idsT.add(t.getId());
 				}
 				asignarTematica(con, locale, id, idsT);
@@ -321,7 +321,7 @@ public class LibroDAOImpl implements LibroDAO {
 	}
 
 	
-	public boolean update(Connection con, LibroDTO l) throws DataException {
+	public boolean update(Connection con, Book l) throws DataException {
 
 		PreparedStatement pst = null;
 
@@ -418,7 +418,7 @@ public class LibroDAOImpl implements LibroDAO {
 	public void asignarTematica(Connection con, String locale, Long libroId, List<Integer>tematicasId) throws DataException {
 
 		PreparedStatement pst = null;
-		List<Tematica> tematicas = tematicaDAO.findByLibro(con, locale, libroId);
+		List<Subject> tematicas = tematicaDAO.findByLibro(con, locale, libroId);
 
 		if(tematicas.isEmpty()) {
 
@@ -465,11 +465,11 @@ public class LibroDAOImpl implements LibroDAO {
 
 	}
 	
-	protected LibroDTO loadNext(ResultSet rs, String locale, Connection con) throws SQLException, DataException {
+	protected Book loadNext(ResultSet rs, String locale, Connection con) throws SQLException, DataException {
 		int i;
-		LibroDTO l = new LibroDTO();
+		Book l = new Book();
 		i = 1;
-		l = new LibroDTO();
+		l = new Book();
 		l.setId(rs.getLong(i++));
 		l.setIsbn(rs.getString(i++));
 		l.setNombre(rs.getString(i++));

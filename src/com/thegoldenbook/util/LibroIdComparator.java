@@ -2,9 +2,9 @@ package com.thegoldenbook.util;
 
 import java.util.Comparator;
 
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 
-public class LibroIdComparator implements Comparator<LibroDTO>{
+public class LibroIdComparator implements Comparator<Book>{
 	
 	private boolean asc = true;
 	
@@ -20,7 +20,7 @@ public class LibroIdComparator implements Comparator<LibroDTO>{
 		this.asc = asc;
 	}
 	
-	public int compare (LibroDTO one, LibroDTO other) {
+	public int compare (Book one, Book other) {
 		if(one.getId()>other.getId()) {
 			return  asc?-1:1;
 		}else if (one.getId()==other.getId()) {

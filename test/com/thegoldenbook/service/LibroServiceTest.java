@@ -7,9 +7,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Author;
-import com.thegoldenbook.model.LibroDTO;
+import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.Tematica;
+import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.LibroCriteria;
 import com.thegoldenbook.service.LibroService;
 import com.thegoldenbook.service.impl.LibroServiceImpl;
@@ -27,7 +27,7 @@ public class LibroServiceTest {
 	public void testFindByLibro() throws Exception{
 
 		logger.traceEntry("Testing findByLibroId...");
-		LibroDTO l = null;
+		Book l = null;
 		String locale="it";
 		l = libroService.findByLibro(locale, 1l);
 
@@ -47,12 +47,12 @@ public class LibroServiceTest {
 		c.setNombre("a");
 		String locale = "it";
 		c.setLocale(locale);
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 1);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 1);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se ha encontrado ningún libro con el ID proporcionado");
 		}else {
-			for(LibroDTO l : resultados.getPage()) {
+			for(Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -66,12 +66,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setId(15l);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 1);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 1);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se ha encontrado ningún libro con el ID proporcionado");
 		}else {
-			for(LibroDTO l : resultados.getPage()) {
+			for(Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -85,12 +85,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setIsbn("978-0060913076");
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se ha encontrado ningún libro con el ISBN proporcionado");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -102,12 +102,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setDesdePrecio(25.00);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que tengan un precio superior o igual al proporcionado");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -120,12 +120,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setHastaPrecio(15.00);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros con un precio inferior o igual al proporcionado");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -139,12 +139,12 @@ public class LibroServiceTest {
 		c.setOrderBy(LibroCriteria.ORDER_BY_UNIDADES);
 		c.setAscDesc(Boolean.TRUE);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.error("No se han encontrado libros que tengan más unidades o las mismas que las proporcionadas");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -158,12 +158,12 @@ public class LibroServiceTest {
 		c.setOrderBy(LibroCriteria.ORDER_BY_UNIDADES);
 		c.setAscDesc(Boolean.FALSE);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No hay libros que tengan menos unidades o las mismas que las proporcionadas");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -177,12 +177,12 @@ public class LibroServiceTest {
 		c.setOrderBy(LibroCriteria.ORDER_BY_FECHA);
 		c.setAscDesc(Boolean.FALSE);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que hayan sido publicados posteriormente a la fecha proporcionada");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -196,12 +196,12 @@ public class LibroServiceTest {
 		c.setOrderBy(LibroCriteria.ORDER_BY_FECHA);
 		c.setAscDesc(Boolean.FALSE);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que hayan sido publicados anteriormente de la fecha proporcionada");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -213,12 +213,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setGeneroLiterarioId(1);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 5);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 5);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que pertenezcan al género literario proporcionado");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -230,12 +230,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setClasificacionEdadId(1);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que pertenezcan a la clasificación por edad proporcionada");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -247,12 +247,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setIdiomaId(2);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que estén escritos en el idioma proporcionado");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -264,12 +264,12 @@ public class LibroServiceTest {
 		LibroCriteria c = new LibroCriteria();
 		c.setFormatoId(3);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que estén disponibles en el formato proporcionado");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -292,12 +292,12 @@ public class LibroServiceTest {
 		//c.setOrderBy(c.ORDER_BY_UNIDADES);
 		//c.setAscDesc(Boolean.FALSE);
 		String locale = "it";
-		Results<LibroDTO> resultados = libroService.findByCriteria(c, 1, 10);
+		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado libros que concuerden con los parametros de búsqueda proporcionados");
 		}else {
-			for (LibroDTO l : resultados.getPage()) {
+			for (Book l : resultados.getPage()) {
 				logger.info(l);
 			}
 		}
@@ -307,9 +307,9 @@ public class LibroServiceTest {
 		logger.traceEntry("Testing testFindByCriteriaWithoutParameters...");
 		LibroCriteria c = new LibroCriteria();
 		String locale = "it";
-		Results<LibroDTO> libros = libroService.findByCriteria(c, 1, 5);
+		Results<Book> libros = libroService.findByCriteria(c, 1, 5);
 
-		for (LibroDTO l : libros.getPage()) {
+		for (Book l : libros.getPage()) {
 			logger.info(l);
 		}
 	}
@@ -319,13 +319,13 @@ public class LibroServiceTest {
 
 
 		List<Author> autores = new ArrayList<Author>();
-		List<Tematica>tematicas = new ArrayList<Tematica>(); 
+		List<Subject>tematicas = new ArrayList<Subject>(); 
 
-		Tematica t = new Tematica();
+		Subject t = new Subject();
 		t.setId(8);
 		tematicas.add(t);
 		
-		Tematica t2 = new Tematica();
+		Subject t2 = new Subject();
 		t2.setId(2);
 		tematicas.add(t2);
 
@@ -335,7 +335,7 @@ public class LibroServiceTest {
 
 		String locale = "it";
 		
-		LibroDTO l = new LibroDTO();
+		Book l = new Book();
 		l.setIsbn("978-8445076538");
 		l.setNombre("Crónicas Marcianas");
 		l.setUnidades(10);
@@ -361,7 +361,7 @@ public class LibroServiceTest {
 
 		logger.traceEntry("Testing delete...");
 		String locale = "it";
-		LibroDTO l = libroService.findByLibro(locale, 1l);
+		Book l = libroService.findByLibro(locale, 1l);
 		//l.setValoracionMedia(4.75);
 		l.setClasificacionEdadId(3);
 		
