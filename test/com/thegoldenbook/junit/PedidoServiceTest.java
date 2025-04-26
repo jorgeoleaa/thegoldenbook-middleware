@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Pedido;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.LineaPedidoService;
@@ -149,8 +149,8 @@ public class PedidoServiceTest {
 	@Test
 	public void testCreate() throws Exception{
 		Pedido p = new Pedido ();
-		LineaPedido lp1 = new LineaPedido();
-		LineaPedido lp2 = new LineaPedido();
+		OrderItem lp1 = new OrderItem();
+		OrderItem lp2 = new OrderItem();
 
 		p.setFechaRealizacion(new Date());
 		p.setPrecio(pedidoService.calcularPrecio(p));
@@ -181,8 +181,8 @@ public class PedidoServiceTest {
 		Pedido pedido = pedidoService.findBy(11l);
 		pedido.setTipoEstadoPedidoId(4);
 		pedido.setClienteId(4l);
-		List<LineaPedido> pedidos = new ArrayList<LineaPedido>();
-		LineaPedido lp = new LineaPedido();
+		List<OrderItem> pedidos = new ArrayList<OrderItem>();
+		OrderItem lp = new OrderItem();
 		lp.setLibroId(3l);
 		lp.setPedidoId(3l);
 		lp.setPrecio(10.00);

@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LineaPedidoDAO;
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class LineaPedidoDAOImpl implements LineaPedidoDAO {
@@ -24,9 +24,9 @@ public class LineaPedidoDAOImpl implements LineaPedidoDAO {
 		
 	}
 	
-	public List<LineaPedido> findByPedido(Connection con, Long pedidoId) throws DataException{
+	public List<OrderItem> findByPedido(Connection con, Long pedidoId) throws DataException{
 		
-		List<LineaPedido> resultados = new ArrayList<LineaPedido>();
+		List<OrderItem> resultados = new ArrayList<OrderItem>();
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -63,9 +63,9 @@ public class LineaPedidoDAOImpl implements LineaPedidoDAO {
 		return resultados;
 	}
 
-	public LineaPedido findById(Connection con, Long lineaPedidoId) throws DataException{
+	public OrderItem findById(Connection con, Long lineaPedidoId) throws DataException{
 		
-		LineaPedido lp = null;
+		OrderItem lp = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		
@@ -99,7 +99,7 @@ public class LineaPedidoDAOImpl implements LineaPedidoDAO {
 		return lp;
 	}
 	
-	public void create(Connection con, Long idPedido, List<LineaPedido> lineas) throws DataException{
+	public void create(Connection con, Long idPedido, List<OrderItem> lineas) throws DataException{
 		
 		if (lineas.size()==0) return;
 		
@@ -119,7 +119,7 @@ public class LineaPedidoDAOImpl implements LineaPedidoDAO {
 					Statement.RETURN_GENERATED_KEYS);
 			
 			int i = 1;
-			for (LineaPedido linea: lineas) {
+			for (OrderItem linea: lineas) {
 				ps.setDouble(i++, linea.getPrecio());
 				ps.setInt(i++, linea.getUnidades());
 				linea.setPedidoId(idPedido);
@@ -212,11 +212,11 @@ public class LineaPedidoDAOImpl implements LineaPedidoDAO {
 		return true;
 	}
 	
-	protected LineaPedido loadNext (ResultSet rs) throws SQLException{
+	protected OrderItem loadNext (ResultSet rs) throws SQLException{
 		
 		int i = 1;
 		
-		LineaPedido l = new LineaPedido();
+		OrderItem l = new OrderItem();
 		
 		l.setId(rs.getLong(i++));
 		l.setPrecio(rs.getDouble(i++));

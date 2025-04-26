@@ -11,7 +11,7 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.PedidoDAO;
 import com.thegoldenbook.dao.impl.PedidoDAOImpl;
 import com.thegoldenbook.model.User;
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Pedido;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.ClienteService;
@@ -176,7 +176,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 		double precioTotal = 0.0d;
 
-		for(LineaPedido lp:p.getLineas()) {
+		for(OrderItem lp:p.getLineas()) {
 			precioTotal+= lp.getPrecio()*lp.getUnidades();
 		}
 

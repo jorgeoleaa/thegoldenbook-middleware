@@ -13,10 +13,10 @@ public class Pedido extends AbstractValueObject{
 	private String nickname;
 	private Integer tipoEstadoPedidoId;
 	private String tipoEstadoPedidoNombre;
-	private List<LineaPedido> lineas;
+	private List<OrderItem> lineas;
 		
 	public Pedido() {
-		lineas = new ArrayList<LineaPedido>();
+		lineas = new ArrayList<OrderItem>();
 	}
 
 	public Long getId() {
@@ -59,11 +59,11 @@ public class Pedido extends AbstractValueObject{
 		this.tipoEstadoPedidoId = tipoEstadoPedidoId;
 	}
 
-	public List<LineaPedido> getLineas() {
+	public List<OrderItem> getLineas() {
 		return lineas;
 	}
 
-	public void setLineas(List<LineaPedido> lineas) {
+	public void setLineas(List<OrderItem> lineas) {
 		this.lineas = lineas;
 	}
 

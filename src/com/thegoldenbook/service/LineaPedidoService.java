@@ -1,11 +1,11 @@
 package com.thegoldenbook.service;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 
 public interface LineaPedidoService {
 	
-	public LineaPedido findById (Long lineaPedidoId)
+	public OrderItem findById (Long lineaPedidoId)
 			throws DataException;
 	
 	public boolean deleteFromPedido (Long lineaId, Long pedidoId) throws DataException;

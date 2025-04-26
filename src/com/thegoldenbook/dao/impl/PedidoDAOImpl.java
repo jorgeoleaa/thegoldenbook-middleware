@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LineaPedidoDAO;
 import com.thegoldenbook.dao.PedidoDAO;
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Pedido;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.PedidoCriteria;
@@ -299,7 +299,7 @@ public class PedidoDAOImpl implements PedidoDAO{
 		p.setTipoEstadoPedidoId(rs.getInt(i++));
 		p.setTipoEstadoPedidoNombre(rs.getString(i++));
 
-		List<LineaPedido> lineas = lineaPedidoDAO.findByPedido(con, p.getId());
+		List<OrderItem> lineas = lineaPedidoDAO.findByPedido(con, p.getId());
 		p.setLineas(lineas);
 
 		return p;

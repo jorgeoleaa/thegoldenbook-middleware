@@ -4,7 +4,7 @@ package com.thegoldenbook.service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.service.LineaPedidoService;
 import com.thegoldenbook.service.impl.LineaPedidoServiceImpl;
 
@@ -19,7 +19,7 @@ public class LineaPedidoServiceTest {
 	
 	public void testFindById() throws Exception{
 		logger.traceEntry("Testing findById...");
-		LineaPedido lp = lineaPedidoService.findById(3l);
+		OrderItem lp = lineaPedidoService.findById(3l);
 		
 		if(lp == null) {
 			logger.info("No se han encontrado resultados con el ID proporcionado");

@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LineaPedidoDAO;
 import com.thegoldenbook.dao.impl.LineaPedidoDAOImpl;
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.service.LineaPedidoService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -22,10 +22,10 @@ public class LineaPedidoServiceImpl implements LineaPedidoService{
 		lineaPedidoDAO = new LineaPedidoDAOImpl();
 	}
 
-	public LineaPedido findById(Long lineaPedidoId) throws DataException{
+	public OrderItem findById(Long lineaPedidoId) throws DataException{
 
 		Connection con = null;
-		LineaPedido lp = null;
+		OrderItem lp = null;
 		boolean commit = false;
 		
 		try {

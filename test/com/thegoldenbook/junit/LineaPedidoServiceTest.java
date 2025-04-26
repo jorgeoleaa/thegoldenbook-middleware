@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.LineaPedido;
+import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.service.LineaPedidoService;
 import com.thegoldenbook.service.impl.LineaPedidoServiceImpl;
 
@@ -19,13 +19,13 @@ public class LineaPedidoServiceTest {
 	
 	@Test
 	public void testFindById01() throws Exception{
-		LineaPedido l  = lineaPedidoService.findById(3l);
+		OrderItem l  = lineaPedidoService.findById(3l);
 		assertEquals(3, l.getId());
 	}
 	
 	@Test
 	public void testFindById02() throws Exception{
-		LineaPedido l  = lineaPedidoService.findById(100l);
+		OrderItem l  = lineaPedidoService.findById(100l);
 		assertNull(l);
 	}
 
