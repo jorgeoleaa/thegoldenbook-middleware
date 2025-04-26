@@ -2,21 +2,21 @@ package com.thegoldenbook.dao;
 
 import java.sql.Connection;
 
-import com.thegoldenbook.model.EmpleadoDTO;
+import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 
 public interface EmpleadoDAO {
 		
-		public EmpleadoDTO findBy(Connection con, Long id)
+		public Employee findBy(Connection con, Long id)
 			throws DataException;
 		
-		public Results<EmpleadoDTO> findAll(Connection con, int pos, int pageSize)
+		public Results<Employee> findAll(Connection con, int pos, int pageSize)
 			throws DataException;
 		
-		public Long create(Connection con, EmpleadoDTO em)
+		public Long create(Connection con, Employee em)
 			throws DataException;
 		
-		public boolean update(Connection con,EmpleadoDTO em)
+		public boolean update(Connection con,Employee em)
 			throws DataException;
 		
 		public boolean updatePassword(Connection con, String password, Long id)

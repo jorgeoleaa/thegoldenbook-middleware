@@ -10,7 +10,7 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.EmpleadoDAO;
 import com.thegoldenbook.dao.impl.EmpleadoDAOImpl;
-import com.thegoldenbook.model.EmpleadoDTO;
+import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.EmpleadoService;
 import com.thegoldenbook.service.MailService;
@@ -33,11 +33,11 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 		mailService = new MailServiceImpl();
 	}
 
-	public Results<EmpleadoDTO> findAll(int pos, int pageSize) throws DataException {
+	public Results<Employee> findAll(int pos, int pageSize) throws DataException {
 
 		Connection con = null;
 		Boolean commit = false;
-		Results<EmpleadoDTO> empleados = null;
+		Results<Employee> empleados = null;
 
 		try {
 			con = JDBCUtils.getConnection();
@@ -54,11 +54,11 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 		return empleados;
 	}
 
-	public EmpleadoDTO findBy(Long id) 
+	public Employee findBy(Long id) 
 			throws DataException, ServiceException{
 
 		Connection con = null;
-		EmpleadoDTO em = null;
+		Employee em = null;
 		boolean commit = false;
 
 		try {
@@ -76,9 +76,9 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 		return em;
 	}
 
-	public EmpleadoDTO autenticar(Long id, String password) throws DataException{
+	public Employee autenticar(Long id, String password) throws DataException{
 
-		EmpleadoDTO empleado = null;
+		Employee empleado = null;
 		Connection con = null;
 		boolean commit = false;
 
@@ -111,7 +111,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 
 		Connection con = null;
 		boolean em = false;
-		EmpleadoDTO empl = null;
+		Employee empl = null;
 		boolean commit = false;
 		try {
 			con = JDBCUtils.getConnection();
@@ -133,7 +133,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 	}
 
 
-	public boolean update(EmpleadoDTO empl)
+	public boolean update(Employee empl)
 			throws DataException{
 
 		Connection con = null;
@@ -175,7 +175,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 		return cliente;
 	}
 
-	public boolean updatePassword(EmpleadoDTO empl)
+	public boolean updatePassword(Employee empl)
 			throws DataException{
 
 		Connection con = null;
@@ -207,7 +207,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 
 
 
-	public Long registrar(EmpleadoDTO empl) 
+	public Long registrar(Employee empl) 
 			throws DataException, ServiceException{
 
 		Connection con = null;

@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.User;
-import com.thegoldenbook.model.EmpleadoDTO;
+import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.impl.ClienteServiceImpl;

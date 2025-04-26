@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Address;
-import com.thegoldenbook.model.EmpleadoDTO;
+import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.DireccionService;
 import com.thegoldenbook.service.EmpleadoService;
@@ -58,7 +58,7 @@ public class DireccionServiceTest {
 	public void testUpdateByEmpleado() throws Exception{
 		
 		logger.traceEntry("Testing Update...");
-		EmpleadoDTO e = empleadoService.findBy(7l);
+		Employee e = empleadoService.findBy(7l);
 		Address direccion =  e.getDireccion();
 		direccion.setNombreVia("Plaza Mayorista");
 		

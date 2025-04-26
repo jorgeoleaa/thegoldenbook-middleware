@@ -1,29 +1,29 @@
 package com.thegoldenbook.service;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.EmpleadoDTO;
+import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 
 public interface EmpleadoService {
 	
-	public EmpleadoDTO autenticar(Long id, String password) 
+	public Employee autenticar(Long id, String password) 
 			throws DataException;
 	
-	public EmpleadoDTO findBy(Long id) 
+	public Employee findBy(Long id) 
 			throws DataException, ServiceException;
 	
-	public Results<EmpleadoDTO> findAll(int pos, int pageSize)
+	public Results<Employee> findAll(int pos, int pageSize)
 			throws DataException;
 	
 	public boolean delete (Long id)
 		throws DataException, ServiceException;
 	
-	public boolean update (EmpleadoDTO empl) 
+	public boolean update (Employee empl) 
 		throws DataException;
 	
 	public boolean updatePassword (String password, Long id) 
 			throws DataException;
 	
-	public Long registrar (EmpleadoDTO empl)
+	public Long registrar (Employee empl)
 		throws DataException, ServiceException;
 }

@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.DireccionDAO;
 import com.thegoldenbook.dao.EmpleadoDAO;
-import com.thegoldenbook.model.EmpleadoDTO;
+import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -25,10 +25,10 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		direccionDAO = new DireccionDAOImpl();
 	}
 
-	public EmpleadoDTO findBy(Connection con, Long id)
+	public Employee findBy(Connection con, Long id)
 			throws DataException{
 
-		EmpleadoDTO em = null;
+		Employee em = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 
@@ -64,11 +64,11 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		return em;
 	}
 
-	public Results<EmpleadoDTO> findAll(Connection con, int pos, int pageSize) throws DataException {
+	public Results<Employee> findAll(Connection con, int pos, int pageSize) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Results<EmpleadoDTO> empleados = new Results<EmpleadoDTO>();
+		Results<Employee> empleados = new Results<Employee>();
 
 		try {
 			StringBuilder query = new StringBuilder(" SELECT E.ID, E.NOMBRE, E.APELLIDO1, E.APELLIDO2, E.DNI_NIE, E.TELEFONO, E.EMAIL, E.PASSWORD, E.tipo_empleado_id, t.nombre ")
@@ -98,7 +98,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		return empleados;
 	}
 
-	public Long create(Connection con, EmpleadoDTO em) 
+	public Long create(Connection con, Employee em) 
 			throws DataException{
 
 		ResultSet rs = null;
@@ -180,7 +180,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		return true;
 	}
 
-	public boolean update(Connection con, EmpleadoDTO em)
+	public boolean update(Connection con, Employee em)
 			throws DataException{
 
 		PreparedStatement pst = null;
@@ -250,9 +250,9 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		return true;
 	}	
 
-	protected EmpleadoDTO loadNext (ResultSet rs, Connection con) throws SQLException, DataException{
+	protected Employee loadNext (ResultSet rs, Connection con) throws SQLException, DataException{
 
-		EmpleadoDTO em = new EmpleadoDTO();
+		Employee em = new Employee();
 		int i = 1;
 		em.setId(rs.getLong(i++));
 		em.setNombre(rs.getString(i++));

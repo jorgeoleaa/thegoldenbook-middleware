@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Address;
-import com.thegoldenbook.model.EmpleadoDTO;
+import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.EmpleadoService;
 import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
@@ -24,7 +24,7 @@ public class EmpleadoServiceTest {
 		logger.trace("Testing Autenticacion de usuario y password correctas...");
 
 
-			EmpleadoDTO e = empleadoService.autenticar(8l, "hola2");
+			Employee e = empleadoService.autenticar(8l, "hola2");
 
 			if (e!=null) {
 				logger.trace("Autenticación correcta. Todo OK!");
@@ -40,7 +40,7 @@ public class EmpleadoServiceTest {
 		logger.traceEntry("Testing Autenticacion de usuario inexistente...");
 
 		try {
-			EmpleadoDTO empleado = empleadoService.autenticar(
+			Employee empleado = empleadoService.autenticar(
 					11l, "contrasena");
 			if (empleado!=null) {
 				logger.trace("Fallo en el método de autentication");			
@@ -59,7 +59,7 @@ public class EmpleadoServiceTest {
 		logger.traceEntry("Testing autenticación usuario existente pero contraseña incorrecta");
 
 		
-			EmpleadoDTO empleado = empleadoService.autenticar(8l, "abc123.");
+			Employee empleado = empleadoService.autenticar(8l, "abc123.");
 
 			if(empleado!=null) {
 				logger.trace("Fallo en el proceso de autenticación");
@@ -71,9 +71,9 @@ public class EmpleadoServiceTest {
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing FindAll...");
 		
-		Results<EmpleadoDTO> empleados = empleadoService.findAll(1, 500);
+		Results<Employee> empleados = empleadoService.findAll(1, 500);
 		
-		for(EmpleadoDTO e : empleados.getPage()) {
+		for(Employee e : empleados.getPage()) {
 			logger.info(e);
 		}
 	}
@@ -82,7 +82,7 @@ public class EmpleadoServiceTest {
 	public void testFindById () throws Exception{
 		logger.traceEntry("Testing FindById...");
 		
-		EmpleadoDTO e = empleadoService.findBy(2l);
+		Employee e = empleadoService.findBy(2l);
 		
 		if(e != null) {
 			logger.info(e);
@@ -101,7 +101,7 @@ public class EmpleadoServiceTest {
 			d.setDirVia("nº4 piso 3ºB");
 			d.setLocalidadId(6);		
 
-			EmpleadoDTO e = new EmpleadoDTO();
+			Employee e = new Employee();
 			e.setNombre("Jorge");
 			e.setApellido1("Olea");
 			e.setApellido2("Casanova");
@@ -127,7 +127,7 @@ public class EmpleadoServiceTest {
 		
 		logger.traceEntry("Testing delete...");
 		
-			EmpleadoDTO e = new EmpleadoDTO();
+			Employee e = new Employee();
 			e.setId(15l);
 			if(empleadoService.delete(e.getId())) {
 				logger.trace("Eliminado el empleado: "+e);
@@ -139,7 +139,7 @@ public class EmpleadoServiceTest {
 	public void testUpdate() throws Exception{
 		logger.traceEntry("Testing update...");
 		
-			EmpleadoDTO e = empleadoService.findBy(15l);
+			Employee e = empleadoService.findBy(15l);
 			e.setNombre("Jorge");
 			e.setApellido1("dsfdsdf");
 			e.setTipo_empleado_id(2);
