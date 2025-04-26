@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.Pais;
+import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.PaisService;
 import com.thegoldenbook.service.impl.PaisServiceImpl;
 
@@ -20,11 +20,11 @@ public class PaisServiceTest {
 	
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing findAll...");
-		List<Pais> paises = paisService.findAll();
+		List<Country> paises = paisService.findAll();
 		if(paises.isEmpty()) {
 			logger.trace("No se han encontrado resultados");
 		}else {
-			for(Pais p : paises) {
+			for(Country p : paises) {
 				logger.info(p);
 			}
 		}
@@ -32,7 +32,7 @@ public class PaisServiceTest {
 	
 	public void testFindById() throws Exception {
 		logger.traceEntry("Testing findByID...");
-		Pais p = paisService.findById(-1);
+		Country p = paisService.findById(-1);
 		
 		if(p == null) {
 			logger.trace("No se han encontrado resultados");

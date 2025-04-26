@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.PaisDAO;
-import com.thegoldenbook.model.Pais;
+import com.thegoldenbook.model.Country;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class PaisDAOImpl implements PaisDAO{
@@ -23,9 +23,9 @@ public class PaisDAOImpl implements PaisDAO{
 
 	}
 
-	public List<Pais> findAll(Connection con) throws DataException{
+	public List<Country> findAll(Connection con) throws DataException{
 
-		List<Pais>resultados = new ArrayList<Pais>();
+		List<Country>resultados = new ArrayList<Country>();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 
@@ -53,11 +53,11 @@ public class PaisDAOImpl implements PaisDAO{
 		return resultados;
 	}
 
-	public Pais findById(Connection con, int id) throws DataException {
+	public Country findById(Connection con, int id) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Pais p = null;
+		Country p = null;
 		try { 
 			StringBuilder query = new StringBuilder("SELECT ID, NOMBRE, ISO1, ISO2, PHONE_CODIGO ")
 					.append(" FROM PAIS ")
@@ -81,11 +81,11 @@ public class PaisDAOImpl implements PaisDAO{
 		}
 		return p;
 	}
-	protected Pais loadNext (ResultSet rs) throws SQLException{
+	protected Country loadNext (ResultSet rs) throws SQLException{
 
 		int i = 1;
 
-		Pais p = new Pais();
+		Country p = new Country();
 
 		p.setId(rs.getInt(i++));
 		p.setNombre(rs.getString(i++));

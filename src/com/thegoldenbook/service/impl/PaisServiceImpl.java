@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.PaisDAO;
 import com.thegoldenbook.dao.impl.PaisDAOImpl;
-import com.thegoldenbook.model.Pais;
+import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.PaisService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -25,10 +25,10 @@ public class PaisServiceImpl implements PaisService {
 	}
 	
 	
-	public List<Pais> findAll() throws DataException {
+	public List<Country> findAll() throws DataException {
 		
 		Connection con = null;
-		List<Pais> resultados = null;
+		List<Country> resultados = null;
 		boolean commit = false;
 		
 		try {
@@ -47,10 +47,10 @@ public class PaisServiceImpl implements PaisService {
 	}
 
 	
-	public Pais findById(int id) throws DataException {
+	public Country findById(int id) throws DataException {
 		
 		Connection con = null;
-		Pais p = null;
+		Country p = null;
 		boolean commit = false;
 		
 		try {

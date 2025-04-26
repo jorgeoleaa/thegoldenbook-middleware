@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.Pais;
+import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.PaisService;
 import com.thegoldenbook.service.impl.PaisServiceImpl;
 
@@ -19,19 +19,19 @@ public class PaisServiceTest {
 	}
 	@Test
 	public void testFindAll() throws Exception{
-		List<Pais> paises = paisService.findAll();
+		List<Country> paises = paisService.findAll();
 		assertEquals(248, paises.size());
 	}
 	
 	@Test 
 	public void testFindById() throws Exception{
-		Pais p = paisService.findById(5);
+		Country p = paisService.findById(5);
 		assertEquals(5, p.getId());
 	}
 	
 	@Test
 	public void testFindById02() throws Exception{
-		Pais p = paisService.findById(249);
+		Country p = paisService.findById(249);
 		assertEquals(null, p);
 	}
 	
