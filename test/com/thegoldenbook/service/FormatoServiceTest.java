@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.Formato;
+import com.thegoldenbook.model.Format;
 import com.thegoldenbook.service.FormatoService;
 import com.thegoldenbook.service.impl.FormatoServiceImpl;
 
@@ -21,11 +21,11 @@ public class FormatoServiceTest {
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing FindAll...");
 		String locale = "it";
-		List<Formato> formatos = formatoService.findAll(locale);
+		List<Format> formatos = formatoService.findAll(locale);
 		if(formatos.isEmpty()) {
 			logger.trace("No se han encontrado resultados");
 		}else {
-			for(Formato f : formatos) {
+			for(Format f : formatos) {
 				logger.info(f);
 			}
 		}

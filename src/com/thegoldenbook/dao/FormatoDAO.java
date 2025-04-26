@@ -3,10 +3,10 @@ package com.thegoldenbook.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import com.thegoldenbook.model.Formato;
+import com.thegoldenbook.model.Format;
 
 public interface FormatoDAO {
 	
-	public List<Formato> findAll(Connection con, String locale)
+	public List<Format> findAll(Connection con, String locale)
 			throws DataException;
 }

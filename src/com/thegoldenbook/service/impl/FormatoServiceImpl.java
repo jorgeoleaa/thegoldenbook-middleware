@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.FormatoDAO;
 import com.thegoldenbook.dao.impl.FormatoDAOImpl;
-import com.thegoldenbook.model.Formato;
+import com.thegoldenbook.model.Format;
 import com.thegoldenbook.service.FormatoService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -23,11 +23,11 @@ public class FormatoServiceImpl implements FormatoService{
 		formatoDAO = new FormatoDAOImpl();
 	}
 	
-	public List<Formato> findAll(String locale) throws DataException {
+	public List<Format> findAll(String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Formato> formatos = null;
+		List<Format> formatos = null;
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);

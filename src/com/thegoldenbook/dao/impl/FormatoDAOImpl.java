@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.FormatoDAO;
-import com.thegoldenbook.model.Formato;
+import com.thegoldenbook.model.Format;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class FormatoDAOImpl implements FormatoDAO{
@@ -23,11 +23,11 @@ public class FormatoDAOImpl implements FormatoDAO{
 		
 	}
 	
-	public List<Formato> findAll(Connection con, String locale) throws DataException {
+	public List<Format> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<Formato> resultados = new ArrayList<Formato>();
+		List<Format> resultados = new ArrayList<Format>();
 		
 		try {
 			
@@ -57,9 +57,9 @@ public class FormatoDAOImpl implements FormatoDAO{
 		return resultados;
 	}
 	
-	protected Formato loadNext (ResultSet rs) throws SQLException{
+	protected Format loadNext (ResultSet rs) throws SQLException{
 		
-		Formato f = new Formato();
+		Format f = new Format();
 		int i = 1;
 		
 		f.setId(rs.getInt(i++));
