@@ -12,18 +12,18 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.GeneroLiterarioDAO;
-import com.thegoldenbook.model.GeneroLiterario;
+import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class GeneroLiterarioDAOImpl implements GeneroLiterarioDAO{
 	
 	private Logger logger = LogManager.getLogger(GeneroLiterarioDAOImpl.class);
 	
-	public List<GeneroLiterario> findAll(Connection con, String locale) throws DataException {
+	public List<LiteraryGenre> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<GeneroLiterario> generos = new ArrayList<GeneroLiterario>();
+		List<LiteraryGenre> generos = new ArrayList<LiteraryGenre>();
 		
 		try {
 			StringBuilder query = new StringBuilder (" SELECT GL.ID, GLI.NOMBRE ")
@@ -53,9 +53,9 @@ public class GeneroLiterarioDAOImpl implements GeneroLiterarioDAO{
 	}
 
 	
-	protected GeneroLiterario loadNext (ResultSet rs) throws SQLException{
+	protected LiteraryGenre loadNext (ResultSet rs) throws SQLException{
 		
-		GeneroLiterario genero = new GeneroLiterario();
+		LiteraryGenre genero = new LiteraryGenre();
 		
 		int i = 1;
 		genero.setId(rs.getInt(i++));

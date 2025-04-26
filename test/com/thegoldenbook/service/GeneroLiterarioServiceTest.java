@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.GeneroLiterario;
+import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.service.GeneroLiterarioService;
 import com.thegoldenbook.service.impl.GeneroLiterarioServiceImpl;
 
@@ -21,12 +21,12 @@ public class GeneroLiterarioServiceTest {
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing findAll...");
 		String locale = "it";
-		List<GeneroLiterario> generos = generoLiterarioService.findAll(locale);
+		List<LiteraryGenre> generos = generoLiterarioService.findAll(locale);
 		
 		if(generos.isEmpty()) {
 			logger.trace("No se han encontrado resultados");
 		}else {
-			for(GeneroLiterario gl : generos) {
+			for(LiteraryGenre gl : generos) {
 				logger.info(gl);
 			}
 		}

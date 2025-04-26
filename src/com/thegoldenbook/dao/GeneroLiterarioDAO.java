@@ -3,9 +3,9 @@ package com.thegoldenbook.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import com.thegoldenbook.model.GeneroLiterario;
+import com.thegoldenbook.model.LiteraryGenre;
 
 public interface GeneroLiterarioDAO {
 	
-	public List<GeneroLiterario> findAll(Connection con, String locale) throws DataException;
+	public List<LiteraryGenre> findAll(Connection con, String locale) throws DataException;
 }

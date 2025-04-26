@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.GeneroLiterario;
+import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.service.GeneroLiterarioService;
 import com.thegoldenbook.service.impl.GeneroLiterarioServiceImpl;
 
@@ -21,7 +21,7 @@ public class GeneroLiterarioServiceTest {
 	@Test
 	public void testFindAll() throws Exception {
 		String locale = "it";
-		List<GeneroLiterario> generos = generoLiterarioService.findAll(locale);
+		List<LiteraryGenre> generos = generoLiterarioService.findAll(locale);
 		assertEquals(5, generos.size());
 	}
 
