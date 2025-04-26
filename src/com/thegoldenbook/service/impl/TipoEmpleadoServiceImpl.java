@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.TipoEmpleadoDAO;
 import com.thegoldenbook.dao.impl.TipoEmpleadoDAOImpl;
-import com.thegoldenbook.model.TipoEmpleado;
+import com.thegoldenbook.model.EmployeeType;
 import com.thegoldenbook.service.TipoEmpleadoService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -21,11 +21,11 @@ public class TipoEmpleadoServiceImpl implements TipoEmpleadoService{
 	private static Logger logger = LogManager.getLogger(TipoEmpleadoServiceImpl.class);
 	
 	@Override
-	public List<TipoEmpleado> findAll() throws DataException {
+	public List<EmployeeType> findAll() throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<TipoEmpleado> tipos = null;
+		List<EmployeeType> tipos = null;
 		
 		try {
 			con = JDBCUtils.getConnection();

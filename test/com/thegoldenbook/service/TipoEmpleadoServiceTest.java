@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.TipoEmpleado;
+import com.thegoldenbook.model.EmployeeType;
 import com.thegoldenbook.service.TipoEmpleadoService;
 import com.thegoldenbook.service.impl.TipoEmpleadoServiceImpl;
 
@@ -17,7 +17,7 @@ public class TipoEmpleadoServiceTest {
 	
 	public void testFindAll() throws Exception {
 		
-		List<TipoEmpleado> tipos = tipoEmpleadoService.findAll();
+		List<EmployeeType> tipos = tipoEmpleadoService.findAll();
 		logger.info(tipos);
 	}
 	

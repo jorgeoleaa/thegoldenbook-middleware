@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.TipoEmpleadoDAO;
-import com.thegoldenbook.model.TipoEmpleado;
+import com.thegoldenbook.model.EmployeeType;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class TipoEmpleadoDAOImpl implements TipoEmpleadoDAO{
@@ -20,11 +20,11 @@ public class TipoEmpleadoDAOImpl implements TipoEmpleadoDAO{
 	private static Logger logger = LogManager.getLogger();
 	
 	@Override
-	public List<TipoEmpleado> findAll(Connection con) throws DataException {
+	public List<EmployeeType> findAll(Connection con) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<TipoEmpleado> estados = new ArrayList<TipoEmpleado>();
+		List<EmployeeType> estados = new ArrayList<EmployeeType>();
 		
 		try {
 			
@@ -49,9 +49,9 @@ public class TipoEmpleadoDAOImpl implements TipoEmpleadoDAO{
 		return estados;
 	}
 	
-	protected TipoEmpleado loadNext(ResultSet rs) throws SQLException{
+	protected EmployeeType loadNext(ResultSet rs) throws SQLException{
 		
-		TipoEmpleado tipo = new TipoEmpleado();
+		EmployeeType tipo = new EmployeeType();
 		int i = 1;
 		
 		tipo.setId(rs.getInt(i++));
