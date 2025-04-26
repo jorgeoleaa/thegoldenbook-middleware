@@ -3,10 +3,10 @@ package com.thegoldenbook.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import com.thegoldenbook.model.EstadoPedido;
+import com.thegoldenbook.model.OrderStatus;
 
 public interface EstadoPedidoDAO {
 	
-	public List<EstadoPedido> findAll(Connection con) 
+	public List<OrderStatus> findAll(Connection con) 
 			throws DataException;
 }

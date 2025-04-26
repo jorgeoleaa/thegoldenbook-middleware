@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.EstadoPedidoDAO;
 import com.thegoldenbook.dao.impl.EstadoPedidoDAOImpl;
-import com.thegoldenbook.model.EstadoPedido;
+import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.service.EstadoPedidoService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -24,10 +24,10 @@ public class EstadoPedidoServiceImpl implements EstadoPedidoService{
 	}
 	
 	@Override
-	public List<EstadoPedido> findAll() throws DataException {
+	public List<OrderStatus> findAll() throws DataException {
 		
 		Connection con = null;
-		List<EstadoPedido> estados = null;
+		List<OrderStatus> estados = null;
 		boolean commit = false;
 		
 		try {

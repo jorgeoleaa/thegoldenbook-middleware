@@ -12,18 +12,18 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.EstadoPedidoDAO;
-import com.thegoldenbook.model.EstadoPedido;
+import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class EstadoPedidoDAOImpl implements EstadoPedidoDAO{
 
 	private static Logger logger = LogManager.getLogger(EstadoPedidoDAOImpl.class);
 	
-	public List<EstadoPedido> findAll(Connection con) throws DataException {
+	public List<OrderStatus> findAll(Connection con) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<EstadoPedido> estados = new ArrayList<EstadoPedido>();
+		List<OrderStatus> estados = new ArrayList<OrderStatus>();
 		
 		try {
 			
@@ -48,10 +48,10 @@ public class EstadoPedidoDAOImpl implements EstadoPedidoDAO{
 		return estados;
 	}
 	
-	protected EstadoPedido loadNext (ResultSet rs) throws SQLException{
+	protected OrderStatus loadNext (ResultSet rs) throws SQLException{
 		
 		int i = 1;
-		EstadoPedido estado = new EstadoPedido();
+		OrderStatus estado = new OrderStatus();
 		
 		estado.setId(rs.getInt(i++));
 		estado.setNombre(rs.getString(i++));

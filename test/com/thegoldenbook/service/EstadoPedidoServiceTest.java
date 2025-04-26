@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.EstadoPedido;
+import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.service.EstadoPedidoService;
 import com.thegoldenbook.service.impl.EstadoPedidoServiceImpl;
 
@@ -21,7 +21,7 @@ public class EstadoPedidoServiceTest {
 	public void testFindAll() {
 		
 		try {
-			List<EstadoPedido> estados = estadoPedidoService.findAll();
+			List<OrderStatus> estados = estadoPedidoService.findAll();
 			logger.info(estados);
 		}catch(Exception e) {
 			logger.error(e.getMessage(), e);
