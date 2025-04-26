@@ -15,7 +15,7 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LineaPedidoDAO;
 import com.thegoldenbook.dao.PedidoDAO;
 import com.thegoldenbook.model.OrderItem;
-import com.thegoldenbook.model.Pedido;
+import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.PedidoCriteria;
 import com.thegoldenbook.util.JDBCUtils;
@@ -29,9 +29,9 @@ public class PedidoDAOImpl implements PedidoDAO{
 		lineaPedidoDAO = new LineaPedidoDAOImpl();
 	}
 
-	public Results<Pedido> findByCriteria (Connection con, PedidoCriteria p, int pos, int pageSize) throws DataException{
+	public Results<Order> findByCriteria (Connection con, PedidoCriteria p, int pos, int pageSize) throws DataException{
 
-		Results<Pedido> resultados = new Results<Pedido>();
+		Results<Order> resultados = new Results<Order>();
 		List<String> condiciones = new ArrayList<String>();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -136,9 +136,9 @@ public class PedidoDAOImpl implements PedidoDAO{
 
 
 
-	public Pedido findBy(Connection con, Long id) throws DataException{
+	public Order findBy(Connection con, Long id) throws DataException{
 
-		Pedido p = null;
+		Order p = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 
@@ -171,7 +171,7 @@ public class PedidoDAOImpl implements PedidoDAO{
 	}
 
 
-	public Long create(Connection con, Pedido p) throws DataException{
+	public Long create(Connection con, Order p) throws DataException{
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -215,7 +215,7 @@ public class PedidoDAOImpl implements PedidoDAO{
 
 	}
 
-	public boolean update(Connection con, Pedido p) throws DataException{
+	public boolean update(Connection con, Order p) throws DataException{
 
 		PreparedStatement pst = null;
 
@@ -286,10 +286,10 @@ public class PedidoDAOImpl implements PedidoDAO{
 		}
 		return true;
 	}
-	protected Pedido loadNext (Connection con, ResultSet rs) throws SQLException, DataException{
+	protected Order loadNext (Connection con, ResultSet rs) throws SQLException, DataException{
 
 		int i = 1;
-		Pedido p = new Pedido();
+		Order p = new Order();
 
 		p.setId(rs.getLong(i++));
 		p.setFechaRealizacion(rs.getDate(i++));

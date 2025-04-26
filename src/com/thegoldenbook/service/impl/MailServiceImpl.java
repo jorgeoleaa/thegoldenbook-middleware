@@ -27,7 +27,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.config.ConfigurationParametersManager;
 import com.thegoldenbook.model.User;
-import com.thegoldenbook.model.Pedido;
+import com.thegoldenbook.model.Order;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
 
@@ -162,7 +162,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendPedidoRealizado(String to, User cliente, Pedido pedido) throws MailException {
+	public void sendPedidoRealizado(String to, User cliente, Order pedido) throws MailException {
 		String subject = "";
 		StringBuilder body = new StringBuilder();
 

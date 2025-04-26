@@ -1,27 +1,27 @@
 package com.thegoldenbook.service;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.Pedido;
+import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 
 public interface PedidoService {
 
-	public Pedido findBy(Long id)
+	public Order findBy(Long id)
 			throws DataException;
 	
-	public Results<Pedido> findByCriteria (PedidoCriteria pedido, int pos, int pageSize)
+	public Results<Order> findByCriteria (PedidoCriteria pedido, int pos, int pageSize)
 			throws DataException;
 	
-	public Long create (Pedido p)
+	public Long create (Order p)
 			throws DataException, MailException;
 	
-	public boolean update(Pedido p)
+	public boolean update(Order p)
 			throws DataException;
 	
 	public boolean delete(Long id)
 			throws DataException;
 	
-	public Double calcularPrecio(Pedido p)
+	public Double calcularPrecio(Order p)
 			throws DataException;
 	
 }

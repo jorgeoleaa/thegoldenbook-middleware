@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.OrderItem;
-import com.thegoldenbook.model.Pedido;
+import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.LineaPedidoService;
 import com.thegoldenbook.service.PedidoCriteria;
@@ -32,13 +32,13 @@ public class PedidoServiceTest {
 
 	@Test
 	public void testFindById01() throws Exception{
-		Pedido p = pedidoService.findBy(4l);
+		Order p = pedidoService.findBy(4l);
 		assertEquals(4, p.getId());
 	}
 
 	@Test
 	public void testFindById02() throws Exception{
-		Pedido p = pedidoService.findBy(100l);
+		Order p = pedidoService.findBy(100l);
 		assertEquals(null, p);
 	}
 
@@ -46,7 +46,7 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaId() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
 		criteria.setId(2l);
-		Results<Pedido>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
 	}
 
@@ -54,9 +54,9 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaFechaDesde() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
 		criteria.setFechaDesde(DateUtils.getDate(2023, 9, 1));
-		Results<Pedido>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
-		for(Pedido p : resultados.getPage()) {
+		for(Order p : resultados.getPage()) {
 			Date fechaPublicacion = p.getFechaRealizacion();
 			Date fechaLimite = DateUtils.getDate(2023, 9, 1);
 
@@ -69,9 +69,9 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaFechaHasta() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
 		criteria.setFechaHasta(DateUtils.getDate(2023, 4, 1));
-		Results<Pedido>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
-		for(Pedido p : resultados.getPage()) {
+		for(Order p : resultados.getPage()) {
 			Date fechaPublicacion = p.getFechaRealizacion();
 			Date fechaLimite = DateUtils.getDate(2023, 4, 1);
 
@@ -84,9 +84,9 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaPrecioDesde() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
 		criteria.setPrecioDesde(40.00);
-		Results<Pedido>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
-		for(Pedido p : resultados.getPage()) {
+		for(Order p : resultados.getPage()) {
 			assertTrue(p.getPrecio()>=40, "Libros con un precio igual o superior a 40 euros");
 		}
 	}
@@ -95,9 +95,9 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaPrecioHasta() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
 		criteria.setPrecioHasta(20.00);
-		Results<Pedido>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
-		for(Pedido p : resultados.getPage()) {
+		for(Order p : resultados.getPage()) {
 			assertTrue(p.getPrecio()<=40, "Libros con un precio igual o inferior a 20 euros");
 		}
 	}
@@ -106,9 +106,9 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaClienteId() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
 		criteria.setClienteId(2l);
-		Results<Pedido>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		
-		for(Pedido p : resultados.getPage()) {
+		for(Order p : resultados.getPage()) {
 			assertTrue(p.getClienteId() == 2, "Pedidos realizados por el cliente con ID = 2");
 		}
 	}
@@ -117,9 +117,9 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaTipoEstadoPedidoId() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
 		criteria.setTipoEstadoPedidoId(2);
-		Results<Pedido>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		
-		for(Pedido p : resultados.getPage()) {
+		for(Order p : resultados.getPage()) {
 			assertTrue(p.getTipoEstadoPedidoId() == 2, "Pedidos que se encuentran en un estado con ID = 2");
 		}
 	}
@@ -130,9 +130,9 @@ public class PedidoServiceTest {
 		criteria.setPrecioDesde(15.00);
 		criteria.setFechaDesde(DateUtils.getDate(2023, 04, 2));
 		criteria.setTipoEstadoPedidoId(2);
-		Results<Pedido> resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order> resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		
-		for(Pedido p : resultados.getPage()) {
+		for(Order p : resultados.getPage()) {
 			assertTrue(p.getPrecio() >= 15, "Pedidos con precio superior o igual a 15.00");
 			assertTrue(p.getFechaRealizacion().after(DateUtils.getDate(2023, 04, 2)), "Pedidos realizados despues del 2023/04/02");
 			assertTrue(p.getTipoEstadoPedidoId() == 2, "Pedidos que su estado se corresponde con el id = 2");
@@ -142,13 +142,13 @@ public class PedidoServiceTest {
 	@Test
 	public void testFindByEmptyCriteria() throws Exception{
 		PedidoCriteria criteria = new PedidoCriteria();
-		Results<Pedido> resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Order> resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		assertEquals(11, resultados.getTotal());
 	}
 	
 	@Test
 	public void testCreate() throws Exception{
-		Pedido p = new Pedido ();
+		Order p = new Order ();
 		OrderItem lp1 = new OrderItem();
 		OrderItem lp2 = new OrderItem();
 
@@ -178,7 +178,7 @@ public class PedidoServiceTest {
 	@Test
 	public void testUpdate() throws Exception{
 		
-		Pedido pedido = pedidoService.findBy(11l);
+		Order pedido = pedidoService.findBy(11l);
 		pedido.setTipoEstadoPedidoId(4);
 		pedido.setClienteId(4l);
 		List<OrderItem> pedidos = new ArrayList<OrderItem>();
@@ -202,7 +202,7 @@ public class PedidoServiceTest {
 	
 	@Test 
 	public void calcularPrecio() throws Exception{
-		Pedido p = pedidoService.findBy(1l);
+		Order p = pedidoService.findBy(1l);
 		Double total = pedidoService.calcularPrecio(p);
 		assertEquals(33.489999999999995, total);
 	}

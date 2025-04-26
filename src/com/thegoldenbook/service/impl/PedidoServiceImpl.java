@@ -12,7 +12,7 @@ import com.thegoldenbook.dao.PedidoDAO;
 import com.thegoldenbook.dao.impl.PedidoDAOImpl;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.OrderItem;
-import com.thegoldenbook.model.Pedido;
+import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.MailException;
@@ -35,10 +35,10 @@ public class PedidoServiceImpl implements PedidoService {
 	}
 
 
-	public Pedido findBy(Long id) throws DataException{
+	public Order findBy(Long id) throws DataException{
 
 		Connection con = null;
-		Pedido p = null;
+		Order p = null;
 		boolean commit = false;
 
 		try {
@@ -58,10 +58,10 @@ public class PedidoServiceImpl implements PedidoService {
 
 
 
-	public Results<Pedido> findByCriteria(PedidoCriteria pedido, int pos, int pageSize) throws DataException{
+	public Results<Order> findByCriteria(PedidoCriteria pedido, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
-		Results<Pedido> resultados = null;
+		Results<Order> resultados = null;
 		boolean commit = false;
 
 		try {
@@ -81,7 +81,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 
 
-	public Long create(Pedido p) throws DataException, MailException {
+	public Long create(Order p) throws DataException, MailException {
 
 	    Connection con = null;
 	    Long id = null;
@@ -95,9 +95,9 @@ public class PedidoServiceImpl implements PedidoService {
 	        criteria.setTipoEstadoPedidoId(7);  // Tipo de estado "carrito"
 	        criteria.setClienteId(p.getClienteId());
 
-	        List<Pedido> pedidos = findByCriteria(criteria, 1, Integer.MAX_VALUE).getPage();
+	        List<Order> pedidos = findByCriteria(criteria, 1, Integer.MAX_VALUE).getPage();
 
-	        Pedido carrito = null;
+	        Order carrito = null;
 	        if (!pedidos.isEmpty()) {
 	            carrito = pedidos.get(0);
 	        }
@@ -124,7 +124,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 
 
-	public boolean update(Pedido p) throws DataException{
+	public boolean update(Order p) throws DataException{
 
 		Connection con = null;
 		boolean tf = false;
@@ -172,7 +172,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 
 
-	public Double calcularPrecio(Pedido p) throws DataException{
+	public Double calcularPrecio(Order p) throws DataException{
 
 		double precioTotal = 0.0d;
 
