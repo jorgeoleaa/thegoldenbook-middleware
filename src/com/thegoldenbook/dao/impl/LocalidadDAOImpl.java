@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LocalidadDAO;
-import com.thegoldenbook.model.Localidad;
+import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class LocalidadDAOImpl implements LocalidadDAO {
@@ -23,11 +23,11 @@ public class LocalidadDAOImpl implements LocalidadDAO {
 		
 	}
 	
-	public Localidad findById(Connection con, int id) throws DataException{
+	public Locality findById(Connection con, int id) throws DataException{
 		
 		ResultSet rs = null;
 		PreparedStatement pst = null;
-		Localidad l = null;
+		Locality l = null;
 		
 		try {
 			StringBuilder query = new StringBuilder ("SELECT ID, NOMBRE, CODIGO_POSTAL, PROVINCIA_ID ")
@@ -53,11 +53,11 @@ public class LocalidadDAOImpl implements LocalidadDAO {
 		return l;
 	}
 	
-	public Localidad findByCodigoPostal (Connection con, int codigoPostal) throws DataException{
+	public Locality findByCodigoPostal (Connection con, int codigoPostal) throws DataException{
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Localidad l = null;
+		Locality l = null;
 		
 		try {
 			StringBuilder query = new StringBuilder(" SELECT ID, NOMBRE, CODIGO_POSTAL, PROVINCIA_ID ")
@@ -85,9 +85,9 @@ public class LocalidadDAOImpl implements LocalidadDAO {
 	}
 	
 	
-	public List<Localidad> findAll(Connection con) throws DataException {
+	public List<Locality> findAll(Connection con) throws DataException {
 		
-		List<Localidad> resultados = new ArrayList<Localidad>();
+		List<Locality> resultados = new ArrayList<Locality>();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		
@@ -113,11 +113,11 @@ public class LocalidadDAOImpl implements LocalidadDAO {
 		return resultados;
 	}
 	
-	protected Localidad loadNext (ResultSet rs) throws SQLException{
+	protected Locality loadNext (ResultSet rs) throws SQLException{
 		
 		int i = 1;
 		
-		Localidad l = new Localidad();
+		Locality l = new Locality();
 		
 		l.setId(rs.getInt(i++));
 		l.setNombre(rs.getString(i++));

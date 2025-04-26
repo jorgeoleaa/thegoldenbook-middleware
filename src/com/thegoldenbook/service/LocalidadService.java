@@ -3,16 +3,16 @@ package com.thegoldenbook.service;
 import java.util.List;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.Localidad;
+import com.thegoldenbook.model.Locality;
 
 public interface LocalidadService {
 
-	public List<Localidad> findAll() 
+	public List<Locality> findAll() 
 			throws DataException;
 	
-	public Localidad findById(int id)
+	public Locality findById(int id)
 			throws DataException;
 	
-	public Localidad findByCodigoPostal (int codigoPostal)
+	public Locality findByCodigoPostal (int codigoPostal)
 			throws DataException;
 }

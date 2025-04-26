@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.Localidad;
+import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.service.LocalidadService;
 import com.thegoldenbook.service.impl.LocalidadServiceImpl;
 
@@ -20,12 +20,12 @@ public class LocalidadServiceTest {
 
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing FindAll...");
-		List<Localidad> resultados = localidadService.findAll();
+		List<Locality> resultados = localidadService.findAll();
 
 		if(resultados.isEmpty()) {
 			logger.info("No se han encontrado resultados");
 		}else {
-			for(Localidad l : resultados) {
+			for(Locality l : resultados) {
 				logger.info(resultados);
 			}
 		}
@@ -33,7 +33,7 @@ public class LocalidadServiceTest {
 
 	public void testFindByCodigoPostal() throws Exception{
 		logger.traceEntry("Testing findByCodigoPostal...");
-		Localidad l = localidadService.findByCodigoPostal(27510);
+		Locality l = localidadService.findByCodigoPostal(27510);
 		if(l != null) {
 			logger.info(l);
 		}else {
@@ -45,7 +45,7 @@ public class LocalidadServiceTest {
 
 	public void testFindById() throws Exception{
 		logger.traceEntry("Testing findByLocalidadId...");
-		Localidad l = localidadService.findById(4);
+		Locality l = localidadService.findById(4);
 		if(l != null) {
 			logger.info(l);
 		}else {

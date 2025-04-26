@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LocalidadDAO;
 import com.thegoldenbook.dao.impl.LocalidadDAOImpl;
-import com.thegoldenbook.model.Localidad;
+import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.service.LocalidadService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -23,10 +23,10 @@ public class LocalidadServiceImpl implements LocalidadService{
 		localidadDAO = new LocalidadDAOImpl();
 	}
 	
-	public List<Localidad> findAll() throws DataException{
+	public List<Locality> findAll() throws DataException{
 		
 		Connection con = null;
-		List<Localidad> localidades = null;
+		List<Locality> localidades = null;
 		boolean commit = false;
 		try {
 			con = JDBCUtils.getConnection();
@@ -44,10 +44,10 @@ public class LocalidadServiceImpl implements LocalidadService{
 	}
 
 	
-	public Localidad findById(int id) throws DataException{
+	public Locality findById(int id) throws DataException{
 		
 		Connection con = null;
-		Localidad l = null;
+		Locality l = null;
 		boolean commit = false;
 		try {
 			con = JDBCUtils.getConnection();
@@ -65,10 +65,10 @@ public class LocalidadServiceImpl implements LocalidadService{
 	}
 
 	
-	public Localidad findByCodigoPostal(int codigoPostal) throws DataException {
+	public Locality findByCodigoPostal(int codigoPostal) throws DataException {
 		
 		Connection con = null;
-		Localidad l = null;
+		Locality l = null;
 		boolean commit = false;
 		
 		try {

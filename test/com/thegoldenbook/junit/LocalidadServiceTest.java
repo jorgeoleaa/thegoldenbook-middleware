@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.Localidad;
+import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.service.LocalidadService;
 import com.thegoldenbook.service.impl.LocalidadServiceImpl;
 
@@ -20,31 +20,31 @@ public class LocalidadServiceTest {
 	
 	@Test
 	public void testFindAll() throws Exception{
-		List<Localidad> localidades= localidadService.findAll();
+		List<Locality> localidades= localidadService.findAll();
 		assertEquals(35, localidades.size());
 	}
 	
 	@Test
 	public void testFindById01() throws Exception{
-		Localidad l = localidadService.findById(1);
+		Locality l = localidadService.findById(1);
 		assertEquals(1, l.getId());
 	}
 	
 	@Test
 	public void testFindById02() throws Exception{
-		Localidad l = localidadService.findById(100);
+		Locality l = localidadService.findById(100);
 		assertEquals(null, l);
 	}
 	
 	@Test
 	public void testFindByCodigoPostal01() throws Exception{
-		Localidad l = localidadService.findByCodigoPostal(27510);
+		Locality l = localidadService.findByCodigoPostal(27510);
 		assertEquals(27510, l.getCodigoPostal());
 	}
 	
 	@Test
 	public void testFindByCodigoPostal02() throws Exception{
-		Localidad l = localidadService.findByCodigoPostal(10000);
+		Locality l = localidadService.findByCodigoPostal(10000);
 		assertEquals(null, l);
 	}
 
