@@ -14,7 +14,7 @@ import com.thegoldenbook.dao.impl.LibroDAOImpl;
 import com.thegoldenbook.dao.impl.ValoracionDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.ValoracionDTO;
+import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ValoracionCriteria;
 import com.thegoldenbook.service.ValoracionService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -30,10 +30,10 @@ public class ValoracionServiceImpl implements ValoracionService {
 		libroDAO = new LibroDAOImpl();
 	}
 
-	public ValoracionDTO findByValoracion(Long clienteId, Long libroId) throws DataException {
+	public Review findByValoracion(Long clienteId, Long libroId) throws DataException {
 
 		Connection con = null;
-		ValoracionDTO v = null;
+		Review v = null;
 		boolean commit = false;
 
 		try {
@@ -52,10 +52,10 @@ public class ValoracionServiceImpl implements ValoracionService {
 
 	}
 
-	public Results<ValoracionDTO> findByCliente(Long clienteId, int pos, int pageSize) throws DataException{
+	public Results<Review> findByCliente(Long clienteId, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
-		Results<ValoracionDTO> resultados = null;
+		Results<Review> resultados = null;
 		boolean commit = false;
 
 		try {
@@ -74,11 +74,11 @@ public class ValoracionServiceImpl implements ValoracionService {
 		return resultados;
 	}
 
-	public Results<ValoracionDTO> findByValoracionCriteria(ValoracionCriteria i, int pos, int pageSize)
+	public Results<Review> findByValoracionCriteria(ValoracionCriteria i, int pos, int pageSize)
 			throws DataException{
 
 		Connection con = null;
-		Results<ValoracionDTO> resultados = null;
+		Results<Review> resultados = null;
 		boolean commit = false;
 
 		try {
@@ -97,10 +97,10 @@ public class ValoracionServiceImpl implements ValoracionService {
 	}
 
 
-	public Results<ValoracionDTO> findByLibro(Long libroId, int pos, int pageSize) throws DataException{
+	public Results<Review> findByLibro(Long libroId, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
-		Results<ValoracionDTO> resultados = null;
+		Results<Review> resultados = null;
 		boolean commit = true;
 
 		try {
@@ -119,7 +119,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 	}
 
 
-	public void create(ValoracionDTO v, String locale) throws DataException{
+	public void create(Review v, String locale) throws DataException{
 
 		Connection con = null;
 		boolean commit = false;
@@ -167,7 +167,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 	}
 
 
-	public boolean update(ValoracionDTO v) throws DataException{
+	public boolean update(Review v) throws DataException{
 
 		Connection con = null;
 		boolean i = false;
@@ -189,7 +189,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 	}
 
 	
-	public Double calcularMedia(List<ValoracionDTO> valoraciones) throws DataException {
+	public Double calcularMedia(List<Review> valoraciones) throws DataException {
 		
 		double sumaValoraciones = 0;
 		int contador = 0;

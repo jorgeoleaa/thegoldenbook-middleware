@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.ValoracionDTO;
+import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ValoracionCriteria;
 import com.thegoldenbook.service.ValoracionService;
 import com.thegoldenbook.service.impl.ValoracionServiceImpl;
@@ -24,7 +24,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByValoracion() throws Exception{
 		logger.traceEntry("Testing findByValoracion...");
-		ValoracionDTO v = valoracionService.findByValoracion(1l, 8l);
+		Review v = valoracionService.findByValoracion(1l, 8l);
 		if(v == null) {
 			logger.trace("No se han encontrado valoraciones a partir de los datos proporcionados");
 		}else {
@@ -36,12 +36,12 @@ public class ValoracionServiceTest {
 		logger.traceEntry("Testing findByCriteria...");
 		ValoracionCriteria valoracion = new ValoracionCriteria();
 		valoracion.setClienteId(3l);
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, 5);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, 5);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado resultados con los parámetros de búsqueda introducidos");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 
@@ -53,12 +53,12 @@ public class ValoracionServiceTest {
 		logger.traceEntry("Testing findByCriteria...");
 		ValoracionCriteria valoracion = new ValoracionCriteria();
 		valoracion.setLibroId(4l);
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, 5);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, 5);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado resultados con los parámetros de búsqueda introducidos");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 
@@ -71,12 +71,12 @@ public class ValoracionServiceTest {
 		logger.traceEntry("Testing findByCriteriaFechaDesde...");
 		ValoracionCriteria c = new ValoracionCriteria();
 		c.setFechaDesde(DateUtils.getDate(2023, 8, 25));
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
 
 		if(resultados.getPage() == null) {
 			logger.trace("No se han encontrado valoraciones publicadas a partir de la fecha proporcionada");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 		}
@@ -86,12 +86,12 @@ public class ValoracionServiceTest {
 		logger.traceEntry("Testing findByCriteriaFechaHasta...");
 		ValoracionCriteria c = new ValoracionCriteria();
 		c.setFechaHasta(DateUtils.getDate(2023, 2, 20));
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(c, 1, 10);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, 10);
 
 		if(resultados.getPage() == null) {
 			logger.trace("No se han encontrado valoraciones publicadas anteriormente a la fecha proporcionada");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 		}
@@ -102,12 +102,12 @@ public class ValoracionServiceTest {
 		logger.traceEntry("Testing findByCriteriaPalabra...");
 		ValoracionCriteria c = new ValoracionCriteria();
 		c.setPalabra("interesante");
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
 
 		if(resultados.getPage() == null) {
 			logger.trace("No se han encontrado valoraciones que contengan la cadena de texto proporcionada");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 		}
@@ -122,12 +122,12 @@ public class ValoracionServiceTest {
 		c.setFechaHasta(DateUtils.getDateTime(2023, 8, 25, 0, 0, 0));
 		//c.setLibroId(4l);
 		c.setAscDesc(Boolean.TRUE);
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado valoraciones que contengan la cadena de texto proporcionada");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 		}
@@ -136,12 +136,12 @@ public class ValoracionServiceTest {
 	public void testFindByEmptyCriteria() throws Exception{
 		logger.traceEntry("Testing FindByEmptyCriteria...");
 		ValoracionCriteria c = new ValoracionCriteria();
-		Results<ValoracionDTO>valoraciones = valoracionService.findByValoracionCriteria(c, 1, 10);
+		Results<Review>valoraciones = valoracionService.findByValoracionCriteria(c, 1, 10);
 
 		if(valoraciones.getPage().isEmpty()) {
 			logger.trace("No se han encontrado resultados");
 		}else {
-			for(ValoracionDTO v : valoraciones.getPage()) {
+			for(Review v : valoraciones.getPage()) {
 				logger.info(v);
 			}
 		}
@@ -150,12 +150,12 @@ public class ValoracionServiceTest {
 
 	public void testFindByCliente() throws Exception{
 		logger.traceEntry("Testing findByClienteId...");
-		Results<ValoracionDTO> resultados = valoracionService.findByCliente(2l, 1, 5);
+		Results<Review> resultados = valoracionService.findByCliente(2l, 1, 5);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado valoraciones a partir del ID de cliente proporcionado");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 		}
@@ -163,12 +163,12 @@ public class ValoracionServiceTest {
 
 	public void testFindByLibro() throws Exception{
 		logger.traceEntry("Testing findByLibroId...");
-		Results<ValoracionDTO> resultados = valoracionService.findByLibro(8l, 1, 5);
+		Results<Review> resultados = valoracionService.findByLibro(8l, 1, 5);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.trace("No se han encontrado valoraciones a partir del ID del libro proporcionado");
 		}else {
-			for(ValoracionDTO v : resultados.getPage()) {
+			for(Review v : resultados.getPage()) {
 				logger.info(v);
 			}
 		}
@@ -179,7 +179,7 @@ public class ValoracionServiceTest {
 		
 		String locale = "it";
 		
-		ValoracionDTO v = new ValoracionDTO();
+		Review v = new Review();
 		v.setClienteId(1l);
 		v.setLibroId(1l);
 		v.setNumeroEstrellas(4.0d);
@@ -201,7 +201,7 @@ public class ValoracionServiceTest {
 
 	public void testUpdate() throws Exception{
 		logger.traceEntry("Testing update...");
-		ValoracionDTO v = valoracionService.findByValoracion(2l, 1l);
+		Review v = valoracionService.findByValoracion(2l, 1l);
 		v.setCuerpo("holaaa");
 		//v.setAsunto("No se que acaba de ");
 		
@@ -214,7 +214,7 @@ public class ValoracionServiceTest {
 	}
 	
 	public void testCalcularMedia() throws Exception{
-		Results<ValoracionDTO> valoraciones = valoracionService.findByLibro(8l, 1, Integer.MAX_VALUE);
+		Results<Review> valoraciones = valoracionService.findByLibro(8l, 1, Integer.MAX_VALUE);
 		double valoracionMedia = valoracionService.calcularMedia(valoraciones.getPage());
 		logger.trace(valoracionMedia);
 	}

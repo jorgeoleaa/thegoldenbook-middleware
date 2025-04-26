@@ -4,32 +4,32 @@ import java.util.List;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.ValoracionDTO;
+import com.thegoldenbook.model.Review;
 
 public interface ValoracionService {
 	
-	public Results<ValoracionDTO> findByValoracionCriteria(ValoracionCriteria i, int pos, int pageSize)
+	public Results<Review> findByValoracionCriteria(ValoracionCriteria i, int pos, int pageSize)
 			throws DataException;
 	
-	public ValoracionDTO findByValoracion (Long clienteId, Long libroId) 
+	public Review findByValoracion (Long clienteId, Long libroId) 
 			throws DataException;
 	
-	public Results<ValoracionDTO> findByCliente(Long clienteId, int pos, int pageSize)
+	public Results<Review> findByCliente(Long clienteId, int pos, int pageSize)
 			throws DataException;
 	
-	public Results<ValoracionDTO> findByLibro(Long libroId, int pos, int pageSize)
+	public Results<Review> findByLibro(Long libroId, int pos, int pageSize)
 			throws DataException;
 	
-	public void create (ValoracionDTO v, String locale)
+	public void create (Review v, String locale)
 			throws DataException;
 	
 	public boolean delete (Long clienteId, Long libroId)
 			throws DataException;
 	
-	public boolean update (ValoracionDTO v)
+	public boolean update (Review v)
 			throws DataException;
 	
-	public Double calcularMedia (List<ValoracionDTO> valoraciones) 
+	public Double calcularMedia (List<Review> valoraciones) 
 		throws DataException;
 	
 }

@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.ValoracionDAO;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.ValoracionDTO;
+import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ValoracionCriteria;
 import com.thegoldenbook.util.JDBCUtils;
 import com.thegoldenbook.util.SQLUtils;
@@ -27,9 +27,9 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 
 	}
 
-	public Results<ValoracionDTO> findByValoracionCriteria(Connection con, ValoracionCriteria v, int pos, int pageSize) throws DataException{
+	public Results<Review> findByValoracionCriteria(Connection con, ValoracionCriteria v, int pos, int pageSize) throws DataException{
 
-		Results<ValoracionDTO> resultados = new Results<ValoracionDTO>();
+		Results<Review> resultados = new Results<Review>();
 		List<String> condiciones = new ArrayList<String>();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -126,9 +126,9 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 		return resultados;
 	}
 
-	public Results<ValoracionDTO> findByCliente(Connection con, Long clienteId, int pos, int pageSize) throws DataException{
+	public Results<Review> findByCliente(Connection con, Long clienteId, int pos, int pageSize) throws DataException{
 
-		Results<ValoracionDTO> resultados = new Results<ValoracionDTO>();
+		Results<Review> resultados = new Results<Review>();
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 
@@ -170,9 +170,9 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 	}
 
 
-	public Results<ValoracionDTO> findByLibro(Connection con, Long libroId, int pos, int pageSize) throws DataException{
+	public Results<Review> findByLibro(Connection con, Long libroId, int pos, int pageSize) throws DataException{
 
-		Results<ValoracionDTO> resultados = new Results<ValoracionDTO>();
+		Results<Review> resultados = new Results<Review>();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 
@@ -240,7 +240,7 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 	}
 
 
-	public boolean update(Connection con, ValoracionDTO v) throws DataException{
+	public boolean update(Connection con, Review v) throws DataException{
 
 		PreparedStatement pst = null;
 
@@ -273,7 +273,7 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 		return true;
 	}
 
-	public void create(Connection con, ValoracionDTO v) throws DataException{
+	public void create(Connection con, Review v) throws DataException{
 
 		PreparedStatement pst = null;
 
@@ -302,9 +302,9 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 		}
 	}
 
-	protected ValoracionDTO loadNext (ResultSet rs) throws SQLException {
+	protected Review loadNext (ResultSet rs) throws SQLException {
 
-		ValoracionDTO v = new ValoracionDTO();
+		Review v = new Review();
 		int i = 1;
 
 		v.setClienteId(rs.getLong(i++));
@@ -329,11 +329,11 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 
 
 
-	public ValoracionDTO findByValoracion(Connection con, Long clienteId, Long libroId) throws DataException {
+	public Review findByValoracion(Connection con, Long clienteId, Long libroId) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		ValoracionDTO v = null;
+		Review v = null;
 		try {
 			StringBuilder query = new StringBuilder(" SELECT V.CLIENTE_ID, C.NICKNAME, C.NOMBRE AS CLIENTE_NOMBRE, C.APELLIDO1 AS APELLIDO1_CLIENTE, C.APELLIDO2 AS APELLIDO2_CLIENTE, V.LIBRO_ID AS ID_LIBRO, L.NOMBRE AS LIBRO, A.ID AS AUTOR_ID, A.NOMBRE AS AUTOR_NOMBRE, A.APELLIDO1 AS AUTOR_APELLIDO1, A.APELLIDO2 AS AUTOR_APELLIDO2, V.NUMERO_ESTRELLAS, V.ASUNTO, V.CUERPO, V.FECHA_PUBLICACION")
 					.append(" FROM CLIENTE_LIBRO V ")

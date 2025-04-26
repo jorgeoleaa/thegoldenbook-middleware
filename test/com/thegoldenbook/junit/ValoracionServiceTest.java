@@ -10,7 +10,7 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.model.ValoracionDTO;
+import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ValoracionCriteria;
 import com.thegoldenbook.service.ValoracionService;
 import com.thegoldenbook.service.impl.ValoracionServiceImpl;
@@ -26,41 +26,41 @@ public class ValoracionServiceTest {
 
 	@Test
 	public void testFindByValoracion1() throws Exception{
-		ValoracionDTO v = valoracionService.findByValoracion(1l, 8l);
+		Review v = valoracionService.findByValoracion(1l, 8l);
 		assertNotNull(v);
 	}
 
 	@Test
 	public void testFindByValoracion02() throws Exception{
-		ValoracionDTO v = valoracionService.findByValoracion(2l, 10l);
+		Review v = valoracionService.findByValoracion(2l, 10l);
 		assertNull(v);
 	}
 
 	@Test
 	public void testFindByCliente01() throws Exception{
-		Results<ValoracionDTO> resultados = valoracionService.findByCliente(2l, 1, Integer.MAX_VALUE);
-		for(ValoracionDTO v : resultados.getPage()) {
+		Results<Review> resultados = valoracionService.findByCliente(2l, 1, Integer.MAX_VALUE);
+		for(Review v : resultados.getPage()) {
 			assertTrue(v.getClienteId() == 2, "Valoraciones que pertenecen al cliente con ID = 2");
 		}
 	}
 
 	@Test
 	public void testFindByCliente02() throws Exception{
-		Results<ValoracionDTO> resultados = valoracionService.findByCliente(100l, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByCliente(100l, 1, Integer.MAX_VALUE);
 		assertTrue(resultados.getPage().isEmpty(), "No hay valoraciones asociadas a ese cliente");
 	}
 
 	@Test
 	public void testFindByLibro01() throws Exception{
-		Results<ValoracionDTO> resultados = valoracionService.findByLibro(8l, 1, Integer.MAX_VALUE);
-		for(ValoracionDTO v : resultados.getPage()) {
+		Results<Review> resultados = valoracionService.findByLibro(8l, 1, Integer.MAX_VALUE);
+		for(Review v : resultados.getPage()) {
 			assertTrue(v.getLibroId() == 8, "Valoraciones asociadas al libro con id = 8");
 		}
 	}
 
 	@Test
 	public void testFindByLibro02() throws Exception{
-		Results<ValoracionDTO> resultados = valoracionService.findByLibro(100l, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByLibro(100l, 1, Integer.MAX_VALUE);
 		assertTrue(resultados.getPage().isEmpty(), "No se han encontrado valoraciones para el libro con id = 100");
 	}
 
@@ -68,9 +68,9 @@ public class ValoracionServiceTest {
 	public void testFindByCriteriaClienteId() throws Exception{
 		ValoracionCriteria valoracion = new ValoracionCriteria();
 		valoracion.setClienteId(3l);
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, Integer.MAX_VALUE);
 
-		for(ValoracionDTO v : resultados.getPage()) {
+		for(Review v : resultados.getPage()) {
 			assertTrue(v.getClienteId() == 3, "Valoraciones que realizadas por el cliente con id = 3");
 
 		}
@@ -80,9 +80,9 @@ public class ValoracionServiceTest {
 	public void testFindByCriteriaLibroId() throws Exception{
 		ValoracionCriteria valoracion = new ValoracionCriteria();
 		valoracion.setLibroId(4l);
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, Integer.MAX_VALUE);
 
-		for(ValoracionDTO v : resultados.getPage()) {
+		for(Review v : resultados.getPage()) {
 			assertTrue(v.getLibroId() == 4, "Valoraciones que pertenecen al libro con id = 4");
 		}
 	}
@@ -91,9 +91,9 @@ public class ValoracionServiceTest {
 	public void testFindByCriteriaFechaDesde() throws Exception{
 		ValoracionCriteria c = new ValoracionCriteria();
 		c.setFechaDesde(DateUtils.getDate(2023, 8, 25));
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(ValoracionDTO v : resultados.getPage()) {
+		for(Review v : resultados.getPage()) {
 			Date fechaPublicacion = v.getFechaPublicacion();
 			Date fechaLimite = DateUtils.getDate(2023, 8, 25);
 
@@ -105,9 +105,9 @@ public class ValoracionServiceTest {
 	public void testFindByCriteriaFechaHasta() throws Exception{
 		ValoracionCriteria c = new ValoracionCriteria();
 		c.setFechaHasta(DateUtils.getDate(2023, 2, 20));
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
 
-		for(ValoracionDTO v : resultados.getPage()) {
+		for(Review v : resultados.getPage()) {
 			Date fechaPublicacion = v.getFechaPublicacion();
 			Date fechaLimite = DateUtils.getDate(2023, 2, 20);
 
@@ -119,7 +119,7 @@ public class ValoracionServiceTest {
 	public void testFindByCriteriaPalabra() throws Exception{
 		ValoracionCriteria c = new ValoracionCriteria();
 		c.setPalabra("interesante");
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
 		
 		assertTrue(!resultados.getPage().isEmpty(), "Valoraciones que en su contenido contienen la palabra interesante");
 	}	
@@ -130,9 +130,9 @@ public class ValoracionServiceTest {
 		criteria.setFechaDesde(DateUtils.getDateTime(2023, 6, 1, 0, 0, 0)); 
 		criteria.setFechaHasta(DateUtils.getDateTime(2023, 8, 25, 0, 0, 0));
 		
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(criteria, 1, Integer.MAX_VALUE);
 		
-		for(ValoracionDTO v : resultados.getPage()) {
+		for(Review v : resultados.getPage()) {
 			Date fechaPublicacion = v.getFechaPublicacion();
 			Date fechaDesde = DateUtils.getDateTime(2023, 6, 1, 0, 0, 0);
 			Date fechaHasta = (DateUtils.getDateTime(2023, 8, 25, 0, 0, 0));
@@ -145,7 +145,7 @@ public class ValoracionServiceTest {
 	@Test
 	public void findByEmptyCriteria() throws Exception{
 		ValoracionCriteria criteria = new ValoracionCriteria();
-		Results<ValoracionDTO> resultados = valoracionService.findByValoracionCriteria(criteria, 1, Integer.MAX_VALUE);
+		Results<Review> resultados = valoracionService.findByValoracionCriteria(criteria, 1, Integer.MAX_VALUE);
 		assertEquals(10, resultados.getTotal());
 	}
 	
@@ -154,7 +154,7 @@ public class ValoracionServiceTest {
 		
 		String locale = "it";
 		
-		ValoracionDTO v = new ValoracionDTO();
+		Review v = new Review();
 		v.setClienteId(2l);
 		v.setLibroId(1l);
 		v.setNumeroEstrellas(4.2d);
@@ -167,7 +167,7 @@ public class ValoracionServiceTest {
 	
 	@Test
 	public void testUpdate() throws Exception{
-		ValoracionDTO v = valoracionService.findByValoracion(1l, 8l);
+		Review v = valoracionService.findByValoracion(1l, 8l);
 		v.setCuerpo("holaaa");
 		boolean tf = valoracionService.update(v);
 		assertTrue(tf);
