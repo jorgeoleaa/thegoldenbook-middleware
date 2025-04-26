@@ -12,7 +12,7 @@ public class EmpleadoDTO extends AbstractValueObject {
 	private String password;
 	private Integer tipo_empleado_id;
 	private String tipo_empleado_nombre;
-	private DireccionDTO direccion;
+	private Address direccion;
 	
 	public EmpleadoDTO() {
 		
@@ -67,10 +67,10 @@ public class EmpleadoDTO extends AbstractValueObject {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public DireccionDTO getDireccion() {
+	public Address getDireccion() {
 		return direccion;
 	}
-	public void setDireccion(DireccionDTO direccion) {
+	public void setDireccion(Address direccion) {
 		this.direccion = direccion;
 	}
 

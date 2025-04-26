@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.DireccionDTO;
+import com.thegoldenbook.model.Address;
 import com.thegoldenbook.service.DireccionService;
 import com.thegoldenbook.service.EmpleadoService;
 import com.thegoldenbook.service.impl.DireccionServiceImpl;
@@ -29,7 +29,7 @@ public class DireccionServiceTest {
 	
 	@Test
 	public void testCreate() throws Exception{
-		DireccionDTO direccion = new DireccionDTO();
+		Address direccion = new Address();
 		direccion.setNombreVia("Calle Santiago");
 		direccion.setDirVia("n12 bajo");
 		direccion.setLocalidadId(4);
@@ -40,7 +40,7 @@ public class DireccionServiceTest {
 	
 	@Test
 	public void testUpdate() throws Exception{
-		DireccionDTO direccion = empleadoService.findBy(5l).getDireccion();
+		Address direccion = empleadoService.findBy(5l).getDireccion();
 		direccion.setNombreVia("Calle Rodolfo reno");
 		direccionService.update(direccion);
 		assertNotEquals(direccion, empleadoService.findBy(5l).getDireccion());

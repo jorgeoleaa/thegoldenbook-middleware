@@ -17,7 +17,7 @@ public class User extends AbstractValueObject{
 	private String oauth_token;
 	private Date created_at;
 	private Date desactivated_at;
-	private List<DireccionDTO> direcciones;
+	private List<Address> direcciones;
 	
 	public User() {
 		
@@ -119,11 +119,11 @@ public class User extends AbstractValueObject{
 		this.desactivated_at = desactivated_at;
 	}
 
-	public List<DireccionDTO> getDirecciones() {
+	public List<Address> getDirecciones() {
 		return direcciones;
 	}
 
-	public void setDirecciones(List<DireccionDTO> direcciones) {
+	public void setDirecciones(List<Address> direcciones) {
 		this.direcciones = direcciones;
 	}
 	

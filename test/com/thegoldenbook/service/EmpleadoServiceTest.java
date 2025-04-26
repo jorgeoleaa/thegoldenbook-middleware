@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.DireccionDTO;
+import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.EmpleadoDTO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.EmpleadoService;
@@ -96,7 +96,7 @@ public class EmpleadoServiceTest {
 		logger.traceEntry("Testing create...");
 		
 		
-			DireccionDTO d = new DireccionDTO();
+			Address d = new Address();
 			d.setNombreVia("Rúa da Concepción");
 			d.setDirVia("nº4 piso 3ºB");
 			d.setLocalidadId(6);		

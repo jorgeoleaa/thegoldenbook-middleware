@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.User;
-import com.thegoldenbook.model.DireccionDTO;
+import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.EmpleadoDTO;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.DireccionService;
@@ -32,7 +32,7 @@ public class DireccionServiceTest {
 	public void testDelete() throws Exception{
 		
 		logger.traceEntry("Testing deleteByCliente...");
-		DireccionDTO direccion = new DireccionDTO();
+		Address direccion = new Address();
 		direccion.setId(12l);
 		
 		if(direccionService.delete(direccion.getId())){
@@ -44,7 +44,7 @@ public class DireccionServiceTest {
 	
 	public void testCreate() throws Exception{
 		logger.traceEntry("Testing create...");
-		DireccionDTO d = new DireccionDTO();
+		Address d = new Address();
 		d.setNombreVia("Plaza de la Concepción");
 		d.setDirVia("nº7");
 		d.setLocalidadId(24);
@@ -59,7 +59,7 @@ public class DireccionServiceTest {
 		
 		logger.traceEntry("Testing Update...");
 		EmpleadoDTO e = empleadoService.findBy(7l);
-		DireccionDTO direccion =  e.getDireccion();
+		Address direccion =  e.getDireccion();
 		direccion.setNombreVia("Plaza Mayorista");
 		
 		if(direccionService.update(direccion)) {
@@ -76,8 +76,8 @@ public class DireccionServiceTest {
 		logger.traceEntry("Testing UpdateByEmpleado...");
 		User cliente = new User();
 		cliente = clienteService.findById(1l);
-		List<DireccionDTO> direcciones = cliente.getDirecciones();
-		for(DireccionDTO direccion : direcciones) {
+		List<Address> direcciones = cliente.getDirecciones();
+		for(Address direccion : direcciones) {
 			direccion.setNombreVia("Avenida Camariñas");
 			direccionService.update(direccion);
 		}

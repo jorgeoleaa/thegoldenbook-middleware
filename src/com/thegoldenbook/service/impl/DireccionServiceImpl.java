@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.DireccionDAO;
 import com.thegoldenbook.dao.impl.DireccionDAOImpl;
-import com.thegoldenbook.model.DireccionDTO;
+import com.thegoldenbook.model.Address;
 import com.thegoldenbook.service.DireccionService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -46,7 +46,7 @@ public class DireccionServiceImpl implements DireccionService{
 	}
 
 
-	public boolean update(DireccionDTO d) throws DataException{
+	public boolean update(Address d) throws DataException{
 		
 		Connection con = null;
 		boolean di = false;
@@ -68,7 +68,7 @@ public class DireccionServiceImpl implements DireccionService{
 	}
 
 	
-	public Long create(DireccionDTO d) throws DataException{
+	public Long create(Address d) throws DataException{
 		
 		Connection con = null;
 		Long id = null;

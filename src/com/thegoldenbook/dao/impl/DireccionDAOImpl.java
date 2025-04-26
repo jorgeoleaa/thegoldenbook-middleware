@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.DireccionDAO;
-import com.thegoldenbook.model.DireccionDTO;
+import com.thegoldenbook.model.Address;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class DireccionDAOImpl implements DireccionDAO {
@@ -25,9 +25,9 @@ public class DireccionDAOImpl implements DireccionDAO {
 	}
 	
 
-	public DireccionDTO findByEmpleadoId(Connection con, Long empleadoId) throws DataException{
+	public Address findByEmpleadoId(Connection con, Long empleadoId) throws DataException{
 
-		DireccionDTO d = null;
+		Address d = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		
@@ -91,7 +91,7 @@ public class DireccionDAOImpl implements DireccionDAO {
 	}
 
 	
-	public boolean update(Connection con, DireccionDTO d) throws DataException{
+	public boolean update(Connection con, Address d) throws DataException{
 
 		PreparedStatement pst = null;
 		
@@ -124,7 +124,7 @@ public class DireccionDAOImpl implements DireccionDAO {
 	}
 
 	
-	public Long create(Connection con, DireccionDTO d) throws DataException{
+	public Long create(Connection con, Address d) throws DataException{
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -192,11 +192,11 @@ public class DireccionDAOImpl implements DireccionDAO {
 		return true;
 	}
 	
-	protected DireccionDTO loadNext (ResultSet rs) throws SQLException{
+	protected Address loadNext (ResultSet rs) throws SQLException{
 
 		int i = 1;
 
-		DireccionDTO d = new DireccionDTO();
+		Address d = new Address();
 
 		d.setId(rs.getLong(i++));
 		d.setNombreVia(rs.getString(i++));

@@ -15,7 +15,7 @@ import com.thegoldenbook.dao.ClienteDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.DireccionDAO;
 import com.thegoldenbook.model.User;
-import com.thegoldenbook.model.DireccionDTO;
+import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -303,7 +303,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 		int i = 1;
 
-		List<DireccionDTO> direcciones = new ArrayList();
+		List<Address> direcciones = new ArrayList();
 		
 		User c = new User();
 
