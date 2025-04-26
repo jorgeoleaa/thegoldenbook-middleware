@@ -23,7 +23,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.TheGoldenBookException;
 import com.thegoldenbook.config.ConfigurationParametersManager;
 import com.thegoldenbook.model.User;
-import com.thegoldenbook.model.Idioma;
+import com.thegoldenbook.model.Language;
 import com.thegoldenbook.model.LibroDTO;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.FileService;
@@ -91,7 +91,7 @@ public class FileServiceImpl implements FileService{
 		    try {
 		       
 		        LibroDTO libro = libroService.findByLibro(locale, libroId);
-		        Idioma idioma = idiomaService.findById(locale, libro.getIdiomaId());
+		        Language idioma = idiomaService.findById(locale, libro.getIdiomaId());
 
 		       
 		        File folder = new File(ConfigurationParametersManager.getParameterValue(BASE_PATH)+ File.separator + libro.getId() + File.separator + idioma.getIso639().toUpperCase());
@@ -157,7 +157,7 @@ public class FileServiceImpl implements FileService{
 	public void uploadImages(LibroDTO libro, String locale, List<File> selectedFiles) {
 	    if (selectedFiles != null && !selectedFiles.isEmpty()) {
 	        try {
-	            Idioma idioma = idiomaService.findById(locale, libro.getIdiomaId());
+	            Language idioma = idiomaService.findById(locale, libro.getIdiomaId());
 	            
 	            String baseDirectory = ConfigurationParametersManager.getParameterValue(BASE_PATH);
 	            File bookFolder = new File(baseDirectory, libro.getId().toString());

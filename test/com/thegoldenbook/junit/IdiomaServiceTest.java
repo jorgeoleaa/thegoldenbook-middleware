@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.Idioma;
+import com.thegoldenbook.model.Language;
 import com.thegoldenbook.service.IdiomaService;
 import com.thegoldenbook.service.impl.IdiomaServiceImpl;
 
@@ -20,7 +20,7 @@ public class IdiomaServiceTest {
 	
 	@Test
 	public void testFindAll() throws Exception{
-		List<Idioma> idiomas = idiomaService.findAll("es");
+		List<Language> idiomas = idiomaService.findAll("es");
 		assertEquals(5, idiomas.size());
 	}
 	

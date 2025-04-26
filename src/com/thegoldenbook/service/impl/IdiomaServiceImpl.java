@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.IdiomaDAO;
 import com.thegoldenbook.dao.impl.IdiomaDAOImpl;
-import com.thegoldenbook.model.Idioma;
+import com.thegoldenbook.model.Language;
 import com.thegoldenbook.service.IdiomaService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -23,11 +23,11 @@ public class IdiomaServiceImpl implements IdiomaService{
 		idiomaDAO = new IdiomaDAOImpl();
 	}
 	
-	public List<Idioma> findAll(String locale) throws DataException {
+	public List<Language> findAll(String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Idioma> idiomas = null;
+		List<Language> idiomas = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
@@ -45,11 +45,11 @@ public class IdiomaServiceImpl implements IdiomaService{
 	}
 
 	@Override
-	public Idioma findById(String locale, int id) throws DataException {
+	public Language findById(String locale, int id) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		Idioma idioma = null;
+		Language idioma = null;
 		
 		try {
 			con = JDBCUtils.getConnection();

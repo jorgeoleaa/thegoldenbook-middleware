@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.IdiomaDAO;
-import com.thegoldenbook.model.Idioma;
+import com.thegoldenbook.model.Language;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class IdiomaDAOImpl implements IdiomaDAO{
@@ -23,11 +23,11 @@ public class IdiomaDAOImpl implements IdiomaDAO{
 		
 	}
 	
-	public List<Idioma> findAll(Connection con, String locale) throws DataException {
+	public List<Language> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<Idioma> resultados = new ArrayList<Idioma>();
+		List<Language> resultados = new ArrayList<Language>();
 		
 		try {
 			
@@ -61,11 +61,11 @@ public class IdiomaDAOImpl implements IdiomaDAO{
 	}
 	
 	@Override
-	public Idioma findById(Connection con, String locale, int id) throws DataException {
+	public Language findById(Connection con, String locale, int id) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Idioma idioma = null;
+		Language idioma = null;
 		
 		try {
 			StringBuilder query = new StringBuilder (" SELECT I.ID, II.NOMBRE, I.ISO639 ")
@@ -96,9 +96,9 @@ public class IdiomaDAOImpl implements IdiomaDAO{
 		return idioma;
 	}
 	
-	protected Idioma loadNext(ResultSet rs) throws SQLException{
+	protected Language loadNext(ResultSet rs) throws SQLException{
 		
-		Idioma id = new Idioma();
+		Language id = new Language();
 		
 		int i = 1;
 		id.setId(rs.getInt(i++));

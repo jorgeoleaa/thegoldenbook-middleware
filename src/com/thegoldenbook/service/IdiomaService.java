@@ -3,13 +3,13 @@ package com.thegoldenbook.service;
 import java.util.List;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.Idioma;
+import com.thegoldenbook.model.Language;
 
 public interface IdiomaService {
 	
-	public List<Idioma> findAll(String locale)
+	public List<Language> findAll(String locale)
 			throws DataException;
 	
-	public Idioma findById(String locale, int id)
+	public Language findById(String locale, int id)
 			throws DataException;
 }
