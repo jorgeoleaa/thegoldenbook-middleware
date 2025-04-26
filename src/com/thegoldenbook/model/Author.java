@@ -6,9 +6,9 @@ public class Author extends AbstractValueObject{
 	
 	private Long id;
 	private String name;
-	private String last_name;
-	private String second_last_name;
-	private Date date_of_birth;
+	private String lastName;
+	private String secondLastName;
+	private Date dateOfBirth;
 	
 	public Author() {
 		
@@ -30,28 +30,29 @@ public class Author extends AbstractValueObject{
 		this.name = name;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getSecond_last_name() {
-		return second_last_name;
+	public String getSecondLastName() {
+		return secondLastName;
 	}
 
-	public void setSecond_last_name(String second_last_name) {
-		this.second_last_name = second_last_name;
+	public void setSecondLastName(String secondLastName) {
+		this.secondLastName = secondLastName;
 	}
 
-	public Date getDate_of_birth() {
-		return date_of_birth;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDate_of_birth(Date date_of_birth) {
-		this.date_of_birth = date_of_birth;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
+	
 
 }
