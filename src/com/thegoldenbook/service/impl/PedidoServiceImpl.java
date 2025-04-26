@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.PedidoDAO;
 import com.thegoldenbook.dao.impl.PedidoDAOImpl;
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.LineaPedido;
 import com.thegoldenbook.model.Pedido;
 import com.thegoldenbook.model.Results;
@@ -106,7 +106,7 @@ public class PedidoServiceImpl implements PedidoService {
 	            p.setPrecio(calcularPrecio(p));
 	            id = pedidoDAO.create(con, p);
 	            if (id != null) {
-	            	ClienteDTO cliente = clienteService.findById(id);
+	            	User cliente = clienteService.findById(id);
 	            	mailService.sendPedidoRealizado(cliente.getEmail(), cliente, p);
 	                commit = true;
 	            }

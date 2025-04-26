@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.ClienteDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.DireccionDAO;
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.DireccionDTO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
@@ -29,11 +29,11 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 
-	public ClienteDTO findById(Connection con, Long id) throws DataException{
+	public User findById(Connection con, Long id) throws DataException{
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		ClienteDTO c = null;
+		User c = null;
 
 		try {
 			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
@@ -62,11 +62,11 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 	
 
-	public ClienteDTO findByEmail(Connection con, String mail) throws DataException {
+	public User findByEmail(Connection con, String mail) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		ClienteDTO c = null;
+		User c = null;
 
 		try {
 			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, C.JWT")
@@ -94,11 +94,11 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 
 
-	public Results<ClienteDTO> findAll(Connection con, int pos, int pageSize) throws DataException {
+	public Results<User> findAll(Connection con, int pos, int pageSize) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Results<ClienteDTO> resultados = new Results<ClienteDTO>();
+		Results<User> resultados = new Results<User>();
 
 		try {
 			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
@@ -157,7 +157,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 
-	public boolean update(Connection conn, ClienteDTO c) throws DataException{
+	public boolean update(Connection conn, User c) throws DataException{
 
 		PreparedStatement pst = null;
 
@@ -223,7 +223,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		return true;
 	}
 
-	public Long create(Connection conn, ClienteDTO c) throws DataException{
+	public Long create(Connection conn, User c) throws DataException{
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -268,11 +268,11 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 
-	public ClienteDTO findByNick(Connection con, String nick) throws DataException {
+	public User findByNick(Connection con, String nick) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		ClienteDTO c = null;
+		User c = null;
 		try {
 
 			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
@@ -299,13 +299,13 @@ public class ClienteDAOImpl implements ClienteDAO {
 		return c;
 	}
 
-	protected ClienteDTO loadNext (ResultSet rs, Connection con) throws SQLException, DataException{
+	protected User loadNext (ResultSet rs, Connection con) throws SQLException, DataException{
 
 		int i = 1;
 
 		List<DireccionDTO> direcciones = new ArrayList();
 		
-		ClienteDTO c = new ClienteDTO();
+		User c = new User();
 
 		c.setId(rs.getLong(i++));
 		c.setNickname(rs.getString(i++));

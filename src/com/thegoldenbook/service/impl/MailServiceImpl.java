@@ -26,7 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.config.ConfigurationParametersManager;
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Pedido;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
@@ -68,7 +68,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendBienvenida(String to, ClienteDTO cliente) throws MailException {
+	public void sendBienvenida(String to, User cliente) throws MailException {
 		String subject = "¡Bienvenido a TheGoldenBook!";
 
 		StringBuilder body = new StringBuilder()
@@ -162,7 +162,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendPedidoRealizado(String to, ClienteDTO cliente, Pedido pedido) throws MailException {
+	public void sendPedidoRealizado(String to, User cliente, Pedido pedido) throws MailException {
 		String subject = "";
 		StringBuilder body = new StringBuilder();
 

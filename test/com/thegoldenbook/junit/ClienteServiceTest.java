@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.PedidoService;
@@ -31,49 +31,49 @@ public class ClienteServiceTest {
 
 	@Test
 	public void testFindAll() throws Exception{
-		Results<ClienteDTO> clientes = clienteService.findAll(1, Integer.MAX_VALUE);
+		Results<User> clientes = clienteService.findAll(1, Integer.MAX_VALUE);
 		assertEquals(8, clientes.getTotal());
 	}
 	
 	@Test
 	public void testFindById01() throws Exception{
-		ClienteDTO c = clienteService.findById(3l);
+		User c = clienteService.findById(3l);
 		assertEquals(4l, c.getId());
 	}
 	
 	@Test
 	public void testFindById02()throws Exception{
-		ClienteDTO c = clienteService.findById(0l);
+		User c = clienteService.findById(0l);
 		assertEquals(null, c);
 	}
 	
 	@Test
 	public void testFindByNick01() throws Exception{
-		ClienteDTO c = clienteService.findByNick("user1");
+		User c = clienteService.findByNick("user1");
 		assertEquals("user1", c.getNickname());
 	}
 	
 	@Test
 	public void testFindByNick02() throws Exception{
-		ClienteDTO c = clienteService.findByNick("user10000");
+		User c = clienteService.findByNick("user10000");
 		assertEquals(null, c);
 	}
 	
 	@Test
 	public void testFindByEmail01() throws Exception{
-		ClienteDTO c = clienteService.findByEmail("juan@gmail.com");
+		User c = clienteService.findByEmail("juan@gmail.com");
 		assertEquals("juan@gmail.com", c.getEmail());
 	}
 	
 	@Test
 	public void testFindByEmail02() throws Exception{
-		ClienteDTO c = clienteService.findByEmail("dafdfa@gmail.com");
+		User c = clienteService.findByEmail("dafdfa@gmail.com");
 		assertEquals(null, c);
 	}
 	
 	@Test
 	public void testRegistrar() throws Exception{
-		ClienteDTO c = new ClienteDTO();
+		User c = new User();
 		c.setNombre("Jorge");
 		c.setApellido1("Olea");
 		c.setApellido2("Dos santos");
@@ -90,7 +90,7 @@ public class ClienteServiceTest {
 	
 	@Test
 	public void testUpdate() throws Exception{
-		ClienteDTO c = clienteService.findById(4l);
+		User c = clienteService.findById(4l);
 		c.setNombre("Marta");
 		clienteService.update(c);
 		assertNotEquals(clienteService.findById(4l), c);

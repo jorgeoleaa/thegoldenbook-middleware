@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
@@ -40,7 +40,7 @@ public class MailServiceTest {
 	 @Test
 	 public void testSendBienvenida() throws DataException {
 		 try {
-			 ClienteDTO cliente = clienteService.findByEmail("jorgeoleacasanova@gmail.com");
+			 User cliente = clienteService.findByEmail("jorgeoleacasanova@gmail.com");
 			 mailService.sendBienvenida(cliente.getEmail(), cliente);
 			 System.out.println("Mail enviado!");
 		 }catch(MailException pe) {

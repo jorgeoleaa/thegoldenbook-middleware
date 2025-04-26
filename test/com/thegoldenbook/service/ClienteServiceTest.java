@@ -3,7 +3,7 @@ package com.thegoldenbook.service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.EmpleadoDTO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.ClienteService;
@@ -21,9 +21,9 @@ public class ClienteServiceTest {
 
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing findAll....");
-		Results<ClienteDTO> clientes = clienteService.findAll(1, 5);
+		Results<User> clientes = clienteService.findAll(1, 5);
 
-		for(ClienteDTO c : clientes.getPage()) {
+		for(User c : clientes.getPage()) {
 			logger.info(c);
 		}
 	}
@@ -31,7 +31,7 @@ public class ClienteServiceTest {
 	public void testFindById() throws Exception{
 
 		logger.traceEntry("Testing findById...");
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 		cliente = clienteService.findById(1l);
 
 		logger.info(cliente);
@@ -41,7 +41,7 @@ public class ClienteServiceTest {
 	public void testFindByNick() throws Exception{
 
 		logger.traceEntry("Testing findByNickname...");
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 		cliente = clienteService.findByNick("user1");
 
 		logger.info(cliente);
@@ -50,7 +50,7 @@ public class ClienteServiceTest {
 	public void testFindByEmail() throws Exception{
 
 		logger.traceEntry("Testing findByNickname...");
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 		cliente = clienteService.findByEmail("aa@gmail.com");
 		logger.info(cliente);
 	}
@@ -59,7 +59,7 @@ public class ClienteServiceTest {
 
 		logger.traceEntry("Testing create...");
 
-		ClienteDTO c = new ClienteDTO();
+		User c = new User();
 
 		c.setNickname("yorch");
 		c.setNombre("Jorge");
@@ -80,7 +80,7 @@ public class ClienteServiceTest {
 	public void testDelete() throws Exception{
 
 		logger.traceEntry("Testing delete...");
-		ClienteDTO c = new ClienteDTO();
+		User c = new User();
 		c.setId(9l);
 		clienteService.delete(c.getId());
 		logger.trace("Eliminado el cliente: "+c);
@@ -89,7 +89,7 @@ public class ClienteServiceTest {
 
 	public void testUpdate() throws Exception{
 
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 
 		logger.traceEntry("Testing update...");
 
@@ -123,7 +123,7 @@ public class ClienteServiceTest {
 		logger.trace("Testing Autenticacion de usuario y password correctas...");
 
 
-			ClienteDTO e = clienteService.autenticar("joroleacasanova@gmail.com", "abc123.");
+			User e = clienteService.autenticar("joroleacasanova@gmail.com", "abc123.");
 
 			if (e!=null) {
 				logger.trace("Autenticación correcta. Todo OK!");

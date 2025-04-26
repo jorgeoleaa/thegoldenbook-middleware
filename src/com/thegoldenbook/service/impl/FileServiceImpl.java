@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.TheGoldenBookException;
 import com.thegoldenbook.config.ConfigurationParametersManager;
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Idioma;
 import com.thegoldenbook.model.LibroDTO;
 import com.thegoldenbook.service.ClienteService;
@@ -116,7 +116,7 @@ public class FileServiceImpl implements FileService{
 		
 		List<File> images = new ArrayList<File>();
 		
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 		
 		try {
 			cliente = clienteService.findById(clienteId);

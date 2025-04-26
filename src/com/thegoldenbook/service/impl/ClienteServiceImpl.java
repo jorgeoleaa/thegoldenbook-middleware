@@ -10,7 +10,7 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import com.thegoldenbook.dao.ClienteDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.impl.ClienteDAOImpl;
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.MailService;
@@ -37,10 +37,10 @@ public class ClienteServiceImpl implements ClienteService {
 		mailService = new MailServiceImpl();
 	}
 
-	public ClienteDTO findById(Long id) throws DataException {
+	public User findById(Long id) throws DataException {
 
 		Connection con = null;
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 		boolean commit = false;
 
 		try {
@@ -59,10 +59,10 @@ public class ClienteServiceImpl implements ClienteService {
 
 	}
 
-	public ClienteDTO findByNick(String nick) throws DataException {
+	public User findByNick(String nick) throws DataException {
 
 		Connection con = null;
-		ClienteDTO cliente = null;
+		User cliente = null;
 		boolean commit = false;
 
 		try {
@@ -83,10 +83,10 @@ public class ClienteServiceImpl implements ClienteService {
 
 
 
-	public ClienteDTO findByEmail(String mail) throws DataException {
+	public User findByEmail(String mail) throws DataException {
 
 		Connection con = null;
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 		boolean commit = false;
 
 		try {
@@ -104,11 +104,11 @@ public class ClienteServiceImpl implements ClienteService {
 		return cliente;
 	}
 
-	public Results<ClienteDTO> findAll(int pos, int pageSize) throws DataException {
+	public Results<User> findAll(int pos, int pageSize) throws DataException {
 
 		Connection con = null;
 		boolean commit = false;
-		Results<ClienteDTO> resultados = null;
+		Results<User> resultados = null;
 
 		try {
 			con = JDBCUtils.getConnection();
@@ -125,7 +125,7 @@ public class ClienteServiceImpl implements ClienteService {
 		return resultados;
 	}
 
-	public Long registrar(ClienteDTO c) 
+	public Long registrar(User c) 
 			throws DataException, ServiceException{
 		
 		c.setPassword(PASSWORD_ENCRYPTOR.
@@ -159,7 +159,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 		Connection con = null;
 		boolean c = false;
-		ClienteDTO cliente = null;
+		User cliente = null;
 		boolean commit = false;
 
 		try {
@@ -205,7 +205,7 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 
-	public boolean update(ClienteDTO c) 
+	public boolean update(User c) 
 			throws DataException{
 
 		Connection con = null;
@@ -229,11 +229,11 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public ClienteDTO autenticar(String mail, String password) throws DataException {
+	public User autenticar(String mail, String password) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		ClienteDTO cliente = null;
+		User cliente = null;
 		
 		try {
 			con = JDBCUtils.getConnection();

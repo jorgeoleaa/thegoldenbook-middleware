@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.ClienteDTO;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.DireccionDTO;
 import com.thegoldenbook.model.EmpleadoDTO;
 import com.thegoldenbook.service.ClienteService;
@@ -74,7 +74,7 @@ public class DireccionServiceTest {
 	
 	public void testUpdateByCliente() throws Exception{
 		logger.traceEntry("Testing UpdateByEmpleado...");
-		ClienteDTO cliente = new ClienteDTO();
+		User cliente = new User();
 		cliente = clienteService.findById(1l);
 		List<DireccionDTO> direcciones = cliente.getDirecciones();
 		for(DireccionDTO direccion : direcciones) {
