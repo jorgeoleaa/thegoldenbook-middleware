@@ -34,4 +34,5 @@ public class Region extends AbstractValueObject{
 		this.countryId = countryId;
 	}
 	
+	
 }
