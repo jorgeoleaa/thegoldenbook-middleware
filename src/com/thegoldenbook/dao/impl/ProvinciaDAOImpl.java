@@ -12,18 +12,18 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.ProvinciaDAO;
-import com.thegoldenbook.model.Provincia;
+import com.thegoldenbook.model.Region;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class ProvinciaDAOImpl implements ProvinciaDAO{
 
 	private static Logger logger = LogManager.getLogger(ProvinciaDAOImpl.class);
 
-	public Provincia findById(Connection con, int id) throws DataException{
+	public Region findById(Connection con, int id) throws DataException{
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Provincia p = null;
+		Region p = null;
 
 		try {
 			StringBuilder query = new StringBuilder(" SELECT ID ,NOMBRE, PAIS_ID ")
@@ -52,9 +52,9 @@ public class ProvinciaDAOImpl implements ProvinciaDAO{
 
 
 
-	public List<Provincia> findAll(Connection con) throws DataException{
+	public List<Region> findAll(Connection con) throws DataException{
 
-		List<Provincia>resultados = new ArrayList<Provincia>();;
+		List<Region>resultados = new ArrayList<Region>();;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 
@@ -81,10 +81,10 @@ public class ProvinciaDAOImpl implements ProvinciaDAO{
 		return resultados;
 	}
 	
-	protected Provincia loadNext (ResultSet rs ) throws SQLException {
+	protected Region loadNext (ResultSet rs ) throws SQLException {
 
 		int i = 1;
-		Provincia p = new Provincia();
+		Region p = new Region();
 
 		p.setId(rs.getInt(i++));
 		p.setNombre(rs.getString(i++));

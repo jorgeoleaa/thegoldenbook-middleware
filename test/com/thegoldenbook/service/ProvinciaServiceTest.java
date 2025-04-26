@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.Provincia;
+import com.thegoldenbook.model.Region;
 import com.thegoldenbook.service.ProvinciaService;
 import com.thegoldenbook.service.impl.ProvinciaServiceImpl;
 
@@ -20,11 +20,11 @@ public class ProvinciaServiceTest {
 	
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing findAll...");
-		List<Provincia> resultados = provinciaService.findAll();
+		List<Region> resultados = provinciaService.findAll();
 		if(resultados.isEmpty()) {
 			logger.trace("No se han encontrado resultados");
 		}else {
-			for(Provincia p : resultados) {
+			for(Region p : resultados) {
 				logger.info(p);
 			}	
 		}
@@ -32,7 +32,7 @@ public class ProvinciaServiceTest {
 	
 	public void testFindById() throws Exception{
 		logger.traceEntry("Testing findByProvinciaId...");
-		Provincia p = provinciaService.findById(4);
+		Region p = provinciaService.findById(4);
 		
 		if(p!=null) {
 			logger.info(p);

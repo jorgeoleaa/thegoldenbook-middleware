@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.ProvinciaDAO;
 import com.thegoldenbook.dao.impl.ProvinciaDAOImpl;
-import com.thegoldenbook.model.Provincia;
+import com.thegoldenbook.model.Region;
 import com.thegoldenbook.service.ProvinciaService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -23,10 +23,10 @@ public class ProvinciaServiceImpl implements ProvinciaService{
 		provinciaDAO = new ProvinciaDAOImpl();
 	}
 	
-	public Provincia findById(int id) throws DataException{
+	public Region findById(int id) throws DataException{
 		
 		Connection con = null;
-		Provincia p = null;
+		Region p = null;
 		boolean commit = false;
 		
 		try {
@@ -45,10 +45,10 @@ public class ProvinciaServiceImpl implements ProvinciaService{
 	}
 
 	
-	public List<Provincia> findAll() throws DataException {
+	public List<Region> findAll() throws DataException {
 		
 		Connection con = null;
-		List<Provincia> resultados = null;
+		List<Region> resultados = null;
 		boolean commit = false;
 		
 		try {

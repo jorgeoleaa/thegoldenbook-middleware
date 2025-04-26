@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import org.junit.jupiter.api.Test;
 
-import com.thegoldenbook.model.Provincia;
+import com.thegoldenbook.model.Region;
 import com.thegoldenbook.service.ProvinciaService;
 import com.thegoldenbook.service.impl.ProvinciaServiceImpl;
 
@@ -21,19 +21,19 @@ public class ProvinciaServiceTest {
 	
 	@Test
 	public void testFindAll() throws Exception{
-		List<Provincia> provincias = provinciaService.findAll();
+		List<Region> provincias = provinciaService.findAll();
 		assertEquals(49, provincias.size());
 	}
 	
 	@Test
 	public void testFindById01() throws Exception{
-		Provincia p = provinciaService.findById(5);
+		Region p = provinciaService.findById(5);
 		assertEquals(5, p.getId());
 	}
 	
 	@Test
 	public void testFindById02() throws Exception{
-		Provincia p = provinciaService.findById(100);
+		Region p = provinciaService.findById(100);
 		assertEquals(null, p);
 	}
 }
