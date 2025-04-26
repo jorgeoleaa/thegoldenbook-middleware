@@ -8,16 +8,16 @@ public class User extends AbstractValueObject{
 	private Long id;
 	private String nickname;
 	private String name;
-	private String last_name;
-	private String second_last_name;
-	private String national_id;
+	private String lastName;
+	private String secondLastName;
+	private String nationalId;
 	private String email;
-	private String phone_number;
+	private String phoneNumber;
 	private String password;
-	private String oauth_token;
-	private Date created_at;
-	private Date desactivated_at;
-	private List<Address> direcciones;
+	private String oauthToken;
+	private Date createdAt;
+	private Date desactivatedAt;
+	private List<Address> addresses;
 	
 	public User() {
 		
@@ -47,28 +47,28 @@ public class User extends AbstractValueObject{
 		this.name = name;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getSecond_last_name() {
-		return second_last_name;
+	public String getSecondLastName() {
+		return secondLastName;
 	}
 
-	public void setSecond_last_name(String second_last_name) {
-		this.second_last_name = second_last_name;
+	public void setSecondLastName(String secondLastName) {
+		this.secondLastName = secondLastName;
 	}
 
-	public String getNational_id() {
-		return national_id;
+	public String getNationalId() {
+		return nationalId;
 	}
 
-	public void setNational_id(String national_id) {
-		this.national_id = national_id;
+	public void setNationalId(String nationalId) {
+		this.nationalId = nationalId;
 	}
 
 	public String getEmail() {
@@ -79,12 +79,12 @@ public class User extends AbstractValueObject{
 		this.email = email;
 	}
 
-	public String getPhone_number() {
-		return phone_number;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getPassword() {
@@ -95,36 +95,38 @@ public class User extends AbstractValueObject{
 		this.password = password;
 	}
 
-	public String getOauth_token() {
-		return oauth_token;
+	public String getOauthToken() {
+		return oauthToken;
 	}
 
-	public void setOauth_token(String oauth_token) {
-		this.oauth_token = oauth_token;
+	public void setOauthToken(String oauthToken) {
+		this.oauthToken = oauthToken;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public Date getDesactivated_at() {
-		return desactivated_at;
+	public Date getDesactivatedAt() {
+		return desactivatedAt;
 	}
 
-	public void setDesactivated_at(Date desactivated_at) {
-		this.desactivated_at = desactivated_at;
+	public void setDesactivatedAt(Date desactivatedAt) {
+		this.desactivatedAt = desactivatedAt;
 	}
 
-	public List<Address> getDirecciones() {
-		return direcciones;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setDirecciones(List<Address> direcciones) {
-		this.direcciones = direcciones;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
+	
+	
 	
 }
