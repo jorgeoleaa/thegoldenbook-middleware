@@ -5,7 +5,7 @@ import java.sql.Connection;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
 
-public interface ClienteDAO {
+public interface ClientDAO {
 	
 	public Results<User> findAll(Connection con, int pos, int pageSize)
 		throws DataException;
@@ -16,7 +16,7 @@ public interface ClienteDAO {
 	public User findByNick (Connection con, String nick)
 			throws DataException;
 	
-	public User findByEmail (Connection con, String mail)
+	public User findByEmail (Connection con, String email)
 			throws DataException;
 	
 	public boolean delete (Connection conn, Long id)

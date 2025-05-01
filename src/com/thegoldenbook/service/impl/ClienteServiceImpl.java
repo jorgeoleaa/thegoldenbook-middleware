@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
-import com.thegoldenbook.dao.ClienteDAO;
+import com.thegoldenbook.dao.ClientDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.impl.ClienteDAOImpl;
 import com.thegoldenbook.model.User;
@@ -28,7 +28,7 @@ public class ClienteServiceImpl implements ClienteService {
 	= new StrongPasswordEncryptor();
 
 	private MailService mailService = null;
-	private ClienteDAO clienteDAO = null;
+	private ClientDAO clienteDAO = null;
 	private static Logger logger = LogManager.getLogger(ClienteServiceImpl.class);
 
 

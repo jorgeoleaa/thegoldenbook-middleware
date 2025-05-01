@@ -11,7 +11,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.dao.ClienteDAO;
+import com.thegoldenbook.dao.ClientDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.DireccionDAO;
 import com.thegoldenbook.model.User;
@@ -19,7 +19,7 @@ import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClienteDAOImpl implements ClienteDAO {
+public class ClienteDAOImpl implements ClientDAO {
 
 	private DireccionDAO direccionDAO = null;
 	private static Logger logger = LogManager.getLogger(ClienteDAOImpl.class);
