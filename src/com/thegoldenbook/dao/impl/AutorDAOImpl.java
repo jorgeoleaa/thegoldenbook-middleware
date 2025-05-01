@@ -11,13 +11,13 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.dao.AutorDAO;
+import com.thegoldenbook.dao.AuthorDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class AutorDAOImpl implements AutorDAO{
+public class AutorDAOImpl implements AuthorDAO{
 
 	private static Logger logger = LogManager.getLogger(AutorDAOImpl.class);
 

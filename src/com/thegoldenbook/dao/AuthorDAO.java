@@ -6,12 +6,12 @@ import java.util.List;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 
-public interface AutorDAO {
+public interface AuthorDAO {
 	
-	public Author findByAutor(Connection con, Long id)
+	public Author findByAuthor(Connection con, Long id)
 			throws DataException;
 	
-	public List<Author> findByLibro(Connection con, Long libroId)
+	public List<Author> findByBook(Connection con, Long libroId)
 			throws DataException;
 	
 	public Results<Author> findAll (Connection con, int pos, int pageSize)

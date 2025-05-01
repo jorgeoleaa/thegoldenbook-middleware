@@ -11,7 +11,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.dao.AutorDAO;
+import com.thegoldenbook.dao.AuthorDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LibroDAO;
 import com.thegoldenbook.dao.TematicaDAO;
@@ -26,7 +26,7 @@ import com.thegoldenbook.util.SQLUtils;
 public class LibroDAOImpl implements LibroDAO {
 
 	private static Logger logger = LogManager.getLogger(LibroDAOImpl.class);
-	private AutorDAO autorDAO = null;
+	private AuthorDAO autorDAO = null;
 	private TematicaDAO tematicaDAO = null;
 
 	public LibroDAOImpl() {
