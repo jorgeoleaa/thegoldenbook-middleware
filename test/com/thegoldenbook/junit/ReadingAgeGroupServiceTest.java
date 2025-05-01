@@ -10,18 +10,18 @@ import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.service.ReadingAgeGroupService;
 import com.thegoldenbook.service.impl.ReadingAgeGroupServiceImpl;
 
-public class ClasificacionEdadServiceTest {
+public class ReadingAgeGroupServiceTest {
 
-	private ReadingAgeGroupService clasificacionEdadService = null;
+	private ReadingAgeGroupService readingAgeGroupService = null;
 	
-	public ClasificacionEdadServiceTest () {
-		clasificacionEdadService = new ReadingAgeGroupServiceImpl();
+	public ReadingAgeGroupServiceTest () {
+		readingAgeGroupService = new ReadingAgeGroupServiceImpl();
 	}
 	
 	@Test
 	public void testFindAll() throws Exception{
-		List<ReadingAgeGroup> clasificacionesEdad = clasificacionEdadService.findAll("es");
-		assertEquals(3, clasificacionesEdad.size());
+		List<ReadingAgeGroup> readingAgeGroups = readingAgeGroupService.findAll("es");
+		assertEquals(3, readingAgeGroups.size());
 	}
 
 }
