@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.ReadingAgeGroupDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.impl.ReadingAgeGroupDAOImpl;
 import com.thegoldenbook.model.ReadingAgeGroup;
-import com.thegoldenbook.service.ClasificacionEdadService;
+import com.thegoldenbook.service.ReadingAgeGroupService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClasificacionEdadServiceImpl implements ClasificacionEdadService{
+public class ClasificacionEdadServiceImpl implements ReadingAgeGroupService{
 
 	private static Logger logger = LogManager.getLogger(ClasificacionEdadServiceImpl.class);
 	private ReadingAgeGroupDAO clasificacionEdadDAO = null;

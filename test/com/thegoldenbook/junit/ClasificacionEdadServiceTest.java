@@ -7,12 +7,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.ReadingAgeGroup;
-import com.thegoldenbook.service.ClasificacionEdadService;
+import com.thegoldenbook.service.ReadingAgeGroupService;
 import com.thegoldenbook.service.impl.ClasificacionEdadServiceImpl;
 
 public class ClasificacionEdadServiceTest {
 
-	private ClasificacionEdadService clasificacionEdadService = null;
+	private ReadingAgeGroupService clasificacionEdadService = null;
 	
 	public ClasificacionEdadServiceTest () {
 		clasificacionEdadService = new ClasificacionEdadServiceImpl();
