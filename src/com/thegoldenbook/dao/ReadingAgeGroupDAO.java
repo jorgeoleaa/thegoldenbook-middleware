@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.thegoldenbook.model.ReadingAgeGroup;
 
-public interface ClasificacionEdadDAO {
+public interface ReadingAgeGroupDAO {
 	
 	public List<ReadingAgeGroup> findAll(Connection con, String locale)
 		throws DataException;

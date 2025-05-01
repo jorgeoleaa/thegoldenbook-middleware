@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.dao.ClasificacionEdadDAO;
+import com.thegoldenbook.dao.ReadingAgeGroupDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.impl.ClasificacionEdadDAOImpl;
 import com.thegoldenbook.model.ReadingAgeGroup;
@@ -17,7 +17,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class ClasificacionEdadServiceImpl implements ClasificacionEdadService{
 
 	private static Logger logger = LogManager.getLogger(ClasificacionEdadServiceImpl.class);
-	private ClasificacionEdadDAO clasificacionEdadDAO = null;
+	private ReadingAgeGroupDAO clasificacionEdadDAO = null;
 	
 	public ClasificacionEdadServiceImpl() {
 		clasificacionEdadDAO = new ClasificacionEdadDAOImpl();

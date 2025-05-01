@@ -10,12 +10,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.dao.ClasificacionEdadDAO;
+import com.thegoldenbook.dao.ReadingAgeGroupDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClasificacionEdadDAOImpl implements ClasificacionEdadDAO{
+public class ClasificacionEdadDAOImpl implements ReadingAgeGroupDAO{
 
 	private static Logger logger = LogManager.getLogger(ClasificacionEdadDAOImpl.class);
 	
