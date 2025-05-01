@@ -11,7 +11,7 @@ public interface AuthorDAO {
 	public Author findByAuthor(Connection con, Long id)
 			throws DataException;
 	
-	public List<Author> findByBook(Connection con, Long libroId)
+	public List<Author> findByBook(Connection con, Long bookId)
 			throws DataException;
 	
 	public Results<Author> findAll (Connection con, int pos, int pageSize)
