@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.AuthorService;
-import com.thegoldenbook.service.impl.AutorServiceImpl;
+import com.thegoldenbook.service.impl.AuthorServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class AutorServiceTest {
@@ -18,7 +18,7 @@ public class AutorServiceTest {
 	private AuthorService autorService = null;
 	
 	public AutorServiceTest() {
-		autorService = new AutorServiceImpl();
+		autorService = new AuthorServiceImpl();
 	}
 	
 	@Test

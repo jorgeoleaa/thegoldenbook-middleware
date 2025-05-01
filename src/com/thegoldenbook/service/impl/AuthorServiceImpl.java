@@ -15,13 +15,13 @@ import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.AuthorService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class AutorServiceImpl implements AuthorService{
+public class AuthorServiceImpl implements AuthorService{
 
-	private AuthorDAO autorDAO = null;
-	private static Logger logger = LogManager.getLogger(AutorServiceImpl.class);
+	private AuthorDAO authorDAO = null;
+	private static Logger logger = LogManager.getLogger(AuthorServiceImpl.class);
 
-	public AutorServiceImpl() {
-		autorDAO = new AuthorDAOImpl();
+	public AuthorServiceImpl() {
+		authorDAO = new AuthorDAOImpl();
 	}
 
 	public Long create (Author a) throws DataException{
@@ -33,7 +33,7 @@ public class AutorServiceImpl implements AuthorService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			id = autorDAO.create(con, a);
+			id = authorDAO.create(con, a);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -46,7 +46,7 @@ public class AutorServiceImpl implements AuthorService{
 	}
 
 
-	public Author findByAutor(Long id) throws DataException {
+	public Author findByAuthor(Long id) throws DataException {
 
 		Author a = null;
 		Connection con = null;
@@ -55,7 +55,7 @@ public class AutorServiceImpl implements AuthorService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			a = autorDAO.findByAutor(con, id);
+			a = authorDAO.findByAuthor(con, id);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -77,7 +77,7 @@ public class AutorServiceImpl implements AuthorService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			autor = autorDAO.update(con, a);
+			autor = authorDAO.update(con, a);
 			commit = true;
 		}catch(SQLException e) {
 			logger.error(e.getMessage(), e);
@@ -89,16 +89,16 @@ public class AutorServiceImpl implements AuthorService{
 	}
 
 
-	public List<Author> findByLibro(Long id) throws DataException {
+	public List<Author> findByBook(Long id) throws DataException {
 
 		Connection con = null;
-		List<Author> autores = null;
+		List<Author> authors = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			autores = autorDAO.findByLibro(con, id);
+			authors = authorDAO.findByBook(con, id);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -107,7 +107,7 @@ public class AutorServiceImpl implements AuthorService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return autores;
+		return authors;
 	}
 
 	
@@ -115,12 +115,12 @@ public class AutorServiceImpl implements AuthorService{
 		
 		Connection con = null;
 		boolean commit = false;
-		Results<Author> autores = null;
+		Results<Author> authors = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			autores = autorDAO.findAll(con, pos, pageSize);
+			authors = authorDAO.findAll(con, pos, pageSize);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -129,6 +129,6 @@ public class AutorServiceImpl implements AuthorService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return autores;
+		return authors;
 	}
 }
