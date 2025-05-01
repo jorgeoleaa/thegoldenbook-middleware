@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.PaisDAO;
+import com.thegoldenbook.dao.CountryDAO;
 import com.thegoldenbook.dao.impl.PaisDAOImpl;
 import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.PaisService;
@@ -18,7 +18,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class PaisServiceImpl implements PaisService {
 	
 	private static Logger logger = LogManager.getLogger(PaisServiceImpl.class);
-	private PaisDAO paisDAO = null;
+	private CountryDAO paisDAO = null;
 	
 	public PaisServiceImpl() {
 		paisDAO = new PaisDAOImpl();

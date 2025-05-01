@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.PaisDAO;
+import com.thegoldenbook.dao.CountryDAO;
 import com.thegoldenbook.model.Country;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class PaisDAOImpl implements PaisDAO{
+public class PaisDAOImpl implements CountryDAO{
 
 	private static Logger logger = LogManager.getLogger(PaisDAOImpl.class);
 
