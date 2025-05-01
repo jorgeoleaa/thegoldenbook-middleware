@@ -14,25 +14,25 @@ import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.service.ReadingAgeGroupService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClasificacionEdadServiceImpl implements ReadingAgeGroupService{
+public class ReadingAgeGroupServiceImpl implements ReadingAgeGroupService{
 
-	private static Logger logger = LogManager.getLogger(ClasificacionEdadServiceImpl.class);
-	private ReadingAgeGroupDAO clasificacionEdadDAO = null;
+	private static Logger logger = LogManager.getLogger(ReadingAgeGroupServiceImpl.class);
+	private ReadingAgeGroupDAO readingAgeGroupDAO = null;
 	
-	public ClasificacionEdadServiceImpl() {
-		clasificacionEdadDAO = new ReadingAgeGroupDAOImpl();
+	public ReadingAgeGroupServiceImpl() {
+		readingAgeGroupDAO = new ReadingAgeGroupDAOImpl();
 	}
 	
 	public List<ReadingAgeGroup> findAll(String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<ReadingAgeGroup> resultados = null;
+		List<ReadingAgeGroup> results = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = clasificacionEdadDAO.findAll(con, locale);
+			results = readingAgeGroupDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -41,7 +41,7 @@ public class ClasificacionEdadServiceImpl implements ReadingAgeGroupService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
 

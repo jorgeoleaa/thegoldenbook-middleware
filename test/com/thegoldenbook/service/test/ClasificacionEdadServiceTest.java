@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.service.ReadingAgeGroupService;
-import com.thegoldenbook.service.impl.ClasificacionEdadServiceImpl;
+import com.thegoldenbook.service.impl.ReadingAgeGroupServiceImpl;
 
 public class ClasificacionEdadServiceTest {
 
@@ -15,7 +15,7 @@ public class ClasificacionEdadServiceTest {
 	private ReadingAgeGroupService clasificacionEdadService = null;
 
 	public ClasificacionEdadServiceTest() {
-		clasificacionEdadService = new ClasificacionEdadServiceImpl();
+		clasificacionEdadService = new ReadingAgeGroupServiceImpl();
 	}
 
 	public void testFindAll() throws Exception{
