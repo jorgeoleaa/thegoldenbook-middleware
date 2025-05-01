@@ -12,10 +12,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.impl.AuthorDAOImpl;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.AutorService;
+import com.thegoldenbook.service.AuthorService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class AutorServiceImpl implements AutorService{
+public class AutorServiceImpl implements AuthorService{
 
 	private AuthorDAO autorDAO = null;
 	private static Logger logger = LogManager.getLogger(AutorServiceImpl.class);

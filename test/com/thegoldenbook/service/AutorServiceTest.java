@@ -7,14 +7,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.AutorService;
+import com.thegoldenbook.service.AuthorService;
 import com.thegoldenbook.service.impl.AutorServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class AutorServiceTest {
 	
 	private static Logger logger = LogManager.getLogger(AutorServiceTest.class);
-	private AutorService autorService = null;
+	private AuthorService autorService = null;
 	
 	public AutorServiceTest() {
 		autorService = new AutorServiceImpl();
