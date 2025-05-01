@@ -10,29 +10,29 @@ import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.CountryService;
 import com.thegoldenbook.service.impl.CountryServiceImpl;
 
-public class PaisServiceTest {
+public class CountryServiceTest {
 
-	private CountryService paisService = null;
+	private CountryService countryService = null;
 	
-	public PaisServiceTest() {
-		paisService = new CountryServiceImpl();
+	public CountryServiceTest() {
+		countryService = new CountryServiceImpl();
 	}
 	@Test
 	public void testFindAll() throws Exception{
-		List<Country> paises = paisService.findAll();
-		assertEquals(248, paises.size());
+		List<Country> countries = countryService.findAll("es_ES");
+		assertEquals(248, countries.size());
 	}
 	
 	@Test 
 	public void testFindById() throws Exception{
-		Country p = paisService.findById(5);
-		assertEquals(5, p.getId());
+		Country country = countryService.findById(5, "es_ES");
+		assertEquals(5, country.getId());
 	}
 	
 	@Test
 	public void testFindById02() throws Exception{
-		Country p = paisService.findById(249);
-		assertEquals(null, p);
+		Country country = countryService.findById(249, "es_ES");
+		assertEquals(null, country);
 	}
 	
 }
