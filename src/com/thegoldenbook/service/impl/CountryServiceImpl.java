@@ -15,26 +15,26 @@ import com.thegoldenbook.service.CountryService;
 import com.thegoldenbook.util.JDBCUtils;
 
 
-public class PaisServiceImpl implements CountryService {
+public class CountryServiceImpl implements CountryService {
 	
-	private static Logger logger = LogManager.getLogger(PaisServiceImpl.class);
-	private CountryDAO paisDAO = null;
+	private static Logger logger = LogManager.getLogger(CountryServiceImpl.class);
+	private CountryDAO countryDAO = null;
 	
-	public PaisServiceImpl() {
-		paisDAO = new CountryDAOImpl();
+	public CountryServiceImpl() {
+		countryDAO = new CountryDAOImpl();
 	}
 	
 	
-	public List<Country> findAll() throws DataException {
+	public List<Country> findAll(String locale) throws DataException {
 		
 		Connection con = null;
-		List<Country> resultados = null;
+		List<Country> results = null;
 		boolean commit = false;
 		
 		try {
 			con =JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = paisDAO.findAll(con);
+			results = countryDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -43,20 +43,20 @@ public class PaisServiceImpl implements CountryService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
 	
-	public Country findById(int id) throws DataException {
+	public Country findById(int id, String locale) throws DataException {
 		
 		Connection con = null;
-		Country p = null;
+		Country country = null;
 		boolean commit = false;
 		
 		try {
 			con =JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			p = paisDAO.findById(con, id);
+			country = countryDAO.findById(con, id, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -65,7 +65,7 @@ public class PaisServiceImpl implements CountryService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return p;
+		return country;
 	}
 
 

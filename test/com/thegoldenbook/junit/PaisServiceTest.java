@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.CountryService;
-import com.thegoldenbook.service.impl.PaisServiceImpl;
+import com.thegoldenbook.service.impl.CountryServiceImpl;
 
 public class PaisServiceTest {
 
 	private CountryService paisService = null;
 	
 	public PaisServiceTest() {
-		paisService = new PaisServiceImpl();
+		paisService = new CountryServiceImpl();
 	}
 	@Test
 	public void testFindAll() throws Exception{

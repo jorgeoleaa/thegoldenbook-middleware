@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.CountryService;
-import com.thegoldenbook.service.impl.PaisServiceImpl;
+import com.thegoldenbook.service.impl.CountryServiceImpl;
 
 public class PaisServiceTest {
 	
@@ -15,7 +15,7 @@ public class PaisServiceTest {
 	private CountryService paisService = null;
 
 	public PaisServiceTest() {
-		paisService = new PaisServiceImpl();
+		paisService = new CountryServiceImpl();
 	}
 	
 	public void testFindAll() throws Exception{

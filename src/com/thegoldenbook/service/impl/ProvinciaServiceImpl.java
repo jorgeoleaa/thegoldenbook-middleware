@@ -16,7 +16,7 @@ import com.thegoldenbook.util.JDBCUtils;
 
 public class ProvinciaServiceImpl implements ProvinciaService{
 	
-	private static Logger logger = LogManager.getLogger(PaisServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(CountryServiceImpl.class);
 	private ProvinciaDAO provinciaDAO = null;
 	
 	public ProvinciaServiceImpl() {
