@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.ReadingAgeGroupDAO;
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.impl.ClasificacionEdadDAOImpl;
+import com.thegoldenbook.dao.impl.ReadingAgeGroupDAOImpl;
 import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.service.ClasificacionEdadService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -20,7 +20,7 @@ public class ClasificacionEdadServiceImpl implements ClasificacionEdadService{
 	private ReadingAgeGroupDAO clasificacionEdadDAO = null;
 	
 	public ClasificacionEdadServiceImpl() {
-		clasificacionEdadDAO = new ClasificacionEdadDAOImpl();
+		clasificacionEdadDAO = new ReadingAgeGroupDAOImpl();
 	}
 	
 	public List<ReadingAgeGroup> findAll(String locale) throws DataException {

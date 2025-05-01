@@ -15,11 +15,11 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.ReadingAgeGroup;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClasificacionEdadDAOImpl implements ReadingAgeGroupDAO{
+public class ReadingAgeGroupDAOImpl implements ReadingAgeGroupDAO{
 
-	private static Logger logger = LogManager.getLogger(ClasificacionEdadDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(ReadingAgeGroupDAOImpl.class);
 	
-	public ClasificacionEdadDAOImpl() {
+	public ReadingAgeGroupDAOImpl() {
 		
 	}
 	
@@ -27,15 +27,15 @@ public class ClasificacionEdadDAOImpl implements ReadingAgeGroupDAO{
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<ReadingAgeGroup> resultados = new ArrayList<ReadingAgeGroup>();
+		List<ReadingAgeGroup> results = new ArrayList<ReadingAgeGroup>();
 		
 		try {
 			
-			StringBuilder query = new StringBuilder (" SELECT CE.ID, CEI.NOMBRE, CE.EDAD ")
-					.append(" FROM CLASIFICACION_EDAD CE ")
-					.append(" INNER JOIN CLASIFICACION_EDAD_IDIOMA CEI ON CEI.CLASIFICACION_EDAD_ID = CE.ID")
-					.append(" INNER JOIN IDIOMA I ON I.ID = CEI.IDIOMA_ID")
-					.append(" WHERE I.LOCALE = ?");
+			StringBuilder query = new StringBuilder (" select rag.id, cei.name, rag.age")
+					.append(" from reading_age_group rag ")
+					.append(" inner join reading_age_group_language ragl ON ragl.reading_age_group_id = rag.ID")
+					.append(" inner join language l on l.ID = ragl.language_id")
+					.append(" where l.locale = ?");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
@@ -45,7 +45,7 @@ public class ClasificacionEdadDAOImpl implements ReadingAgeGroupDAO{
 			rs = pst.executeQuery();
 			
 			while (rs.next()) {
-				resultados.add(loadNext(rs));
+				results.add(loadNext(rs));
 			}
 			
 		}catch(SQLException e) {
@@ -54,7 +54,7 @@ public class ClasificacionEdadDAOImpl implements ReadingAgeGroupDAO{
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return resultados;
+		return results;
 	}
 	
 	
@@ -64,8 +64,8 @@ public class ClasificacionEdadDAOImpl implements ReadingAgeGroupDAO{
 		int i = 1;
 		
 		cd.setId(rs.getInt(i++));
-		cd.setNombre(rs.getString(i++));
-		cd.setEdad(rs.getString(i++));
+		cd.setName(rs.getString(i++));
+		cd.setAge(rs.getString(i++));
 		
 		return cd;
 	}
