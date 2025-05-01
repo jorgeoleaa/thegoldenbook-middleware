@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.CountryDAO;
-import com.thegoldenbook.dao.impl.PaisDAOImpl;
+import com.thegoldenbook.dao.impl.CountryDAOImpl;
 import com.thegoldenbook.model.Country;
 import com.thegoldenbook.service.PaisService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -21,7 +21,7 @@ public class PaisServiceImpl implements PaisService {
 	private CountryDAO paisDAO = null;
 	
 	public PaisServiceImpl() {
-		paisDAO = new PaisDAOImpl();
+		paisDAO = new CountryDAOImpl();
 	}
 	
 	
