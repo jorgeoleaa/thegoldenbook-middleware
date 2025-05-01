@@ -33,8 +33,8 @@ public class ReadingAgeGroupDAOImpl implements ReadingAgeGroupDAO{
 			
 			StringBuilder query = new StringBuilder (" select rag.id, ragl.name, rag.age")
 					.append(" from reading_age_group rag ")
-					.append(" inner join reading_age_group_language ragl ON ragl.reading_age_group_id = rag.ID")
-					.append(" inner join language l on l.ID = ragl.language_id")
+					.append(" inner join reading_age_group_language ragl ON ragl.reading_age_group_id = rag.id")
+					.append(" inner join language l on l.id = ragl.language_id")
 					.append(" where l.locale = ?");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
