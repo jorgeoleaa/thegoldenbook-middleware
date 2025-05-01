@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.AuthorDAO;
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.impl.AutorDAOImpl;
+import com.thegoldenbook.dao.impl.AuthorDAOImpl;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.AutorService;
@@ -21,7 +21,7 @@ public class AutorServiceImpl implements AutorService{
 	private static Logger logger = LogManager.getLogger(AutorServiceImpl.class);
 
 	public AutorServiceImpl() {
-		autorDAO = new AutorDAOImpl();
+		autorDAO = new AuthorDAOImpl();
 	}
 
 	public Long create (Author a) throws DataException{

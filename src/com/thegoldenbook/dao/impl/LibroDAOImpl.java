@@ -30,7 +30,7 @@ public class LibroDAOImpl implements LibroDAO {
 	private TematicaDAO tematicaDAO = null;
 
 	public LibroDAOImpl() {
-		autorDAO = new AutorDAOImpl();
+		autorDAO = new AuthorDAOImpl();
 		tematicaDAO = new TematicaDAOImpl();
 	}
 

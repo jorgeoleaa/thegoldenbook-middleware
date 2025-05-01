@@ -17,11 +17,11 @@ import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class AutorDAOImpl implements AuthorDAO{
+public class AuthorDAOImpl implements AuthorDAO{
 
-	private static Logger logger = LogManager.getLogger(AutorDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(AuthorDAOImpl.class);
 
-	public AutorDAOImpl() {
+	public AuthorDAOImpl() {
 
 	}
 
@@ -33,9 +33,9 @@ public class AutorDAOImpl implements AuthorDAO{
 
 		try {
 
-			StringBuilder query = new StringBuilder(" SELECT A.ID, A.NOMBRE, A.APELLIDO1, A.APELLIDO2, A.FECHA_NACIMIENTO ")
-					.append(" FROM AUTOR A ")
-					.append(" ORDER BY A.NOMBRE ASC");
+			StringBuilder query = new StringBuilder(" select a.id, a.name, a.last_name, a.second_last_name, a.date_of_birth ")
+					.append(" from author a ")
+					.append(" order by a.name asc");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -59,16 +59,16 @@ public class AutorDAOImpl implements AuthorDAO{
 		return resultados;
 	}
 
-	public Author findByAutor(Connection con, Long id) throws DataException{
+	public Author findByAuthor(Connection con, Long id) throws DataException{
 
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Author a = null;
 
 		try {
-			StringBuilder query = new StringBuilder("SELECT ID, NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO")
-					.append(" FROM AUTOR ")
-					.append(" WHERE ID = ? ");
+			StringBuilder query = new StringBuilder("select id, name, last_name, second_last_name, date_of_birth")
+					.append(" from author ")
+					.append(" where id = ? ");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -91,7 +91,7 @@ public class AutorDAOImpl implements AuthorDAO{
 
 	}
 
-	public List<Author> findByLibro(Connection con, Long libroId) throws DataException {
+	public List<Author> findByBook(Connection con, Long bookId) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -99,17 +99,17 @@ public class AutorDAOImpl implements AuthorDAO{
 
 		try {
 
-			StringBuilder query = new StringBuilder(" SELECT A.ID, A.NOMBRE, A.APELLIDO1, A.APELLIDO2, A.FECHA_NACIMIENTO ")
-					.append(" FROM AUTOR A ")
-					.append(" INNER JOIN LIBRO_AUTOR LA ON LA.AUTOR_ID = A.ID ")
-					.append(" INNER JOIN LIBRO L ON L.ID = LA.LIBRO_ID")
-					.append(" WHERE L.ID = ? ")
-					.append(" ORDER BY A.NOMBRE ASC");
+			StringBuilder query = new StringBuilder(" select a.id, a.name, a.last_name, a.second_last_name, a.date_of_birth")
+					.append(" from author a ")
+					.append(" inner join book_author ba on ba.author_id = a.id")
+					.append(" inner join book b ON b.id = ba.book_id")
+					.append(" where b.id = ? ")
+					.append(" order by a.name asc");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			int i = 1;
-			pst.setLong(i++, libroId);
+			pst.setLong(i++, bookId);
 
 			rs = pst.executeQuery();
 
@@ -118,7 +118,7 @@ public class AutorDAOImpl implements AuthorDAO{
 			}
 
 		}catch(SQLException e) {
-			logger.error("LibroID: "+libroId, e);
+			logger.error("Book id: "+bookId, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
@@ -132,14 +132,14 @@ public class AutorDAOImpl implements AuthorDAO{
 		ResultSet rs = null;
 
 		try {
-			pst = con.prepareStatement(" INSERT INTO AUTOR (NOMBRE, APELLIDO1, APELLIDO2, FECHA_NACIMIENTO)"
-					+ " VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			pst = con.prepareStatement(" insert into author (name, last_name, second_last_name, date_of_birth)"
+					+ " values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 			int i = 1;
-			pst.setString(i++, a.getNombre());
-			pst.setString(i++, a.getApellido1());
-			pst.setString(i++, a.getApellido2());
-			pst.setDate(i++, new java.sql.Date(a.getFechaNacimiento().getTime()));
+			pst.setString(i++, a.getName());
+			pst.setString(i++, a.getLastName());
+			pst.setString(i++, a.getSecondLastName());
+			pst.setDate(i++, new java.sql.Date(a.getDateOfBirth().getTime()));
 
 			int insertedRows = pst.executeUpdate();
 
@@ -157,7 +157,7 @@ public class AutorDAOImpl implements AuthorDAO{
 
 
 		} catch(SQLException e) {
-			logger.error("Autor: "+a, e);
+			logger.error("Author: "+a, e);
 			throw new DataException(e);
 
 		}finally {
@@ -171,14 +171,14 @@ public class AutorDAOImpl implements AuthorDAO{
 		PreparedStatement pst = null;
 
 		try {
-			pst = con.prepareStatement(" UPDATE AUTOR SET NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, FECHA_NACIMIENTO = ? "
-					+ " WHERE ID = ? ");
+			pst = con.prepareStatement(" update author set name = ?, last_name = ?, second_last_name = ?, date_of_birth = ? "
+					+ " where id = ? ");
 
 			int i = 1;
-			pst.setString(i++, a.getNombre());
-			pst.setString(i++, a.getApellido1());
-			pst.setString(i++, a.getApellido2());
-			pst.setDate(i++,new java.sql.Date(a.getFechaNacimiento().getTime()));
+			pst.setString(i++, a.getName());
+			pst.setString(i++, a.getLastName());
+			pst.setString(i++, a.getSecondLastName());
+			pst.setDate(i++,new java.sql.Date(a.getDateOfBirth().getTime()));
 			pst.setLong(i++, a.getId());
 
 			int updatedRows = pst.executeUpdate();
@@ -188,7 +188,7 @@ public class AutorDAOImpl implements AuthorDAO{
 			}
 
 		}catch(SQLException e) {
-			logger.error("Autor: "+a, e);
+			logger.error("Author: "+a, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst);
@@ -203,10 +203,10 @@ public class AutorDAOImpl implements AuthorDAO{
 		int i = 1;
 
 		a.setId(rs.getLong(i++));
-		a.setNombre(rs.getString(i++));
-		a.setApellido1(rs.getString(i++));
-		a.setApellido2(rs.getString(i++));
-		a.setFechaNacimiento(rs.getDate(i++));
+		a.setName(rs.getString(i++));
+		a.setLastName(rs.getString(i++));
+		a.setSecondLastName(rs.getString(i++));
+		a.setDateOfBirth(rs.getDate(i++));
 
 		return a;
 	}
