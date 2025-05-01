@@ -7,12 +7,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Country;
-import com.thegoldenbook.service.PaisService;
+import com.thegoldenbook.service.CountryService;
 import com.thegoldenbook.service.impl.PaisServiceImpl;
 
 public class PaisServiceTest {
 
-	private PaisService paisService = null;
+	private CountryService paisService = null;
 	
 	public PaisServiceTest() {
 		paisService = new PaisServiceImpl();

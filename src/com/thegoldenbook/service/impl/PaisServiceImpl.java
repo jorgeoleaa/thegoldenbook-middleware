@@ -11,11 +11,11 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.CountryDAO;
 import com.thegoldenbook.dao.impl.CountryDAOImpl;
 import com.thegoldenbook.model.Country;
-import com.thegoldenbook.service.PaisService;
+import com.thegoldenbook.service.CountryService;
 import com.thegoldenbook.util.JDBCUtils;
 
 
-public class PaisServiceImpl implements PaisService {
+public class PaisServiceImpl implements CountryService {
 	
 	private static Logger logger = LogManager.getLogger(PaisServiceImpl.class);
 	private CountryDAO paisDAO = null;
