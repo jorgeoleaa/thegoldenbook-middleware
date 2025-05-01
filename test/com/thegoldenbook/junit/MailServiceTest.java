@@ -17,7 +17,7 @@ import com.thegoldenbook.service.impl.MailServiceImpl;
 
 public class MailServiceTest {
 	
-	private static Logger logger = LogManager.getLogger(com.thegoldenbook.service.MailServiceTest.class);
+	private static Logger logger = LogManager.getLogger(com.thegoldenbook.service.test.MailServiceTest.class);
 	
 	private MailService mailService = null;
 	private ClienteService clienteService = null;

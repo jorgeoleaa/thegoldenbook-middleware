@@ -1,4 +1,4 @@
-package com.thegoldenbook.service;
+package com.thegoldenbook.service.test;
 
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;

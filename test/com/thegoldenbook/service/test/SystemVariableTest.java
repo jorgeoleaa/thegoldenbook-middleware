@@ -1,4 +1,4 @@
-package com.thegoldenbook.service;
+package com.thegoldenbook.service.test;
 
 public class SystemVariableTest {
 

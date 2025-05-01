@@ -1,4 +1,4 @@
-package com.thegoldenbook.service;
+package com.thegoldenbook.service.test;
 
 import java.io.File;
 import java.util.List;
