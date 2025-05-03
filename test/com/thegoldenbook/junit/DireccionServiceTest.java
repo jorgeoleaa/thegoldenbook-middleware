@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Address;
-import com.thegoldenbook.service.DireccionService;
+import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.service.EmpleadoService;
 import com.thegoldenbook.service.impl.DireccionServiceImpl;
 import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
 
 public class DireccionServiceTest {
 	
-	private DireccionService direccionService = null;
+	private AddressService direccionService = null;
 	private EmpleadoService empleadoService = null;
 	
 	public DireccionServiceTest(){

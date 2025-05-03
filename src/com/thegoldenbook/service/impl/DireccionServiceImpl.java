@@ -10,10 +10,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.AddressDAO;
 import com.thegoldenbook.dao.impl.AddressDAOImpl;
 import com.thegoldenbook.model.Address;
-import com.thegoldenbook.service.DireccionService;
+import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class DireccionServiceImpl implements DireccionService{
+public class DireccionServiceImpl implements AddressService{
 
 	private AddressDAO direccionDAO = null;
 	private static Logger logger = LogManager.getLogger();
