@@ -3,9 +3,8 @@ package com.thegoldenbook.dao;
 import com.thegoldenbook.TheGoldenBookException;
 
 /**
- * Exception raíz de la capa de datos.
+ * Root exception of the data layer.
  */
-
 
 public class DataException extends TheGoldenBookException {
 	
