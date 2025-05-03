@@ -10,5 +10,5 @@ public interface MailService {
 
 	public void sendWelcome(String to, User user) throws MailException;
 	
-	public void sendPedidoRealizado(String to, User user, Order order) throws MailException ;
+	public void notifyOrderPlaced(String to, User user, Order order) throws MailException ;
 }
