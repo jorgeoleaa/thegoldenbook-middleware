@@ -42,7 +42,7 @@ public class MailServiceImpl implements MailService {
 	public MailServiceImpl() {
 	}
 
-	public void enviar(String para, String asunto, String msg )
+	public void send(String to, String subject, String body)
 			throws MailException{
 
 		try {
@@ -56,53 +56,55 @@ public class MailServiceImpl implements MailService {
 			//email.setSSLOnConnect(true);
 			email.setStartTLSEnabled(true);
 			email.setFrom(ConfigurationParametersManager.getParameterValue(USER));
-			email.setSubject(asunto);
-			email.setMsg(msg);
-			email.addTo(para);
+			email.setSubject(subject);
+			email.setMsg(body);
+			email.addTo(to);
 			email.send();
 
 		}catch(EmailException e) {
-			logger.error("Enviando email desde "+ConfigurationParametersManager.getParameterValue(USER)+" para "+para+":");
-			throw new MailException("Enviando email a "+para, e);
+			logger.error("Sending email from "+ConfigurationParametersManager.getParameterValue(USER)+" to "+to+":");
+			throw new MailException("Sending email to "+to, e);
 		}
 	}
 
 	@Override
-	public void sendBienvenida(String to, User cliente) throws MailException {
-		String subject = "¡Bienvenido a TheGoldenBook!";
+	public void sendWelcome(String to, User user) throws MailException {
+		
+		String subject = "¡Welcome to The Golden Book!";
 
 		StringBuilder body = new StringBuilder()
-				.append("<html>")
-				.append("<head>")
-				.append("<meta charset=\"UTF-8\">")
-				.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
-				.append("<style>")
-				.append("body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #121212; color: #FFD700; padding: 20px; }")
-				.append("h2 { color: #FFD700; }")
-				.append("p { color: #FFFFFF; }")
-				.append(".container { max-width: 600px; margin: 0 auto; background-color: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); border: 2px solid #FFD700; }")
-				.append(".header { text-align: center; margin-bottom: 20px; }")
-				.append(".logo { max-width: 100px; margin-bottom: 10px; }")
-				.append("</style>")
-				.append("</head>")
-				.append("<body>")
-				.append("<div class=\"container\">")
-				.append("<div class=\"header\">")
-				.append("<img src=\"cid:logo\" alt=\"TheGoldenBook Logo\" class=\"logo\">")
-				.append("<h2>¡Bienvenido a TheGoldenBook! 📚</h2>")
-				.append("</div>")
-				.append("<p>¡Hola " + cliente.getNombre() + "!</p>")
-				.append("<p>Bienvenido a TheGoldenBook, tu nueva librería en línea donde encontrarás una amplia selección de libros que te inspirarán, emocionarán y cautivarán. Estamos encantados de tenerte como parte de nuestra comunidad de lectores apasionados.</p>")
-				.append("<p>En TheGoldenBook, nos dedicamos a ofrecerte la mejor experiencia de compra de libros con un servicio personalizado y una cuidadosa selección de títulos que abarcan desde clásicos intemporales hasta las últimas novedades literarias. Explora nuestro catálogo y descubre tu próxima lectura favorita.</p>")
-				.append("<p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de atención al cliente, quienes estarán encantados de asistirte en cualquier momento.</p>")
-				.append("<p>Una vez más, gracias por unirte a nosotros en esta aventura literaria. Esperamos que disfrutes navegando por nuestra tienda en línea y encontrando libros que enriquezcan tu vida.</p>")
-				.append("<p>¡Feliz lectura!</p>")
-				.append("<p>Saludos cordiales,</p>")
-				.append("<p>Jorge Olea</p>")
-				.append("<p>Equipo de TheGoldenBook</p>")
-				.append("</div>")
-				.append("</body>")
-				.append("</html>");
+			    .append("<html>")
+			    .append("<head>")
+			    .append("<meta charset=\"UTF-8\">")
+			    .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
+			    .append("<style>")
+			    .append("body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #121212; color: #FFD700; padding: 20px; }")
+			    .append("h2 { color: #FFD700; }")
+			    .append("p { color: #FFFFFF; }")
+			    .append(".container { max-width: 600px; margin: 0 auto; background-color: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); border: 2px solid #FFD700; }")
+			    .append(".header { text-align: center; margin-bottom: 20px; }")
+			    .append(".logo { max-width: 100px; margin-bottom: 10px; }")
+			    .append("</style>")
+			    .append("</head>")
+			    .append("<body>")
+			    .append("<div class=\"container\">")
+			    .append("<div class=\"header\">")
+			    .append("<img src=\"cid:logo\" alt=\"TheGoldenBook Logo\" class=\"logo\">")
+			    .append("<h2>Welcome to TheGoldenBook! 📚</h2>")
+			    .append("</div>")
+			    .append("<p>Hello " + user.getName() + "!</p>")
+			    .append("<p>Welcome to TheGoldenBook, your new online bookstore where you'll find a wide selection of books that will inspire, thrill, and captivate you. We are delighted to have you as part of our community of passionate readers.</p>")
+			    .append("<p>At TheGoldenBook, we are dedicated to providing you with the best book-buying experience through personalized service and a carefully curated selection of titles ranging from timeless classics to the latest literary releases. Explore our catalog and discover your next favorite read.</p>")
+			    .append("<p>If you have any questions or need assistance, don't hesitate to contact our customer support team, who will be happy to assist you at any time.</p>")
+			    .append("<p>Once again, thank you for joining us on this literary adventure. We hope you enjoy browsing our online store and finding books that enrich your life.</p>")
+			    .append("<p>Happy reading!</p>")
+			    .append("<p>Best regards,</p>")
+			    .append("<p>Jorge Olea</p>")
+			    .append("<p>TheGoldenBook Team</p>")
+			    .append("</div>")
+			    .append("</body>")
+			    .append("</html>");
+
 
 
 		//MimeBodyPart logoPart = new MimeBodyPart();
@@ -162,78 +164,80 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendPedidoRealizado(String to, User cliente, Order pedido) throws MailException {
+	public void notifyOrderPlaced (String to, User user, Order order) throws MailException {
+		
 		String subject = "";
 		StringBuilder body = new StringBuilder();
 
-		int estadoPedido = pedido.getTipoEstadoPedidoId(); 
+		int estadoPedido = order.getOrderStatusId(); 
 
-		if (estadoPedido == 6) {
-			subject = "Confirmación de compra en TheGoldenBook (Tienda Física)";
-			body.append("<html>")
-			.append("<head>")
-			.append("<meta charset=\"UTF-8\">")
-			.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
-			.append("<style>")
-			.append("body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #121212; color: #FFD700; padding: 20px; }")
-			.append("h2 { color: #FFD700; }")
-			.append("p { color: #FFFFFF; }")
-			.append(".container { max-width: 600px; margin: 0 auto; background-color: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); border: 2px solid #FFD700; }")
-			.append(".header { text-align: center; margin-bottom: 20px; }")
-			.append(".logo { max-width: 100px; margin-bottom: 10px; }")
-			.append("</style>")
-			.append("</head>")
-			.append("<body>")
-			.append("<div class=\"container\">")
-			.append("<div class=\"header\">")
-			.append("<img src=\"cid:logo\" alt=\"TheGoldenBook Logo\" class=\"logo\">")
-			.append("<h2>¡Compra realizada en TheGoldenBook (Tienda Física)!</h2>")
-			.append("</div>")
-			.append("<p>¡Hola " + cliente.getNombre() + "!</p>")
-			.append("<p>Gracias por realizar tu compra en una de nuestras tiendas física de TheGoldenBook. Esperamos que disfrutes de tu nuevo libro y de tu experiencia con nosotros.</p>")
-			.append("<p>Si necesitas alguna recomendación adicional de lectura o tienes alguna pregunta, no dudes en contactar con nosotros.</p>")
-			.append("<p>¡Gracias por tu preferencia y esperamos verte de nuevo pronto!</p>")
-			.append("<p>Saludos cordiales,</p>")
-			.append("<p>Jorge Olea</p>")
-			.append("<p>Equipo de TheGoldenBook</p>")
-			.append("</div>")
-			.append("</body>")
-			.append("</html>");
-
-		} else if (estadoPedido == 5) {
-			subject = "¡Tu pedido de TheGoldenBook ha sido entregado!";
-			body.append("<html>")
-			.append("<head>")
-			.append("<meta charset=\"UTF-8\">")
-			.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
-			.append("<style>")
-			.append("body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #121212; color: #FFD700; padding: 20px; }")
-			.append("h2 { color: #FFD700; }")
-			.append("p { color: #FFFFFF; }")
-			.append(".container { max-width: 600px; margin: 0 auto; background-color: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); border: 2px solid #FFD700; }")
-			.append(".header { text-align: center; margin-bottom: 20px; }")
-			.append(".logo { max-width: 100px; margin-bottom: 10px; }")
-			.append("</style>")
-			.append("</head>")
-			.append("<body>")
-			.append("<div class=\"container\">")
-			.append("<div class=\"header\">")
-			.append("<img src=\"cid:logo\" alt=\"TheGoldenBook Logo\" class=\"logo\">")
-			.append("<h2>¡Tu pedido de TheGoldenBook ha sido entregado!</h2>")
-			.append("</div>")
-			.append("<p>¡Hola " + cliente.getNombre() + "!</p>")
-			.append("<p>Estamos felices de informarte que tu pedido ha sido entregado con éxito. Esperamos que disfrutes de tu compra y que los libros elegidos enriquezcan tu tiempo de lectura.</p>")
-			.append("<p>Si tienes alguna pregunta o necesitas asistencia adicional, no dudes en ponerte en contacto con nosotros.</p>")
-			.append("<p>¡Gracias por elegir TheGoldenBook para tus lecturas!</p>")
-			.append("<p>Saludos cordiales,</p>")
-			.append("<p>Jorge Olea</p>")
-			.append("<p>Equipo de TheGoldenBook</p>")
-			.append("</div>")
-			.append("</body>")
-			.append("</html>");
+		if (estadoPedido == 8) {
+		    subject = "Purchase Confirmation at TheGoldenBook (Physical Store)";
+		    body.append("<html>")
+		    .append("<head>")
+		    .append("<meta charset=\"UTF-8\">")
+		    .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
+		    .append("<style>")
+		    .append("body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #121212; color: #FFD700; padding: 20px; }")
+		    .append("h2 { color: #FFD700; }")
+		    .append("p { color: #FFFFFF; }")
+		    .append(".container { max-width: 600px; margin: 0 auto; background-color: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); border: 2px solid #FFD700; }")
+		    .append(".header { text-align: center; margin-bottom: 20px; }")
+		    .append(".logo { max-width: 100px; margin-bottom: 10px; }")
+		    .append("</style>")
+		    .append("</head>")
+		    .append("<body>")
+		    .append("<div class=\"container\">")
+		    .append("<div class=\"header\">")
+		    .append("<img src=\"cid:logo\" alt=\"TheGoldenBook Logo\" class=\"logo\">")
+		    .append("<h2>Purchase Completed at TheGoldenBook (Physical Store)!</h2>")
+		    .append("</div>")
+		    .append("<p>Hello " + user.getName() + "!</p>")
+		    .append("<p>Thank you for making your purchase at one of our physical TheGoldenBook stores. We hope you enjoy your new book and your experience with us.</p>")
+		    .append("<p>If you need any further reading recommendations or have any questions, feel free to contact us.</p>")
+		    .append("<p>Thank you for your preference, and we look forward to seeing you again soon!</p>")
+		    .append("<p>Best regards,</p>")
+		    .append("<p>Jorge Olea</p>")
+		    .append("<p>TheGoldenBook Team</p>")
+		    .append("</div>")
+		    .append("</body>")
+		    .append("</html>");
+		}
+		
+		else if (estadoPedido == 4) {
+		    subject = "Your TheGoldenBook Order Has Been Delivered!";
+		    body.append("<html>")
+		    .append("<head>")
+		    .append("<meta charset=\"UTF-8\">")
+		    .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
+		    .append("<style>")
+		    .append("body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #121212; color: #FFD700; padding: 20px; }")
+		    .append("h2 { color: #FFD700; }")
+		    .append("p { color: #FFFFFF; }")
+		    .append(".container { max-width: 600px; margin: 0 auto; background-color: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); border: 2px solid #FFD700; }")
+		    .append(".header { text-align: center; margin-bottom: 20px; }")
+		    .append(".logo { max-width: 100px; margin-bottom: 10px; }")
+		    .append("</style>")
+		    .append("</head>")
+		    .append("<body>")
+		    .append("<div class=\"container\">")
+		    .append("<div class=\"header\">")
+		    .append("<img src=\"cid:logo\" alt=\"TheGoldenBook Logo\" class=\"logo\">")
+		    .append("<h2>Your TheGoldenBook Order Has Been Delivered!</h2>")
+		    .append("</div>")
+		    .append("<p>Hello " + user.getName() + "!</p>")
+		    .append("<p>We are happy to inform you that your order has been successfully delivered. We hope you enjoy your purchase and that the books you've chosen will enrich your reading time.</p>")
+		    .append("<p>If you have any questions or need further assistance, feel free to contact us.</p>")
+		    .append("<p>Thank you for choosing TheGoldenBook for your readings!</p>")
+		    .append("<p>Best regards,</p>")
+		    .append("<p>Jorge Olea</p>")
+		    .append("<p>TheGoldenBook Team</p>")
+		    .append("</div>")
+		    .append("</body>")
+		    .append("</html>");
 
 		} else {
-			subject = "Estado de tu pedido en TheGoldenBook";
+			subject = "Your TheGoldenBook Order Status";
 			body.append("<html>")
 			.append("<head>")
 			.append("<meta charset=\"UTF-8\">")
@@ -251,18 +255,19 @@ public class MailServiceImpl implements MailService {
 			.append("<div class=\"container\">")
 			.append("<div class=\"header\">")
 			.append("<img src=\"cid:logo\" alt=\"TheGoldenBook Logo\" class=\"logo\">")
-			.append("<h2>Estado de tu pedido en TheGoldenBook</h2>")
+			.append("<h2>Your TheGoldenBook Order Status</h2>")
 			.append("</div>")
-			.append("<p>¡Hola " + cliente.getNombre() + "!</p>")
-			.append("<p>Te informamos que tu pedido está en proceso. Estamos trabajando para que pronto puedas disfrutar de tus libros.</p>")
-			.append("<p>Si tienes alguna pregunta sobre tu pedido o necesitas asistencia adicional, no dudes en ponerte en contacto con nosotros.</p>")
-			.append("<p>Gracias por tu paciencia y confianza en TheGoldenBook.</p>")
-			.append("<p>Saludos cordiales,</p>")
+			.append("<p>Hello " + user.getName() + "!</p>")
+			.append("<p>We would like to inform you that your order is in process. We are working to ensure that you can enjoy your books soon.</p>")
+			.append("<p>If you have any questions about your order or need further assistance, please feel free to contact us.</p>")
+			.append("<p>Thank you for your patience and trust in TheGoldenBook.</p>")
+			.append("<p>Best regards,</p>")
 			.append("<p>Jorge Olea</p>")
-			.append("<p>Equipo de TheGoldenBook</p>")
+			.append("<p>TheGoldenBook Team</p>")
 			.append("</div>")
 			.append("</body>")
 			.append("</html>");
+
 		}
 
 //		MimeBodyPart logoPart = new MimeBodyPart();
