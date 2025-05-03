@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.RegionDAO;
-import com.thegoldenbook.dao.impl.ProvinciaDAOImpl;
+import com.thegoldenbook.dao.impl.RegionDAOImpl;
 import com.thegoldenbook.model.Region;
 import com.thegoldenbook.service.ProvinciaService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -20,7 +20,7 @@ public class ProvinciaServiceImpl implements ProvinciaService{
 	private RegionDAO provinciaDAO = null;
 	
 	public ProvinciaServiceImpl() {
-		provinciaDAO = new ProvinciaDAOImpl();
+		provinciaDAO = new RegionDAOImpl();
 	}
 	
 	public Region findById(int id) throws DataException{

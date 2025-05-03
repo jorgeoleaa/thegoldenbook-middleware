@@ -15,24 +15,27 @@ import com.thegoldenbook.dao.RegionDAO;
 import com.thegoldenbook.model.Region;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ProvinciaDAOImpl implements RegionDAO{
+public class RegionDAOImpl implements RegionDAO{
 
-	private static Logger logger = LogManager.getLogger(ProvinciaDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(RegionDAOImpl.class);
 
-	public Region findById(Connection con, int id) throws DataException{
+	public Region findById(Connection con, int id, String locale) throws DataException{
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		Region p = null;
 
 		try {
-			StringBuilder query = new StringBuilder(" SELECT ID ,NOMBRE, PAIS_ID ")
-					.append(" FROM PROVINCIA ")
-					.append(" WHERE ID = ? ");
+			StringBuilder query = new StringBuilder(" select r.id, rl.nmae, r.country_id")
+					.append(" from region r ")
+					.append(" inner join region_language rl on rl.region_id = r.id ")
+					.append(" inner join language l on l.id = rl.language_id ")
+					.append(" where l.locale = ? and r.id = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
 			int i = 1;
+			pst.setString(i++, locale);
 			pst.setInt(i++, id);
 
 			rs = pst.executeQuery();
@@ -42,7 +45,7 @@ public class ProvinciaDAOImpl implements RegionDAO{
 			}
 
 		} catch(SQLException e) {
-			logger.error("ID: "+id, e);
+			logger.error("ID: "+id+" locale: "+locale, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
@@ -52,7 +55,7 @@ public class ProvinciaDAOImpl implements RegionDAO{
 
 
 
-	public List<Region> findAll(Connection con) throws DataException{
+	public List<Region> findAll(Connection con, String locale) throws DataException{
 
 		List<Region>resultados = new ArrayList<Region>();;
 		PreparedStatement pst = null;
@@ -60,11 +63,16 @@ public class ProvinciaDAOImpl implements RegionDAO{
 
 		try {
 
-			StringBuilder query = new StringBuilder(" SELECT ID ,NOMBRE, PAIS_ID ")
-					.append(" FROM PROVINCIA ");
+			StringBuilder query = new StringBuilder(" select r.id, rl.name, r.country_id ")
+					.append(" from region r ")
+					.append(" inner join region_language rl on rl.region_id = r.id ")
+					.append(" inner join language l on l.id = rl.language_id ")
+					.append(" where l.locale = ? ");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
+			
+			int i = 1;
+			pst.setString(i++, locale);
 
 			rs = pst.executeQuery();
 
@@ -73,7 +81,7 @@ public class ProvinciaDAOImpl implements RegionDAO{
 			}
 
 		}catch(SQLException e) {
-			logger.error(e);
+			logger.error("Locale: "+locale ,e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
@@ -81,14 +89,14 @@ public class ProvinciaDAOImpl implements RegionDAO{
 		return resultados;
 	}
 	
-	protected Region loadNext (ResultSet rs ) throws SQLException {
+	protected Region loadNext (ResultSet rs) throws SQLException {
 
 		int i = 1;
 		Region p = new Region();
 
 		p.setId(rs.getInt(i++));
-		p.setNombre(rs.getString(i++));
-		p.setPaisId(rs.getInt(i++));
+		p.setName(rs.getString(i++));
+		p.setCountryId(rs.getInt(i++));
 
 		return p;
 	}
