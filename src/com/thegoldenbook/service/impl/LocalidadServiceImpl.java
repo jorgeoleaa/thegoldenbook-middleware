@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LocalityDAO;
-import com.thegoldenbook.dao.impl.LocalidadDAOImpl;
+import com.thegoldenbook.dao.impl.LocalityDAOImpl;
 import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.service.LocalityService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -20,7 +20,7 @@ public class LocalidadServiceImpl implements LocalityService{
 	private LocalityDAO localidadDAO = null;
 	
 	public LocalidadServiceImpl() {
-		localidadDAO = new LocalidadDAOImpl();
+		localidadDAO = new LocalityDAOImpl();
 	}
 	
 	public List<Locality> findAll() throws DataException{

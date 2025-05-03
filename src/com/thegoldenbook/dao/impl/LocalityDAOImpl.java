@@ -15,27 +15,31 @@ import com.thegoldenbook.dao.LocalityDAO;
 import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class LocalidadDAOImpl implements LocalityDAO {
+public class LocalityDAOImpl implements LocalityDAO {
 	
-	private static Logger logger = LogManager.getLogger(LocalidadDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(LocalityDAOImpl.class);
 	
-	public LocalidadDAOImpl() {
+	public LocalityDAOImpl() {
 		
 	}
 	
-	public Locality findById(Connection con, int id) throws DataException{
+	public Locality findById(Connection con, int id, String locale) throws DataException{
 		
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Locality l = null;
 		
 		try {
-			StringBuilder query = new StringBuilder ("SELECT ID, NOMBRE, CODIGO_POSTAL, PROVINCIA_ID ")
-					.append(" FROM LOCALIDAD ").append(" WHERE ID = ? ");
+			StringBuilder query = new StringBuilder (" select lo.id, ll.name, lo.postal_code, lo.region_id ")
+					.append(" from locality lo ")
+					.append(" inner join locality_language ll on ll.locality_id = lo.id ")
+					.append(" inner join language l on l.id = ll.language_id ")
+					.append(" where l.locale = ? and where lo.id = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
 			int i = 1;
+			pst.setString(i++, locale);
 			pst.setInt(i++, id);
 			
 			rs = pst.executeQuery();
@@ -45,7 +49,7 @@ public class LocalidadDAOImpl implements LocalityDAO {
 			}
 			
 		} catch (SQLException e) {
-			logger.error("ID: "+id, e);
+			logger.error("ID: "+id+ " Locale: "+locale, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
@@ -53,21 +57,24 @@ public class LocalidadDAOImpl implements LocalityDAO {
 		return l;
 	}
 	
-	public Locality findByCodigoPostal (Connection con, int codigoPostal) throws DataException{
+	public Locality findByPostalCode (Connection con, int postalCode, String locale) throws DataException{
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		Locality l = null;
 		
 		try {
-			StringBuilder query = new StringBuilder(" SELECT ID, NOMBRE, CODIGO_POSTAL, PROVINCIA_ID ")
-					.append(" FROM LOCALIDAD ")
-					.append(" WHERE CODIGO_POSTAL = ? ");
+			StringBuilder query = new StringBuilder (" select lo.id, ll.name, lo.postal_code, lo.region_id ")
+					.append(" from locality lo ")
+					.append(" inner join locality_language ll on ll.locality_id = lo.id ")
+					.append(" inner join language l on l.id = ll.language_id ")
+					.append(" where l.locale = ? and where lo.postal_code = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
 			int i = 1;
-			pst.setInt(i++, codigoPostal);
+			pst.setString(i++, locale);
+			pst.setInt(i++, postalCode);
 		
 			rs = pst.executeQuery();
 			
@@ -76,7 +83,7 @@ public class LocalidadDAOImpl implements LocalityDAO {
 			}
 			
 		}catch(SQLException e) {
-			logger.error("Codigo postal: "+codigoPostal, e);
+			logger.error("Codigo postal: "+postalCode+" locale: "+locale, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
@@ -85,22 +92,29 @@ public class LocalidadDAOImpl implements LocalityDAO {
 	}
 	
 	
-	public List<Locality> findAll(Connection con) throws DataException {
+	public List<Locality> findAll(Connection con, String locale) throws DataException {
 		
-		List<Locality> resultados = new ArrayList<Locality>();
+		List<Locality> results = new ArrayList<Locality>();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		
 		try {
 			
-			StringBuilder query = new StringBuilder(" SELECT ID, NOMBRE, CODIGO_POSTAL, PROVINCIA_ID FROM LOCALIDAD");
+			StringBuilder query = new StringBuilder (" select lo.id, ll.name, lo.postal_code, lo.region_id ")
+					.append(" from locality lo ")
+					.append(" inner join locality_language ll on ll.locality_id = lo.id ")
+					.append(" inner join language l on l.id = ll.language_id ")
+					.append(" where l.locale = ?");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			
+			int i = 1;
+			pst.setString(i++, locale);
 			
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				resultados.add(loadNext(rs));
+				results.add(loadNext(rs));
 			}
 			
 		}catch(SQLException e) {
@@ -110,7 +124,7 @@ public class LocalidadDAOImpl implements LocalityDAO {
 			JDBCUtils.close(pst, rs);
 		}
 		
-		return resultados;
+		return results;
 	}
 	
 	protected Locality loadNext (ResultSet rs) throws SQLException{
@@ -120,10 +134,9 @@ public class LocalidadDAOImpl implements LocalityDAO {
 		Locality l = new Locality();
 		
 		l.setId(rs.getInt(i++));
-		l.setNombre(rs.getString(i++));
-		l.setCodigoPostal(rs.getInt(i++));
-		l.setProvinciaId(rs.getInt(i++));
-	
+		l.setName(rs.getString(i++));
+		l.setPostalCode(rs.getInt(i++));
+		l.setRegionId(rs.getInt(i++));
 		
 		return l;
 	}
