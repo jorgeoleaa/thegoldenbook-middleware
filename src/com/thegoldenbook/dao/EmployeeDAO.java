@@ -5,7 +5,7 @@ import java.sql.Connection;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 
-public interface EmpleadoDAO {
+public interface EmployeeDAO {
 		
 		public Employee findBy(Connection con, Long id)
 			throws DataException;

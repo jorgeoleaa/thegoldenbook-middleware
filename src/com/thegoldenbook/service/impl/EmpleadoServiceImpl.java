@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.EmpleadoDAO;
+import com.thegoldenbook.dao.EmployeeDAO;
 import com.thegoldenbook.dao.impl.EmpleadoDAOImpl;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
@@ -25,7 +25,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 
 	private static Logger logger = LogManager.getLogger(EmpleadoServiceImpl.class);
 
-	private EmpleadoDAO empleadoDAO = null;
+	private EmployeeDAO empleadoDAO = null;
 	private MailService mailService = null;
 
 	public EmpleadoServiceImpl() {
