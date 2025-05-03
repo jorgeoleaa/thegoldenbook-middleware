@@ -9,7 +9,7 @@ import com.thegoldenbook.model.Address;
 import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.service.EmployeeService;
 import com.thegoldenbook.service.impl.AddressServiceImpl;
-import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
+import com.thegoldenbook.service.impl.EmployeeServiceImpl;
 
 public class AddressServiceTest {
 	
@@ -18,7 +18,7 @@ public class AddressServiceTest {
 	
 	public AddressServiceTest(){
 		addressService = new AddressServiceImpl();
-		employeeService = new EmpleadoServiceImpl();
+		employeeService = new EmployeeServiceImpl();
 	}
 	
 	@Test

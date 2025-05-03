@@ -8,7 +8,7 @@ import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.EmployeeService;
-import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
+import com.thegoldenbook.service.impl.EmployeeServiceImpl;
 
 public class EmpleadoServiceTest {
 
@@ -16,7 +16,7 @@ public class EmpleadoServiceTest {
 	private static Logger logger = LogManager.getLogger(EmpleadoServiceTest.class);
 
 	public EmpleadoServiceTest() {
-		empleadoService = new EmpleadoServiceImpl();
+		empleadoService = new EmployeeServiceImpl();
 	}
 	
 	public void testAutenticacionOK() throws Exception{

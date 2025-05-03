@@ -18,31 +18,31 @@ import com.thegoldenbook.service.ServiceException;
 import com.thegoldenbook.util.JDBCUtils;
 
 
-public class EmpleadoServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService{
 
 	public static final StrongPasswordEncryptor PASSWORD_ENCRYPTOR 
 	= new StrongPasswordEncryptor();
 
-	private static Logger logger = LogManager.getLogger(EmpleadoServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(EmployeeServiceImpl.class);
 
-	private EmployeeDAO empleadoDAO = null;
+	private EmployeeDAO employeeDAO = null;
 	private MailService mailService = null;
 
-	public EmpleadoServiceImpl() {
-		empleadoDAO = new EmployeeDAOImpl();
+	public EmployeeServiceImpl() {
+		employeeDAO = new EmployeeDAOImpl();
 		mailService = new MailServiceImpl();
 	}
 
-	public Results<Employee> findAll(int pos, int pageSize) throws DataException {
+	public Results<Employee> findAll(int pos, int pageSize, String locale) throws DataException {
 
 		Connection con = null;
 		Boolean commit = false;
-		Results<Employee> empleados = null;
+		Results<Employee> employees = null;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			empleados = empleadoDAO.findAll(con, pos, pageSize);
+			employees = employeeDAO.findAll(con, pos, pageSize, locale);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -51,10 +51,10 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return empleados;
+		return employees;
 	}
 
-	public Employee findBy(Long id) 
+	public Employee findBy(Long id, String locale) 
 			throws DataException, ServiceException{
 
 		Connection con = null;
@@ -64,7 +64,7 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			em = empleadoDAO.findBy(con, id);
+			em = employeeDAO.findBy(con, id, locale);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -76,9 +76,9 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		return em;
 	}
 
-	public Employee autenticar(Long id, String password) throws DataException{
+	public Employee authenticate(Long id, String password, String locale) throws DataException{
 
-		Employee empleado = null;
+		Employee employee = null;
 		Connection con = null;
 		boolean commit = false;
 
@@ -86,14 +86,14 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			empleado = empleadoDAO.findBy(con, id);
+			employee = employeeDAO.findBy(con, id, locale);
 
-			if(empleado == null) {
+			if(employee == null) {
 				return null;
 			}
 
-			if(!PASSWORD_ENCRYPTOR.checkPassword(password, empleado.getPassword())) {
-				empleado = null;
+			if(!PASSWORD_ENCRYPTOR.checkPassword(password, employee.getPassword())) {
+				employee = null;
 			} 
 			commit = true;
 
@@ -103,24 +103,24 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return empleado;
+		return employee;
 	}
 
-	public boolean delete(Long id) 
+	public boolean delete(Long id, String locale) 
 			throws DataException, ServiceException{
 
 		Connection con = null;
 		boolean em = false;
-		Employee empl = null;
+		Employee employee = null;
 		boolean commit = false;
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			empl = empleadoDAO.findBy(con, id);
-			em = empleadoDAO.delete(con, id);
-			mailService.enviar(empl.getEmail(), "Eliminación de su cuenta.", "Le enviamos este mensaje para comunicarle que debido a que ya no forma parte de nuestro equipo de trabajadores,"
-					+ " su cuenta de empleado ha sido eliminada. "
-					+ "Agradecemos sus servicios durante este tiempo.");
+			employee = employeeDAO.findBy(con, id, locale);
+			em = employeeDAO.delete(con, id);
+			mailService.enviar(employee.getEmail(), "Notice of Account Deletion", "We are sending you this message to inform you that, since you are no longer part of our team of employees,"
+					+ " your employee account has been deleted."
+					+ " We appreciate your services during this time. ");
 
 			commit = true;
 		} catch(SQLException e) {
@@ -143,7 +143,7 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			em = empleadoDAO.update(con, empl);
+			em = employeeDAO.update(con, empl);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -163,7 +163,7 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			cliente = empleadoDAO.updatePassword(con, PASSWORD_ENCRYPTOR.encryptPassword(password), id);
+			cliente = employeeDAO.updatePassword(con, PASSWORD_ENCRYPTOR.encryptPassword(password), id);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -175,7 +175,7 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		return cliente;
 	}
 
-	public boolean updatePassword(Employee empl)
+	public boolean updatePassword(Employee empl, String locale)
 			throws DataException{
 
 		Connection con = null;
@@ -189,10 +189,10 @@ public class EmpleadoServiceImpl implements EmployeeService{
 			if(empl.getPassword().length()>=8 && (empl.getPassword().length()<=16)){
 				empl.setPassword(PASSWORD_ENCRYPTOR.encryptPassword(empl.getPassword()));
 			}else {
-				empl = empleadoDAO.findBy(con, empl.getId());
+				empl = employeeDAO.findBy(con, empl.getId(), locale);
 			}
 
-			em = empleadoDAO.update(con, empl);
+			em = employeeDAO.update(con, empl);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -220,10 +220,10 @@ public class EmpleadoServiceImpl implements EmployeeService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			id = empleadoDAO.create(con, empl);
+			id = employeeDAO.create(con, empl);
 
-			mailService.enviar(empl.getEmail(),"Bienvenido a nuestro equipo de trabajo", "Estamos encantados de que formes parte de "
-					+ "nuestro equipo de trabajo para poder alcanzar el máximo nivel de productividad y satisfacción de nuestros clientes. ");
+			mailService.enviar(empl.getEmail(), "Welcome to our team", 
+				    "We are delighted to have you as part of our team, working together to achieve the highest level of productivity and customer satisfaction.");
 
 			commit = true;
 		} catch(SQLException e) {
