@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.DireccionDAO;
+import com.thegoldenbook.dao.AddressDAO;
 import com.thegoldenbook.dao.impl.DireccionDAOImpl;
 import com.thegoldenbook.model.Address;
 import com.thegoldenbook.service.DireccionService;
@@ -15,7 +15,7 @@ import com.thegoldenbook.util.JDBCUtils;
 
 public class DireccionServiceImpl implements DireccionService{
 
-	private DireccionDAO direccionDAO = null;
+	private AddressDAO direccionDAO = null;
 	private static Logger logger = LogManager.getLogger();
 	
 	public DireccionServiceImpl() {

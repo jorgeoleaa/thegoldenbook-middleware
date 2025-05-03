@@ -12,11 +12,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.DireccionDAO;
+import com.thegoldenbook.dao.AddressDAO;
 import com.thegoldenbook.model.Address;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class DireccionDAOImpl implements DireccionDAO {
+public class DireccionDAOImpl implements AddressDAO {
 
 	private static Logger logger = LogManager.getLogger(DireccionDAOImpl.class);
 	

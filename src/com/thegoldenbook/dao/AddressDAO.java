@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.thegoldenbook.model.Address;
 
-public interface DireccionDAO {
+public interface AddressDAO {
 	
-	public Address findByEmpleadoId (Connection con, Long empleadoId) throws DataException;
+	public Address findByEmployeeId (Connection con, Long employeeId) throws DataException;
 	public boolean delete (Connection con, Long id) throws DataException;
-	public boolean deleteByEmpleado (Connection con, Long empleadoId) throws DataException;
+	public boolean deleteByEmployee (Connection con, Long employeeId) throws DataException;
 	public boolean update (Connection con,Address d) throws DataException;
 	public Long create (Connection con, Address d) throws DataException;
 }
