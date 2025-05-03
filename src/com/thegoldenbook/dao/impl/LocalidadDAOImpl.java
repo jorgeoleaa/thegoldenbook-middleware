@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LocalidadDAO;
+import com.thegoldenbook.dao.LocalityDAO;
 import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class LocalidadDAOImpl implements LocalidadDAO {
+public class LocalidadDAOImpl implements LocalityDAO {
 	
 	private static Logger logger = LogManager.getLogger(LocalidadDAOImpl.class);
 	

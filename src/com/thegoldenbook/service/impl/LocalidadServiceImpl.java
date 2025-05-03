@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LocalidadDAO;
+import com.thegoldenbook.dao.LocalityDAO;
 import com.thegoldenbook.dao.impl.LocalidadDAOImpl;
 import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.service.LocalityService;
@@ -17,7 +17,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class LocalidadServiceImpl implements LocalityService{
 
 	private static Logger logger = LogManager.getLogger(LocalidadServiceImpl.class);
-	private LocalidadDAO localidadDAO = null;
+	private LocalityDAO localidadDAO = null;
 	
 	public LocalidadServiceImpl() {
 		localidadDAO = new LocalidadDAOImpl();
