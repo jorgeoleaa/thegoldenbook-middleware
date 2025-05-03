@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.OrderStatusDAO;
 import com.thegoldenbook.dao.impl.OrderStatusDAOImpl;
 import com.thegoldenbook.model.OrderStatus;
-import com.thegoldenbook.service.EstadoPedidoService;
+import com.thegoldenbook.service.OrderStatusService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class EstadoPedidoServiceImpl implements EstadoPedidoService{
+public class EstadoPedidoServiceImpl implements OrderStatusService{
 
 	private static Logger logger = LogManager.getLogger();
 	private OrderStatusDAO estadoPedidoDAO = null;

@@ -6,12 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.OrderStatus;
-import com.thegoldenbook.service.EstadoPedidoService;
+import com.thegoldenbook.service.OrderStatusService;
 import com.thegoldenbook.service.impl.EstadoPedidoServiceImpl;
 
 public class EstadoPedidoServiceTest {
 
-	private EstadoPedidoService estadoPedidoService = null;
+	private OrderStatusService estadoPedidoService = null;
 	private static Logger logger = LogManager.getLogger(EstadoPedidoServiceImpl.class);
 	
 	public EstadoPedidoServiceTest() {
