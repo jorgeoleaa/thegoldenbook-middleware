@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Region;
 import com.thegoldenbook.service.RegionService;
-import com.thegoldenbook.service.impl.ProvinciaServiceImpl;
+import com.thegoldenbook.service.impl.RegionServiceImpl;
 
 public class ProvinciaServiceTest {
 	
@@ -15,7 +15,7 @@ public class ProvinciaServiceTest {
 	private RegionService provinciaService = null;
 	
 	public ProvinciaServiceTest() {
-		provinciaService = new ProvinciaServiceImpl();
+		provinciaService = new RegionServiceImpl();
 	}
 	
 	public void testFindAll() throws Exception{

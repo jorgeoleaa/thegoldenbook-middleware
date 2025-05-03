@@ -14,25 +14,25 @@ import com.thegoldenbook.model.Region;
 import com.thegoldenbook.service.RegionService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ProvinciaServiceImpl implements RegionService{
+public class RegionServiceImpl implements RegionService{
 	
 	private static Logger logger = LogManager.getLogger(CountryServiceImpl.class);
-	private RegionDAO provinciaDAO = null;
+	private RegionDAO regionDAO = null;
 	
-	public ProvinciaServiceImpl() {
-		provinciaDAO = new RegionDAOImpl();
+	public RegionServiceImpl() {
+		regionDAO = new RegionDAOImpl();
 	}
 	
-	public Region findById(int id) throws DataException{
+	public Region findById(int id, String locale) throws DataException{
 		
 		Connection con = null;
-		Region p = null;
+		Region region = null;
 		boolean commit = false;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			p = provinciaDAO.findById(con, id);
+			region = regionDAO.findById(con, id, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -41,20 +41,20 @@ public class ProvinciaServiceImpl implements RegionService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return p;
+		return region;
 	}
 
 	
-	public List<Region> findAll() throws DataException {
+	public List<Region> findAll(String locale) throws DataException {
 		
 		Connection con = null;
-		List<Region> resultados = null;
+		List<Region> results = null;
 		boolean commit = false;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = provinciaDAO.findAll(con);
+			results = regionDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -63,7 +63,7 @@ public class ProvinciaServiceImpl implements RegionService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
 }
