@@ -133,8 +133,8 @@ public class AddressDAOImpl implements AddressDAO {
 		
 		try {
 			
-			pst = con.prepareStatement(" INSERT INTO DIRECCION (street_name, address_line_2, locality_id, user_id, employee_id)"
-													+ " VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			pst = con.prepareStatement(" insert into address (street_name, address_line_2, locality_id, user_id, employee_id)"
+													+ " values(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			
 			int i = 1;
 			JDBCUtils.setNullable(pst, i++, address.getStreetName());
