@@ -11,29 +11,29 @@ import com.thegoldenbook.model.Region;
 import com.thegoldenbook.service.RegionService;
 import com.thegoldenbook.service.impl.RegionServiceImpl;
 
-public class ProvinciaServiceTest {
+public class RegionServiceTest {
 	
-	private RegionService provinciaService = null;
+	private RegionService regionService = null;
 	
-	public ProvinciaServiceTest() {
-		provinciaService = new RegionServiceImpl();
+	public RegionServiceTest() {
+		regionService = new RegionServiceImpl();
 	}
 	
 	@Test
 	public void testFindAll() throws Exception{
-		List<Region> provincias = provinciaService.findAll();
+		List<Region> provincias = regionService.findAll("es_ES");
 		assertEquals(49, provincias.size());
 	}
 	
 	@Test
 	public void testFindById01() throws Exception{
-		Region p = provinciaService.findById(5);
+		Region p = regionService.findById(5, "es_ES");
 		assertEquals(5, p.getId());
 	}
 	
 	@Test
 	public void testFindById02() throws Exception{
-		Region p = provinciaService.findById(100);
+		Region p = regionService.findById(100, "es_ES");
 		assertEquals(null, p);
 	}
 }
