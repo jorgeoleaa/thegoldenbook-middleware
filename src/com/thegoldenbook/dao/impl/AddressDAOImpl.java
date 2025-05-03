@@ -169,7 +169,7 @@ public class AddressDAOImpl implements AddressDAO {
 		return null;
 	}
 	
-	public boolean deleteByEmpleado(Connection con, Long employeeId) throws DataException{
+	public boolean deleteByEmployee(Connection con, Long employeeId) throws DataException{
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
