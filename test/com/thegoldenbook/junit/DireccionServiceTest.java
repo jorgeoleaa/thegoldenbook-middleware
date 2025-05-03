@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.thegoldenbook.model.Address;
 import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.service.EmpleadoService;
-import com.thegoldenbook.service.impl.DireccionServiceImpl;
+import com.thegoldenbook.service.impl.AddressServiceImpl;
 import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
 
 public class DireccionServiceTest {
@@ -17,7 +17,7 @@ public class DireccionServiceTest {
 	private EmpleadoService empleadoService = null;
 	
 	public DireccionServiceTest(){
-		direccionService = new DireccionServiceImpl();
+		direccionService = new AddressServiceImpl();
 		empleadoService = new EmpleadoServiceImpl();
 	}
 	

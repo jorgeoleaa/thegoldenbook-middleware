@@ -13,7 +13,7 @@ import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.service.EmpleadoService;
 import com.thegoldenbook.service.impl.ClienteServiceImpl;
-import com.thegoldenbook.service.impl.DireccionServiceImpl;
+import com.thegoldenbook.service.impl.AddressServiceImpl;
 import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
 
 public class DireccionServiceTest {
@@ -24,7 +24,7 @@ public class DireccionServiceTest {
 	private EmpleadoService empleadoService = null;
 	
 	public DireccionServiceTest() {
-		direccionService = new DireccionServiceImpl();
+		direccionService = new AddressServiceImpl();
 		clienteService = new ClienteServiceImpl();
 		empleadoService = new EmpleadoServiceImpl();
 	}

@@ -13,13 +13,13 @@ import com.thegoldenbook.model.Address;
 import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class DireccionServiceImpl implements AddressService{
+public class AddressServiceImpl implements AddressService{
 
-	private AddressDAO direccionDAO = null;
+	private AddressDAO addressDAO = null;
 	private static Logger logger = LogManager.getLogger();
 	
-	public DireccionServiceImpl() {
-		direccionDAO = new AddressDAOImpl();
+	public AddressServiceImpl() {
+		addressDAO = new AddressDAOImpl();
 	}
 
 
@@ -32,7 +32,7 @@ public class DireccionServiceImpl implements AddressService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			d = direccionDAO.delete(con, id);
+			d = addressDAO.delete(con, id);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -46,7 +46,7 @@ public class DireccionServiceImpl implements AddressService{
 	}
 
 
-	public boolean update(Address d) throws DataException{
+	public boolean update(Address address) throws DataException{
 		
 		Connection con = null;
 		boolean di = false;
@@ -55,7 +55,7 @@ public class DireccionServiceImpl implements AddressService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			di = direccionDAO.update(con, d);
+			di = addressDAO.update(con, address);
 			commit = true;
 			
 		} catch(SQLException e) {
@@ -68,7 +68,7 @@ public class DireccionServiceImpl implements AddressService{
 	}
 
 	
-	public Long create(Address d) throws DataException{
+	public Long create(Address address) throws DataException{
 		
 		Connection con = null;
 		Long id = null;
@@ -77,7 +77,7 @@ public class DireccionServiceImpl implements AddressService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			id = direccionDAO.create(con, d);
+			id = addressDAO.create(con, address);
 			commit = true;
 			
 		} catch(SQLException e) {
