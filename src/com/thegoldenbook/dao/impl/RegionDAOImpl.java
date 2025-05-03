@@ -26,7 +26,7 @@ public class RegionDAOImpl implements RegionDAO{
 		Region p = null;
 
 		try {
-			StringBuilder query = new StringBuilder(" select r.id, rl.nmae, r.country_id")
+			StringBuilder query = new StringBuilder(" select r.id, rl.name, r.country_id")
 					.append(" from region r ")
 					.append(" inner join region_language rl on rl.region_id = r.id ")
 					.append(" inner join language l on l.id = rl.language_id ")
