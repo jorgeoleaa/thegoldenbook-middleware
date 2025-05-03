@@ -7,7 +7,7 @@ import com.thegoldenbook.model.Address;
 
 public interface AddressDAO {
 	
-	public Address findByEmployeeId (Connection con, Long employeeId) throws DataException;
+	public Address findByEmployeeId (Connection con, Long employeeId, String locale) throws DataException;
 	public boolean delete (Connection con, Long id) throws DataException;
 	public boolean deleteByEmployee (Connection con, Long employeeId) throws DataException;
 	public boolean update (Connection con,Address d) throws DataException;
