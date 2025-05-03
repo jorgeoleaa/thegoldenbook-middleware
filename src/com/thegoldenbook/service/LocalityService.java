@@ -13,6 +13,6 @@ public interface LocalityService {
 	public Locality findById(int id, String locale)
 			throws DataException;
 	
-	public Locality findByPostalCode(int codigoPostal, String locale)
+	public Locality findByPostalCode(String codigoPostal, String locale)
 			throws DataException;
 }

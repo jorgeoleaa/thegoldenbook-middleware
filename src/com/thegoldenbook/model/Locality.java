@@ -4,7 +4,7 @@ public class Locality extends AbstractValueObject{
 
 	private Integer id;
 	private String name;
-	private Integer postalCode;
+	private String postalCode;
 	private Integer regionId;
 
 	public Locality() {
@@ -27,11 +27,11 @@ public class Locality extends AbstractValueObject{
 		this.name = name;
 	}
 
-	public Integer getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(Integer postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 

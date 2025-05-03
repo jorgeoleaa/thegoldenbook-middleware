@@ -65,7 +65,7 @@ public class LocalityServiceImpl implements LocalityService{
 	}
 
 	
-	public Locality findByPostalCode(int postalCode, String locale) throws DataException {
+	public Locality findByPostalCode(String postalCode, String locale) throws DataException {
 		
 		Connection con = null;
 		Locality l = null;

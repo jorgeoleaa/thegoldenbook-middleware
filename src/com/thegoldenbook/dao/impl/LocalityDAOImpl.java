@@ -20,7 +20,7 @@ public class LocalityDAOImpl implements LocalityDAO {
 	private static Logger logger = LogManager.getLogger(LocalityDAOImpl.class);
 	
 	public LocalityDAOImpl() {
-		
+	
 	}
 	
 	public Locality findById(Connection con, int id, String locale) throws DataException{
@@ -34,7 +34,7 @@ public class LocalityDAOImpl implements LocalityDAO {
 					.append(" from locality lo ")
 					.append(" inner join locality_language ll on ll.locality_id = lo.id ")
 					.append(" inner join language l on l.id = ll.language_id ")
-					.append(" where l.locale = ? and where lo.id = ? ");
+					.append(" where l.locale = ? and lo.id = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
@@ -57,7 +57,7 @@ public class LocalityDAOImpl implements LocalityDAO {
 		return l;
 	}
 	
-	public Locality findByPostalCode (Connection con, int postalCode, String locale) throws DataException{
+	public Locality findByPostalCode (Connection con, String postalCode, String locale) throws DataException{
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -68,13 +68,13 @@ public class LocalityDAOImpl implements LocalityDAO {
 					.append(" from locality lo ")
 					.append(" inner join locality_language ll on ll.locality_id = lo.id ")
 					.append(" inner join language l on l.id = ll.language_id ")
-					.append(" where l.locale = ? and where lo.postal_code = ? ");
+					.append(" where l.locale = ? and lo.postal_code = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
 			int i = 1;
 			pst.setString(i++, locale);
-			pst.setInt(i++, postalCode);
+			pst.setString(i++, postalCode);
 		
 			rs = pst.executeQuery();
 			
@@ -135,7 +135,7 @@ public class LocalityDAOImpl implements LocalityDAO {
 		
 		l.setId(rs.getInt(i++));
 		l.setName(rs.getString(i++));
-		l.setPostalCode(rs.getInt(i++));
+		l.setPostalCode(rs.getString(i++));
 		l.setRegionId(rs.getInt(i++));
 		
 		return l;
