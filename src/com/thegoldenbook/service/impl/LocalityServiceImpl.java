@@ -14,24 +14,24 @@ import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.service.LocalityService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class LocalidadServiceImpl implements LocalityService{
+public class LocalityServiceImpl implements LocalityService{
 
-	private static Logger logger = LogManager.getLogger(LocalidadServiceImpl.class);
-	private LocalityDAO localidadDAO = null;
+	private static Logger logger = LogManager.getLogger(LocalityServiceImpl.class);
+	private LocalityDAO localityDAO = null;
 	
-	public LocalidadServiceImpl() {
-		localidadDAO = new LocalityDAOImpl();
+	public LocalityServiceImpl() {
+		localityDAO = new LocalityDAOImpl();
 	}
 	
-	public List<Locality> findAll() throws DataException{
+	public List<Locality> findAll(String locale) throws DataException{
 		
 		Connection con = null;
-		List<Locality> localidades = null;
+		List<Locality> localities = null;
 		boolean commit = false;
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			localidades = localidadDAO.findAll(con);
+			localities = localityDAO.findAll(con, locale);
 			commit = true;
 			
 		} catch (SQLException e) {
@@ -40,11 +40,11 @@ public class LocalidadServiceImpl implements LocalityService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return localidades;
+		return localities;
 	}
 
 	
-	public Locality findById(int id) throws DataException{
+	public Locality findById(int id, String locale) throws DataException{
 		
 		Connection con = null;
 		Locality l = null;
@@ -52,7 +52,7 @@ public class LocalidadServiceImpl implements LocalityService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			l = localidadDAO.findById(con, id);
+			l = localityDAO.findById(con, id, locale);
 			commit = true;
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
@@ -65,7 +65,7 @@ public class LocalidadServiceImpl implements LocalityService{
 	}
 
 	
-	public Locality findByCodigoPostal(int codigoPostal) throws DataException {
+	public Locality findByCodigoPostal(int postalCode, String locale) throws DataException {
 		
 		Connection con = null;
 		Locality l = null;
@@ -74,7 +74,7 @@ public class LocalidadServiceImpl implements LocalityService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			l = localidadDAO.findByCodigoPostal(con, codigoPostal);
+			l = localityDAO.findByPostalCode(con, postalCode, locale);
 			commit = true;
 			
 		}catch(SQLException e) {

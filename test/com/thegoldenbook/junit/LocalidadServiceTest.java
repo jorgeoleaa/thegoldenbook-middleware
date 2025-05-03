@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Locality;
 import com.thegoldenbook.service.LocalityService;
-import com.thegoldenbook.service.impl.LocalidadServiceImpl;
+import com.thegoldenbook.service.impl.LocalityServiceImpl;
 
 public class LocalidadServiceTest {
 
 	private LocalityService localidadService = null;
 	
 	public LocalidadServiceTest() {
-		localidadService = new LocalidadServiceImpl();
+		localidadService = new LocalityServiceImpl();
 	}
 	
 	@Test
