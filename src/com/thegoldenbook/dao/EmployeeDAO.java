@@ -7,10 +7,10 @@ import com.thegoldenbook.model.Results;
 
 public interface EmployeeDAO {
 		
-		public Employee findBy(Connection con, Long id)
+		public Employee findBy(Connection con, Long id, String locale)
 			throws DataException;
 		
-		public Results<Employee> findAll(Connection con, int pos, int pageSize)
+		public Results<Employee> findAll(Connection con, int pos, int pageSize, String locale)
 			throws DataException;
 		
 		public Long create(Connection con, Employee em)
