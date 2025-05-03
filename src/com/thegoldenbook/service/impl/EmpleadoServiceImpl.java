@@ -12,13 +12,13 @@ import com.thegoldenbook.dao.EmployeeDAO;
 import com.thegoldenbook.dao.impl.EmployeeDAOImpl;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.EmpleadoService;
+import com.thegoldenbook.service.EmployeeService;
 import com.thegoldenbook.service.MailService;
 import com.thegoldenbook.service.ServiceException;
 import com.thegoldenbook.util.JDBCUtils;
 
 
-public class EmpleadoServiceImpl implements EmpleadoService{
+public class EmpleadoServiceImpl implements EmployeeService{
 
 	public static final StrongPasswordEncryptor PASSWORD_ENCRYPTOR 
 	= new StrongPasswordEncryptor();

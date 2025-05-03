@@ -4,15 +4,15 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 
-public interface EmpleadoService {
+public interface EmployeeService {
 	
-	public Employee autenticar(Long id, String password) 
+	public Employee authenticate(Long id, String password) 
 			throws DataException;
 	
-	public Employee findBy(Long id) 
+	public Employee findBy(Long id, String locale) 
 			throws DataException, ServiceException;
 	
-	public Results<Employee> findAll(int pos, int pageSize)
+	public Results<Employee> findAll(int pos, int pageSize, String locale)
 			throws DataException;
 	
 	public boolean delete (Long id)
@@ -24,6 +24,6 @@ public interface EmpleadoService {
 	public boolean updatePassword (String password, Long id) 
 			throws DataException;
 	
-	public Long registrar (Employee empl)
+	public Long register (Employee empl)
 		throws DataException, ServiceException;
 }

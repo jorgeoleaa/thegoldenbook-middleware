@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Address;
 import com.thegoldenbook.service.AddressService;
-import com.thegoldenbook.service.EmpleadoService;
+import com.thegoldenbook.service.EmployeeService;
 import com.thegoldenbook.service.impl.AddressServiceImpl;
 import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
 
 public class AddressServiceTest {
 	
 	private AddressService addressService = null;
-	private EmpleadoService employeeService = null;
+	private EmployeeService employeeService = null;
 	
 	public AddressServiceTest(){
 		addressService = new AddressServiceImpl();

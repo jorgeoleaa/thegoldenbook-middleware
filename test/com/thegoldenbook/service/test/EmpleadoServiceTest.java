@@ -7,12 +7,12 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.EmpleadoService;
+import com.thegoldenbook.service.EmployeeService;
 import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
 
 public class EmpleadoServiceTest {
 
-	private EmpleadoService empleadoService = null;
+	private EmployeeService empleadoService = null;
 	private static Logger logger = LogManager.getLogger(EmpleadoServiceTest.class);
 
 	public EmpleadoServiceTest() {

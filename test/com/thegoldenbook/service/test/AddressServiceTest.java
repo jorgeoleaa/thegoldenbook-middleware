@@ -10,7 +10,7 @@ import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.AddressService;
-import com.thegoldenbook.service.EmpleadoService;
+import com.thegoldenbook.service.EmployeeService;
 import com.thegoldenbook.service.impl.ClienteServiceImpl;
 import com.thegoldenbook.service.impl.AddressServiceImpl;
 import com.thegoldenbook.service.impl.EmpleadoServiceImpl;
@@ -20,7 +20,7 @@ public class AddressServiceTest {
 	private static Logger logger = LogManager.getLogger(AddressServiceTest.class);
 	private AddressService addressService = null;
 	private ClienteService userService = null;
-	private EmpleadoService employeeService = null;
+	private EmployeeService employeeService = null;
 	
 	public AddressServiceTest() {
 		addressService = new AddressServiceImpl();
