@@ -8,12 +8,12 @@ import java.util.ResourceBundle;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Region;
-import com.thegoldenbook.service.ProvinciaService;
+import com.thegoldenbook.service.RegionService;
 import com.thegoldenbook.service.impl.ProvinciaServiceImpl;
 
 public class ProvinciaServiceTest {
 	
-	private ProvinciaService provinciaService = null;
+	private RegionService provinciaService = null;
 	
 	public ProvinciaServiceTest() {
 		provinciaService = new ProvinciaServiceImpl();

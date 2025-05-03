@@ -6,13 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Region;
-import com.thegoldenbook.service.ProvinciaService;
+import com.thegoldenbook.service.RegionService;
 import com.thegoldenbook.service.impl.ProvinciaServiceImpl;
 
 public class ProvinciaServiceTest {
 	
 	private static Logger logger = LogManager.getLogger(ProvinciaServiceTest.class);
-	private ProvinciaService provinciaService = null;
+	private RegionService provinciaService = null;
 	
 	public ProvinciaServiceTest() {
 		provinciaService = new ProvinciaServiceImpl();

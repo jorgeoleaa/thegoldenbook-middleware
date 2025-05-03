@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.RegionDAO;
 import com.thegoldenbook.dao.impl.RegionDAOImpl;
 import com.thegoldenbook.model.Region;
-import com.thegoldenbook.service.ProvinciaService;
+import com.thegoldenbook.service.RegionService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ProvinciaServiceImpl implements ProvinciaService{
+public class ProvinciaServiceImpl implements RegionService{
 	
 	private static Logger logger = LogManager.getLogger(CountryServiceImpl.class);
 	private RegionDAO provinciaDAO = null;
