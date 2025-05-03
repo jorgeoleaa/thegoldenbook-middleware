@@ -15,26 +15,32 @@ import com.thegoldenbook.dao.OrderStatusDAO;
 import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class EstadoPedidoDAOImpl implements OrderStatusDAO{
+public class OrderStatusDAOImpl implements OrderStatusDAO{
 
-	private static Logger logger = LogManager.getLogger(EstadoPedidoDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(OrderStatusDAOImpl.class);
 	
-	public List<OrderStatus> findAll(Connection con) throws DataException {
+	public List<OrderStatus> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<OrderStatus> estados = new ArrayList<OrderStatus>();
+		List<OrderStatus> results = new ArrayList<OrderStatus>();
 		
 		try {
 			
-			StringBuilder query = new StringBuilder(" SELECT ID, NOMBRE ").append(" FROM TIPO_ESTADO_PEDIDO ");
+			StringBuilder query = new StringBuilder(" select os.id, osl.name from order_status os ")
+					.append(" inner join order_status_language osl on os.id = osl.order_status_id ")
+					.append(" inner join language l on l.id = osl.language_id ")
+					.append(" where l.locale =  ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			
+			int i = 1;
+			pst.setString(i++, locale);
 			
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				estados.add(loadNext(rs));
+				results.add(loadNext(rs));
 			}
 			
 		}catch(SQLException e) {
@@ -45,7 +51,7 @@ public class EstadoPedidoDAOImpl implements OrderStatusDAO{
 		}
 		
 		
-		return estados;
+		return results;
 	}
 	
 	protected OrderStatus loadNext (ResultSet rs) throws SQLException{
@@ -54,7 +60,7 @@ public class EstadoPedidoDAOImpl implements OrderStatusDAO{
 		OrderStatus estado = new OrderStatus();
 		
 		estado.setId(rs.getInt(i++));
-		estado.setNombre(rs.getString(i++));
+		estado.setName(rs.getString(i++));
 		
 		return estado;
 	}

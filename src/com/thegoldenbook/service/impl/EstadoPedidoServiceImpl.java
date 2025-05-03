@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.OrderStatusDAO;
-import com.thegoldenbook.dao.impl.EstadoPedidoDAOImpl;
+import com.thegoldenbook.dao.impl.OrderStatusDAOImpl;
 import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.service.EstadoPedidoService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -20,7 +20,7 @@ public class EstadoPedidoServiceImpl implements EstadoPedidoService{
 	private OrderStatusDAO estadoPedidoDAO = null;
 	
 	public EstadoPedidoServiceImpl() {
-		estadoPedidoDAO = new EstadoPedidoDAOImpl();
+		estadoPedidoDAO = new OrderStatusDAOImpl();
 	}
 	
 	@Override
