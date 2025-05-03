@@ -22,7 +22,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 	private AddressDAO direccionDAO = null;
 
 	public EmpleadoDAOImpl() {
-		direccionDAO = new DireccionDAOImpl();
+		direccionDAO = new AddressDAOImpl();
 	}
 
 	public Employee findBy(Connection con, Long id)

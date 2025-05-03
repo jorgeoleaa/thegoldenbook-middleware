@@ -25,7 +25,7 @@ public class ClienteDAOImpl implements ClientDAO {
 	private static Logger logger = LogManager.getLogger(ClienteDAOImpl.class);
 
 	public ClienteDAOImpl() {
-		direccionDAO = new DireccionDAOImpl();
+		direccionDAO = new AddressDAOImpl();
 	}
 
 
