@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.thegoldenbook.model.OrderStatus;
 
-public interface EstadoPedidoDAO {
+public interface OrderStatusDAO {
 	
-	public List<OrderStatus> findAll(Connection con) 
+	public List<OrderStatus> findAll(Connection con, String locale) 
 			throws DataException;
 }

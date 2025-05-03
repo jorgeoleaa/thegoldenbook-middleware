@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.EstadoPedidoDAO;
+import com.thegoldenbook.dao.OrderStatusDAO;
 import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class EstadoPedidoDAOImpl implements EstadoPedidoDAO{
+public class EstadoPedidoDAOImpl implements OrderStatusDAO{
 
 	private static Logger logger = LogManager.getLogger(EstadoPedidoDAOImpl.class);
 	
