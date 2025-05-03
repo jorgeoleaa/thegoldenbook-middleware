@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LocalidadDAO;
 import com.thegoldenbook.dao.impl.LocalidadDAOImpl;
 import com.thegoldenbook.model.Locality;
-import com.thegoldenbook.service.LocalidadService;
+import com.thegoldenbook.service.LocalityService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class LocalidadServiceImpl implements LocalidadService{
+public class LocalidadServiceImpl implements LocalityService{
 
 	private static Logger logger = LogManager.getLogger(LocalidadServiceImpl.class);
 	private LocalidadDAO localidadDAO = null;

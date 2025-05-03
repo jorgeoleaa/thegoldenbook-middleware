@@ -5,14 +5,14 @@ import java.util.List;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Locality;
 
-public interface LocalidadService {
+public interface LocalityService {
 
-	public List<Locality> findAll() 
+	public List<Locality> findAll(String locale) 
 			throws DataException;
 	
-	public Locality findById(int id)
+	public Locality findById(int id, String locale)
 			throws DataException;
 	
-	public Locality findByCodigoPostal (int codigoPostal)
+	public Locality findByPostalCode(int codigoPostal, String locale)
 			throws DataException;
 }

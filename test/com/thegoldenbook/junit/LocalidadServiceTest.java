@@ -7,12 +7,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Locality;
-import com.thegoldenbook.service.LocalidadService;
+import com.thegoldenbook.service.LocalityService;
 import com.thegoldenbook.service.impl.LocalidadServiceImpl;
 
 public class LocalidadServiceTest {
 
-	private LocalidadService localidadService = null;
+	private LocalityService localidadService = null;
 	
 	public LocalidadServiceTest() {
 		localidadService = new LocalidadServiceImpl();
