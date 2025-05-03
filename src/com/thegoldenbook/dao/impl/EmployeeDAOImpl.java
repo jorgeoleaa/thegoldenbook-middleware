@@ -16,16 +16,16 @@ import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class EmpleadoDAOImpl implements EmployeeDAO {
+public class EmployeeDAOImpl implements EmployeeDAO {
 
-	private static Logger logger = LogManager.getLogger(EmpleadoDAOImpl.class); 
-	private AddressDAO direccionDAO = null;
+	private static Logger logger = LogManager.getLogger(EmployeeDAOImpl.class); 
+	private AddressDAO addressDAO = null;
 
-	public EmpleadoDAOImpl() {
-		direccionDAO = new AddressDAOImpl();
+	public EmployeeDAOImpl() {
+		addressDAO = new AddressDAOImpl();
 	}
 
-	public Employee findBy(Connection con, Long id)
+	public Employee findBy(Connection con, Long id, String locale)
 			throws DataException{
 
 		Employee em = null;
@@ -34,10 +34,12 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 
 		try { 
 
-			StringBuilder query = new StringBuilder(" SELECT E.ID, E.NOMBRE, E.APELLIDO1, E.APELLIDO2, E.DNI_NIE, E.TELEFONO, E.EMAIL, E.PASSWORD, E.tipo_empleado_id, t.nombre ")
-					.append(" FROM EMPLEADO E ")
-					.append(" inner join tipo_empleado t on t.id = e.tipo_empleado_id ")
-					.append(" WHERE E.ID = ? ");
+			StringBuilder query = new StringBuilder(" select e.id, e.name, e.last_name, e.second_last_name, e.national_id, e.phone_number, e.email, e.password, et.id, etl.name ")
+					.append(" from employee e ")
+					.append(" inner join employee_type et on e.employee_type_id = et.id ")
+					.append(" inner join employee_type_language etl on etl.employee_type_id = et.id ")
+					.append(" inner join language l on l.id = etl.language_id")
+					.append(" where e.id = ? and l.locale = ? ");
 
 
 			logger.info(query.toString());
@@ -48,15 +50,16 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 			int i = 1;
 
 			pst.setLong(i++, id);
+			pst.setString(i++, locale);
 
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				em = loadNext(rs, con);
+				em = loadNext(rs, con, locale);
 			}
 
 		} catch (SQLException e) {
-			logger.error("ID: "+id, e);
+			logger.error("ID: "+id+" locale: "+locale, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
@@ -64,30 +67,35 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 		return em;
 	}
 
-	public Results<Employee> findAll(Connection con, int pos, int pageSize) throws DataException {
+	public Results<Employee> findAll(Connection con, int pos, int pageSize, String locale) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Results<Employee> empleados = new Results<Employee>();
+		Results<Employee> employees = new Results<Employee>();
 
 		try {
-			StringBuilder query = new StringBuilder(" SELECT E.ID, E.NOMBRE, E.APELLIDO1, E.APELLIDO2, E.DNI_NIE, E.TELEFONO, E.EMAIL, E.PASSWORD, E.tipo_empleado_id, t.nombre ")
-					.append(" FROM EMPLEADO E ")
-					.append(" inner join tipo_empleado t on t.id = e.tipo_empleado_id ")
-					.append(" ORDER BY E.NOMBRE ASC");
+			StringBuilder query = new StringBuilder(" select e.id, e.name, e.last_name, e.second_last_name, e.national_id, e.phone_number, e.email, e.password, et.id, etl.name ")
+					.append(" from employee e ")
+					.append(" inner join employee_type et on e.employee_type_id = et.id ")
+					.append(" inner join employee_type_language etl on etl.employee_type_id = et.id ")
+					.append(" inner join language l on l.id = etl.language_id ")
+					.append(" where l.locale = ? ");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
+			
+			int i = 1;
+			pst.setString(i++, locale);
+			
 			rs = pst.executeQuery();
 
 			int count = 0;
 			if((pos>=1) && rs.absolute(pos)) {
 				do {
-					empleados.getPage().add(loadNext(rs, con));
+					employees.getPage().add(loadNext(rs, con, locale));
 					count++;
 				}while (count<pageSize && rs.next());
 			}
-			empleados.setTotal(JDBCUtils.getTotalRows(rs));
+			employees.setTotal(JDBCUtils.getTotalRows(rs));
 
 		}catch(SQLException e) {
 			logger.error(e);
@@ -95,7 +103,7 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return empleados;
+		return employees;
 	}
 
 	public Long create(Connection con, Employee em) 
@@ -106,7 +114,7 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 
 		try {
 
-			pst = con.prepareStatement(" INSERT INTO EMPLEADO (NOMBRE, APELLIDO1, APELLIDO2, DNI_NIE, TELEFONO, EMAIL, PASSWORD, TIPO_EMPLEADO_ID)"
+			pst = con.prepareStatement(" insert into employee (name, last_name, second_last_name, national_id, phone_number, email, password, employee_type_id)"
 					+" VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 
@@ -116,14 +124,14 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 
 			int i = 1;
 
-			pst.setString(i++, em.getNombre());
-			pst.setString(i++, em.getApellido1());
-			JDBCUtils.setNullable(pst, i++, em.getApellido2());						 
-			pst.setString(i++, em.getDniNie());
-			pst.setString(i++, em.getTelefono());
+			pst.setString(i++, em.getName());
+			pst.setString(i++, em.getLastName());
+			JDBCUtils.setNullable(pst, i++, em.getSecondLastName());						 
+			pst.setString(i++, em.getNationalId());
+			pst.setString(i++, em.getPhoneNumber());
 			pst.setString(i++, em.getEmail());
 			pst.setString(i++, em.getPassword());
-			pst.setInt(i++, em.getTipo_empleado_id());
+			pst.setInt(i++, em.getEmployeeTypeId());
 												
 		
 
@@ -138,15 +146,15 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 			if(rs.next()) {
 				Long id = rs.getLong(1);
 				em.setId(id);
-				em.getDireccion().setEmpleadoId(id);
-				direccionDAO.create(con, em.getDireccion());
+				em.getAddress().setEmployeeId(id);
+				addressDAO.create(con, em.getAddress());
 				return id;
 
 			} 
 
 
 		} catch(SQLException e) {
-			logger.error("Empleado: "+em, e);
+			logger.error("Employee: "+em, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
@@ -159,8 +167,8 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 		PreparedStatement pst = null;
 
 		try {
-			pst = con.prepareStatement("UPDATE EMPLEADO SET PASSWORD = ? "
-					+ " WHERE ID = ? ");
+			pst = con.prepareStatement("update employee set password = ? "
+					+ " where id = ? ");
 
 			int i = 1;
 			pst.setString(i++, password);
@@ -186,20 +194,20 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 		PreparedStatement pst = null;
 
 		try {
-			pst = con.prepareStatement(" UPDATE EMPLEADO SET NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, DNI_NIE = ?, TELEFONO = ?, EMAIL = ?, TIPO_EMPLEADO_ID = ? "
-					+" WHERE ID = ? ");
+			pst = con.prepareStatement(" update empleado set name = ?, last_name = ?, second_last_name = ?, national_id = ?, phone_number = ?, email = ?, employee_type_id = ? "
+					+" where id = ? ");
 
 
 			logger.info(pst);
 
 			int i = 1;
-			pst.setString(i++, em.getNombre());
-			pst.setString(i++, em.getApellido1());
-			pst.setString(i++, em.getApellido2());
-			pst.setString(i++, em.getDniNie());
-			pst.setString(i++, em.getTelefono());
+			pst.setString(i++, em.getName());
+			pst.setString(i++, em.getLastName());
+			pst.setString(i++, em.getSecondLastName());
+			pst.setString(i++, em.getNationalId());
+			pst.setString(i++, em.getPhoneNumber());
 			pst.setString(i++, em.getEmail());
-			pst.setInt(i++, em.getTipo_empleado_id());
+			pst.setInt(i++, em.getEmployeeTypeId());
 			pst.setLong(i++, em.getId());
 
 			int updatedRows = pst.executeUpdate();
@@ -209,7 +217,7 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 			}
 
 		} catch(SQLException e) {
-			logger.error("Empleado: "+em, e);
+			logger.error("Employee: "+em, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst);
@@ -225,9 +233,9 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 
 		try {
 
-			direccionDAO.deleteByEmpleado(con, id);
+			addressDAO.deleteByEmployee(con, id);
 
-			pst = con.prepareStatement(" DELETE FROM EMPLEADO WHERE ID = ? ");
+			pst = con.prepareStatement(" delete from employee where id = ? ");
 
 			logger.info(pst);
 
@@ -250,21 +258,21 @@ public class EmpleadoDAOImpl implements EmployeeDAO {
 		return true;
 	}	
 
-	protected Employee loadNext (ResultSet rs, Connection con) throws SQLException, DataException{
+	protected Employee loadNext (ResultSet rs, Connection con, String locale) throws SQLException, DataException{
 
 		Employee em = new Employee();
 		int i = 1;
 		em.setId(rs.getLong(i++));
-		em.setNombre(rs.getString(i++));
-		em.setApellido1(rs.getString(i++));
-		em.setApellido2(rs.getString(i++));
-		em.setDniNie(rs.getString(i++));
-		em.setTelefono(rs.getString(i++));
+		em.setName(rs.getString(i++));
+		em.setLastName(rs.getString(i++));
+		em.setSecondLastName(rs.getString(i++));
+		em.setNationalId(rs.getString(i++));
+		em.setPhoneNumber(rs.getString(i++));
 		em.setEmail(rs.getString(i++));
 		em.setPassword(rs.getString(i++));
-		em.setTipo_empleado_id(rs.getInt(i++));
-		em.setTipo_empleado_nombre(rs.getString(i++));
-		em.setDireccion(direccionDAO.findByEmpleadoId(con, em.getId()));
+		em.setEmployeeTypeId(rs.getInt(i++));
+		em.setEmployeeTypeName(rs.getString(i++));
+		em.setAddress(addressDAO.findByEmployeeId(con, em.getId(), locale));
 
 		return em;
 	}

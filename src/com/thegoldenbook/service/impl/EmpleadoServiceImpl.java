@@ -9,7 +9,7 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.EmployeeDAO;
-import com.thegoldenbook.dao.impl.EmpleadoDAOImpl;
+import com.thegoldenbook.dao.impl.EmployeeDAOImpl;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.EmpleadoService;
@@ -29,7 +29,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 	private MailService mailService = null;
 
 	public EmpleadoServiceImpl() {
-		empleadoDAO = new EmpleadoDAOImpl();
+		empleadoDAO = new EmployeeDAOImpl();
 		mailService = new MailServiceImpl();
 	}
 
