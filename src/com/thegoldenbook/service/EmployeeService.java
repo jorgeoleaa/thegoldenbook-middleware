@@ -6,7 +6,7 @@ import com.thegoldenbook.model.Results;
 
 public interface EmployeeService {
 	
-	public Employee authenticate(Long id, String password) 
+	public Employee authenticate(Long id, String password, String locale) 
 			throws DataException;
 	
 	public Employee findBy(Long id, String locale) 
@@ -15,13 +15,13 @@ public interface EmployeeService {
 	public Results<Employee> findAll(int pos, int pageSize, String locale)
 			throws DataException;
 	
-	public boolean delete (Long id)
+	public boolean delete (Long id, String locale)
 		throws DataException, ServiceException;
 	
 	public boolean update (Employee empl) 
 		throws DataException;
 	
-	public boolean updatePassword (String password, Long id) 
+	public boolean updatePassword (String password, Long id, String locale) 
 			throws DataException;
 	
 	public Long register (Employee empl)
