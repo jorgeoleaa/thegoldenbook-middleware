@@ -7,6 +7,6 @@ import com.thegoldenbook.model.Region;
 
 public interface RegionDAO {
 
-	public Region findById(Connection con, int id) throws DataException;
-	public List<Region>findAll (Connection con) throws DataException;
+	public Region findById(Connection con, int id, String locale) throws DataException;
+	public List<Region>findAll (Connection con, String locale) throws DataException;
 }
