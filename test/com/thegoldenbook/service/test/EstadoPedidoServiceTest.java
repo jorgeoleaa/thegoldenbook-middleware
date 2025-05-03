@@ -7,15 +7,15 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.service.OrderStatusService;
-import com.thegoldenbook.service.impl.EstadoPedidoServiceImpl;
+import com.thegoldenbook.service.impl.OrderStatusServiceImpl;
 
 public class EstadoPedidoServiceTest {
 
 	private OrderStatusService estadoPedidoService = null;
-	private static Logger logger = LogManager.getLogger(EstadoPedidoServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(OrderStatusServiceImpl.class);
 	
 	public EstadoPedidoServiceTest() {
-		estadoPedidoService = new EstadoPedidoServiceImpl();
+		estadoPedidoService = new OrderStatusServiceImpl();
 	}
 	
 	public void testFindAll() {

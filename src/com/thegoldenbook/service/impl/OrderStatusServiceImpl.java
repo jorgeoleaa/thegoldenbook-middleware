@@ -14,26 +14,26 @@ import com.thegoldenbook.model.OrderStatus;
 import com.thegoldenbook.service.OrderStatusService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class EstadoPedidoServiceImpl implements OrderStatusService{
+public class OrderStatusServiceImpl implements OrderStatusService{
 
 	private static Logger logger = LogManager.getLogger();
-	private OrderStatusDAO estadoPedidoDAO = null;
+	private OrderStatusDAO orderStatusDAO = null;
 	
-	public EstadoPedidoServiceImpl() {
-		estadoPedidoDAO = new OrderStatusDAOImpl();
+	public OrderStatusServiceImpl() {
+		orderStatusDAO = new OrderStatusDAOImpl();
 	}
 	
 	@Override
-	public List<OrderStatus> findAll() throws DataException {
+	public List<OrderStatus> findAll(String locale) throws DataException {
 		
 		Connection con = null;
-		List<OrderStatus> estados = null;
+		List<OrderStatus> results = null;
 		boolean commit = false;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			estados = estadoPedidoDAO.findAll(con);
+			results = orderStatusDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -42,7 +42,7 @@ public class EstadoPedidoServiceImpl implements OrderStatusService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return estados;
+		return results;
 	}
 
 }
