@@ -156,7 +156,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return em;
 	}
 
-	public boolean updatePassword(String password, Long id) throws DataException{
+	public boolean updatePassword(String password, Long id, String locale) throws DataException{
 		Connection con = null;
 		boolean cliente = false;
 		boolean commit = false;
@@ -207,7 +207,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 
 
-	public Long registrar(Employee empl) 
+	public Long register(Employee empl) 
 			throws DataException, ServiceException{
 
 		Connection con = null;
