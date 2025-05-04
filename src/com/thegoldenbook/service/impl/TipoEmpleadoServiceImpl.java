@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.EmployeeTypeDAO;
 import com.thegoldenbook.dao.impl.EmployeeTypeDAOImpl;
 import com.thegoldenbook.model.EmployeeType;
-import com.thegoldenbook.service.TipoEmpleadoService;
+import com.thegoldenbook.service.EmployeeTypeService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class TipoEmpleadoServiceImpl implements TipoEmpleadoService{
+public class TipoEmpleadoServiceImpl implements EmployeeTypeService{
 	
 	private EmployeeTypeDAO tipoEmpleadoDAO = new EmployeeTypeDAOImpl();
 	

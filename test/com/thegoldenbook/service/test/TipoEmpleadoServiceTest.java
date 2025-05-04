@@ -6,12 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.EmployeeType;
-import com.thegoldenbook.service.TipoEmpleadoService;
+import com.thegoldenbook.service.EmployeeTypeService;
 import com.thegoldenbook.service.impl.TipoEmpleadoServiceImpl;
 
 public class TipoEmpleadoServiceTest {
 	
-	private TipoEmpleadoService tipoEmpleadoService = new TipoEmpleadoServiceImpl();
+	private EmployeeTypeService tipoEmpleadoService = new TipoEmpleadoServiceImpl();
 	
 	private static Logger logger = LogManager.getLogger(TipoEmpleadoServiceTest.class);
 	
