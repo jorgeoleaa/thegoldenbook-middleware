@@ -14,23 +14,23 @@ import com.thegoldenbook.model.EmployeeType;
 import com.thegoldenbook.service.EmployeeTypeService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class TipoEmpleadoServiceImpl implements EmployeeTypeService{
+public class EmployeeTypeServiceImpl implements EmployeeTypeService{
 	
 	private EmployeeTypeDAO tipoEmpleadoDAO = new EmployeeTypeDAOImpl();
 	
-	private static Logger logger = LogManager.getLogger(TipoEmpleadoServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(EmployeeTypeServiceImpl.class);
 	
 	@Override
-	public List<EmployeeType> findAll() throws DataException {
+	public List<EmployeeType> findAll(String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<EmployeeType> tipos = null;
+		List<EmployeeType> types = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			tipos = tipoEmpleadoDAO.findAll(con);
+			types = tipoEmpleadoDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException ex) {
@@ -39,7 +39,7 @@ public class TipoEmpleadoServiceImpl implements EmployeeTypeService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return tipos;
+		return types;
 	}
 
 }
