@@ -37,7 +37,7 @@ public class FileServiceImpl implements FileService{
 	
 	private static Logger logger = LogManager.getLogger(FileServiceImpl.class);
 	private LibroService libroService = new LibroServiceImpl();
-	private LanguageService idiomaService = new IdiomaServiceImpl();
+	private LanguageService idiomaService = new LanguageServiceImpl();
 	private ClienteService clienteService = new ClienteServiceImpl();
 	
 	@Override

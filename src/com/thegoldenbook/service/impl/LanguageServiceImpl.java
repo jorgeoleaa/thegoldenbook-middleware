@@ -14,25 +14,25 @@ import com.thegoldenbook.model.Language;
 import com.thegoldenbook.service.LanguageService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class IdiomaServiceImpl implements LanguageService{
+public class LanguageServiceImpl implements LanguageService{
 	
-	private static Logger logger = LogManager.getLogger(IdiomaServiceImpl.class);
-	private LanguageDAO idiomaDAO = null;
+	private static Logger logger = LogManager.getLogger(LanguageServiceImpl.class);
+	private LanguageDAO languageDAO = null;
 	
-	public IdiomaServiceImpl() {
-		idiomaDAO = new LanguageDAOImpl();
+	public LanguageServiceImpl() {
+		languageDAO = new LanguageDAOImpl();
 	}
 	
 	public List<Language> findAll(String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Language> idiomas = null;
+		List<Language> languages = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			idiomas = idiomaDAO.findAll(con, locale);
+			languages = languageDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -41,7 +41,7 @@ public class IdiomaServiceImpl implements LanguageService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return idiomas;
+		return languages;
 	}
 
 	@Override
@@ -49,12 +49,12 @@ public class IdiomaServiceImpl implements LanguageService{
 		
 		Connection con = null;
 		boolean commit = false;
-		Language idioma = null;
+		Language language = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			idioma = idiomaDAO.findById(con, locale, id);
+			language = languageDAO.findById(con, locale, id);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -63,7 +63,7 @@ public class IdiomaServiceImpl implements LanguageService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return idioma;
+		return language;
 	}
 	
 }
