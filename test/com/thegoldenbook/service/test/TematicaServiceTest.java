@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.SubjectService;
-import com.thegoldenbook.service.impl.TematicaServiceImpl;
+import com.thegoldenbook.service.impl.SubjectServiceImpl;
 
 public class TematicaServiceTest {
 
@@ -15,7 +15,7 @@ public class TematicaServiceTest {
 	private SubjectService tematicaService = null;
 
 	public TematicaServiceTest() {
-		tematicaService = new TematicaServiceImpl();
+		tematicaService = new SubjectServiceImpl();
 	}
 
 	public void testFindAll() throws Exception{

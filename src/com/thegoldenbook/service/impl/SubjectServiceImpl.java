@@ -15,13 +15,13 @@ import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.SubjectService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class TematicaServiceImpl implements SubjectService{
+public class SubjectServiceImpl implements SubjectService{
 	
-	private static Logger logger = LogManager.getLogger(TematicaServiceImpl.class);
-	private SubjectDAO tematicaDAO = null;
+	private static Logger logger = LogManager.getLogger(SubjectServiceImpl.class);
+	private SubjectDAO subjectDAO = null;
 	
-	public TematicaServiceImpl() {
-		tematicaDAO = new SubjectDAOImpl();
+	public SubjectServiceImpl() {
+		subjectDAO = new SubjectDAOImpl();
 	}
 
 	
@@ -29,12 +29,12 @@ public class TematicaServiceImpl implements SubjectService{
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Subject>tematicas = new ArrayList<Subject>();
+		List<Subject> subjects = new ArrayList<Subject>();
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			tematicas = tematicaDAO.findAll(con, locale);
+			subjects = subjectDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -43,20 +43,20 @@ public class TematicaServiceImpl implements SubjectService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return tematicas;
+		return subjects;
 	}
 
 
-	public List<Subject> findByLibro(String locale, Long libroId) throws DataException {
+	public List<Subject> findByBook(String locale, Long libroId) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Subject> tematicas = new ArrayList<Subject>();
+		List<Subject> subjects = new ArrayList<Subject>();
 		
 		try {
 			con =JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			tematicas = tematicaDAO.findByLibro(con, locale, libroId);
+			subjects = subjectDAO.findByBook(con, locale, libroId);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -65,7 +65,7 @@ public class TematicaServiceImpl implements SubjectService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return tematicas;
+		return subjects;
 	}
 
 
