@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Format;
 import com.thegoldenbook.service.FormatService;
-import com.thegoldenbook.service.impl.FormatoServiceImpl;
+import com.thegoldenbook.service.impl.FormatServiceImpl;
 
 public class FormatoServiceTest {
 
 	private FormatService formatoService = null;
 	
 	public FormatoServiceTest() {
-		formatoService = new FormatoServiceImpl();
+		formatoService = new FormatServiceImpl();
 	}
 	
 	@Test

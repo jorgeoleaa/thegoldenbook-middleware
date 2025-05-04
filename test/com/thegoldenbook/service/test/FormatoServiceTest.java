@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Format;
 import com.thegoldenbook.service.FormatService;
-import com.thegoldenbook.service.impl.FormatoServiceImpl;
+import com.thegoldenbook.service.impl.FormatServiceImpl;
 
 public class FormatoServiceTest {
 
@@ -15,7 +15,7 @@ public class FormatoServiceTest {
 	private FormatService formatoService = null;
 
 	public FormatoServiceTest() {
-		formatoService = new FormatoServiceImpl();
+		formatoService = new FormatServiceImpl();
 	}
 
 	public void testFindAll() throws Exception{

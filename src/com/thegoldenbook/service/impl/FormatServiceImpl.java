@@ -14,12 +14,12 @@ import com.thegoldenbook.model.Format;
 import com.thegoldenbook.service.FormatService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class FormatoServiceImpl implements FormatService{
+public class FormatServiceImpl implements FormatService{
 
-	private static Logger logger = LogManager.getLogger(FormatoServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(FormatServiceImpl.class);
 	private FormatDAO formatoDAO = null;
 	
-	public FormatoServiceImpl() {
+	public FormatServiceImpl() {
 		formatoDAO = new FormatDAOImpl();
 	}
 	
@@ -27,11 +27,11 @@ public class FormatoServiceImpl implements FormatService{
 		
 		Connection con = null;
 		boolean commit = false;
-		List<Format> formatos = null;
+		List<Format> formats = null;
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			formatos = formatoDAO.findAll(con, locale);
+			formats = formatoDAO.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -40,7 +40,7 @@ public class FormatoServiceImpl implements FormatService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return formatos;
+		return formats;
 	}
 
 }
