@@ -5,7 +5,7 @@ import java.util.List;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Language;
 
-public interface IdiomaService {
+public interface LanguageService {
 	
 	public List<Language> findAll(String locale)
 			throws DataException;

@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LanguageDAO;
 import com.thegoldenbook.dao.impl.LanguageDAOImpl;
 import com.thegoldenbook.model.Language;
-import com.thegoldenbook.service.IdiomaService;
+import com.thegoldenbook.service.LanguageService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class IdiomaServiceImpl implements IdiomaService{
+public class IdiomaServiceImpl implements LanguageService{
 	
 	private static Logger logger = LogManager.getLogger(IdiomaServiceImpl.class);
 	private LanguageDAO idiomaDAO = null;

@@ -6,13 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Language;
-import com.thegoldenbook.service.IdiomaService;
+import com.thegoldenbook.service.LanguageService;
 import com.thegoldenbook.service.impl.IdiomaServiceImpl;
 
 public class IdiomaServiceTest {
 
 	private static Logger logger = LogManager.getLogger(IdiomaServiceTest.class);
-	private IdiomaService idiomaService = null;
+	private LanguageService idiomaService = null;
 
 	public IdiomaServiceTest() {
 		idiomaService = new IdiomaServiceImpl();

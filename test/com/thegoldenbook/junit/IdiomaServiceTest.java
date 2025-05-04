@@ -7,12 +7,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Language;
-import com.thegoldenbook.service.IdiomaService;
+import com.thegoldenbook.service.LanguageService;
 import com.thegoldenbook.service.impl.IdiomaServiceImpl;
 
 public class IdiomaServiceTest {
 
-	private IdiomaService idiomaService = null;
+	private LanguageService idiomaService = null;
 	
 	public IdiomaServiceTest() {
 		idiomaService = new IdiomaServiceImpl();

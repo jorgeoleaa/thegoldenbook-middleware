@@ -27,7 +27,7 @@ import com.thegoldenbook.model.Language;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.FileService;
-import com.thegoldenbook.service.IdiomaService;
+import com.thegoldenbook.service.LanguageService;
 import com.thegoldenbook.service.LibroService;
 
 public class FileServiceImpl implements FileService{
@@ -37,7 +37,7 @@ public class FileServiceImpl implements FileService{
 	
 	private static Logger logger = LogManager.getLogger(FileServiceImpl.class);
 	private LibroService libroService = new LibroServiceImpl();
-	private IdiomaService idiomaService = new IdiomaServiceImpl();
+	private LanguageService idiomaService = new IdiomaServiceImpl();
 	private ClienteService clienteService = new ClienteServiceImpl();
 	
 	@Override
