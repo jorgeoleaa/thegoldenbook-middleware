@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.GeneroLiterarioDAO;
+import com.thegoldenbook.dao.LiteraryGenreDAO;
 import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class GeneroLiterarioDAOImpl implements GeneroLiterarioDAO{
+public class GeneroLiterarioDAOImpl implements LiteraryGenreDAO{
 	
 	private Logger logger = LogManager.getLogger(GeneroLiterarioDAOImpl.class);
 	

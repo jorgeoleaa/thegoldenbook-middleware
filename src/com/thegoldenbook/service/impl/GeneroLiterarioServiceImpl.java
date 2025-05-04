@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.GeneroLiterarioDAO;
+import com.thegoldenbook.dao.LiteraryGenreDAO;
 import com.thegoldenbook.dao.impl.GeneroLiterarioDAOImpl;
 import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.service.GeneroLiterarioService;
@@ -17,7 +17,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class GeneroLiterarioServiceImpl implements GeneroLiterarioService{
 	
 	private Logger logger = LogManager.getLogger(GeneroLiterarioServiceImpl.class);
-	private GeneroLiterarioDAO generoLiterarioDAO= null;
+	private LiteraryGenreDAO generoLiterarioDAO= null;
 	
 	public GeneroLiterarioServiceImpl() {
 		generoLiterarioDAO = new GeneroLiterarioDAOImpl();
