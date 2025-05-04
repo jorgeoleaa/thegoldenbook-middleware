@@ -9,14 +9,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.EmployeeTypeDAO;
-import com.thegoldenbook.dao.impl.TipoEmpleadoDAOImpl;
+import com.thegoldenbook.dao.impl.EmployeeTypeDAOImpl;
 import com.thegoldenbook.model.EmployeeType;
 import com.thegoldenbook.service.TipoEmpleadoService;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class TipoEmpleadoServiceImpl implements TipoEmpleadoService{
 	
-	private EmployeeTypeDAO tipoEmpleadoDAO = new TipoEmpleadoDAOImpl();
+	private EmployeeTypeDAO tipoEmpleadoDAO = new EmployeeTypeDAOImpl();
 	
 	private static Logger logger = LogManager.getLogger(TipoEmpleadoServiceImpl.class);
 	

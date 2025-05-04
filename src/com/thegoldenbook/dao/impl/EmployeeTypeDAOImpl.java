@@ -15,27 +15,34 @@ import com.thegoldenbook.dao.EmployeeTypeDAO;
 import com.thegoldenbook.model.EmployeeType;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class TipoEmpleadoDAOImpl implements EmployeeTypeDAO{
+public class EmployeeTypeDAOImpl implements EmployeeTypeDAO{
 	
 	private static Logger logger = LogManager.getLogger();
 	
 	@Override
-	public List<EmployeeType> findAll(Connection con) throws DataException {
+	public List<EmployeeType> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<EmployeeType> estados = new ArrayList<EmployeeType>();
+		List<EmployeeType> types = new ArrayList<EmployeeType>();
 		
 		try {
 			
-			StringBuilder query = new StringBuilder(" SELECT ID, NOMBRE ").append(" FROM TIPO_EMPLEADO ");
+			StringBuilder query = new StringBuilder(" select et.id, etl.name ")
+					.append(" from employee_type et ")
+					.append(" inner join employee_type_language etl on etl.employee_type_id = et.id ")
+					.append(" inner join language l on l.id = etl.language_id ")
+					.append(" where l.locale = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			
+			int i = 1;
+			pst.setString(i++, locale);
 			
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				estados.add(loadNext(rs));
+				types.add(loadNext(rs));
 			}
 			
 		}catch(SQLException e) {
@@ -46,7 +53,7 @@ public class TipoEmpleadoDAOImpl implements EmployeeTypeDAO{
 		}
 		
 		
-		return estados;
+		return types;
 	}
 	
 	protected EmployeeType loadNext(ResultSet rs) throws SQLException{
@@ -55,7 +62,7 @@ public class TipoEmpleadoDAOImpl implements EmployeeTypeDAO{
 		int i = 1;
 		
 		tipo.setId(rs.getInt(i++));
-		tipo.setNombre(rs.getString(i++));
+		tipo.setName(rs.getString(i++));
 		
 		return tipo;
 	}
