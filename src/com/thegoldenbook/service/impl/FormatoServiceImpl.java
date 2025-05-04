@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.FormatDAO;
 import com.thegoldenbook.dao.impl.FormatDAOImpl;
 import com.thegoldenbook.model.Format;
-import com.thegoldenbook.service.FormatoService;
+import com.thegoldenbook.service.FormatService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class FormatoServiceImpl implements FormatoService{
+public class FormatoServiceImpl implements FormatService{
 
 	private static Logger logger = LogManager.getLogger(FormatoServiceImpl.class);
 	private FormatDAO formatoDAO = null;

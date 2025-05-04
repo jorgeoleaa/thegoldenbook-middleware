@@ -6,13 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Format;
-import com.thegoldenbook.service.FormatoService;
+import com.thegoldenbook.service.FormatService;
 import com.thegoldenbook.service.impl.FormatoServiceImpl;
 
 public class FormatoServiceTest {
 
 	private static Logger logger = LogManager.getLogger(FormatoServiceTest.class);
-	private FormatoService formatoService = null;
+	private FormatService formatoService = null;
 
 	public FormatoServiceTest() {
 		formatoService = new FormatoServiceImpl();

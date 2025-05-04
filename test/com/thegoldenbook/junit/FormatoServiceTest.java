@@ -7,12 +7,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Format;
-import com.thegoldenbook.service.FormatoService;
+import com.thegoldenbook.service.FormatService;
 import com.thegoldenbook.service.impl.FormatoServiceImpl;
 
 public class FormatoServiceTest {
 
-	private FormatoService formatoService = null;
+	private FormatService formatoService = null;
 	
 	public FormatoServiceTest() {
 		formatoService = new FormatoServiceImpl();
