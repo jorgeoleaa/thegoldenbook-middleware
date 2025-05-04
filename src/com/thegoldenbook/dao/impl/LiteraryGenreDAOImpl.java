@@ -15,22 +15,24 @@ import com.thegoldenbook.dao.LiteraryGenreDAO;
 import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class GeneroLiterarioDAOImpl implements LiteraryGenreDAO{
+public class LiteraryGenreDAOImpl implements LiteraryGenreDAO{
 	
-	private Logger logger = LogManager.getLogger(GeneroLiterarioDAOImpl.class);
+	private Logger logger = LogManager.getLogger(LiteraryGenreDAOImpl.class);
 	
 	public List<LiteraryGenre> findAll(Connection con, String locale) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<LiteraryGenre> generos = new ArrayList<LiteraryGenre>();
+		List<LiteraryGenre> genres = new ArrayList<LiteraryGenre>();
 		
 		try {
-			StringBuilder query = new StringBuilder (" SELECT GL.ID, GLI.NOMBRE ")
-					.append(" FROM GENERO_LITERARIO GL ")
-					.append(" INNER JOIN GENERO_LITERARIO_IDIOMA GLI ON GLI.GENERO_LITERARIO_ID = GL.ID")
-					.append(" INNER JOIN IDIOMA I ON I.ID = GLI.IDIOMA_ID")
-					.append(" WHERE I.LOCALE = ?");
+			StringBuilder query = new StringBuilder (" select lg.id, lgl.name AS genre_name, lg.parent_id, parent_lgl.name AS parent_name ")
+					.append(" from literary_genre lg ")
+					.append(" inner join literary_genre_language lgl on lgl.literary_genre_id = lg.id ")
+					.append(" left join literary_genre parent_lg on parent_lg.id = lg.parent_id ")
+					.append(" left join literary_genre_language parent_lgl on parent_lgl.literary_genre_id = parent_lg.id and parent_lgl.language_id = lgl.language_id ")
+					.append(" inner join language lang on lang.id = lgl.language_id ")
+					.append(" where lang.locale = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
@@ -40,7 +42,7 @@ public class GeneroLiterarioDAOImpl implements LiteraryGenreDAO{
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				generos.add(loadNext(rs));
+				genres.add(loadNext(rs));
 			}
 			
 		}catch(SQLException e) {
@@ -49,19 +51,21 @@ public class GeneroLiterarioDAOImpl implements LiteraryGenreDAO{
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return generos;
+		return genres;
 	}
 
 	
 	protected LiteraryGenre loadNext (ResultSet rs) throws SQLException{
 		
-		LiteraryGenre genero = new LiteraryGenre();
+		LiteraryGenre genre = new LiteraryGenre();
 		
 		int i = 1;
-		genero.setId(rs.getInt(i++));
-		genero.setNombre(rs.getString(i++));
+		genre.setId(rs.getInt(i++));
+		genre.setName(rs.getString(i++));
+		genre.setParentId(rs.getInt(i++));
+		genre.setParentName(rs.getString(i++));
 		
-		return genero;
+		return genre;
 	}
 
 }

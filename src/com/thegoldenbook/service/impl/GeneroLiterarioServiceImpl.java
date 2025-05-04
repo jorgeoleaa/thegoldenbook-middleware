@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LiteraryGenreDAO;
-import com.thegoldenbook.dao.impl.GeneroLiterarioDAOImpl;
+import com.thegoldenbook.dao.impl.LiteraryGenreDAOImpl;
 import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.service.GeneroLiterarioService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -20,7 +20,7 @@ public class GeneroLiterarioServiceImpl implements GeneroLiterarioService{
 	private LiteraryGenreDAO generoLiterarioDAO= null;
 	
 	public GeneroLiterarioServiceImpl() {
-		generoLiterarioDAO = new GeneroLiterarioDAOImpl();
+		generoLiterarioDAO = new LiteraryGenreDAOImpl();
 	}
 
 	public List<LiteraryGenre> findAll(String locale) throws DataException {
