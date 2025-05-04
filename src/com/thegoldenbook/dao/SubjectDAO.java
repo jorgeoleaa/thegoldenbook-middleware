@@ -10,7 +10,7 @@ public interface SubjectDAO {
 	public List<Subject> findAll(Connection con, String locale)
 			throws DataException;
 	
-	public List<Subject> findByLibro(Connection con, String locale, Long libroId)
+	public List<Subject> findByBook(Connection con, String locale, Long libroId)
 			throws DataException;
 	
 	public Subject findById(Connection con, int id, String locale)
