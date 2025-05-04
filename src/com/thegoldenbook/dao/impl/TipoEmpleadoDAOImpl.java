@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.TipoEmpleadoDAO;
+import com.thegoldenbook.dao.EmployeeTypeDAO;
 import com.thegoldenbook.model.EmployeeType;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class TipoEmpleadoDAOImpl implements TipoEmpleadoDAO{
+public class TipoEmpleadoDAOImpl implements EmployeeTypeDAO{
 	
 	private static Logger logger = LogManager.getLogger();
 	

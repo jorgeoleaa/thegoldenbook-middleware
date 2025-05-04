@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.thegoldenbook.model.EmployeeType;
 
-public interface TipoEmpleadoDAO {
+public interface EmployeeTypeDAO {
 	
-	public List<EmployeeType> findAll(Connection con) 
+	public List<EmployeeType> findAll(Connection con, String locale) 
 			throws DataException;
 	
 }
