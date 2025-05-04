@@ -61,7 +61,7 @@ public class SubjectDAOImpl implements SubjectDAO{
 	}
 
 	
-	public List<Subject> findByLibro(Connection con, String locale,  Long bookId) throws DataException {
+	public List<Subject> findByBook(Connection con, String locale,  Long bookId) throws DataException {
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
