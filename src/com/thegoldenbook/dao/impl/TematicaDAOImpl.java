@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.TematicaDAO;
+import com.thegoldenbook.dao.SubjectDAO;
 import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class TematicaDAOImpl implements TematicaDAO{
+public class TematicaDAOImpl implements SubjectDAO{
 	
 	private static Logger logger = LogManager.getLogger(TematicaDAOImpl.class);
 	
