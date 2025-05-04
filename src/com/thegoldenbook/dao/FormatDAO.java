@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.thegoldenbook.model.Format;
 
-public interface FormatoDAO {
+public interface FormatDAO {
 	
 	public List<Format> findAll(Connection con, String locale)
 			throws DataException;

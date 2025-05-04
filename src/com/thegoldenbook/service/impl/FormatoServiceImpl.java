@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.FormatoDAO;
+import com.thegoldenbook.dao.FormatDAO;
 import com.thegoldenbook.dao.impl.FormatoDAOImpl;
 import com.thegoldenbook.model.Format;
 import com.thegoldenbook.service.FormatoService;
@@ -17,7 +17,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class FormatoServiceImpl implements FormatoService{
 
 	private static Logger logger = LogManager.getLogger(FormatoServiceImpl.class);
-	private FormatoDAO formatoDAO = null;
+	private FormatDAO formatoDAO = null;
 	
 	public FormatoServiceImpl() {
 		formatoDAO = new FormatoDAOImpl();
