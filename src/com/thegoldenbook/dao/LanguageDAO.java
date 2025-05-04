@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.thegoldenbook.model.Language;
 
-public interface IdiomaDAO {
+public interface LanguageDAO {
 	
 	public List<Language> findAll(Connection con, String locale)
 			throws DataException;

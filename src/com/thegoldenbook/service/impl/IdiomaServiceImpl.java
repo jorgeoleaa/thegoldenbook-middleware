@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.IdiomaDAO;
+import com.thegoldenbook.dao.LanguageDAO;
 import com.thegoldenbook.dao.impl.IdiomaDAOImpl;
 import com.thegoldenbook.model.Language;
 import com.thegoldenbook.service.IdiomaService;
@@ -17,7 +17,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class IdiomaServiceImpl implements IdiomaService{
 	
 	private static Logger logger = LogManager.getLogger(IdiomaServiceImpl.class);
-	private IdiomaDAO idiomaDAO = null;
+	private LanguageDAO idiomaDAO = null;
 	
 	public IdiomaServiceImpl() {
 		idiomaDAO = new IdiomaDAOImpl();

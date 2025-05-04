@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.IdiomaDAO;
+import com.thegoldenbook.dao.LanguageDAO;
 import com.thegoldenbook.model.Language;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class IdiomaDAOImpl implements IdiomaDAO{
+public class IdiomaDAOImpl implements LanguageDAO{
 
 	private static Logger logger = LogManager.getLogger(IdiomaDAOImpl.class);
 	
