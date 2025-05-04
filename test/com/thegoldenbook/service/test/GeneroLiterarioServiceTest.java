@@ -6,13 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.LiteraryGenre;
-import com.thegoldenbook.service.GeneroLiterarioService;
+import com.thegoldenbook.service.LiteraryGenreService;
 import com.thegoldenbook.service.impl.GeneroLiterarioServiceImpl;
 
 public class GeneroLiterarioServiceTest {
 	
 	private Logger logger = LogManager.getLogger(GeneroLiterarioServiceTest.class);
-	private GeneroLiterarioService generoLiterarioService = null;
+	private LiteraryGenreService generoLiterarioService = null;
 	
 	public GeneroLiterarioServiceTest() {
 		generoLiterarioService = new GeneroLiterarioServiceImpl();

@@ -7,12 +7,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.LiteraryGenre;
-import com.thegoldenbook.service.GeneroLiterarioService;
+import com.thegoldenbook.service.LiteraryGenreService;
 import com.thegoldenbook.service.impl.GeneroLiterarioServiceImpl;
 
 public class GeneroLiterarioServiceTest {
 
-	private GeneroLiterarioService generoLiterarioService = null;
+	private LiteraryGenreService generoLiterarioService = null;
 	
 	public GeneroLiterarioServiceTest() {
 		generoLiterarioService = new GeneroLiterarioServiceImpl();

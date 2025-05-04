@@ -11,10 +11,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LiteraryGenreDAO;
 import com.thegoldenbook.dao.impl.LiteraryGenreDAOImpl;
 import com.thegoldenbook.model.LiteraryGenre;
-import com.thegoldenbook.service.GeneroLiterarioService;
+import com.thegoldenbook.service.LiteraryGenreService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class GeneroLiterarioServiceImpl implements GeneroLiterarioService{
+public class GeneroLiterarioServiceImpl implements LiteraryGenreService{
 	
 	private Logger logger = LogManager.getLogger(GeneroLiterarioServiceImpl.class);
 	private LiteraryGenreDAO generoLiterarioDAO= null;
