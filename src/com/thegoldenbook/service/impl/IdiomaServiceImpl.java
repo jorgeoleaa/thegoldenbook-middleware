@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.LanguageDAO;
-import com.thegoldenbook.dao.impl.IdiomaDAOImpl;
+import com.thegoldenbook.dao.impl.LanguageDAOImpl;
 import com.thegoldenbook.model.Language;
 import com.thegoldenbook.service.IdiomaService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -20,7 +20,7 @@ public class IdiomaServiceImpl implements IdiomaService{
 	private LanguageDAO idiomaDAO = null;
 	
 	public IdiomaServiceImpl() {
-		idiomaDAO = new IdiomaDAOImpl();
+		idiomaDAO = new LanguageDAOImpl();
 	}
 	
 	public List<Language> findAll(String locale) throws DataException {

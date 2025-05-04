@@ -15,11 +15,11 @@ import com.thegoldenbook.dao.LanguageDAO;
 import com.thegoldenbook.model.Language;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class IdiomaDAOImpl implements LanguageDAO{
+public class LanguageDAOImpl implements LanguageDAO{
 
-	private static Logger logger = LogManager.getLogger(IdiomaDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(LanguageDAOImpl.class);
 	
-	public IdiomaDAOImpl() {
+	public LanguageDAOImpl() {
 		
 	}
 	
@@ -31,11 +31,11 @@ public class IdiomaDAOImpl implements LanguageDAO{
 		
 		try {
 			
-			StringBuilder query = new StringBuilder (" SELECT I.ID, II.NOMBRE, I.ISO639 ")
-					.append("FROM IDIOMA I ")
-					.append("INNER JOIN IDIOMA_IDIOMA II ON II.IDIOMA_ID = I.ID ")
-					.append("INNER JOIN IDIOMA I2 ON I2.ID = II.IDIOMA_ID1 ")
-					.append("WHERE I2.LOCALE = ? ");
+			StringBuilder query = new StringBuilder (" select l2.id, ll.name, l2.iso639, l2.locale  ")
+					.append(" from language l ")
+					.append(" inner join language_language ll on ll.language_id = l.id ")
+					.append(" inner join language l2 on l2.id = ll.language_id1 ")
+					.append(" where l.locale = ? ");
 					
 					
 			
@@ -68,11 +68,11 @@ public class IdiomaDAOImpl implements LanguageDAO{
 		Language idioma = null;
 		
 		try {
-			StringBuilder query = new StringBuilder (" SELECT I.ID, II.NOMBRE, I.ISO639 ")
-					.append("FROM IDIOMA I ")
-					.append("INNER JOIN IDIOMA_IDIOMA II ON II.IDIOMA_ID = I.ID ")
-					.append("INNER JOIN IDIOMA I2 ON I2.ID = II.IDIOMA_ID1 ")
-					.append("WHERE I2.LOCALE = ? AND I.ID = ?");
+			StringBuilder query = new StringBuilder (" select l2.id, ll.name, l2.iso639, l2.locale ")
+					.append(" from language l ")
+					.append(" inner join language_language ll on ll.language_id = l.id ")
+					.append(" inner join language l2 on l2.id = ll.language_id1 ")
+					.append(" where l.locale = ? and l2.id = ?");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
@@ -102,8 +102,9 @@ public class IdiomaDAOImpl implements LanguageDAO{
 		
 		int i = 1;
 		id.setId(rs.getInt(i++));
-		id.setNombre(rs.getString(i++));
+		id.setName(rs.getString(i++));
 		id.setIso639(rs.getString(i++));
+		id.setLocale(rs.getString(i++));
 		
 		return id;
 		
