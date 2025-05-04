@@ -15,11 +15,11 @@ import com.thegoldenbook.dao.FormatDAO;
 import com.thegoldenbook.model.Format;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class FormatoDAOImpl implements FormatDAO{
+public class FormatDAOImpl implements FormatDAO{
 
 	private static Logger logger = LogManager.getLogger(TematicaDAOImpl.class);
 	
-	public FormatoDAOImpl() {
+	public FormatDAOImpl() {
 		
 	}
 	
@@ -27,15 +27,15 @@ public class FormatoDAOImpl implements FormatDAO{
 		
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<Format> resultados = new ArrayList<Format>();
+		List<Format> results = new ArrayList<Format>();
 		
 		try {
 			
-			StringBuilder query = new StringBuilder (" SELECT F.ID, FI.NOMBRE ")
-					.append(" FROM FORMATO F ")
-					.append(" INNER JOIN FORMATO_IDIOMA FI ON FI.FORMATO_ID = F.ID")
-					.append(" INNER JOIN IDIOMA I ON I.ID = FI.IDIOMA_ID")
-					.append(" WHERE I.LOCALE = ?");
+			StringBuilder query = new StringBuilder (" select f.id, fl.name ")
+					.append(" from format f ")
+					.append(" inner join format_language fl on fl.format_id = f.id ")
+					.append(" inner join language l on l.id = fl.language_id ")
+					.append(" where l.locale = ? ");
 			
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
@@ -45,7 +45,7 @@ public class FormatoDAOImpl implements FormatDAO{
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				resultados.add(loadNext(rs));
+				results.add(loadNext(rs));
 			}
 			
 		}catch(SQLException e) {
@@ -54,7 +54,7 @@ public class FormatoDAOImpl implements FormatDAO{
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return resultados;
+		return results;
 	}
 	
 	protected Format loadNext (ResultSet rs) throws SQLException{
@@ -63,7 +63,7 @@ public class FormatoDAOImpl implements FormatDAO{
 		int i = 1;
 		
 		f.setId(rs.getInt(i++));
-		f.setNombre(rs.getString(i++));
+		f.setName(rs.getString(i++));
 		
 		return f;
 	}

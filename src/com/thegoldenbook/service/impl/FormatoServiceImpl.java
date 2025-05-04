@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.FormatDAO;
-import com.thegoldenbook.dao.impl.FormatoDAOImpl;
+import com.thegoldenbook.dao.impl.FormatDAOImpl;
 import com.thegoldenbook.model.Format;
 import com.thegoldenbook.service.FormatoService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -20,7 +20,7 @@ public class FormatoServiceImpl implements FormatoService{
 	private FormatDAO formatoDAO = null;
 	
 	public FormatoServiceImpl() {
-		formatoDAO = new FormatoDAOImpl();
+		formatoDAO = new FormatDAOImpl();
 	}
 	
 	public List<Format> findAll(String locale) throws DataException {
