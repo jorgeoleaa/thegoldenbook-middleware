@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.service.LiteraryGenreService;
-import com.thegoldenbook.service.impl.GeneroLiterarioServiceImpl;
+import com.thegoldenbook.service.impl.LiteraryGenreServiceImpl;
 
 public class GeneroLiterarioServiceTest {
 
 	private LiteraryGenreService generoLiterarioService = null;
 	
 	public GeneroLiterarioServiceTest() {
-		generoLiterarioService = new GeneroLiterarioServiceImpl();
+		generoLiterarioService = new LiteraryGenreServiceImpl();
 	}
 	
 	@Test

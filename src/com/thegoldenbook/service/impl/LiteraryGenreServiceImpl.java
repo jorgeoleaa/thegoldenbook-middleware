@@ -14,25 +14,25 @@ import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.service.LiteraryGenreService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class GeneroLiterarioServiceImpl implements LiteraryGenreService{
+public class LiteraryGenreServiceImpl implements LiteraryGenreService{
 	
-	private Logger logger = LogManager.getLogger(GeneroLiterarioServiceImpl.class);
-	private LiteraryGenreDAO generoLiterarioDAO= null;
+	private Logger logger = LogManager.getLogger(LiteraryGenreServiceImpl.class);
+	private LiteraryGenreDAO literaryGenreService = null;
 	
-	public GeneroLiterarioServiceImpl() {
-		generoLiterarioDAO = new LiteraryGenreDAOImpl();
+	public LiteraryGenreServiceImpl() {
+		literaryGenreService = new LiteraryGenreDAOImpl();
 	}
 
 	public List<LiteraryGenre> findAll(String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		List<LiteraryGenre> generos = null;
+		List<LiteraryGenre> genres = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			generos = generoLiterarioDAO.findAll(con, locale);
+			genres = literaryGenreService.findAll(con, locale);
 			commit = true;
 			
 		}catch(SQLException e) {
@@ -41,7 +41,7 @@ public class GeneroLiterarioServiceImpl implements LiteraryGenreService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return generos;
+		return genres;
 	}
 	
 }
