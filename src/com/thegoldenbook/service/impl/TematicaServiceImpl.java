@@ -12,10 +12,10 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.SubjectDAO;
 import com.thegoldenbook.dao.impl.SubjectDAOImpl;
 import com.thegoldenbook.model.Subject;
-import com.thegoldenbook.service.TematicaService;
+import com.thegoldenbook.service.SubjectService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class TematicaServiceImpl implements TematicaService{
+public class TematicaServiceImpl implements SubjectService{
 	
 	private static Logger logger = LogManager.getLogger(TematicaServiceImpl.class);
 	private SubjectDAO tematicaDAO = null;

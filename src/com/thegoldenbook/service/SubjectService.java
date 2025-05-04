@@ -5,12 +5,12 @@ import java.util.List;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Subject;
 
-public interface TematicaService {
+public interface SubjectService {
 	
 	public List<Subject> findAll(String locale)
 			throws DataException;
 	
-	public List<Subject> findByLibro(String locale, Long libroId)
+	public List<Subject> findByBook(String locale, Long libroId)
 			throws DataException;
 
 }

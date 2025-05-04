@@ -6,13 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Subject;
-import com.thegoldenbook.service.TematicaService;
+import com.thegoldenbook.service.SubjectService;
 import com.thegoldenbook.service.impl.TematicaServiceImpl;
 
 public class TematicaServiceTest {
 
 	private static Logger logger = LogManager.getLogger(TematicaServiceTest.class);
-	private TematicaService tematicaService = null;
+	private SubjectService tematicaService = null;
 
 	public TematicaServiceTest() {
 		tematicaService = new TematicaServiceImpl();

@@ -8,12 +8,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Subject;
-import com.thegoldenbook.service.TematicaService;
+import com.thegoldenbook.service.SubjectService;
 import com.thegoldenbook.service.impl.TematicaServiceImpl;
 
 public class TematicaServiceTest {
 	
-	private TematicaService tematicaService = null;
+	private SubjectService tematicaService = null;
 	
 	public TematicaServiceTest() {
 		tematicaService = new TematicaServiceImpl();
