@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LineaPedidoDAO;
+import com.thegoldenbook.dao.OrderItemDAO;
 import com.thegoldenbook.dao.impl.LineaPedidoDAOImpl;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.service.LineaPedidoService;
@@ -16,7 +16,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class LineaPedidoServiceImpl implements LineaPedidoService{
 
 	private static Logger logger = LogManager.getLogger(LineaPedidoServiceImpl.class);
-	private LineaPedidoDAO lineaPedidoDAO = null;
+	private OrderItemDAO lineaPedidoDAO = null;
 
 	public LineaPedidoServiceImpl() {
 		lineaPedidoDAO = new LineaPedidoDAOImpl();

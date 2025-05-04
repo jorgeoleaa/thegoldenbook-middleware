@@ -12,7 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LineaPedidoDAO;
+import com.thegoldenbook.dao.OrderItemDAO;
 import com.thegoldenbook.dao.PedidoDAO;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
@@ -23,7 +23,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class PedidoDAOImpl implements PedidoDAO{
 
 	private static Logger logger = LogManager.getLogger(PedidoDAOImpl.class);
-	private LineaPedidoDAO lineaPedidoDAO = null;
+	private OrderItemDAO lineaPedidoDAO = null;
 
 	public PedidoDAOImpl() {		
 		lineaPedidoDAO = new LineaPedidoDAOImpl();

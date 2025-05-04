@@ -12,11 +12,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LineaPedidoDAO;
+import com.thegoldenbook.dao.OrderItemDAO;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class LineaPedidoDAOImpl implements LineaPedidoDAO {
+public class LineaPedidoDAOImpl implements OrderItemDAO {
 	
 	private static Logger logger = LogManager.getLogger(LineaPedidoDAOImpl.class);
 	
