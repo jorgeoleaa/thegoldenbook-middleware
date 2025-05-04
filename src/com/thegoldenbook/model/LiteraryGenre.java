@@ -4,6 +4,8 @@ public class LiteraryGenre extends AbstractValueObject{
 	
 	private Integer id;
 	private String name;
+	private Integer parentId;
+	private String parentName;
 	
 	public LiteraryGenre() {
 		
@@ -24,7 +26,21 @@ public class LiteraryGenre extends AbstractValueObject{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
 	
 }
