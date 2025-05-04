@@ -17,7 +17,7 @@ import com.thegoldenbook.util.JDBCUtils;
 
 public class FormatDAOImpl implements FormatDAO{
 
-	private static Logger logger = LogManager.getLogger(TematicaDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(SubjectDAOImpl.class);
 	
 	public FormatDAOImpl() {
 		

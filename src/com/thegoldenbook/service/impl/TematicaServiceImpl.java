@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.SubjectDAO;
-import com.thegoldenbook.dao.impl.TematicaDAOImpl;
+import com.thegoldenbook.dao.impl.SubjectDAOImpl;
 import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.TematicaService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -21,7 +21,7 @@ public class TematicaServiceImpl implements TematicaService{
 	private SubjectDAO tematicaDAO = null;
 	
 	public TematicaServiceImpl() {
-		tematicaDAO = new TematicaDAOImpl();
+		tematicaDAO = new SubjectDAOImpl();
 	}
 
 	

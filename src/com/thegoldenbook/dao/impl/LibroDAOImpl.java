@@ -31,7 +31,7 @@ public class LibroDAOImpl implements LibroDAO {
 
 	public LibroDAOImpl() {
 		autorDAO = new AuthorDAOImpl();
-		tematicaDAO = new TematicaDAOImpl();
+		tematicaDAO = new SubjectDAOImpl();
 	}
 
 	public Book findByLibro(Connection con, String locale, Long id) throws DataException {
