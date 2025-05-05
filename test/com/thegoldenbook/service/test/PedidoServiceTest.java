@@ -13,7 +13,7 @@ import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.LibroService;
 import com.thegoldenbook.service.OrderCriteria;
-import com.thegoldenbook.service.PedidoService;
+import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.service.impl.LibroServiceImpl;
 import com.thegoldenbook.service.impl.PedidoServiceImpl;
 import com.thegoldenbook.util.DateUtils;
@@ -21,7 +21,7 @@ import com.thegoldenbook.util.DateUtils;
 public class PedidoServiceTest {
 
 	private static Logger logger = LogManager.getLogger(PedidoServiceTest.class);
-	private PedidoService pedidoService = null;
+	private OrderService pedidoService = null;
 	private LibroService libroService = null;
 
 	public PedidoServiceTest() {

@@ -18,10 +18,10 @@ import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
 import com.thegoldenbook.service.OrderCriteria;
-import com.thegoldenbook.service.PedidoService;
+import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class PedidoServiceImpl implements PedidoService {
+public class PedidoServiceImpl implements OrderService {
 
 	private static Logger logger = LogManager.getLogger(PedidoServiceImpl.class);
 	private OrderDAO pedidoDAO = null;

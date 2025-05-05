@@ -15,14 +15,14 @@ import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.OrderItemService;
 import com.thegoldenbook.service.OrderCriteria;
-import com.thegoldenbook.service.PedidoService;
+import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.service.impl.OrderItemServiceImpl;
 import com.thegoldenbook.service.impl.PedidoServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class PedidoServiceTest {
 
-	private PedidoService pedidoService = null;
+	private OrderService pedidoService = null;
 	private OrderItemService lineaPedidoService = null;
 	
 	public PedidoServiceTest() {

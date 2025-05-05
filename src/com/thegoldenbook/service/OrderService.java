@@ -4,24 +4,24 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 
-public interface PedidoService {
+public interface OrderService {
 
-	public Order findBy(Long id)
+	public Order findBy(Long id, String locale)
 			throws DataException;
 	
-	public Results<Order> findByCriteria (OrderCriteria pedido, int pos, int pageSize)
+	public Results<Order> findByCriteria (OrderCriteria order, int pos, int pageSize)
 			throws DataException;
 	
-	public Long create (Order p)
+	public Long create (Order order)
 			throws DataException, MailException;
 	
-	public boolean update(Order p)
+	public boolean update(Order order)
 			throws DataException;
 	
 	public boolean delete(Long id)
 			throws DataException;
 	
-	public Double calcularPrecio(Order p)
+	public Double calculatePrice(Order order)
 			throws DataException;
 	
 }
