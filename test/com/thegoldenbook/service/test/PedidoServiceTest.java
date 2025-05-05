@@ -15,7 +15,7 @@ import com.thegoldenbook.service.LibroService;
 import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.service.impl.LibroServiceImpl;
-import com.thegoldenbook.service.impl.PedidoServiceImpl;
+import com.thegoldenbook.service.impl.OrderServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class PedidoServiceTest {
@@ -25,14 +25,14 @@ public class PedidoServiceTest {
 	private LibroService libroService = null;
 
 	public PedidoServiceTest() {
-		pedidoService = new PedidoServiceImpl();
+		pedidoService = new OrderServiceImpl();
 		libroService = new LibroServiceImpl();
 	}
 
 	public void testFindById() throws Exception{
 		logger.info("Testing FindById...");
 		Order p = null;
-		pedidoService = new PedidoServiceImpl();
+		pedidoService = new OrderServiceImpl();
 		p = pedidoService.findBy(3l);
 		if(p == null){
 			logger.info("No se han encontrado resultados a partir del identificador introducido");

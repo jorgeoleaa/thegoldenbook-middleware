@@ -21,30 +21,30 @@ import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class PedidoServiceImpl implements OrderService {
+public class OrderServiceImpl implements OrderService {
 
-	private static Logger logger = LogManager.getLogger(PedidoServiceImpl.class);
-	private OrderDAO pedidoDAO = null;
-	private ClienteService clienteService = null;
+	private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
+	private OrderDAO orderDAO = null;
+	private ClienteService userService = null;
 	private MailService mailService = null;
 
-	public PedidoServiceImpl() {
-		pedidoDAO = new OrderDAOImpl();
-		clienteService = new ClienteServiceImpl();
+	public OrderServiceImpl() {
+		orderDAO = new OrderDAOImpl();
+		userService = new ClienteServiceImpl();
 		mailService = new MailServiceImpl();
 	}
 
 
-	public Order findBy(Long id) throws DataException{
+	public Order findBy(Long id, String locale) throws DataException{
 
 		Connection con = null;
-		Order p = null;
+		Order order = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			p = pedidoDAO.findBy(con, id);
+			order = orderDAO.findBy(con, id, locale);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -53,21 +53,21 @@ public class PedidoServiceImpl implements OrderService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return p;
+		return order;
 	}
 
 
 
-	public Results<Order> findByCriteria(OrderCriteria pedido, int pos, int pageSize) throws DataException{
+	public Results<Order> findByCriteria(OrderCriteria order, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
-		Results<Order> resultados = null;
+		Results<Order> results = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = pedidoDAO.findByCriteria(con, pedido, pos, pageSize);
+			results = orderDAO.findByCriteria(con, order, pos, pageSize);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -76,12 +76,12 @@ public class PedidoServiceImpl implements OrderService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
 
 
-	public Long create(Order p) throws DataException, MailException {
+	public Long create(Order order) throws DataException, MailException {
 
 	    Connection con = null;
 	    Long id = null;
@@ -92,22 +92,22 @@ public class PedidoServiceImpl implements OrderService {
 	        con.setAutoCommit(false);
 
 	        OrderCriteria criteria = new OrderCriteria();
-	        criteria.setTipoEstadoPedidoId(7);  // Tipo de estado "carrito"
-	        criteria.setClienteId(p.getClienteId());
+	        criteria.setOrderStatusId(6);  //Order status "cart"
+	        criteria.setUserId(order.getUserId());
 
-	        List<Order> pedidos = findByCriteria(criteria, 1, Integer.MAX_VALUE).getPage();
+	        List<Order> orders = findByCriteria(criteria, 1, Integer.MAX_VALUE).getPage();
 
-	        Order carrito = null;
-	        if (!pedidos.isEmpty()) {
-	            carrito = pedidos.get(0);
+	        Order cart = null;
+	        if (!orders.isEmpty()) {
+	            cart = orders.get(0);
 	        }
 
-	        if (carrito == null || p.getTipoEstadoPedidoId() != 7) {
-	            p.setPrecio(calcularPrecio(p));
-	            id = pedidoDAO.create(con, p);
+	        if (cart == null || order.getOrderStatusId() != 6) {
+	            order.setPrice(calculatePrice(order));
+	            id = orderDAO.create(con, order);
 	            if (id != null) {
-	            	User cliente = clienteService.findById(id);
-	            	mailService.sendPedidoRealizado(cliente.getEmail(), cliente, p);
+	            	User cliente = userService.findById(id);
+	            	mailService.notifyOrderPlaced(cliente.getEmail(), cliente, order);
 	                commit = true;
 	            }
 	        }
@@ -124,7 +124,7 @@ public class PedidoServiceImpl implements OrderService {
 
 
 
-	public boolean update(Order p) throws DataException{
+	public boolean update(Order order) throws DataException{
 
 		Connection con = null;
 		boolean tf = false;
@@ -133,8 +133,8 @@ public class PedidoServiceImpl implements OrderService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			p.setPrecio(calcularPrecio(p));
-			tf = pedidoDAO.update(con, p);
+			order.setPrice(calculatePrice(order));
+			tf = orderDAO.update(con, order);
 			commit = true;
 
 		} catch (SQLException e) {
@@ -157,7 +157,7 @@ public class PedidoServiceImpl implements OrderService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			tf = pedidoDAO.delete(con, id);
+			tf = orderDAO.delete(con, id);
 			commit = true;
 
 		} catch (SQLException e) {
@@ -172,15 +172,15 @@ public class PedidoServiceImpl implements OrderService {
 
 
 
-	public Double calcularPrecio(Order p) throws DataException{
+	public Double calculatePrice(Order order) throws DataException{
 
-		double precioTotal = 0.0d;
+		double totalPrice = 0.0d;
 
-		for(OrderItem lp:p.getLineas()) {
-			precioTotal+= lp.getPrecio()*lp.getUnidades();
+		for(OrderItem lp:order.getOrderItems()) {
+			totalPrice+= lp.getPrice()*lp.getQuantity();
 		}
 
-		return precioTotal;
+		return totalPrice;
 
 	}
 

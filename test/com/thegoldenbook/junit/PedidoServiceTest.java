@@ -17,7 +17,7 @@ import com.thegoldenbook.service.OrderItemService;
 import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.service.impl.OrderItemServiceImpl;
-import com.thegoldenbook.service.impl.PedidoServiceImpl;
+import com.thegoldenbook.service.impl.OrderServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class PedidoServiceTest {
@@ -26,7 +26,7 @@ public class PedidoServiceTest {
 	private OrderItemService lineaPedidoService = null;
 	
 	public PedidoServiceTest() {
-		pedidoService = new PedidoServiceImpl();
+		pedidoService = new OrderServiceImpl();
 		lineaPedidoService = new OrderItemServiceImpl();
 	}
 
