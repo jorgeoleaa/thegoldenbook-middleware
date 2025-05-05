@@ -13,14 +13,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.OrderItemDAO;
-import com.thegoldenbook.dao.PedidoDAO;
+import com.thegoldenbook.dao.OrderDAO;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class PedidoDAOImpl implements PedidoDAO{
+public class PedidoDAOImpl implements OrderDAO{
 
 	private static Logger logger = LogManager.getLogger(PedidoDAOImpl.class);
 	private OrderItemDAO lineaPedidoDAO = null;

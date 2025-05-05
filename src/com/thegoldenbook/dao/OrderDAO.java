@@ -6,18 +6,18 @@ import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.OrderCriteria;
 
-public interface PedidoDAO {
+public interface OrderDAO {
 	
 	public Order findBy(Connection c, Long id)
 			throws DataException;
 	
-	public Results<Order> findByCriteria (Connection c, OrderCriteria pedido, int pos, int pageSize)
+	public Results<Order> findByCriteria (Connection c, OrderCriteria order, int pos, int pageSize)
 			throws DataException;
 	
-	public Long create (Connection c, Order p)
+	public Long create (Connection c, Order order)
 			throws DataException;
 	
-	public boolean update(Connection c, Order p)
+	public boolean update(Connection c, Order order)
 			throws DataException;
 	
 	public boolean delete(Connection c, Long id)
