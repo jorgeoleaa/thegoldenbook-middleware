@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.OrderDAO;
-import com.thegoldenbook.dao.impl.PedidoDAOImpl;
+import com.thegoldenbook.dao.impl.OrderDAOImpl;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
@@ -29,7 +29,7 @@ public class PedidoServiceImpl implements PedidoService {
 	private MailService mailService = null;
 
 	public PedidoServiceImpl() {
-		pedidoDAO = new PedidoDAOImpl();
+		pedidoDAO = new OrderDAOImpl();
 		clienteService = new ClienteServiceImpl();
 		mailService = new MailServiceImpl();
 	}
