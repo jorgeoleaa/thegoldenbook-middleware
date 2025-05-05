@@ -26,7 +26,7 @@ public class PedidoDAOImpl implements PedidoDAO{
 	private OrderItemDAO lineaPedidoDAO = null;
 
 	public PedidoDAOImpl() {		
-		lineaPedidoDAO = new LineaPedidoDAOImpl();
+		lineaPedidoDAO = new OrderItemDAOImpl();
 	}
 
 	public Results<Order> findByCriteria (Connection con, PedidoCriteria p, int pos, int pageSize) throws DataException{

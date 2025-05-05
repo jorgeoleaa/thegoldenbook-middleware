@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.OrderItemDAO;
-import com.thegoldenbook.dao.impl.LineaPedidoDAOImpl;
+import com.thegoldenbook.dao.impl.OrderItemDAOImpl;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.service.LineaPedidoService;
 import com.thegoldenbook.util.JDBCUtils;
@@ -19,7 +19,7 @@ public class LineaPedidoServiceImpl implements LineaPedidoService{
 	private OrderItemDAO lineaPedidoDAO = null;
 
 	public LineaPedidoServiceImpl() {
-		lineaPedidoDAO = new LineaPedidoDAOImpl();
+		lineaPedidoDAO = new OrderItemDAOImpl();
 	}
 
 	public OrderItem findById(Long lineaPedidoId) throws DataException{
