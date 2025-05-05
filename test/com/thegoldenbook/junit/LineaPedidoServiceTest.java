@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.OrderItem;
-import com.thegoldenbook.service.LineaPedidoService;
-import com.thegoldenbook.service.impl.LineaPedidoServiceImpl;
+import com.thegoldenbook.service.OrderItemService;
+import com.thegoldenbook.service.impl.OrderItemServiceImpl;
 
 public class LineaPedidoServiceTest {
 
-	private LineaPedidoService lineaPedidoService = null;
+	private OrderItemService lineaPedidoService = null;
 	
 	public LineaPedidoServiceTest() {
-		lineaPedidoService = new LineaPedidoServiceImpl();
+		lineaPedidoService = new OrderItemServiceImpl();
 	}
 	
 	@Test

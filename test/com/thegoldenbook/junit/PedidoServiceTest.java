@@ -13,21 +13,21 @@ import org.junit.jupiter.api.Test;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.LineaPedidoService;
+import com.thegoldenbook.service.OrderItemService;
 import com.thegoldenbook.service.PedidoCriteria;
 import com.thegoldenbook.service.PedidoService;
-import com.thegoldenbook.service.impl.LineaPedidoServiceImpl;
+import com.thegoldenbook.service.impl.OrderItemServiceImpl;
 import com.thegoldenbook.service.impl.PedidoServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class PedidoServiceTest {
 
 	private PedidoService pedidoService = null;
-	private LineaPedidoService lineaPedidoService = null;
+	private OrderItemService lineaPedidoService = null;
 	
 	public PedidoServiceTest() {
 		pedidoService = new PedidoServiceImpl();
-		lineaPedidoService = new LineaPedidoServiceImpl();
+		lineaPedidoService = new OrderItemServiceImpl();
 	}
 
 	@Test

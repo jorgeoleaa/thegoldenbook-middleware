@@ -5,16 +5,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.OrderItem;
-import com.thegoldenbook.service.LineaPedidoService;
-import com.thegoldenbook.service.impl.LineaPedidoServiceImpl;
+import com.thegoldenbook.service.OrderItemService;
+import com.thegoldenbook.service.impl.OrderItemServiceImpl;
 
 public class LineaPedidoServiceTest {
 
 	private static Logger logger = LogManager.getLogger(LineaPedidoServiceTest.class);
-	private LineaPedidoService lineaPedidoService = null;
+	private OrderItemService lineaPedidoService = null;
 	
 	public LineaPedidoServiceTest() {
-		lineaPedidoService = new LineaPedidoServiceImpl();
+		lineaPedidoService = new OrderItemServiceImpl();
 	}
 	
 	public void testFindById() throws Exception{
