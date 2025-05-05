@@ -12,12 +12,12 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.impl.UserDAOImpl;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.ClienteService;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.MailService;
 import com.thegoldenbook.service.ServiceException;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClienteServiceImpl implements ClienteService {
+public class ClienteServiceImpl implements UserService {
 
 	/**
 	 * Es un objeto stateless, no tiene sentido instanciarlo multiples veces.

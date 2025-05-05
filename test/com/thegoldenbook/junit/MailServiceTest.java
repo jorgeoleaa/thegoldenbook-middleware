@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.User;
-import com.thegoldenbook.service.ClienteService;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
 import com.thegoldenbook.service.impl.ClienteServiceImpl;
@@ -20,7 +20,7 @@ public class MailServiceTest {
 	private static Logger logger = LogManager.getLogger(com.thegoldenbook.service.test.MailServiceTest.class);
 	
 	private MailService mailService = null;
-	private ClienteService clienteService = null;
+	private UserService clienteService = null;
 	
 	public MailServiceTest() {
 		mailService = new MailServiceImpl();

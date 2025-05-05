@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.ClienteService;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.service.ValoracionService;
 import com.thegoldenbook.service.impl.ClienteServiceImpl;
@@ -21,7 +21,7 @@ public class ClienteServiceTest {
 	
 	private OrderService pedidoService = null;
 	private ValoracionService valoracionService = null;
-	private ClienteService clienteService = null;
+	private UserService clienteService = null;
 	
 	public ClienteServiceTest() {
 		clienteService = new ClienteServiceImpl();

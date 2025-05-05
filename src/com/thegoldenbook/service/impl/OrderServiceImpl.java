@@ -14,7 +14,7 @@ import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.ClienteService;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
 import com.thegoldenbook.service.OrderCriteria;
@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
 
 	private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
 	private OrderDAO orderDAO = null;
-	private ClienteService userService = null;
+	private UserService userService = null;
 	private MailService mailService = null;
 
 	public OrderServiceImpl() {

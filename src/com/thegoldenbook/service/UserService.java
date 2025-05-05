@@ -4,7 +4,7 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
 
-public interface ClienteService {
+public interface UserService {
 	
 	public Results<User> findAll(int pos, int pageSize)
 			throws DataException;
@@ -15,13 +15,13 @@ public interface ClienteService {
 	public User findByNick (String nick)
 			throws DataException;
 	
-	public User findByEmail (String mail)
+	public User findByEmail (String email)
 			throws DataException;
 	
-	public Long registrar(User c) 
+	public Long register(User user) 
 			throws DataException, ServiceException;
 	
-	public boolean update (User c) 
+	public boolean update (User user) 
 			throws DataException;
 	
 	public boolean updatePassword (String password, Long id) 
@@ -30,7 +30,7 @@ public interface ClienteService {
 	public boolean delete (Long id) 
 			throws DataException, ServiceException;
 	
-	public User autenticar (String mail, String password)
+	public User authenticate (String email, String password)
 			throws DataException;
 
 

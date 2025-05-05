@@ -25,7 +25,7 @@ import com.thegoldenbook.config.ConfigurationParametersManager;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Language;
 import com.thegoldenbook.model.Book;
-import com.thegoldenbook.service.ClienteService;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.FileService;
 import com.thegoldenbook.service.LanguageService;
 import com.thegoldenbook.service.LibroService;
@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService{
 	private static Logger logger = LogManager.getLogger(FileServiceImpl.class);
 	private LibroService libroService = new LibroServiceImpl();
 	private LanguageService idiomaService = new LanguageServiceImpl();
-	private ClienteService clienteService = new ClienteServiceImpl();
+	private UserService clienteService = new ClienteServiceImpl();
 	
 	@Override
 	public BufferedImage createThumbnail(BufferedImage image, int width, int height) {

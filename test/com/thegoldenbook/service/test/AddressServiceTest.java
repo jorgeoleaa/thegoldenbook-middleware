@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Employee;
-import com.thegoldenbook.service.ClienteService;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.service.EmployeeService;
 import com.thegoldenbook.service.impl.ClienteServiceImpl;
@@ -19,7 +19,7 @@ public class AddressServiceTest {
 	
 	private static Logger logger = LogManager.getLogger(AddressServiceTest.class);
 	private AddressService addressService = null;
-	private ClienteService userService = null;
+	private UserService userService = null;
 	private EmployeeService employeeService = null;
 	
 	public AddressServiceTest() {

@@ -272,7 +272,7 @@ public class UserDAOImpl implements UserDAO {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		User user = null;
+		User c = null;
 		try {
 
 			StringBuilder query = new StringBuilder(" select u.id, u.nickname, u.name, u.last_name, u.second_last_name, u.national_id, u.email, u.phone_number, u.password, u.oauth_token, u.created_at, u.desactivated_at ")
@@ -287,7 +287,7 @@ public class UserDAOImpl implements UserDAO {
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				user = loadNext(rs, con);
+				c = loadNext(rs, con);
 			}
 
 		}catch(SQLException e) {
@@ -296,7 +296,7 @@ public class UserDAOImpl implements UserDAO {
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return user;
+		return c;
 	}
 
 	protected User loadNext (ResultSet rs, Connection con) throws SQLException, DataException{

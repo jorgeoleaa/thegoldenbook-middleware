@@ -6,14 +6,14 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.ClienteService;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.impl.ClienteServiceImpl;
 import com.thegoldenbook.service.impl.MailServiceImpl;
 
 public class ClienteServiceTest {
 
 	private static Logger logger = LogManager.getLogger(ClienteServiceTest.class);
-	private ClienteService clienteService = null;
+	private UserService clienteService = null;
 
 	public ClienteServiceTest() {
 		clienteService = new ClienteServiceImpl();
