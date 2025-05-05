@@ -18,6 +18,8 @@ public class OrderCriteria extends AbstractCriteria {
 	private Long userId;
 	private Integer orderStatusId;
 	
+	private String locale;
+	
 	private String orderBy = ORDER_BY_DATE;
 	private Boolean ascDesc = Boolean.FALSE;
 	
@@ -79,6 +81,14 @@ public class OrderCriteria extends AbstractCriteria {
 
 	public void setOrderStatusId(Integer orderStatusId) {
 		this.orderStatusId = orderStatusId;
+	}
+	
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 	public String getOrderBy() {
