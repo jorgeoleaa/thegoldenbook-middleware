@@ -5,7 +5,7 @@ import java.sql.Connection;
 import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
 
-public interface ClientDAO {
+public interface UserDAO {
 	
 	public Results<User> findAll(Connection con, int pos, int pageSize)
 		throws DataException;

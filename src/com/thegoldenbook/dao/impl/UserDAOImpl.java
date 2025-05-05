@@ -11,7 +11,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.dao.ClientDAO;
+import com.thegoldenbook.dao.UserDAO;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.AddressDAO;
 import com.thegoldenbook.model.User;
@@ -19,13 +19,11 @@ import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClienteDAOImpl implements ClientDAO {
+public class UserDAOImpl implements UserDAO {
 
-	private AddressDAO direccionDAO = null;
-	private static Logger logger = LogManager.getLogger(ClienteDAOImpl.class);
+	private static Logger logger = LogManager.getLogger(UserDAOImpl.class);
 
-	public ClienteDAOImpl() {
-		direccionDAO = new AddressDAOImpl();
+	public UserDAOImpl() {
 	}
 
 
@@ -33,12 +31,12 @@ public class ClienteDAOImpl implements ClientDAO {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		User c = null;
+		User user = null;
 
 		try {
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
-					.append(" FROM CLIENTE c ")
-					.append(" WHERE c.ID = ? ");
+			StringBuilder query = new StringBuilder(" select u.id, u.nickname, u.name, u.last_name, u.second_last_name, u.national_id, u.email, u.phone_number, u.password, u.oauth_token, u.created_at, u.desactivated_at ")
+					.append(" from user u ")
+					.append(" where u.id = ? ");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -48,7 +46,7 @@ public class ClienteDAOImpl implements ClientDAO {
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				c = loadNext(rs, con);
+				user = loadNext(rs, con);
 			}
 
 
@@ -58,38 +56,38 @@ public class ClienteDAOImpl implements ClientDAO {
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return c;
+		return user;
 	}
 	
 
-	public User findByEmail(Connection con, String mail) throws DataException {
+	public User findByEmail(Connection con, String email) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		User c = null;
+		User user = null;
 
 		try {
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, C.JWT")
-					.append(" FROM CLIENTE c ")
-					.append(" WHERE c.EMAIL = ? ");
+			StringBuilder query = new StringBuilder(" select u.id, u.nickname, u.name, u.last_name, u.second_last_name, u.national_id, u.email, u.phone_number, u.password, u.oauth_token, u.created_at, u.desactivated_at ")
+					.append(" from user u ")
+					.append(" where u.email = ? ");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			int i = 1;
-			pst.setString(i++, mail);
+			pst.setString(i++, email);
 
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				c = loadNext(rs, con);
+				user = loadNext(rs, con);
 			}
 		}catch(SQLException e) {
-			logger.error("Email: "+mail, e);
+			logger.error("Email: "+email, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return c;
+		return user;
 	}
 
 
@@ -98,12 +96,12 @@ public class ClienteDAOImpl implements ClientDAO {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Results<User> resultados = new Results<User>();
+		Results<User> results = new Results<User>();
 
 		try {
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
-					.append(" FROM CLIENTE c ")
-					.append(" ORDER BY NOMBRE ASC");
+			StringBuilder query = new StringBuilder(" select u.id, u.nickname, u.name, u.last_name, u.second_last_name, u.national_id, u.email, u.phone_number, u.password, u.oauth_token, u.created_at, u.desactivated_at ")
+					.append(" from user u ")
+					.append(" order by name asc ");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -112,11 +110,11 @@ public class ClienteDAOImpl implements ClientDAO {
 			int count = 0;
 			if((pos>=1) && rs.absolute(pos)) {
 				do {
-					resultados.getPage().add(loadNext(rs, con));
+					results.getPage().add(loadNext(rs, con));
 					count++;
 				}while (count<pageSize && rs.next());
 			}
-			resultados.setTotal(JDBCUtils.getTotalRows(rs));
+			results.setTotal(JDBCUtils.getTotalRows(rs));
 
 		}catch(SQLException e) {
 			logger.error(e);
@@ -124,7 +122,7 @@ public class ClienteDAOImpl implements ClientDAO {
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return resultados;
+		return results;
 	}
 
 	public boolean delete(Connection conn, Long id) throws DataException{
@@ -133,7 +131,7 @@ public class ClienteDAOImpl implements ClientDAO {
 
 		try {
 
-			pst = conn.prepareStatement("DELETE FROM CLIENTE WHERE ID = ?");
+			pst = conn.prepareStatement("delete from user where id = ?");
 
 			int i = 1;
 			pst.setLong(i++, id);
@@ -157,25 +155,26 @@ public class ClienteDAOImpl implements ClientDAO {
 	}
 
 
-	public boolean update(Connection conn, User c) throws DataException{
+	public boolean update(Connection conn, User user) throws DataException{
 
 		PreparedStatement pst = null;
 
 		try {
 
-			pst = conn.prepareStatement("UPDATE CLIENTE SET NICKNAME = ?,  NOMBRE = ?, APELLIDO1 = ?, APELLIDO2 = ?, DNI_NIE = ?, EMAIL = ?, TELEFONO = ?, JWT = ? "
-					+" WHERE ID = ?");
+			pst = conn.prepareStatement("update user set nickname = ?,  name = ?, last_name = ?, second_last_name = ?, national_id = ?, email = ?, phone_number = ?, oauth_token = ?, desactivated_at = ? "
+					+" where id = ? ");
 
 			int i = 1;
-			pst.setString(i++, c.getNickname());
-			pst.setString(i++, c.getNombre());
-			pst.setString(i++, c.getApellido1());
-			pst.setString(i++, c.getApellido2());
-			pst.setString(i++, c.getDniNie());
-			pst.setString(i++, c.getEmail());
-			pst.setString(i++, c.getTelefono());
-			pst.setString(i++, c.getJwt());
-			pst.setLong(i++, c.getId());
+			pst.setString(i++, user.getNickname());
+			pst.setString(i++, user.getName());
+			pst.setString(i++, user.getLastName());
+			pst.setString(i++, user.getSecondLastName());
+			pst.setString(i++, user.getNationalId());
+			pst.setString(i++, user.getEmail());
+			pst.setString(i++, user.getPhoneNumber());
+			pst.setString(i++, user.getOauthToken());
+			pst.setDate(i++, user.getDesactivatedAt());
+			pst.setLong(i++, user.getId());
 
 			int updatedRows = pst.executeUpdate();
 
@@ -185,7 +184,7 @@ public class ClienteDAOImpl implements ClientDAO {
 
 
 		} catch (SQLException e) {
-			logger.error("ClienteDTO: "+c, e);
+			logger.error("User: "+user, e);
 			throw new DataException(e);
 
 		}finally {
@@ -202,8 +201,8 @@ public class ClienteDAOImpl implements ClientDAO {
 		PreparedStatement pst = null;
 
 		try {
-			pst = con.prepareStatement("UPDATE CLIENTE SET PASSWORD = ? "
-					+ " WHERE ID = ? ");
+			pst = con.prepareStatement("update user set password = ? "
+					+ " where id = ? ");
 
 			int i = 1;
 			pst.setString(i++, password);
@@ -230,19 +229,20 @@ public class ClienteDAOImpl implements ClientDAO {
 
 		try {
 
-			pst = conn.prepareStatement("INSERT INTO CLIENTE(NICKNAME, NOMBRE, APELLIDO1, APELLIDO2, DNI_NIE, EMAIL, TELEFONO, PASSWORD, JWT)"
-					+" VALUES(?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			pst = conn.prepareStatement("insert into user(nickname, name, last_name, second_last_name, national_id, email, phone_number, password, oauth_token, created_at)"
+					+" VALUES(?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 			int i = 1;
 			pst.setString(i++, c.getNickname());
-			pst.setString(i++, c.getNombre());
-			pst.setString(i++, c.getApellido1());
-			JDBCUtils.setNullable(pst, i++, c.getApellido2());			
-			pst.setString(i++, c.getDniNie());
+			pst.setString(i++, c.getName());
+			pst.setString(i++, c.getLastName());
+			JDBCUtils.setNullable(pst, i++, c.getSecondLastName());			
+			pst.setString(i++, c.getNationalId());
 			pst.setString(i++, c.getEmail());
-			pst.setString(i++, c.getTelefono());
+			pst.setString(i++, c.getPhoneNumber());
 			pst.setString(i++, c.getPassword());
-			pst.setString(i++, c.getJwt());
+			pst.setString(i++, c.getOauthToken());
+			pst.setDate(i++, c.getCreatedAt());
 
 			int insertedRows = pst.executeUpdate();
 
@@ -272,12 +272,12 @@ public class ClienteDAOImpl implements ClientDAO {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		User c = null;
+		User user = null;
 		try {
 
-			StringBuilder query = new StringBuilder("SELECT c.ID, c.NICKNAME, c.NOMBRE, c.APELLIDO1, c.APELLIDO2, c.DNI_NIE, c.EMAIL, c.TELEFONO, c.PASSWORD, c.JWT")
-					.append(" FROM CLIENTE c ")
-					.append(" WHERE c.NICKNAME = ? ");
+			StringBuilder query = new StringBuilder(" select u.id, u.nickname, u.name, u.last_name, u.second_last_name, u.national_id, u.email, u.phone_number, u.password, u.oauth_token, u.created_at, u.desactivated_at ")
+					.append(" from user u ")
+					.append(" where u.nickname = ? ");
 
 			pst = con.prepareStatement(query.toString(), ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
 
@@ -287,7 +287,7 @@ public class ClienteDAOImpl implements ClientDAO {
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				c = loadNext(rs, con);
+				user = loadNext(rs, con);
 			}
 
 		}catch(SQLException e) {
@@ -296,32 +296,34 @@ public class ClienteDAOImpl implements ClientDAO {
 		}finally {
 			JDBCUtils.close(pst, rs);
 		}
-		return c;
+		return user;
 	}
 
 	protected User loadNext (ResultSet rs, Connection con) throws SQLException, DataException{
 
 		int i = 1;
 
-		List<Address> direcciones = new ArrayList();
+		List<Address> addresses = new ArrayList();
 		
-		User c = new User();
+		User user = new User();
 
-		c.setId(rs.getLong(i++));
-		c.setNickname(rs.getString(i++));
-		c.setNombre(rs.getString(i++));
-		c.setApellido1(rs.getString(i++));
-		c.setApellido2(rs.getString(i++));
-		c.setDniNie(rs.getString(i++));
-		c.setEmail(rs.getString(i++));
-		c.setTelefono(rs.getString(i++));
-		c.setPassword(rs.getString(i++));
-		c.setJwt(rs.getString(i++));
-		c.setDirecciones(direcciones);;
-//		c.setDirecciones(direccionDAO.findByClienteId(con, c.getId()));
+		user.setId(rs.getLong(i++));
+		user.setNickname(rs.getString(i++));
+		user.setName(rs.getString(i++));
+		user.setLastName(rs.getString(i++));
+		user.setSecondLastName(rs.getString(i++));
+		user.setNationalId(rs.getString(i++));
+		user.setEmail(rs.getString(i++));
+		user.setPhoneNumber(rs.getString(i++));
+		user.setPassword(rs.getString(i++));
+		user.setOauthToken(rs.getString(i++));
+		user.setCreatedAt(rs.getDate(i++));
+		user.setDesactivatedAt(rs.getDate(i++));
+		user.setAddresses(addresses);;
+//		user.setAddresses(direccionDAO.findByUserId(con, user.getId()));
 		
 
-		return c;
+		return user;
 	}
 
 
