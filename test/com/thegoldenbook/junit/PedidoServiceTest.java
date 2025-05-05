@@ -14,7 +14,7 @@ import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.OrderItemService;
-import com.thegoldenbook.service.PedidoCriteria;
+import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.service.PedidoService;
 import com.thegoldenbook.service.impl.OrderItemServiceImpl;
 import com.thegoldenbook.service.impl.PedidoServiceImpl;
@@ -44,7 +44,7 @@ public class PedidoServiceTest {
 
 	@Test
 	public void testFindByCriteriaId() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setId(2l);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
@@ -52,7 +52,7 @@ public class PedidoServiceTest {
 
 	@Test
 	public void testFindByCriteriaFechaDesde() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setFechaDesde(DateUtils.getDate(2023, 9, 1));
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
@@ -67,7 +67,7 @@ public class PedidoServiceTest {
 
 	@Test
 	public void testFindByCriteriaFechaHasta() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setFechaHasta(DateUtils.getDate(2023, 4, 1));
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
@@ -82,7 +82,7 @@ public class PedidoServiceTest {
 
 	@Test
 	public void testFindByCriteriaPrecioDesde() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setPrecioDesde(40.00);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
@@ -93,7 +93,7 @@ public class PedidoServiceTest {
 
 	@Test
 	public void testFindByCriteriaPrecioHasta() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setPrecioHasta(20.00);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 
@@ -104,7 +104,7 @@ public class PedidoServiceTest {
 
 	@Test
 	public void testFindByCriteriaClienteId() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setClienteId(2l);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		
@@ -115,7 +115,7 @@ public class PedidoServiceTest {
 	
 	@Test
 	public void testFindByCriteriaTipoEstadoPedidoId() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setTipoEstadoPedidoId(2);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		
@@ -126,7 +126,7 @@ public class PedidoServiceTest {
 	
 	@Test
 	public void testFindByCriteriaWithMultipleParameters() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setPrecioDesde(15.00);
 		criteria.setFechaDesde(DateUtils.getDate(2023, 04, 2));
 		criteria.setTipoEstadoPedidoId(2);
@@ -141,7 +141,7 @@ public class PedidoServiceTest {
 	
 	@Test
 	public void testFindByEmptyCriteria() throws Exception{
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		Results<Order> resultados = pedidoService.findByCriteria(criteria, 1, Integer.MAX_VALUE);
 		assertEquals(11, resultados.getTotal());
 	}

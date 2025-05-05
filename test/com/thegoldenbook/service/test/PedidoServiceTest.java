@@ -12,7 +12,7 @@ import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.LibroService;
-import com.thegoldenbook.service.PedidoCriteria;
+import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.service.PedidoService;
 import com.thegoldenbook.service.impl.LibroServiceImpl;
 import com.thegoldenbook.service.impl.PedidoServiceImpl;
@@ -43,7 +43,7 @@ public class PedidoServiceTest {
 
 	public void testFindByCriteriaId() throws Exception{
 		logger.info("Testing FindByCriteriaId...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setId(2l);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
 
@@ -58,7 +58,7 @@ public class PedidoServiceTest {
 
 	public void testFindByCriteriaFechaDesde() throws Exception{
 		logger.info("Testing FindByCriteriaFechaDesde...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setFechaDesde(DateUtils.getDate(2023, 9, 1));
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
 
@@ -73,7 +73,7 @@ public class PedidoServiceTest {
 
 	public void testFindByCriteriaFechaHasta() throws Exception{
 		logger.info("Testing FindByCriteriaFechaHasta...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setFechaHasta(DateUtils.getDate(2023, 4, 1));
 		criteria.setAscDesc(Boolean.TRUE);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
@@ -89,7 +89,7 @@ public class PedidoServiceTest {
 	
 	public void testFindByCriteriaPrecioDesde() throws Exception{
 		logger.info("Testing FindByCriteriaPrecioDesde...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setPrecioDesde(40.00);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
 
@@ -104,7 +104,7 @@ public class PedidoServiceTest {
 	
 	public void testFindByCriteriaPrecioHasta() throws Exception{
 		logger.info("Testing FindByCriteriaPrecioHasta...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setPrecioHasta(20.00);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
 
@@ -119,7 +119,7 @@ public class PedidoServiceTest {
 	
 	public void testFindByCriteriaClienteId() throws Exception{
 		logger.info("Testing FindByCriteriaClienteId...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setClienteId(2l);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
 
@@ -134,7 +134,7 @@ public class PedidoServiceTest {
 	
 	public void testFindByCriteriaTipoEstadoPedidoId() throws Exception{
 		logger.info("Testing FindByCriteriaTipoEstadoPedidoId...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		criteria.setTipoEstadoPedidoId(2);
 		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
 
@@ -149,7 +149,7 @@ public class PedidoServiceTest {
 	
 	public void testFindByCriteriaMultipleParameters() throws Exception{
 		logger.info("Testing findByCriteriaMultipleParameters...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		//criteria.setFechaDesde(DateUtils.getDate(2023, 8, 1));
 		//criteria.setFechaHasta(DateUtils.getDate(2023, 10, 1));
 		criteria.setPrecioDesde(16.0d);
@@ -172,7 +172,7 @@ public class PedidoServiceTest {
 	
 	public void testFindByEmptyCriteria() throws Exception{
 		logger.info("Testing findByEmptyCriteria...");
-		PedidoCriteria criteria = new PedidoCriteria();
+		OrderCriteria criteria = new OrderCriteria();
 		Results<Order> resultados = pedidoService.findByCriteria(criteria, 1, 7);
 		if (resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado resultados a partir de los parámetros introducidos");

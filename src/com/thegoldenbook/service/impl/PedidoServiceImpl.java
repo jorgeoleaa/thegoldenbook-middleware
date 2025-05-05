@@ -17,7 +17,7 @@ import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.ClienteService;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
-import com.thegoldenbook.service.PedidoCriteria;
+import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.service.PedidoService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -58,7 +58,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 
 
-	public Results<Order> findByCriteria(PedidoCriteria pedido, int pos, int pageSize) throws DataException{
+	public Results<Order> findByCriteria(OrderCriteria pedido, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
 		Results<Order> resultados = null;
@@ -91,7 +91,7 @@ public class PedidoServiceImpl implements PedidoService {
 	        con = JDBCUtils.getConnection();
 	        con.setAutoCommit(false);
 
-	        PedidoCriteria criteria = new PedidoCriteria();
+	        OrderCriteria criteria = new OrderCriteria();
 	        criteria.setTipoEstadoPedidoId(7);  // Tipo de estado "carrito"
 	        criteria.setClienteId(p.getClienteId());
 

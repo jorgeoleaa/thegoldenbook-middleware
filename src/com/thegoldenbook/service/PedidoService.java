@@ -9,7 +9,7 @@ public interface PedidoService {
 	public Order findBy(Long id)
 			throws DataException;
 	
-	public Results<Order> findByCriteria (PedidoCriteria pedido, int pos, int pageSize)
+	public Results<Order> findByCriteria (OrderCriteria pedido, int pos, int pageSize)
 			throws DataException;
 	
 	public Long create (Order p)

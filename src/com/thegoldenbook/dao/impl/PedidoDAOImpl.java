@@ -17,7 +17,7 @@ import com.thegoldenbook.dao.PedidoDAO;
 import com.thegoldenbook.model.OrderItem;
 import com.thegoldenbook.model.Order;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.PedidoCriteria;
+import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class PedidoDAOImpl implements PedidoDAO{
@@ -29,7 +29,7 @@ public class PedidoDAOImpl implements PedidoDAO{
 		lineaPedidoDAO = new OrderItemDAOImpl();
 	}
 
-	public Results<Order> findByCriteria (Connection con, PedidoCriteria p, int pos, int pageSize) throws DataException{
+	public Results<Order> findByCriteria (Connection con, OrderCriteria p, int pos, int pageSize) throws DataException{
 
 		Results<Order> resultados = new Results<Order>();
 		List<String> condiciones = new ArrayList<String>();
