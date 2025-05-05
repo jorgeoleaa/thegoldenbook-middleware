@@ -8,7 +8,7 @@ import com.thegoldenbook.service.OrderCriteria;
 
 public interface OrderDAO {
 	
-	public Order findBy(Connection c, Long id)
+	public Order findBy(Connection c, Long id, String locale)
 			throws DataException;
 	
 	public Results<Order> findByCriteria (Connection c, OrderCriteria order, int pos, int pageSize)
