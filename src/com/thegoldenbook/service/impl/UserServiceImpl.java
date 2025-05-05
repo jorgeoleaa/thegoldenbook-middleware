@@ -17,36 +17,37 @@ import com.thegoldenbook.service.MailService;
 import com.thegoldenbook.service.ServiceException;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ClienteServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
 	/**
-	 * Es un objeto stateless, no tiene sentido instanciarlo multiples veces.
-	 * (NOTA: Para segundo curso de DAW: Será un atributo, no una constante,
-	 * para que podamos inyectarlo, y si queremos, cambiar el Encryptor). 
+	 * This is a stateless object; it doesn't make sense to instantiate it multiple times.
+	 * (NOTE: For the second year of DAW: It will be an attribute, not a constant,
+	 * so that we can inject it and, if desired, replace the Encryptor.)
 	 */
+
 	public static final StrongPasswordEncryptor PASSWORD_ENCRYPTOR 
 	= new StrongPasswordEncryptor();
 
 	private MailService mailService = null;
-	private UserDAO clienteDAO = null;
-	private static Logger logger = LogManager.getLogger(ClienteServiceImpl.class);
+	private UserDAO userDAO = null;
+	private static Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
 
-	public ClienteServiceImpl() {
-		clienteDAO= new UserDAOImpl();
+	public UserServiceImpl() {
+		userDAO= new UserDAOImpl();
 		mailService = new MailServiceImpl();
 	}
 
 	public User findById(Long id) throws DataException {
 
 		Connection con = null;
-		User cliente = new User();
+		User user = new User();
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			cliente = clienteDAO.findById(con, id);
+			user = userDAO.findById(con, id);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -55,20 +56,20 @@ public class ClienteServiceImpl implements UserService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return cliente;
+		return user;
 
 	}
 
 	public User findByNick(String nick) throws DataException {
 
 		Connection con = null;
-		User cliente = null;
+		User user = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			cliente = clienteDAO.findByNick(con, nick);
+			user = userDAO.findByNick(con, nick);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -77,22 +78,22 @@ public class ClienteServiceImpl implements UserService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return cliente;
+		return user;
 	}
 
 
 
 
-	public User findByEmail(String mail) throws DataException {
+	public User findByEmail(String email) throws DataException {
 
 		Connection con = null;
-		User cliente = new User();
+		User user = new User();
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(commit);
-			cliente = clienteDAO.findByEmail(con, mail);
+			user = userDAO.findByEmail(con, email);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -101,19 +102,19 @@ public class ClienteServiceImpl implements UserService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return cliente;
+		return user;
 	}
 
 	public Results<User> findAll(int pos, int pageSize) throws DataException {
 
 		Connection con = null;
 		boolean commit = false;
-		Results<User> resultados = null;
+		Results<User> results = null;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = clienteDAO.findAll(con, pos, pageSize);
+			results = userDAO.findAll(con, pos, pageSize);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -122,14 +123,14 @@ public class ClienteServiceImpl implements UserService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
-	public Long registrar(User c) 
+	public Long register(User user) 
 			throws DataException, ServiceException{
 		
-		c.setPassword(PASSWORD_ENCRYPTOR.
-				encryptPassword(c.getPassword()));
+		user.setPassword(PASSWORD_ENCRYPTOR.
+				encryptPassword(user.getPassword()));
 
 		Long id = null;
 		Connection con = null;
@@ -138,8 +139,8 @@ public class ClienteServiceImpl implements UserService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			id = clienteDAO.create(con, c);
-			mailService.sendBienvenida(c.getEmail(), c);
+			id = userDAO.create(con, user);
+			mailService.sendWelcome(user.getEmail(), user);
 
 			commit = true;
 
@@ -159,15 +160,15 @@ public class ClienteServiceImpl implements UserService {
 
 		Connection con = null;
 		boolean c = false;
-		User cliente = null;
+		User user = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			cliente = clienteDAO.findById(con, id);
-			c = clienteDAO.delete(con, id);
-			mailService.enviar(cliente.getEmail(), "Eliminación de cuenta!", "Gracias por haber formado parte de esta comunidad. Te echaremos de menos");
+			user = userDAO.findById(con, id);
+			c = userDAO.delete(con, id);
+			mailService.send(user.getEmail(), "Account Deletion", "Thank you for being part of this community. We will miss you.");
 			commit = true;
 
 		} catch(SQLException e) {
@@ -183,7 +184,7 @@ public class ClienteServiceImpl implements UserService {
 
 	public boolean updatePassword(String password, Long id) throws DataException{
 		Connection con = null;
-		boolean cliente = false;
+		boolean user = false;
 		boolean commit = false;
 		try {
 
@@ -192,7 +193,7 @@ public class ClienteServiceImpl implements UserService {
 			con.setAutoCommit(false);
 			
 			
-			cliente = clienteDAO.updatePassword(con, PASSWORD_ENCRYPTOR.encryptPassword(password), id);
+			user = userDAO.updatePassword(con, PASSWORD_ENCRYPTOR.encryptPassword(password), id);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -201,7 +202,7 @@ public class ClienteServiceImpl implements UserService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return cliente;
+		return user;
 	}
 
 
@@ -209,14 +210,14 @@ public class ClienteServiceImpl implements UserService {
 			throws DataException{
 
 		Connection con = null;
-		boolean cliente = false;
+		boolean user = false;
 		boolean commit = false;
 		try {
 
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
 
-			cliente = clienteDAO.update(con, c);
+			user = userDAO.update(con, c);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -225,26 +226,26 @@ public class ClienteServiceImpl implements UserService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return cliente;
+		return user;
 	}
 
 	@Override
-	public User autenticar(String mail, String password) throws DataException {
+	public User authenticate(String email, String password) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
-		User cliente = null;
+		User user = null;
 		
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
 			
-			cliente = clienteDAO.findByEmail(con, mail);
-			if(cliente == null) {
+			user = userDAO.findByEmail(con, email);
+			if(user == null) {
 				return null;
 			}
-			if(!PASSWORD_ENCRYPTOR.checkPassword(password, cliente.getPassword())) {
-				cliente = null;
+			if(!PASSWORD_ENCRYPTOR.checkPassword(password, user.getPassword())) {
+				user = null;
 			}
 			
 			commit = true;
@@ -256,7 +257,7 @@ public class ClienteServiceImpl implements UserService {
 			JDBCUtils.close(con, commit);
 		}
 		
-		return cliente;
+		return user;
 	}
 
 

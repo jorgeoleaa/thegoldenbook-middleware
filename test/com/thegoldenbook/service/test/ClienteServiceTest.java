@@ -7,7 +7,7 @@ import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.UserService;
-import com.thegoldenbook.service.impl.ClienteServiceImpl;
+import com.thegoldenbook.service.impl.UserServiceImpl;
 import com.thegoldenbook.service.impl.MailServiceImpl;
 
 public class ClienteServiceTest {
@@ -16,7 +16,7 @@ public class ClienteServiceTest {
 	private UserService clienteService = null;
 
 	public ClienteServiceTest() {
-		clienteService = new ClienteServiceImpl();
+		clienteService = new UserServiceImpl();
 	}
 
 	public void testFindAll() throws Exception{

@@ -12,7 +12,7 @@ import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.service.ValoracionService;
-import com.thegoldenbook.service.impl.ClienteServiceImpl;
+import com.thegoldenbook.service.impl.UserServiceImpl;
 import com.thegoldenbook.service.impl.OrderServiceImpl;
 import com.thegoldenbook.service.impl.ValoracionServiceImpl;
 
@@ -24,7 +24,7 @@ public class ClienteServiceTest {
 	private UserService clienteService = null;
 	
 	public ClienteServiceTest() {
-		clienteService = new ClienteServiceImpl();
+		clienteService = new UserServiceImpl();
 		valoracionService = new ValoracionServiceImpl();
 		pedidoService = new OrderServiceImpl();
 	}

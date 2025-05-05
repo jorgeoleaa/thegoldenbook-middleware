@@ -21,7 +21,7 @@ public interface UserService {
 	public Long register(User user) 
 			throws DataException, ServiceException;
 	
-	public boolean update (User user) 
+	public boolean update (User users) 
 			throws DataException;
 	
 	public boolean updatePassword (String password, Long id) 

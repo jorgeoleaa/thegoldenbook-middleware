@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
 
 	public OrderServiceImpl() {
 		orderDAO = new OrderDAOImpl();
-		userService = new ClienteServiceImpl();
+		userService = new UserServiceImpl();
 		mailService = new MailServiceImpl();
 	}
 

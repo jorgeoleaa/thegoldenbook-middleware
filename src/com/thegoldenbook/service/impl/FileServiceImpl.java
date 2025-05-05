@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService{
 	private static Logger logger = LogManager.getLogger(FileServiceImpl.class);
 	private LibroService libroService = new LibroServiceImpl();
 	private LanguageService idiomaService = new LanguageServiceImpl();
-	private UserService clienteService = new ClienteServiceImpl();
+	private UserService clienteService = new UserServiceImpl();
 	
 	@Override
 	public BufferedImage createThumbnail(BufferedImage image, int width, int height) {

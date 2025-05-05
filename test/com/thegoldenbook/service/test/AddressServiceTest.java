@@ -11,7 +11,7 @@ import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.AddressService;
 import com.thegoldenbook.service.EmployeeService;
-import com.thegoldenbook.service.impl.ClienteServiceImpl;
+import com.thegoldenbook.service.impl.UserServiceImpl;
 import com.thegoldenbook.service.impl.AddressServiceImpl;
 import com.thegoldenbook.service.impl.EmployeeServiceImpl;
 
@@ -24,7 +24,7 @@ public class AddressServiceTest {
 	
 	public AddressServiceTest() {
 		addressService = new AddressServiceImpl();
-		userService = new ClienteServiceImpl();
+		userService = new UserServiceImpl();
 		employeeService = new EmployeeServiceImpl();
 	}
 	

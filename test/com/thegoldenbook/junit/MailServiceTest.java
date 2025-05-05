@@ -12,7 +12,7 @@ import com.thegoldenbook.model.User;
 import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.MailException;
 import com.thegoldenbook.service.MailService;
-import com.thegoldenbook.service.impl.ClienteServiceImpl;
+import com.thegoldenbook.service.impl.UserServiceImpl;
 import com.thegoldenbook.service.impl.MailServiceImpl;
 
 public class MailServiceTest {
@@ -24,7 +24,7 @@ public class MailServiceTest {
 	
 	public MailServiceTest() {
 		mailService = new MailServiceImpl();
-		clienteService = new ClienteServiceImpl();
+		clienteService = new UserServiceImpl();
 	}
 	
 	 @Test
