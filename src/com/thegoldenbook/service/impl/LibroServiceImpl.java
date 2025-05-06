@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.BookDAO;
-import com.thegoldenbook.dao.impl.LibroDAOImpl;
+import com.thegoldenbook.dao.impl.BookDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.BookCriteria;
@@ -21,7 +21,7 @@ public class LibroServiceImpl implements LibroService{
 	private BookDAO libroDAO = null;
 
 	public LibroServiceImpl() {
-		libroDAO = new LibroDAOImpl();
+		libroDAO = new BookDAOImpl();
 	}
 
 	public Book findByLibro(String locale, Long libroId) throws DataException{

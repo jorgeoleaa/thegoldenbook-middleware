@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.BookDAO;
 import com.thegoldenbook.dao.ValoracionDAO;
-import com.thegoldenbook.dao.impl.LibroDAOImpl;
+import com.thegoldenbook.dao.impl.BookDAOImpl;
 import com.thegoldenbook.dao.impl.ValoracionDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
@@ -27,7 +27,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 	
 	public ValoracionServiceImpl() {
 		valoracionDAO = new ValoracionDAOImpl();
-		libroDAO = new LibroDAOImpl();
+		libroDAO = new BookDAOImpl();
 	}
 
 	public Review findByValoracion(Long clienteId, Long libroId) throws DataException {
