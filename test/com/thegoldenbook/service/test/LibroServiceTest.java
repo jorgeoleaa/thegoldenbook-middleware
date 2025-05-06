@@ -10,7 +10,7 @@ import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Subject;
-import com.thegoldenbook.service.LibroCriteria;
+import com.thegoldenbook.service.BookCriteria;
 import com.thegoldenbook.service.LibroService;
 import com.thegoldenbook.service.impl.LibroServiceImpl;
 import com.thegoldenbook.util.DateUtils;
@@ -43,7 +43,7 @@ public class LibroServiceTest {
 
 		logger.traceEntry("Testing findByCriteria...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setNombre("a");
 		String locale = "it";
 		c.setLocale(locale);
@@ -63,7 +63,7 @@ public class LibroServiceTest {
 
 		logger.traceEntry("Testing findByCriteria...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setId(15l);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 1);
@@ -82,7 +82,7 @@ public class LibroServiceTest {
 
 		logger.traceEntry("Testing FindByCriteriaIsbn...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setIsbn("978-0060913076");
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -99,7 +99,7 @@ public class LibroServiceTest {
 	public void testFindByPrecioDesde() throws Exception{
 		logger.traceEntry("Testing FindByCriteriaPrecioDesde...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setDesdePrecio(25.00);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -117,7 +117,7 @@ public class LibroServiceTest {
 	public void testFindByPrecioHasta() throws Exception{
 		logger.traceEntry("Testing FindByCriteriaPrecioHasta...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setHastaPrecio(15.00);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -134,9 +134,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaUnidadesDesde() throws Exception{
 		logger.traceEntry("Testing FindByCriteriaUnidadesDesde");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setUnidadesDesde(12);
-		c.setOrderBy(LibroCriteria.ORDER_BY_UNIDADES);
+		c.setOrderBy(BookCriteria.ORDER_BY_UNIDADES);
 		c.setAscDesc(Boolean.TRUE);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -153,9 +153,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaUnidadesHasta() throws Exception{
 		logger.traceEntry("Testing findByCriteriaUnidadesHasta...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setUnidadesHasta(5);
-		c.setOrderBy(LibroCriteria.ORDER_BY_UNIDADES);
+		c.setOrderBy(BookCriteria.ORDER_BY_UNIDADES);
 		c.setAscDesc(Boolean.FALSE);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -172,9 +172,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaFechaDesde() throws Exception{
 		logger.traceEntry("Testing findByCriteriaFechaDesde...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setDesdeFecha(DateUtils.getDate(1960, 01, 1));
-		c.setOrderBy(LibroCriteria.ORDER_BY_FECHA);
+		c.setOrderBy(BookCriteria.ORDER_BY_FECHA);
 		c.setAscDesc(Boolean.FALSE);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -191,9 +191,9 @@ public class LibroServiceTest {
 	public void testFindByCriteriaFechaHasta() throws Exception{
 		logger.traceEntry("Testing findByCriteriaFechaHasta...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setHastaFecha(DateUtils.getDate(1950, 0, 1));
-		c.setOrderBy(LibroCriteria.ORDER_BY_FECHA);
+		c.setOrderBy(BookCriteria.ORDER_BY_FECHA);
 		c.setAscDesc(Boolean.FALSE);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -210,7 +210,7 @@ public class LibroServiceTest {
 	public void testFindByCriteriaGeneroLiterarioId() throws Exception{
 		logger.traceEntry("Testing findByCriteriaGeneroLiterarioId...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setGeneroLiterarioId(1);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 5);
@@ -227,7 +227,7 @@ public class LibroServiceTest {
 	public void testFindByCriteriaClasificacionEdadId() throws Exception{
 		logger.traceEntry("Testing findByCriteriaClasificacionEdadId...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setClasificacionEdadId(1);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -244,7 +244,7 @@ public class LibroServiceTest {
 	public void testFindByCriteriaIdiomaId() throws Exception{
 		logger.traceEntry("Testing findByCriteriaIdiomaId...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setIdiomaId(2);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -261,7 +261,7 @@ public class LibroServiceTest {
 	public void testfindByCriteriaFormatoId() throws Exception{
 		logger.traceEntry("Testing findByCriteriaFormatoId...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setFormatoId(3);
 		String locale = "it";
 		Results<Book> resultados = libroService.findByCriteria(c, 1, 10);
@@ -278,7 +278,7 @@ public class LibroServiceTest {
 	public void testFindByCriteriaByMultipleParameters() throws Exception{
 		logger.traceEntry("Testing findByCriteriaByMultipleParameterss...");
 
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		//c.setFormatoId(4);
 		//c.setIdiomaId(1);
 		c.setDesdeFecha(DateUtils.getDate(1950, 1, 1));
@@ -305,7 +305,7 @@ public class LibroServiceTest {
 	
 	public void testFindByCriteriaWithoutParameters() throws Exception{
 		logger.traceEntry("Testing testFindByCriteriaWithoutParameters...");
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		String locale = "it";
 		Results<Book> libros = libroService.findByCriteria(c, 1, 5);
 

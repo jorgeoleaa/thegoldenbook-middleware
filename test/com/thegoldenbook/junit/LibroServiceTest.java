@@ -15,7 +15,7 @@ import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Subject;
-import com.thegoldenbook.service.LibroCriteria;
+import com.thegoldenbook.service.BookCriteria;
 import com.thegoldenbook.service.LibroService;
 import com.thegoldenbook.service.impl.LibroServiceImpl;
 import com.thegoldenbook.util.DateUtils;
@@ -30,7 +30,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void findByCriteriaNombre() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setNombre("Lolita");
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
@@ -38,7 +38,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaId() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setId(4l);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
@@ -46,7 +46,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteraIsbn() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setIsbn("978-0060913076");
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 		assertEquals(1, resultados.getTotal());
@@ -54,7 +54,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByPrecioDesde() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setDesdePrecio(25.00);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -65,7 +65,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByPrecioHasta() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setHastaPrecio(15.00);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -76,7 +76,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaUnidadesDesde() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setUnidadesDesde(12);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -87,7 +87,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaUnidadesHasta() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setUnidadesHasta(5);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -98,7 +98,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaFechaDesde() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setDesdeFecha(DateUtils.getDate(1960, 01, 1));
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -112,7 +112,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaFechaHasta() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setDesdeFecha(DateUtils.getDate(1950, 0, 1));
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -126,7 +126,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaGeneroLiterarioId() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setGeneroLiterarioId(1);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -137,7 +137,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaClasificacionEdadId() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setClasificacionEdadId(1);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -148,7 +148,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaIdiomaId() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setIdiomaId(1);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -159,7 +159,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaFormatoId() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setFormatoId(1);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -170,7 +170,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaByMultipleParameters() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		c.setDesdeFecha(DateUtils.getDate(1940, 0, 1));
 		c.setDesdePrecio(20.00);
 		Results<Book> resultados = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
@@ -183,7 +183,7 @@ public class LibroServiceTest {
 
 	@Test
 	public void testFindByCriteriaWithoutParameters() throws Exception{
-		LibroCriteria c = new LibroCriteria();
+		BookCriteria c = new BookCriteria();
 		Results<Book> libros = libroService.findByCriteria(c, 1, Integer.MAX_VALUE);
 
 		assertEquals(11, libros.getTotal());

@@ -6,7 +6,7 @@ import java.util.List;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.LibroCriteria;
+import com.thegoldenbook.service.BookCriteria;
 public interface LibroDAO {
 	
 	public Long create(Connection con, String locale, Book l)
@@ -15,7 +15,7 @@ public interface LibroDAO {
 	public boolean update(Connection con, Book l)
 			throws DataException;
 	
-	public Results<Book> findByCriteria(Connection con, LibroCriteria libro, int pos, int pageSize)
+	public Results<Book> findByCriteria(Connection con, BookCriteria libro, int pos, int pageSize)
 			throws DataException;
 	
 	public Book findByLibro (Connection con, String locale, Long id)

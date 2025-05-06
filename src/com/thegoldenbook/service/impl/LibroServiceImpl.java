@@ -11,7 +11,7 @@ import com.thegoldenbook.dao.LibroDAO;
 import com.thegoldenbook.dao.impl.LibroDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.LibroCriteria;
+import com.thegoldenbook.service.BookCriteria;
 import com.thegoldenbook.service.LibroService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -44,7 +44,7 @@ public class LibroServiceImpl implements LibroService{
 		return l;
 	}
 
-	public Results<Book> findByCriteria(LibroCriteria l, int pos, int pageSize) throws DataException{
+	public Results<Book> findByCriteria(BookCriteria l, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
 		Results<Book> resultados = null;
