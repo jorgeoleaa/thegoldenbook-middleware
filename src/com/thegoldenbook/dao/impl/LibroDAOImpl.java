@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.AuthorDAO;
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LibroDAO;
+import com.thegoldenbook.dao.BookDAO;
 import com.thegoldenbook.dao.SubjectDAO;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Book;
@@ -23,7 +23,7 @@ import com.thegoldenbook.service.BookCriteria;
 import com.thegoldenbook.util.JDBCUtils;
 import com.thegoldenbook.util.SQLUtils;
 
-public class LibroDAOImpl implements LibroDAO {
+public class LibroDAOImpl implements BookDAO {
 
 	private static Logger logger = LogManager.getLogger(LibroDAOImpl.class);
 	private AuthorDAO autorDAO = null;

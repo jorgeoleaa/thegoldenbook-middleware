@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LibroDAO;
+import com.thegoldenbook.dao.BookDAO;
 import com.thegoldenbook.dao.impl.LibroDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
@@ -18,7 +18,7 @@ import com.thegoldenbook.util.JDBCUtils;
 public class LibroServiceImpl implements LibroService{
 
 	private static Logger logger = LogManager.getLogger(LibroServiceImpl.class);
-	private LibroDAO libroDAO = null;
+	private BookDAO libroDAO = null;
 
 	public LibroServiceImpl() {
 		libroDAO = new LibroDAOImpl();

@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.LibroDAO;
+import com.thegoldenbook.dao.BookDAO;
 import com.thegoldenbook.dao.ValoracionDAO;
 import com.thegoldenbook.dao.impl.LibroDAOImpl;
 import com.thegoldenbook.dao.impl.ValoracionDAOImpl;
@@ -23,7 +23,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 
 	private static Logger logger = LogManager.getLogger(ValoracionServiceImpl.class);
 	private ValoracionDAO valoracionDAO = null;
-	private LibroDAO libroDAO = null;
+	private BookDAO libroDAO = null;
 	
 	public ValoracionServiceImpl() {
 		valoracionDAO = new ValoracionDAOImpl();
