@@ -36,7 +36,7 @@ public class FileServiceImpl implements FileService{
 	private static final String BASE_PROFILE_IMAGE_PATH = "base.profile.image.path";
 	
 	private static Logger logger = LogManager.getLogger(FileServiceImpl.class);
-	private BookService libroService = new LibroServiceImpl();
+	private BookService libroService = new BookServiceImpl();
 	private LanguageService idiomaService = new LanguageServiceImpl();
 	private UserService clienteService = new UserServiceImpl();
 	

@@ -15,16 +15,16 @@ import com.thegoldenbook.service.BookCriteria;
 import com.thegoldenbook.service.BookService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class LibroServiceImpl implements BookService{
+public class BookServiceImpl implements BookService{
 
-	private static Logger logger = LogManager.getLogger(LibroServiceImpl.class);
-	private BookDAO libroDAO = null;
+	private static Logger logger = LogManager.getLogger(BookServiceImpl.class);
+	private BookDAO bookDAO = null;
 
-	public LibroServiceImpl() {
-		libroDAO = new BookDAOImpl();
+	public BookServiceImpl() {
+		bookDAO = new BookDAOImpl();
 	}
 
-	public Book findByLibro(String locale, Long libroId) throws DataException{
+	public Book findByBook(String locale, Long bookId) throws DataException{
 
 		Book l = null;
 		Connection con = null;
@@ -32,7 +32,7 @@ public class LibroServiceImpl implements BookService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			l = libroDAO.findByLibro(con, locale, libroId);
+			l = bookDAO.findByBook(con, locale, bookId);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -44,15 +44,15 @@ public class LibroServiceImpl implements BookService{
 		return l;
 	}
 
-	public Results<Book> findByCriteria(BookCriteria l, int pos, int pageSize) throws DataException{
+	public Results<Book> findByCriteria(BookCriteria bookCriteria, int pos, int pageSize) throws DataException{
 
 		Connection con = null;
-		Results<Book> resultados = null;
+		Results<Book> results = null;
 		boolean commit = false;
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = libroDAO.findByCriteria(con, l, pos, pageSize);
+			results = bookDAO.findByCriteria(con, bookCriteria, pos, pageSize);
 			commit = true;
 
 		} catch(Exception e) {
@@ -61,10 +61,10 @@ public class LibroServiceImpl implements BookService{
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
-	public Long create (String locale, Book l) throws DataException{
+	public Long create (String locale, Book book) throws DataException{
 
 		Connection con = null;
 		Long id = null;
@@ -72,7 +72,7 @@ public class LibroServiceImpl implements BookService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			id = libroDAO.create(con, locale, l);
+			id = bookDAO.create(con, locale, book);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -84,7 +84,7 @@ public class LibroServiceImpl implements BookService{
 		return id;
 	}
 
-	public boolean update(Book l) throws DataException {
+	public boolean update(Book book) throws DataException {
 
 		Connection con = null;
 		boolean li = false;
@@ -93,7 +93,7 @@ public class LibroServiceImpl implements BookService{
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			li = libroDAO.update(con, l);
+			li = bookDAO.update(con, book);
 			commit = true;
 
 		} catch(Exception e) {

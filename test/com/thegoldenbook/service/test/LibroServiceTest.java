@@ -12,7 +12,7 @@ import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.BookCriteria;
 import com.thegoldenbook.service.BookService;
-import com.thegoldenbook.service.impl.LibroServiceImpl;
+import com.thegoldenbook.service.impl.BookServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class LibroServiceTest {
@@ -21,7 +21,7 @@ public class LibroServiceTest {
 	private BookService libroService = null; 
 
 	public LibroServiceTest() {
-		libroService = new LibroServiceImpl();
+		libroService = new BookServiceImpl();
 	}
 
 	public void testFindByLibro() throws Exception{

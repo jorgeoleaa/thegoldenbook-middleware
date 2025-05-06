@@ -14,7 +14,7 @@ import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.BookService;
 import com.thegoldenbook.service.OrderCriteria;
 import com.thegoldenbook.service.OrderService;
-import com.thegoldenbook.service.impl.LibroServiceImpl;
+import com.thegoldenbook.service.impl.BookServiceImpl;
 import com.thegoldenbook.service.impl.OrderServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
@@ -26,7 +26,7 @@ public class PedidoServiceTest {
 
 	public PedidoServiceTest() {
 		pedidoService = new OrderServiceImpl();
-		libroService = new LibroServiceImpl();
+		libroService = new BookServiceImpl();
 	}
 
 	public void testFindById() throws Exception{
