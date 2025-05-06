@@ -8,7 +8,7 @@ import com.thegoldenbook.model.Review;
 
 public interface ValoracionService {
 	
-	public Results<Review> findByValoracionCriteria(ValoracionCriteria i, int pos, int pageSize)
+	public Results<Review> findByValoracionCriteria(ReviewCriteria i, int pos, int pageSize)
 			throws DataException;
 	
 	public Review findByValoracion (Long clienteId, Long libroId) 

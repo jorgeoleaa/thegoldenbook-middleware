@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
-import com.thegoldenbook.service.ValoracionCriteria;
+import com.thegoldenbook.service.ReviewCriteria;
 import com.thegoldenbook.service.ValoracionService;
 import com.thegoldenbook.service.impl.ValoracionServiceImpl;
 import com.thegoldenbook.util.DateUtils;
@@ -66,7 +66,7 @@ public class ValoracionServiceTest {
 
 	@Test
 	public void testFindByCriteriaClienteId() throws Exception{
-		ValoracionCriteria valoracion = new ValoracionCriteria();
+		ReviewCriteria valoracion = new ReviewCriteria();
 		valoracion.setClienteId(3l);
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, Integer.MAX_VALUE);
 
@@ -78,7 +78,7 @@ public class ValoracionServiceTest {
 
 	@Test
 	public void testFindByCriteriaLibroId() throws Exception{
-		ValoracionCriteria valoracion = new ValoracionCriteria();
+		ReviewCriteria valoracion = new ReviewCriteria();
 		valoracion.setLibroId(4l);
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, Integer.MAX_VALUE);
 
@@ -89,7 +89,7 @@ public class ValoracionServiceTest {
 
 	@Test
 	public void testFindByCriteriaFechaDesde() throws Exception{
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		c.setFechaDesde(DateUtils.getDate(2023, 8, 25));
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -103,7 +103,7 @@ public class ValoracionServiceTest {
 
 	@Test
 	public void testFindByCriteriaFechaHasta() throws Exception{
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		c.setFechaHasta(DateUtils.getDate(2023, 2, 20));
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
 
@@ -117,7 +117,7 @@ public class ValoracionServiceTest {
 
 	@Test
 	public void testFindByCriteriaPalabra() throws Exception{
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		c.setPalabra("interesante");
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, Integer.MAX_VALUE);
 		
@@ -126,7 +126,7 @@ public class ValoracionServiceTest {
 	
 	@Test
 	public void testFindByCriteriaMultipleParameters() throws Exception{
-		ValoracionCriteria criteria = new ValoracionCriteria();
+		ReviewCriteria criteria = new ReviewCriteria();
 		criteria.setFechaDesde(DateUtils.getDateTime(2023, 6, 1, 0, 0, 0)); 
 		criteria.setFechaHasta(DateUtils.getDateTime(2023, 8, 25, 0, 0, 0));
 		
@@ -144,7 +144,7 @@ public class ValoracionServiceTest {
 	
 	@Test
 	public void findByEmptyCriteria() throws Exception{
-		ValoracionCriteria criteria = new ValoracionCriteria();
+		ReviewCriteria criteria = new ReviewCriteria();
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(criteria, 1, Integer.MAX_VALUE);
 		assertEquals(10, resultados.getTotal());
 	}

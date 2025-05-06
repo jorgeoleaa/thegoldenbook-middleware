@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
-import com.thegoldenbook.service.ValoracionCriteria;
+import com.thegoldenbook.service.ReviewCriteria;
 import com.thegoldenbook.service.ValoracionService;
 import com.thegoldenbook.service.impl.ValoracionServiceImpl;
 import com.thegoldenbook.util.DateUtils;
@@ -34,7 +34,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByCriteriaClienteId() throws Exception{
 		logger.traceEntry("Testing findByCriteria...");
-		ValoracionCriteria valoracion = new ValoracionCriteria();
+		ReviewCriteria valoracion = new ReviewCriteria();
 		valoracion.setClienteId(3l);
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, 5);
 
@@ -51,7 +51,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByCriteriaLibroId() throws Exception{
 		logger.traceEntry("Testing findByCriteria...");
-		ValoracionCriteria valoracion = new ValoracionCriteria();
+		ReviewCriteria valoracion = new ReviewCriteria();
 		valoracion.setLibroId(4l);
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(valoracion, 1, 5);
 
@@ -69,7 +69,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByCriteriaFechaDesde() throws Exception{
 		logger.traceEntry("Testing findByCriteriaFechaDesde...");
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		c.setFechaDesde(DateUtils.getDate(2023, 8, 25));
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
 
@@ -84,7 +84,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByCriteriaFechaHasta() throws Exception{
 		logger.traceEntry("Testing findByCriteriaFechaHasta...");
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		c.setFechaHasta(DateUtils.getDate(2023, 2, 20));
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, 10);
 
@@ -100,7 +100,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByCriteriaPalabra() throws Exception{
 		logger.traceEntry("Testing findByCriteriaPalabra...");
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		c.setPalabra("interesante");
 		Results<Review> resultados = valoracionService.findByValoracionCriteria(c, 1, 5);
 
@@ -115,7 +115,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByCriteriaMultipleParameters() throws Exception{
 		logger.traceEntry("Testing findByCriteriaPalabra...");
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		//c.setClienteId(2l);
 		//c.setPalabra("interesante");
 		c.setFechaDesde(DateUtils.getDateTime(2023, 6, 1, 0, 0, 0)); 
@@ -135,7 +135,7 @@ public class ValoracionServiceTest {
 
 	public void testFindByEmptyCriteria() throws Exception{
 		logger.traceEntry("Testing FindByEmptyCriteria...");
-		ValoracionCriteria c = new ValoracionCriteria();
+		ReviewCriteria c = new ReviewCriteria();
 		Results<Review>valoraciones = valoracionService.findByValoracionCriteria(c, 1, 10);
 
 		if(valoraciones.getPage().isEmpty()) {

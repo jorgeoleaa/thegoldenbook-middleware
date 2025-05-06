@@ -15,7 +15,7 @@ import com.thegoldenbook.dao.impl.ValoracionDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
-import com.thegoldenbook.service.ValoracionCriteria;
+import com.thegoldenbook.service.ReviewCriteria;
 import com.thegoldenbook.service.ValoracionService;
 import com.thegoldenbook.util.JDBCUtils;
 
@@ -74,7 +74,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 		return resultados;
 	}
 
-	public Results<Review> findByValoracionCriteria(ValoracionCriteria i, int pos, int pageSize)
+	public Results<Review> findByValoracionCriteria(ReviewCriteria i, int pos, int pageSize)
 			throws DataException{
 
 		Connection con = null;

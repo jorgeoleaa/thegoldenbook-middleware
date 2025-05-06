@@ -15,7 +15,7 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.ValoracionDAO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
-import com.thegoldenbook.service.ValoracionCriteria;
+import com.thegoldenbook.service.ReviewCriteria;
 import com.thegoldenbook.util.JDBCUtils;
 import com.thegoldenbook.util.SQLUtils;
 
@@ -27,7 +27,7 @@ public class ValoracionDAOImpl implements ValoracionDAO{
 
 	}
 
-	public Results<Review> findByValoracionCriteria(Connection con, ValoracionCriteria v, int pos, int pageSize) throws DataException{
+	public Results<Review> findByValoracionCriteria(Connection con, ReviewCriteria v, int pos, int pageSize) throws DataException{
 
 		Results<Review> resultados = new Results<Review>();
 		List<String> condiciones = new ArrayList<String>();

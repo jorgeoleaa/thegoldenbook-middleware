@@ -4,11 +4,11 @@ import java.sql.Connection;
 
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
-import com.thegoldenbook.service.ValoracionCriteria;
+import com.thegoldenbook.service.ReviewCriteria;
 
 public interface ValoracionDAO {
 	
-	public Results<Review> findByValoracionCriteria (Connection con, ValoracionCriteria i, int pos, int pageSize)
+	public Results<Review> findByValoracionCriteria (Connection con, ReviewCriteria i, int pos, int pageSize)
 			throws DataException;
 	
 	public Review findByValoracion (Connection con, Long clienteId, Long libroId) 
