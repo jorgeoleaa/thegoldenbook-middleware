@@ -12,10 +12,10 @@ import com.thegoldenbook.dao.impl.BookDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.service.BookCriteria;
-import com.thegoldenbook.service.LibroService;
+import com.thegoldenbook.service.BookService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class LibroServiceImpl implements LibroService{
+public class LibroServiceImpl implements BookService{
 
 	private static Logger logger = LogManager.getLogger(LibroServiceImpl.class);
 	private BookDAO libroDAO = null;

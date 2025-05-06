@@ -28,7 +28,7 @@ import com.thegoldenbook.model.Book;
 import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.FileService;
 import com.thegoldenbook.service.LanguageService;
-import com.thegoldenbook.service.LibroService;
+import com.thegoldenbook.service.BookService;
 
 public class FileServiceImpl implements FileService{
 	
@@ -36,7 +36,7 @@ public class FileServiceImpl implements FileService{
 	private static final String BASE_PROFILE_IMAGE_PATH = "base.profile.image.path";
 	
 	private static Logger logger = LogManager.getLogger(FileServiceImpl.class);
-	private LibroService libroService = new LibroServiceImpl();
+	private BookService libroService = new LibroServiceImpl();
 	private LanguageService idiomaService = new LanguageServiceImpl();
 	private UserService clienteService = new UserServiceImpl();
 	
