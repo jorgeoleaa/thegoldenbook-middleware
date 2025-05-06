@@ -12,14 +12,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.DataException;
-import com.thegoldenbook.dao.ValoracionDAO;
+import com.thegoldenbook.dao.ReviewDAO;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ReviewCriteria;
 import com.thegoldenbook.util.JDBCUtils;
 import com.thegoldenbook.util.SQLUtils;
 
-public class ValoracionDAOImpl implements ValoracionDAO{
+public class ValoracionDAOImpl implements ReviewDAO{
 
 	private static Logger logger = LogManager.getLogger(ValoracionDAOImpl.class);
 
