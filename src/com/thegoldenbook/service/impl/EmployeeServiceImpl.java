@@ -118,7 +118,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 			con.setAutoCommit(false);
 			employee = employeeDAO.findBy(con, id, locale);
 			em = employeeDAO.delete(con, id);
-			mailService.enviar(employee.getEmail(), "Notice of Account Deletion", "We are sending you this message to inform you that, since you are no longer part of our team of employees,"
+			mailService.send(employee.getEmail(), "Notice of Account Deletion", "We are sending you this message to inform you that, since you are no longer part of our team of employees,"
 					+ " your employee account has been deleted."
 					+ " We appreciate your services during this time. ");
 
@@ -222,7 +222,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 			con.setAutoCommit(false);
 			id = employeeDAO.create(con, empl);
 
-			mailService.enviar(empl.getEmail(), "Welcome to our team", 
+			mailService.send(empl.getEmail(), "Welcome to our team", 
 				    "We are delighted to have you as part of our team, working together to achieve the highest level of productivity and customer satisfaction.");
 
 			commit = true;
