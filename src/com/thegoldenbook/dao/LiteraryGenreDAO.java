@@ -10,9 +10,9 @@ public interface LiteraryGenreDAO {
 	
 	public List<LiteraryGenre> findAll(Connection con, String locale) throws DataException;
 	
-	public List<Subject> findByBook(Connection con, String locale, Long libroId)
+	public List<LiteraryGenre> findByBook(Connection con, String locale, Long libroId)
 			throws DataException;
 	
-	public Subject findById(Connection con, int id, String locale)
+	public LiteraryGenre findById(Connection con, int id, String locale)
 			throws DataException;
 }
