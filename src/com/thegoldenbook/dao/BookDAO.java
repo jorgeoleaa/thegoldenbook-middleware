@@ -26,4 +26,7 @@ public interface BookDAO {
 	
 	public void assignSubjects (Connection con, String locale, Long bookId, List<Integer>subjectsId)
 			throws DataException;
+	
+	public void assignLiteraryGenres (Connection con, String locale, Long bookId, List<Integer>literaryGenresId)
+			throws DataException;
 }
