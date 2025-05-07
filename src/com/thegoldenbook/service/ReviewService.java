@@ -20,7 +20,7 @@ public interface ReviewService {
 	public Results<Review> findByBook(Long bookId, int pos, int pageSize, String locale)
 			throws DataException;
 	
-	public void create (Review review)
+	public void create (Review review, String locale)
 			throws DataException;
 	
 	public boolean delete (Long userId, Long bookId)
