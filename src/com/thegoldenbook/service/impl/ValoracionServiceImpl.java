@@ -11,7 +11,7 @@ import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.BookDAO;
 import com.thegoldenbook.dao.ReviewDAO;
 import com.thegoldenbook.dao.impl.BookDAOImpl;
-import com.thegoldenbook.dao.impl.ValoracionDAOImpl;
+import com.thegoldenbook.dao.impl.ReviewDAOImpl;
 import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
@@ -26,7 +26,7 @@ public class ValoracionServiceImpl implements ValoracionService {
 	private BookDAO libroDAO = null;
 	
 	public ValoracionServiceImpl() {
-		valoracionDAO = new ValoracionDAOImpl();
+		valoracionDAO = new ReviewDAOImpl();
 		libroDAO = new BookDAOImpl();
 	}
 
