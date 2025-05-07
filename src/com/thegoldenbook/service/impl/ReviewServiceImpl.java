@@ -128,9 +128,9 @@ public class ReviewServiceImpl implements ReviewService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			reviewDAO.create(con, review, locale);
+			reviewDAO.create(con, review);
 			Book libro = bookDAO.findByBook(con, locale, review.getBookId());
-			libro.setAverageRating(calcularMedia(reviewDAO.findByBook(con, review.getBookId(), locale, 1, Integer.MAX_VALUE).getPage()));
+			libro.setAverageRating(calculateAverage(reviewDAO.findByBook(con, review.getBookId(), locale, 1, Integer.MAX_VALUE).getPage()));
 			flag = bookDAO.update(con, libro);
 			if(flag) {
 				commit = true;
