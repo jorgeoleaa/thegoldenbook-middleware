@@ -4,16 +4,16 @@ import java.util.Comparator;
 
 import com.thegoldenbook.model.Book;
 
-public class LibroPrecioComparator implements Comparator<Book>{
+public class BookPriceComparator implements Comparator<Book>{
 	
-	public LibroPrecioComparator() {
+	public BookPriceComparator() {
 		
 	}
 	
 	public int compare (Book one, Book other) {
-		if(one.getPrecio()>other.getPrecio()) {
+		if(one.getPrice()>other.getPrice()) {
 			return 1;
-		}else if (one.getPrecio()==other.getPrecio()) {
+		}else if (one.getPrice()==other.getPrice()) {
 			return 0;
 		}else {
 			return -1;
