@@ -14,6 +14,8 @@ public class ReviewCriteria extends AbstractCriteria{
 	private Date endDate;
 	private String content;
 	
+	private String locale;
+	
 	private String orderBy = ORDER_BY_DATE;
 	private Boolean ascDesc = Boolean.FALSE;
 	
@@ -79,6 +81,14 @@ public class ReviewCriteria extends AbstractCriteria{
 
 	public static String getOrderByDate() {
 		return ORDER_BY_DATE;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 	
