@@ -33,7 +33,6 @@ public class JDBCUtils {
 			cpds.setUser(ConfigurationParametersManager.getParameterValue(USER));
 			cpds.setPassword(ConfigurationParametersManager.getParameterValue(PASS));
 			
-			//Modificación para que funcione una vez subido al servidor.
 			cpds.setMinPoolSize(5);
 			cpds.setAcquireIncrement(5);
 			cpds.setMaxPoolSize(20);
