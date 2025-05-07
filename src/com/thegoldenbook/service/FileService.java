@@ -21,11 +21,11 @@ public interface FileService {
 	
 	public Image iconToImage(Icon icon);
 	
-	public List<File> getImagesByBookId(String locale, Long libroId);
+	public List<File> getImagesByBookId(String locale, Long bookId);
 	
 	public void uploadImages(Book libro, String locale, List<File> selectedFiles);
 	
-	public List<File> getProfileImageByClienteId(Long clienteId);
+	public List<File> getProfileImageByUserId(Long userId);
 	
-	public void uploadProfileImage (Long clienteId, byte[] arrayImage) throws FileNotFoundException, IOException;
+	public void uploadProfileImage (Long userId, byte[] arrayImage) throws FileNotFoundException, IOException;
 }
