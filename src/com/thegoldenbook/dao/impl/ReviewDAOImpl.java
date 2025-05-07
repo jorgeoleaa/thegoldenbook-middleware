@@ -72,7 +72,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 				query.append(String.join(" and ", conditions));
 			}
 
-			query.append(" ORDER BY ").append(reviewCriteria.getOrderBy()).append(reviewCriteria.getAscDesc() ? " asc " : " desc ");
+			query.append(" order by ").append(reviewCriteria.getOrderBy()).append(reviewCriteria.getAscDesc() ? " asc " : " desc ");
 
 			String sql = query.toString();
 
