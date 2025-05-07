@@ -14,7 +14,7 @@ import com.thegoldenbook.service.OrderService;
 import com.thegoldenbook.service.ReviewService;
 import com.thegoldenbook.service.impl.UserServiceImpl;
 import com.thegoldenbook.service.impl.OrderServiceImpl;
-import com.thegoldenbook.service.impl.ValoracionServiceImpl;
+import com.thegoldenbook.service.impl.ReviewServiceImpl;
 
 public class ClienteServiceTest {
 	
@@ -25,7 +25,7 @@ public class ClienteServiceTest {
 	
 	public ClienteServiceTest() {
 		clienteService = new UserServiceImpl();
-		valoracionService = new ValoracionServiceImpl();
+		valoracionService = new ReviewServiceImpl();
 		pedidoService = new OrderServiceImpl();
 	}
 

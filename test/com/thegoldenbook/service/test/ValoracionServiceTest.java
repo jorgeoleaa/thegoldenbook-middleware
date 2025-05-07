@@ -10,7 +10,7 @@ import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ReviewCriteria;
 import com.thegoldenbook.service.ReviewService;
-import com.thegoldenbook.service.impl.ValoracionServiceImpl;
+import com.thegoldenbook.service.impl.ReviewServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class ValoracionServiceTest {
@@ -19,7 +19,7 @@ public class ValoracionServiceTest {
 	private ReviewService valoracionService = null;
 
 	public ValoracionServiceTest() {
-		valoracionService = new ValoracionServiceImpl();
+		valoracionService = new ReviewServiceImpl();
 	}
 
 	public void testFindByValoracion() throws Exception{

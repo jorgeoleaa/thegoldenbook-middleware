@@ -19,27 +19,27 @@ import com.thegoldenbook.service.ReviewCriteria;
 import com.thegoldenbook.service.ReviewService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ValoracionServiceImpl implements ReviewService {
+public class ReviewServiceImpl implements ReviewService {
 
-	private static Logger logger = LogManager.getLogger(ValoracionServiceImpl.class);
-	private ReviewDAO valoracionDAO = null;
-	private BookDAO libroDAO = null;
+	private static Logger logger = LogManager.getLogger(ReviewServiceImpl.class);
+	private ReviewDAO reviewDAO = null;
+	private BookDAO bookDAO = null;
 	
-	public ValoracionServiceImpl() {
-		valoracionDAO = new ReviewDAOImpl();
-		libroDAO = new BookDAOImpl();
+	public ReviewServiceImpl() {
+		reviewDAO = new ReviewDAOImpl();
+		bookDAO = new BookDAOImpl();
 	}
 
-	public Review findByValoracion(Long clienteId, Long libroId) throws DataException {
+	public Review findByReview(Long clienteId, Long libroId, String locale) throws DataException {
 
 		Connection con = null;
-		Review v = null;
+		Review review = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			v = valoracionDAO.findByValoracion(con, clienteId, libroId);
+			review = reviewDAO.findByReview(con, clienteId, libroId, locale);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -48,20 +48,20 @@ public class ValoracionServiceImpl implements ReviewService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return v;
+		return review;
 
 	}
 
-	public Results<Review> findByCliente(Long clienteId, int pos, int pageSize) throws DataException{
+	public Results<Review> findByUser(Long userId, int pos, int pageSize, String locale) throws DataException{
 
 		Connection con = null;
-		Results<Review> resultados = null;
+		Results<Review> results = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = valoracionDAO.findByCliente(con, clienteId, pos, pageSize);
+			results = reviewDAO.findByUser(con, userId, locale, pos, pageSize);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -71,20 +71,20 @@ public class ValoracionServiceImpl implements ReviewService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
-	public Results<Review> findByValoracionCriteria(ReviewCriteria i, int pos, int pageSize)
+	public Results<Review> findByReviewCriteria(ReviewCriteria reviewCriteria, int pos, int pageSize)
 			throws DataException{
 
 		Connection con = null;
-		Results<Review> resultados = null;
+		Results<Review> results = null;
 		boolean commit = false;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = valoracionDAO.findByValoracionCriteria(con, i, pos, pageSize);
+			results = reviewDAO.findByReviewCriteria(con, reviewCriteria, pos, pageSize);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -93,20 +93,20 @@ public class ValoracionServiceImpl implements ReviewService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
 
-	public Results<Review> findByLibro(Long libroId, int pos, int pageSize) throws DataException{
+	public Results<Review> findByBook(Long bookId, int pos, int pageSize, String locale) throws DataException{
 
 		Connection con = null;
-		Results<Review> resultados = null;
+		Results<Review> results = null;
 		boolean commit = true;
 
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			resultados = valoracionDAO.findByLibro(con, libroId, pos, pageSize);
+			results = reviewDAO.findByBook(con, bookId, locale, pos, pageSize);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -115,11 +115,11 @@ public class ValoracionServiceImpl implements ReviewService {
 		}finally {
 			JDBCUtils.close(con, commit);
 		}
-		return resultados;
+		return results;
 	}
 
 
-	public void create(Review v, String locale) throws DataException{
+	public void create(Review review, String locale) throws DataException{
 
 		Connection con = null;
 		boolean commit = false;
@@ -128,10 +128,10 @@ public class ValoracionServiceImpl implements ReviewService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			valoracionDAO.create(con, v);
-			Book libro = libroDAO.findByLibro(con, locale, v.getLibroId());
-			libro.setValoracionMedia(calcularMedia(valoracionDAO.findByLibro(con, v.getLibroId(), 1, Integer.MAX_VALUE).getPage()));
-			flag = libroDAO.update(con, libro);
+			reviewDAO.create(con, review, locale);
+			Book libro = bookDAO.findByBook(con, locale, review.getBookId());
+			libro.setAverageRating(calcularMedia(reviewDAO.findByBook(con, review.getBookId(), locale, 1, Integer.MAX_VALUE).getPage()));
+			flag = bookDAO.update(con, libro);
 			if(flag) {
 				commit = true;
 			}
@@ -145,7 +145,7 @@ public class ValoracionServiceImpl implements ReviewService {
 
 	}
 
-	public boolean delete(Long clienteId, Long libroId) throws DataException{
+	public boolean delete(Long userId, Long bookId) throws DataException{
 
 		Connection con = null;
 		boolean id = false;
@@ -154,7 +154,7 @@ public class ValoracionServiceImpl implements ReviewService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			id = valoracionDAO.delete(con, clienteId, libroId);
+			id = reviewDAO.delete(con, userId, bookId);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -167,7 +167,7 @@ public class ValoracionServiceImpl implements ReviewService {
 	}
 
 
-	public boolean update(Review v) throws DataException{
+	public boolean update(Review review) throws DataException{
 
 		Connection con = null;
 		boolean i = false;
@@ -176,7 +176,7 @@ public class ValoracionServiceImpl implements ReviewService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			i = valoracionDAO.update(con, v);
+			i = reviewDAO.update(con, review);
 			commit = true;
 
 		} catch(SQLException e) {
@@ -189,20 +189,20 @@ public class ValoracionServiceImpl implements ReviewService {
 	}
 
 	
-	public Double calcularMedia(List<Review> valoraciones) throws DataException {
+	public Double calculateAverage(List<Review> reviews) throws DataException {
 		
-		double sumaValoraciones = 0;
-		int contador = 0;
-		double media = 0;
+		double totalRatings = 0;
+		int count = 0;
+		double average = 0;
 		
-		for(int i = 0; i<valoraciones.size(); i++) {
-			sumaValoraciones += valoraciones.get(i).getNumeroEstrellas();
-			contador++;
+		for(int i = 0; i<reviews.size(); i++) {
+			totalRatings += reviews.get(i).getRating();
+			count++;
 		}
 		
-		media = sumaValoraciones/contador;
+		average = totalRatings/count;
 		
-		return media;
+		return average;
 	}
 
 }

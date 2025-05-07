@@ -14,13 +14,13 @@ public interface ReviewService {
 	public Review findByReview (Long userId, Long bookId, String locale) 
 			throws DataException;
 	
-	public Results<Review> findByUser(Long userId, int pos, int pageSize)
+	public Results<Review> findByUser(Long userId, int pos, int pageSize, String locale)
 			throws DataException;
 	
-	public Results<Review> findByBook(Long bookId, int pos, int pageSize)
+	public Results<Review> findByBook(Long bookId, int pos, int pageSize, String locale)
 			throws DataException;
 	
-	public void create (Review review, String locale)
+	public void create (Review review)
 			throws DataException;
 	
 	public boolean delete (Long userId, Long bookId)
