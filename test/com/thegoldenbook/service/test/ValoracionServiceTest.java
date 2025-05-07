@@ -9,14 +9,14 @@ import org.apache.logging.log4j.Logger;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ReviewCriteria;
-import com.thegoldenbook.service.ValoracionService;
+import com.thegoldenbook.service.ReviewService;
 import com.thegoldenbook.service.impl.ValoracionServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
 public class ValoracionServiceTest {
 
 	private static Logger logger = LogManager.getLogger(ValoracionServiceTest.class);
-	private ValoracionService valoracionService = null;
+	private ReviewService valoracionService = null;
 
 	public ValoracionServiceTest() {
 		valoracionService = new ValoracionServiceImpl();

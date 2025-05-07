@@ -16,10 +16,10 @@ import com.thegoldenbook.model.Book;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Review;
 import com.thegoldenbook.service.ReviewCriteria;
-import com.thegoldenbook.service.ValoracionService;
+import com.thegoldenbook.service.ReviewService;
 import com.thegoldenbook.util.JDBCUtils;
 
-public class ValoracionServiceImpl implements ValoracionService {
+public class ValoracionServiceImpl implements ReviewService {
 
 	private static Logger logger = LogManager.getLogger(ValoracionServiceImpl.class);
 	private ReviewDAO valoracionDAO = null;
