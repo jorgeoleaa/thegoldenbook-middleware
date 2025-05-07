@@ -36,9 +36,9 @@ public class FileServiceImpl implements FileService{
 	private static final String BASE_PROFILE_IMAGE_PATH = "base.profile.image.path";
 	
 	private static Logger logger = LogManager.getLogger(FileServiceImpl.class);
-	private BookService libroService = new BookServiceImpl();
-	private LanguageService idiomaService = new LanguageServiceImpl();
-	private UserService clienteService = new UserServiceImpl();
+	private BookService bookService = new BookServiceImpl();
+	private LanguageService languageService = new LanguageServiceImpl();
+	private UserService userService = new UserServiceImpl();
 	
 	@Override
 	public BufferedImage createThumbnail(BufferedImage image, int width, int height) {
@@ -56,10 +56,8 @@ public class FileServiceImpl implements FileService{
 	        BufferedImage originalImage = ImageIO.read(imageFile);
 	        int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
-	        // Escalado suave para una mejor calidad
 	        Image scaledImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
 
-	        // Convertir la imagen escalada a BufferedImage
 	        BufferedImage bufferedImage = new BufferedImage(targetWidth, targetHeight, type);
 	        bufferedImage.getGraphics().drawImage(scaledImage, 0, 0, null);
 
@@ -86,15 +84,15 @@ public class FileServiceImpl implements FileService{
 	    return new ImageIcon(scaledImage);
 	}
 
-	public List<File> getImagesByBookId(String locale, Long libroId) {
+	public List<File> getImagesByBookId(String locale, Long bookId) {
 		 List<File> imageFiles = new ArrayList<>();
 		    try {
 		       
-		        Book libro = libroService.findByLibro(locale, libroId);
-		        Language idioma = idiomaService.findById(locale, libro.getIdiomaId());
+		        Book book = bookService.findByBook(locale, bookId);
+		        Language language = languageService.findById(locale, book.getLanguageId());
 
 		       
-		        File folder = new File(ConfigurationParametersManager.getParameterValue(BASE_PATH)+ File.separator + libro.getId() + File.separator + idioma.getIso639().toUpperCase());
+		        File folder = new File(ConfigurationParametersManager.getParameterValue(BASE_PATH)+ File.separator + book.getId() + File.separator + language.getIso639().toUpperCase());
 
 		       
 		        File[] filesInFolder = folder.listFiles();
@@ -112,19 +110,19 @@ public class FileServiceImpl implements FileService{
 		    return imageFiles;
 	}
 	
-	public List<File> getProfileImageByClienteId(Long clienteId) {
+	public List<File> getProfileImageByUserId(Long userId) {
 		
 		List<File> images = new ArrayList<File>();
 		
-		User cliente = new User();
+		User user = new User();
 		
 		try {
-			cliente = clienteService.findById(clienteId);
+			user = userService.findById(userId);
 		}catch(TheGoldenBookException pe) {
 			logger.error(pe.getMessage(), pe);
 		}
 		
-		File folder = new File(ConfigurationParametersManager.getParameterValue(BASE_PROFILE_IMAGE_PATH)+ File.separator + cliente.getId());
+		File folder = new File(ConfigurationParametersManager.getParameterValue(BASE_PROFILE_IMAGE_PATH)+ File.separator + user.getId());
 		
 		File[] filesInFolder = folder.listFiles();
 		if(filesInFolder != null) {
@@ -154,13 +152,13 @@ public class FileServiceImpl implements FileService{
 	}
 
 	@Override
-	public void uploadImages(Book libro, String locale, List<File> selectedFiles) {
+	public void uploadImages(Book book, String locale, List<File> selectedFiles) {
 	    if (selectedFiles != null && !selectedFiles.isEmpty()) {
 	        try {
-	            Language idioma = idiomaService.findById(locale, libro.getIdiomaId());
+	            Language idioma = languageService.findById(locale, book.getLanguageId());
 	            
 	            String baseDirectory = ConfigurationParametersManager.getParameterValue(BASE_PATH);
-	            File bookFolder = new File(baseDirectory, libro.getId().toString());
+	            File bookFolder = new File(baseDirectory, book.getId().toString());
 	            
 	            if (!bookFolder.exists()) {
 	                bookFolder.mkdir();
@@ -186,9 +184,9 @@ public class FileServiceImpl implements FileService{
 		
 	}
 	
-	public void uploadProfileImage (Long clienteId, byte[] arrayImage) throws FileNotFoundException, IOException{
+	public void uploadProfileImage (Long userId, byte[] arrayImage) throws FileNotFoundException, IOException{
 		
-			Path path = Paths.get(ConfigurationParametersManager.getParameterValue(BASE_PROFILE_IMAGE_PATH)+ File.separator + clienteId + File.separator + "g1.jpg");
+			Path path = Paths.get(ConfigurationParametersManager.getParameterValue(BASE_PROFILE_IMAGE_PATH)+ File.separator + userId + File.separator + "g1.jpg");
 			
 			if(!Files.exists(path.getParent())) {
 				Files.createDirectory(path.getParent());
