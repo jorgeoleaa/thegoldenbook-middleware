@@ -54,9 +54,6 @@ public class BookDAOImpl implements BookDAO {
 					.append(" inner join format_language fl on fl.format_id = f.id and fl.language_id = l2.id ")
 					.append(" inner join reading_age_group rag on b.reading_age_group_id = rag.id ")
 					.append(" inner join reading_age_group_language ragl on ragl.reading_age_group_id = rag.id and ragl.language_id = l2.id ")
-					.append(" inner join book_literary_genre blg on blg.book_id = b.id ")
-					.append(" inner join literary_genre lg on lg.id = blg.literary_genre_id ")
-					.append(" inner join literary_genre_language lgl on lgl.literary_genre_id = lg.id and lgl.language_id = l2.id ")
 					.append(" where b.id = ? ");
 					
 
@@ -98,10 +95,7 @@ public class BookDAOImpl implements BookDAO {
 					.append(" inner join format f on b.format_id = f.id ")
 					.append(" inner join format_language fl on fl.format_id = f.id and fl.language_id = l2.id ")
 					.append(" inner join reading_age_group rag on b.reading_age_group_id = rag.id ")
-					.append(" inner join reading_age_group_language ragl on ragl.reading_age_group_id = rag.id and ragl.language_id = l2.id ")
-					.append(" inner join book_literary_genre blg on blg.book_id = b.id ")
-					.append(" inner join literary_genre lg on lg.id = blg.literary_genre_id ")
-					.append(" inner join literary_genre_language lgl on lgl.literary_genre_id = lg.id and lgl.language_id = l2.id ");
+					.append(" inner join reading_age_group_language ragl on ragl.reading_age_group_id = rag.id and ragl.language_id = l2.id ");
 
 			
 			
@@ -138,10 +132,6 @@ public class BookDAOImpl implements BookDAO {
 
 				if (bookCriteria.getMaxPrice() != null) {
 					conditions.add(" b.price <= ? ");
-				}
-
-				if (bookCriteria.getLiteraryGenreId() != null) {
-					conditions.add(" b.literary_genre_id = ? ");
 				}
 
 				if (bookCriteria.getReadingAgeGroupId() != null) {
@@ -209,10 +199,6 @@ public class BookDAOImpl implements BookDAO {
 					preparedStatement.setDouble(i++, bookCriteria.getMaxPrice());
 				}
 
-				if (bookCriteria.getLiteraryGenreId() != null) {
-					preparedStatement.setInt(i++, bookCriteria.getLiteraryGenreId());
-				}
-
 				if (bookCriteria.getReadingAgeGroupId() != null) {
 					preparedStatement.setInt(i++, bookCriteria.getReadingAgeGroupId());
 				}
@@ -268,7 +254,6 @@ public class BookDAOImpl implements BookDAO {
 			JDBCUtils.setNullable(preparedStatement, i++, book.getAverageRating());
 			preparedStatement.setInt(i++, book.getStock());
 			preparedStatement.setDouble(i++, book.getPrice());
-			preparedStatement.setInt(i++, book.getLiteraryGenreId());
 			preparedStatement.setInt(i++, book.getReadingAgeGropuId());
 			preparedStatement.setInt(i++, book.getLanguageId());
 			preparedStatement.setInt(i++, book.getFormatId());
@@ -329,7 +314,6 @@ public class BookDAOImpl implements BookDAO {
 			JDBCUtils.setNullable(pst, i++, l.getAverageRating());
 			pst.setInt(i++, l.getStock());
 			pst.setDouble(i++, l.getPrice());
-			pst.setInt(i++, l.getLiteraryGenreId());
 			pst.setInt(i++, l.getReadingAgeGropuId());
 			pst.setInt(i++, l.getLanguageId());
 			pst.setInt(i++, l.getFormatId());
@@ -503,8 +487,6 @@ public class BookDAOImpl implements BookDAO {
 		book.setAverageRating(JDBCUtils.getNullableDouble(rs, i++));
 		book.setStock(rs.getInt(i++));
 		book.setPrice(rs.getDouble(i++));
-		book.setLiteraryGenreId(rs.getInt(i++));
-		book.setLiteraryGenreName(rs.getString(i++));
 		book.setReadingAgeGropuId(rs.getInt(i++));
 		book.setReadingAgeGroupName(rs.getString(i++));
 		book.setFormatId(rs.getInt(i++));
@@ -513,6 +495,7 @@ public class BookDAOImpl implements BookDAO {
 		book.setLanguageName(rs.getString(i++));
 		book.setAuthors(authorDAO.findByBook(con, book.getId()));
 		book.setSubjects(subjectDAO.findByBook(con, locale, book.getId()));
+		book.setLiteraryGenres(literaryGenreDAO.findByBook(con, locale, book.getId()));
 
 
 		return book;
