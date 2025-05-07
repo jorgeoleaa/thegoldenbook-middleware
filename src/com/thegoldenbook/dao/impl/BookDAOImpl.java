@@ -12,11 +12,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.thegoldenbook.dao.AuthorDAO;
-import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.BookDAO;
+import com.thegoldenbook.dao.DataException;
+import com.thegoldenbook.dao.LiteraryGenreDAO;
 import com.thegoldenbook.dao.SubjectDAO;
 import com.thegoldenbook.model.Author;
 import com.thegoldenbook.model.Book;
+import com.thegoldenbook.model.LiteraryGenre;
 import com.thegoldenbook.model.Results;
 import com.thegoldenbook.model.Subject;
 import com.thegoldenbook.service.BookCriteria;
@@ -28,10 +30,12 @@ public class BookDAOImpl implements BookDAO {
 	private static Logger logger = LogManager.getLogger(BookDAOImpl.class);
 	private AuthorDAO authorDAO = null;
 	private SubjectDAO subjectDAO = null;
+	private LiteraryGenreDAO literaryGenreDAO = null;
 
 	public BookDAOImpl() {
 		authorDAO = new AuthorDAOImpl();
 		subjectDAO = new SubjectDAOImpl();
+		literaryGenreDAO = new LiteraryGenreDAOImpl();
 	}
 
 	public Book findByBook(Connection con, String locale, Long id) throws DataException {
@@ -425,15 +429,47 @@ public class BookDAOImpl implements BookDAO {
 			}
 		}
 
+		
+
+	}
+	
+	@Override
+	public void assignLiteraryGenres(Connection con, String locale, Long bookId, List<Integer> literaryGenresId)
+			throws DataException {
+		
+		PreparedStatement pst = null;
+		List<LiteraryGenre> literaryGenres = literaryGenreDAO.findByBook(con, locale, bookId);
+		
+		if(literaryGenres.isEmpty()) {
+			
+		}else {
+			
+			try {
+
+				pst = con.prepareStatement(" delete from book_literary_genre where book_id = ? ");
+
+				int i = 1;
+				pst.setLong(i++, bookId);
+
+				pst.executeUpdate();
+
+			}catch(SQLException e) {
+				logger.error("LibroID: "+bookId, e);
+				throw new DataException(e);
+			}finally {
+				JDBCUtils.close(pst);
+			}
+		}
+		
 		try {
-			StringBuilder query = new StringBuilder( "insert into book_subject (book_id, subject_id)");
+			StringBuilder query = new StringBuilder( "insert into book_literary_genre (book_id, literary_genre_id)");
 			query.append("values");
-			JDBCUtils.appendMultipleInsertParameters(query, "(?,?)", subjectsId.size());
+			JDBCUtils.appendMultipleInsertParameters(query, "(?,?)", literaryGenresId.size());
 			
 			pst = con.prepareStatement(query.toString());
 			
 			int i = 1;
-			for(Integer id : subjectsId) {
+			for(Integer id : literaryGenresId) {
 				pst.setLong(i++, bookId);
 				pst.setInt(i++, id);
 			}
@@ -442,12 +478,12 @@ public class BookDAOImpl implements BookDAO {
 			pst.executeUpdate();
 
 		}catch(SQLException e) {
-			logger.error("BookId: "+bookId," SubjectId: "+subjectsId, e);
+			logger.error("BookId: "+bookId," LiteraryGenresId: "+literaryGenresId, e);
 			throw new DataException(e);
 		}finally {
 			JDBCUtils.close(pst);
 		}
-
+		
 	}
 	
 	protected Book loadNext(ResultSet rs, String locale, Connection con) throws SQLException, DataException {
@@ -481,6 +517,4 @@ public class BookDAOImpl implements BookDAO {
 
 		return book;
 	}
-
-
 }
