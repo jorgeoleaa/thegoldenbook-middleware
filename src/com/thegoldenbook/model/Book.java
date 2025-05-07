@@ -14,8 +14,6 @@ public class Book extends AbstractValueObject {
 	private Double averageRating;
 	private Integer stock;
 	private Double price;
-	private Integer literaryGenreId;
-	private String literaryGenreName;
 	private Integer readingAgeGropuId;
 	private String readingAgeGroupName;
 	private Integer languageId;
@@ -24,11 +22,13 @@ public class Book extends AbstractValueObject {
 	private String formatName;
 	private List<Author> authors;
 	private List<Subject> subjects;
+	private List<LiteraryGenre> literaryGenres;
 
 	
 	public Book() {
 		authors = new ArrayList<Author>();
 		subjects = new ArrayList<Subject>();
+		literaryGenres = new ArrayList<LiteraryGenre>();
 	}
 
 
@@ -112,26 +112,6 @@ public class Book extends AbstractValueObject {
 	}
 
 
-	public Integer getLiteraryGenreId() {
-		return literaryGenreId;
-	}
-
-
-	public void setLiteraryGenreId(Integer literaryGenreId) {
-		this.literaryGenreId = literaryGenreId;
-	}
-
-
-	public String getLiteraryGenreName() {
-		return literaryGenreName;
-	}
-
-
-	public void setLiteraryGenreName(String literaryGenreName) {
-		this.literaryGenreName = literaryGenreName;
-	}
-
-
 	public Integer getReadingAgeGropuId() {
 		return readingAgeGropuId;
 	}
@@ -210,6 +190,17 @@ public class Book extends AbstractValueObject {
 	public void setSubjects(List<Subject> subjects) {
 		this.subjects = subjects;
 	}
+
+
+	public List<LiteraryGenre> getLiteraryGenres() {
+		return literaryGenres;
+	}
+
+
+	public void setLiteraryGenres(List<LiteraryGenre> literaryGenres) {
+		this.literaryGenres = literaryGenres;
+	}
+	
 	
 	
 }
