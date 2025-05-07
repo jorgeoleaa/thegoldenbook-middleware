@@ -4,15 +4,15 @@ import java.util.Comparator;
 
 import com.thegoldenbook.model.Book;
 
-public class LibroIdComparator implements Comparator<Book>{
+public class BookIdComparator implements Comparator<Book>{
 	
 	private boolean asc = true;
 	
-	public LibroIdComparator() {
+	public BookIdComparator() {
 		
 	}
 	
-	public LibroIdComparator (boolean asc) {
+	public BookIdComparator (boolean asc) {
 		setAsc(asc);
 	}
 	
