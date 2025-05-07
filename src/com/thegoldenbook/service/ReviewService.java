@@ -29,7 +29,7 @@ public interface ReviewService {
 	public boolean update (Review review)
 			throws DataException;
 	
-	public Double calcularMedia (List<Review> reviews) 
+	public Double calculateAverage (List<Review> reviews) 
 		throws DataException;
 	
 }
