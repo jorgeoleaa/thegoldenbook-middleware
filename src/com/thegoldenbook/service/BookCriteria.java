@@ -21,7 +21,6 @@ public class BookCriteria extends AbstractCriteria{
 	private Integer maxUnits;
 	private Date startDate;
 	private Date endDate;
-	private Integer literaryGenreId;
 	private Integer readingAgeGroupId;
 	private Integer languageId;
 	private Integer formatId;
@@ -105,14 +104,6 @@ public class BookCriteria extends AbstractCriteria{
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public Integer getLiteraryGenreId() {
-		return literaryGenreId;
-	}
-
-	public void setLiteraryGenreId(Integer literaryGenreId) {
-		this.literaryGenreId = literaryGenreId;
 	}
 
 	public Integer getReadingAgeGroupId() {
