@@ -168,11 +168,11 @@ public class BookDAOImpl implements BookDAO {
 			}
 
 			else if (bookCriteria.getIsbn() != null) {
-				preparedStatement.setString(i++,  SQLUtils.envolverLike(bookCriteria.getIsbn()));
+				preparedStatement.setString(i++,  SQLUtils.wrapForLike(bookCriteria.getIsbn()));
 			} else {
 
 				if (bookCriteria.getTitle() != null) {
-					preparedStatement.setString(i++, SQLUtils.envolverLike(bookCriteria.getTitle()));
+					preparedStatement.setString(i++, SQLUtils.wrapForLike(bookCriteria.getTitle()));
 				}
 
 				if (bookCriteria.getStartDate() != null) {

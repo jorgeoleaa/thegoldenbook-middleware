@@ -100,8 +100,8 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 
 			if (reviewCriteria.getContent() != null) {
-				pst.setString(i++, SQLUtils.envolverLike(reviewCriteria.getContent()));
-				pst.setString(i++, SQLUtils.envolverLike(reviewCriteria.getContent()));
+				pst.setString(i++, SQLUtils.wrapForLike(reviewCriteria.getContent()));
+				pst.setString(i++, SQLUtils.wrapForLike(reviewCriteria.getContent()));
 
 			}
 
