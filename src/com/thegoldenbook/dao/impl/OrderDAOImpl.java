@@ -268,7 +268,7 @@ public class OrderDAOImpl implements OrderDAO{
 			orderItemDAO.deleteByOrder(con, id);
 
 			pst = con.prepareStatement(
-					" delete from order where id = ?");
+					" delete from `order` where id = ?");
 
 			int i = 1;
 			pst.setLong(i++, id);
