@@ -45,7 +45,7 @@ public class BookDAOImpl implements BookDAO {
 		Book book = null;
 
 		try {
-			StringBuilder query = new StringBuilder("select b.id, b.isbn, b.title, b.synopsis, b.publication_date, b.average_rating, b.stock, b.price, b.language_id, ll.name, f.id, fl.name, rag.id, ragl.name, lg.id, lgl.name ")
+			StringBuilder query = new StringBuilder("select b.id, b.isbn, b.title, b.synopsis, b.publication_date, b.average_rating, b.stock, b.price, b.language_id, ll.name, f.id, fl.name, rag.id, ragl.name")
 					.append(" from book b ")
 					.append(" inner join language l on l.id = b.language_id ")
 					.append(" inner join language l2 on l2.locale = ? ")
@@ -87,7 +87,7 @@ public class BookDAOImpl implements BookDAO {
 
 		try {
 
-			StringBuilder query = new StringBuilder("select b.id, b.isbn, b.title, b.synopsis, b.publication_date, b.average_rating, b.stock, b.price, b.language_id, ll.name, f.id, fl.name, rag.id, ragl.name, lg.id, lgl.name ")
+			StringBuilder query = new StringBuilder("select b.id, b.isbn, b.title, b.synopsis, b.publication_date, b.average_rating, b.stock, b.price, b.language_id, ll.name, f.id, fl.name, rag.id, ragl.name")
 					.append(" from book b ")
 					.append(" inner join language l on l.id = b.language_id ")
 					.append(" inner join language l2 on l2.locale = ? ")
