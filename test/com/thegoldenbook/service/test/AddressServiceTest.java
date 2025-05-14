@@ -32,7 +32,7 @@ public class AddressServiceTest {
 		
 		logger.traceEntry("Testing deleteByUser...");
 		Address direccion = new Address();
-		direccion.setId(12l);
+		direccion.setId(22l);
 		
 		if(addressService.delete(direccion.getId())){
 			logger.trace("The address with ID: "+direccion.getId()+" has been deleted correctly");
@@ -44,9 +44,9 @@ public class AddressServiceTest {
 	public void testCreate() throws Exception{
 		logger.traceEntry("Testing create...");
 		Address d = new Address();
-		d.setStreetName("Plaza de la Concepción");
+		d.setStreetName("Plaza La Concepción");
 		d.setAddressLine2("nº7");
-		d.setLocalityId(24);
+		d.setLocalityId(15);
 		d.setUserId(null);
 		d.setEmployeeId(7l);
 		addressService.create(d);
@@ -57,24 +57,21 @@ public class AddressServiceTest {
 	public void testUpdateByEmployee() throws Exception{
 		
 		logger.traceEntry("Testing Update...");
-		Employee e = employeeService.findBy(7l);
+		String locale = "es_ES";
+		Employee e = employeeService.findBy(7l, locale);
 		Address address =  e.getAddress();
-		address.setStreetName("Plaza Mayorista");
+		address.setStreetName("403 Elm Street");
 		
 		if(addressService.update(address)) {
-			logger.trace("The address has not been created");
+			logger.trace("The address was updated correctly");
 		}else {
-			logger.trace("The address was created correctly");
+			logger.trace("The address has not been updated");
 		}
-		
-		
-
 	}
 	
 	public void testUpdateByUser() throws Exception{
 		logger.traceEntry("Testing UpdateByEmployee...");
-		User user = new User();
-		user = userService.findById(1l);
+		User user = userService.findById(2l);
 		List<Address> addresses = user.getAddresses();
 		for(Address address : addresses) {
 			address.setStreetName("Avenida Camariñas");
@@ -87,9 +84,9 @@ public class AddressServiceTest {
 		
 		AddressServiceTest test = new AddressServiceTest();
 		//test.testDelete();
-		test.testCreate();
+		//test.testCreate();
 		//test.testUpdateByEmployee();
-		//test.testUpdateByUser();
+		test.testUpdateByUser();
 	}
 
 }
