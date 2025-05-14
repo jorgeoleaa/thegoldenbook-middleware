@@ -43,7 +43,8 @@ public class OrderDAOImpl implements OrderDAO{
 					.append(" inner join user u on u.id = o.user_id ")
 					.append(" inner join order_status os on os.id = o.order_status_id ")
 					.append(" inner join order_status_language osl on osl.order_status_id = o.order_status_id ")
-					.append(" inner join language l on l.id = osl.language_id ");
+					.append(" inner join language l on l.id = osl.language_id ")
+					.append(" inner join language l2 on l2.locale = ?");
 
 			if (orderCriteria.getId() != null) {
 				conditions.add(" o.id = ? ");
