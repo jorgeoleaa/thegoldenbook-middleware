@@ -7,16 +7,16 @@ import com.thegoldenbook.model.Results;
 
 public interface UserDAO {
 	
-	public Results<User> findAll(Connection con, int pos, int pageSize)
+	public Results<User> findAll(Connection con, String locale, int pos, int pageSize)
 		throws DataException;
 	
-	public User findById(Connection con, Long id)
+	public User findById(Connection con, Long id, String locale)
 		throws DataException;
 	
-	public User findByNick (Connection con, String nick)
+	public User findByNick (Connection con, String nick, String locale)
 			throws DataException;
 	
-	public User findByEmail (Connection con, String email)
+	public User findByEmail (Connection con, String email, String locale)
 			throws DataException;
 	
 	public boolean delete (Connection conn, Long id)
