@@ -180,14 +180,17 @@ public class OrderServiceTest {
 	}
 	
 	public void testCreate() throws Exception{
+		
+		String locale = "es_ES";
+		
 		Order p = new Order ();
 		OrderItem lp1 = new OrderItem();
 		OrderItem lp2 = new OrderItem();
 		OrderItem lp3 = new OrderItem();
-		Book libro = bookService.findByBook("es_ES", 6l);
+		Book libro = bookService.findByBook(locale, 6l);
 
 		p.setOrderDate(new Date());
-		p.setUserId(11l);
+		p.setUserId(10l);
 		p.setOrderStatusId(2);
 		
 		lp3.setBookId(libro.getId());
@@ -203,12 +206,12 @@ public class OrderServiceTest {
 		//p.getLineas().add(lp2);
 		
 
-		Long id = orderService.create(p);
+		Long id = orderService.create(p, locale);
 		
 		if(id == null) {
-			logger.info("The order was created correctly");
-		}else {
 			logger.info("The order was not created correctly");
+		}else {
+			logger.info("The order was created correctly");
 		}
 	}
 
@@ -258,9 +261,9 @@ public class OrderServiceTest {
 		//test.testFindByCriteriaPrecioHasta();
 		//test.testFindByCriteriaClienteId();
 		//test.testFindByCriteriaTipoEstadoPedidoId();
-		test.testFindByCriteriaMultipleParameters();
+		//test.testFindByCriteriaMultipleParameters();
 		//test.testFindByEmptyCriteria();
-		//test.testCreate();
+		test.testCreate();
 		//test.testUpdate();
 		//test.testDelete();
 		
