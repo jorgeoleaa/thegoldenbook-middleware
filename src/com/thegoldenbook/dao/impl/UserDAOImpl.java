@@ -22,12 +22,15 @@ import com.thegoldenbook.util.JDBCUtils;
 public class UserDAOImpl implements UserDAO {
 
 	private static Logger logger = LogManager.getLogger(UserDAOImpl.class);
+	
+	private AddressDAO addressDAO = null;
 
 	public UserDAOImpl() {
+		addressDAO = new AddressDAOImpl();
 	}
 
 
-	public User findById(Connection con, Long id) throws DataException{
+	public User findById(Connection con, Long id, String locale) throws DataException{
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -46,7 +49,7 @@ public class UserDAOImpl implements UserDAO {
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				user = loadNext(rs, con);
+				user = loadNext(rs, con, locale);
 			}
 
 
@@ -60,7 +63,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 
-	public User findByEmail(Connection con, String email) throws DataException {
+	public User findByEmail(Connection con, String email, String locale) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -79,7 +82,7 @@ public class UserDAOImpl implements UserDAO {
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				user = loadNext(rs, con);
+				user = loadNext(rs, con, locale);
 			}
 		}catch(SQLException e) {
 			logger.error("Email: "+email, e);
@@ -92,7 +95,7 @@ public class UserDAOImpl implements UserDAO {
 
 
 
-	public Results<User> findAll(Connection con, int pos, int pageSize) throws DataException {
+	public Results<User> findAll(Connection con, String locale, int pos, int pageSize) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -110,7 +113,7 @@ public class UserDAOImpl implements UserDAO {
 			int count = 0;
 			if((pos>=1) && rs.absolute(pos)) {
 				do {
-					results.getPage().add(loadNext(rs, con));
+					results.getPage().add(loadNext(rs, con, locale));
 					count++;
 				}while (count<pageSize && rs.next());
 			}
@@ -268,7 +271,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 
-	public User findByNick(Connection con, String nick) throws DataException {
+	public User findByNick(Connection con, String nick, String locale) throws DataException {
 
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -287,7 +290,7 @@ public class UserDAOImpl implements UserDAO {
 			rs = pst.executeQuery();
 
 			if(rs.next()) {
-				c = loadNext(rs, con);
+				c = loadNext(rs, con, locale);
 			}
 
 		}catch(SQLException e) {
@@ -299,11 +302,9 @@ public class UserDAOImpl implements UserDAO {
 		return c;
 	}
 
-	protected User loadNext (ResultSet rs, Connection con) throws SQLException, DataException{
+	protected User loadNext (ResultSet rs, Connection con, String locale) throws SQLException, DataException{
 
 		int i = 1;
-
-		List<Address> addresses = new ArrayList();
 		
 		User user = new User();
 
@@ -319,8 +320,9 @@ public class UserDAOImpl implements UserDAO {
 		user.setOauthToken(rs.getString(i++));
 		user.setCreatedAt(rs.getDate(i++));
 		user.setDesactivatedAt(rs.getDate(i++));
-		user.setAddresses(addresses);;
-//		user.setAddresses(direccionDAO.findByUserId(con, user.getId()));
+		List<Address> newAddress = new ArrayList<Address>();
+		newAddress.add(addressDAO.findByUserId(con, user.getId(), locale));
+		user.setAddresses(newAddress);
 		
 
 		return user;
