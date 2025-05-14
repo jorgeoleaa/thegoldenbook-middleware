@@ -6,16 +6,16 @@ import com.thegoldenbook.model.Results;
 
 public interface UserService {
 	
-	public Results<User> findAll(int pos, int pageSize)
+	public Results<User> findAll(String locale, int pos, int pageSize)
 			throws DataException;
 	
-	public User findById (Long id)
+	public User findById (Long id, String locale)
 			throws DataException;
 	
-	public User findByNick (String nick)
+	public User findByNick (String nick, String locale)
 			throws DataException;
 	
-	public User findByEmail (String email)
+	public User findByEmail (String email, String locale)
 			throws DataException;
 	
 	public Long register(User user) 
@@ -27,10 +27,10 @@ public interface UserService {
 	public boolean updatePassword (String password, Long id) 
 			throws DataException;
 	
-	public boolean delete (Long id) 
+	public boolean delete (Long id, String locale) 
 			throws DataException, ServiceException;
 	
-	public User authenticate (String email, String password)
+	public User authenticate (String email, String password, String locale)
 			throws DataException;
 
 
