@@ -81,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
 
 
 
-	public Long create(Order order) throws DataException, MailException {
+	public Long create(Order order, String locale) throws DataException, MailException {
 
 	    Connection con = null;
 	    Long id = null;
@@ -106,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
 	            order.setPrice(calculatePrice(order));
 	            id = orderDAO.create(con, order);
 	            if (id != null) {
-	            	User cliente = userService.findById(id);
+	            	User cliente = userService.findById(id, locale);
 	            	mailService.notifyOrderPlaced(cliente.getEmail(), cliente, order);
 	                commit = true;
 	            }
