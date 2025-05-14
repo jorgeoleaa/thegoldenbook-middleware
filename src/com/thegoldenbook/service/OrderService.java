@@ -12,7 +12,7 @@ public interface OrderService {
 	public Results<Order> findByCriteria (OrderCriteria order, int pos, int pageSize)
 			throws DataException;
 	
-	public Long create (Order order)
+	public Long create (Order order, String locale)
 			throws DataException, MailException;
 	
 	public boolean update(Order order)
