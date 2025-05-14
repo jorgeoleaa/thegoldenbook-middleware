@@ -187,7 +187,7 @@ public class OrderDAOImpl implements OrderDAO{
 
 
 			ps = con.prepareStatement(
-					" insert into order(order_date, price, user_id, order_status_id) "
+					" insert into `order`(order_date, price, user_id, order_status_id) "
 							+" values(?,?,?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 
