@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 		mailService = new MailServiceImpl();
 	}
 
-	public User findById(Long id) throws DataException {
+	public User findById(Long id, String locale) throws DataException {
 
 		Connection con = null;
 		User user = new User();
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			user = userDAO.findById(con, id);
+			user = userDAO.findById(con, id, locale);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	public User findByNick(String nick) throws DataException {
+	public User findByNick(String nick, String locale) throws DataException {
 
 		Connection con = null;
 		User user = null;
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			user = userDAO.findByNick(con, nick);
+			user = userDAO.findByNick(con, nick, locale);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-	public User findByEmail(String email) throws DataException {
+	public User findByEmail(String email, String locale) throws DataException {
 
 		Connection con = null;
 		User user = new User();
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(commit);
-			user = userDAO.findByEmail(con, email);
+			user = userDAO.findByEmail(con, email, locale);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	public Results<User> findAll(int pos, int pageSize) throws DataException {
+	public Results<User> findAll(String locale, int pos, int pageSize) throws DataException {
 
 		Connection con = null;
 		boolean commit = false;
@@ -114,7 +114,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			results = userDAO.findAll(con, pos, pageSize);
+			results = userDAO.findAll(con, locale, pos, pageSize);
 			commit = true;
 
 		}catch(SQLException e) {
@@ -155,7 +155,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	public boolean delete(Long id) 
+	public boolean delete(Long id, String locale) 
 			throws DataException, ServiceException{
 
 		Connection con = null;
@@ -166,7 +166,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
-			user = userDAO.findById(con, id);
+			user = userDAO.findById(con, id, locale);
 			c = userDAO.delete(con, id);
 			mailService.send(user.getEmail(), "Account Deletion", "Thank you for being part of this community. We will miss you.");
 			commit = true;
@@ -230,7 +230,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User authenticate(String email, String password) throws DataException {
+	public User authenticate(String email, String password, String locale) throws DataException {
 		
 		Connection con = null;
 		boolean commit = false;
@@ -240,7 +240,7 @@ public class UserServiceImpl implements UserService {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
 			
-			user = userDAO.findByEmail(con, email);
+			user = userDAO.findByEmail(con, email, locale);
 			if(user == null) {
 				return null;
 			}
