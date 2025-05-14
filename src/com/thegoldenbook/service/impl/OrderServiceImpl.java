@@ -106,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
 	            order.setPrice(calculatePrice(order));
 	            id = orderDAO.create(con, order);
 	            if (id != null) {
-	            	User cliente = userService.findById(id, locale);
+	            	User cliente = userService.findById(order.getUserId(), locale);
 	            	mailService.notifyOrderPlaced(cliente.getEmail(), cliente, order);
 	                commit = true;
 	            }
