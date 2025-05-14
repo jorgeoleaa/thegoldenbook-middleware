@@ -18,22 +18,22 @@ import com.thegoldenbook.service.impl.BookServiceImpl;
 import com.thegoldenbook.service.impl.OrderServiceImpl;
 import com.thegoldenbook.util.DateUtils;
 
-public class PedidoServiceTest {
+public class OrderServiceTest {
 
-	private static Logger logger = LogManager.getLogger(PedidoServiceTest.class);
-	private OrderService pedidoService = null;
-	private BookService libroService = null;
+	private static Logger logger = LogManager.getLogger(OrderServiceTest.class);
+	private OrderService orderService = null;
+	private BookService bookService = null;
 
-	public PedidoServiceTest() {
-		pedidoService = new OrderServiceImpl();
-		libroService = new BookServiceImpl();
+	public OrderServiceTest() {
+		orderService = new OrderServiceImpl();
+		bookService = new BookServiceImpl();
 	}
 
 	public void testFindById() throws Exception{
 		logger.info("Testing FindById...");
 		Order p = null;
-		pedidoService = new OrderServiceImpl();
-		p = pedidoService.findBy(3l);
+		orderService = new OrderServiceImpl();
+		p = orderService.findBy(3l);
 		if(p == null){
 			logger.info("No se han encontrado resultados a partir del identificador introducido");
 		}else {
@@ -45,7 +45,7 @@ public class PedidoServiceTest {
 		logger.info("Testing FindByCriteriaId...");
 		OrderCriteria criteria = new OrderCriteria();
 		criteria.setId(2l);
-		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order>resultados = orderService.findByCriteria(criteria, 1, 7);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado resultados a partir del identificador introducido");
@@ -60,7 +60,7 @@ public class PedidoServiceTest {
 		logger.info("Testing FindByCriteriaFechaDesde...");
 		OrderCriteria criteria = new OrderCriteria();
 		criteria.setFechaDesde(DateUtils.getDate(2023, 9, 1));
-		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order>resultados = orderService.findByCriteria(criteria, 1, 7);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado pedidos realizados a partir de la fecha proporcionada");
@@ -76,7 +76,7 @@ public class PedidoServiceTest {
 		OrderCriteria criteria = new OrderCriteria();
 		criteria.setFechaHasta(DateUtils.getDate(2023, 4, 1));
 		criteria.setAscDesc(Boolean.TRUE);
-		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order>resultados = orderService.findByCriteria(criteria, 1, 7);
 		
 		if(resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado pedidos realizados antes de la fecha proporcionada");
@@ -91,7 +91,7 @@ public class PedidoServiceTest {
 		logger.info("Testing FindByCriteriaPrecioDesde...");
 		OrderCriteria criteria = new OrderCriteria();
 		criteria.setPrecioDesde(40.00);
-		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order>resultados = orderService.findByCriteria(criteria, 1, 7);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado pedidos con un precio superior al proporcionado");
@@ -106,7 +106,7 @@ public class PedidoServiceTest {
 		logger.info("Testing FindByCriteriaPrecioHasta...");
 		OrderCriteria criteria = new OrderCriteria();
 		criteria.setPrecioHasta(20.00);
-		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order>resultados = orderService.findByCriteria(criteria, 1, 7);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado pedidos con un precio inferior al proporcionado");
@@ -121,7 +121,7 @@ public class PedidoServiceTest {
 		logger.info("Testing FindByCriteriaClienteId...");
 		OrderCriteria criteria = new OrderCriteria();
 		criteria.setClienteId(2l);
-		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order>resultados = orderService.findByCriteria(criteria, 1, 7);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado pedidos realizados por el cliente proporcionado");
@@ -136,7 +136,7 @@ public class PedidoServiceTest {
 		logger.info("Testing FindByCriteriaTipoEstadoPedidoId...");
 		OrderCriteria criteria = new OrderCriteria();
 		criteria.setTipoEstadoPedidoId(2);
-		Results<Order>resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order>resultados = orderService.findByCriteria(criteria, 1, 7);
 
 		if(resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado pedidos a partir del del estado proporcionado");
@@ -150,21 +150,16 @@ public class PedidoServiceTest {
 	public void testFindByCriteriaMultipleParameters() throws Exception{
 		logger.info("Testing findByCriteriaMultipleParameters...");
 		OrderCriteria criteria = new OrderCriteria();
-		//criteria.setFechaDesde(DateUtils.getDate(2023, 8, 1));
-		//criteria.setFechaHasta(DateUtils.getDate(2023, 10, 1));
-		criteria.setPrecioDesde(16.0d);
-		criteria.setPrecioHasta(20.00);
-		//criteria.setTipoEstadoPedidoId(2);
-		//criteria.setClienteId(3l);
-		//criteria.setOrderBy(criteria.ORDER_BY_PRECIO);
-		//criteria.setAscDesc(Boolean.FALSE);
-		Results<Order> resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		criteria.setMinPrice(16.0d);
+		criteria.setMaxPrice(20.00);
+		criteria.setLocale("es_ES");
+		Results<Order> results = orderService.findByCriteria(criteria, 1, 7);
 		
-		if (resultados.getPage().isEmpty()) {
-			logger.info("No se han encontrado resultados a partir de los parámetros introducidos");
+		if (results.getPage().isEmpty()) {
+			logger.info("There are no results");
 		}else {
-			for (Order p : resultados.getPage()) {
-				logger.info(p);
+			for (Order o : results.getPage()) {
+				logger.info(o);
 			}
 		}
 	
@@ -173,7 +168,7 @@ public class PedidoServiceTest {
 	public void testFindByEmptyCriteria() throws Exception{
 		logger.info("Testing findByEmptyCriteria...");
 		OrderCriteria criteria = new OrderCriteria();
-		Results<Order> resultados = pedidoService.findByCriteria(criteria, 1, 7);
+		Results<Order> resultados = orderService.findByCriteria(criteria, 1, 7);
 		if (resultados.getPage().isEmpty()) {
 			logger.info("No se han encontrado resultados a partir de los parámetros introducidos");
 		}else {
@@ -189,35 +184,37 @@ public class PedidoServiceTest {
 		OrderItem lp1 = new OrderItem();
 		OrderItem lp2 = new OrderItem();
 		OrderItem lp3 = new OrderItem();
-		Book libro = libroService.findByLibro("es", 6l);
+		Book libro = bookService.findByBook("es_ES", 6l);
 
-		p.setFechaRealizacion(new Date());
-		p.setClienteId(11l);
-		p.setTipoEstadoPedidoId(2);
+		p.setOrderDate(new Date());
+		p.setUserId(11l);
+		p.setOrderStatusId(2);
 		
+		lp3.setBookId(libro.getId());
+		lp3.setPrice(libro.getPrice());
+		lp3.setQuantity(1);
 		
-
-		p.getLineas().add(lp3);
+		p.getOrderItems().add(lp3);
 		
-		p.setPrecio(pedidoService.calcularPrecio(p));
+		p.setPrice(orderService.calculatePrice(p));
 		
 		
 //		p.getLineas().add(lp1);
 		//p.getLineas().add(lp2);
 		
 
-		Long id = pedidoService.create(p);
+		Long id = orderService.create(p);
 		
 		if(id == null) {
-			logger.info("El pedido no se ha creado correctamente");
+			logger.info("The order was created correctly");
 		}else {
-			logger.info("El pedido se ha creado correctamente");
+			logger.info("The order was not created correctly");
 		}
 	}
 
 	public void testUpdate() throws Exception{
 		logger.info("Testing update...");
-		Order pedido = pedidoService.findBy(11l);
+		Order pedido = orderService.findBy(11l);
 		pedido.setTipoEstadoPedidoId(3);
 		pedido.setClienteId(4l);
 		List<OrderItem> pedidos = new ArrayList<OrderItem>();
@@ -228,7 +225,7 @@ public class PedidoServiceTest {
 		lp.setUnidades(1);
 		pedidos.add(lp);
 		pedido.setLineas(pedidos);
-		boolean b =	pedidoService.update(pedido);
+		boolean b =	orderService.update(pedido);
 	
 		if(b == false) {
 			logger.info("El pedido no se ha actualizado");
@@ -241,9 +238,9 @@ public class PedidoServiceTest {
 		logger.info("Testing delete...");
 		Order p = new Order();
 		p.setId(12l);
-		pedidoService.delete(p.getId());
+		orderService.delete(p.getId());
 		
-		if(pedidoService.findBy(p.getId()) == null) {
+		if(orderService.findBy(p.getId()) == null) {
 			logger.info("Pedido eliminado correctamente");
 		}else {
 			logger.info("No se ha borrado el pedido con ID proporcionado porque no se encuentra en la BD");
@@ -252,7 +249,7 @@ public class PedidoServiceTest {
 	}
 
 	public static void main (String[]args) throws Exception{
-		PedidoServiceTest test = new PedidoServiceTest();
+		OrderServiceTest test = new OrderServiceTest();
 		//test.testFindById();
 		//test.testFindByCriteriaId();
 		//test.testFindByCriteriaFechaDesde();
@@ -261,9 +258,9 @@ public class PedidoServiceTest {
 		//test.testFindByCriteriaPrecioHasta();
 		//test.testFindByCriteriaClienteId();
 		//test.testFindByCriteriaTipoEstadoPedidoId();
-		//test.testFindByCriteriaMultipleParameters();
+		test.testFindByCriteriaMultipleParameters();
 		//test.testFindByEmptyCriteria();
-		test.testCreate();
+		//test.testCreate();
 		//test.testUpdate();
 		//test.testDelete();
 		
