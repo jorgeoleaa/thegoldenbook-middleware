@@ -10,4 +10,5 @@ public interface AddressDAO {
 	public boolean deleteByEmployee (Connection con, Long employeeId) throws DataException;
 	public boolean update (Connection con,Address d) throws DataException;
 	public Long create (Connection con, Address d) throws DataException;
+	public Address findByUserId(Connection con, Long userId, String locale) throws DataException;
 }
