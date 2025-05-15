@@ -1,29 +1,32 @@
 package com.thegoldenbook.service.test; 
 
+import java.sql.Date;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.model.User;
-import com.thegoldenbook.model.Employee;
 import com.thegoldenbook.model.Results;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.service.impl.UserServiceImpl;
-import com.thegoldenbook.service.impl.MailServiceImpl;
 
-public class ClienteServiceTest {
+public class UserServiceTest {
 
-	private static Logger logger = LogManager.getLogger(ClienteServiceTest.class);
-	private UserService clienteService = null;
+	private static Logger logger = LogManager.getLogger(UserServiceTest.class);
+	private UserService userService = null;
 
-	public ClienteServiceTest() {
-		clienteService = new UserServiceImpl();
+	public UserServiceTest() {
+		userService = new UserServiceImpl();
 	}
 
 	public void testFindAll() throws Exception{
 		logger.traceEntry("Testing findAll....");
-		Results<User> clientes = clienteService.findAll(1, 5);
+		
+		String locale = "es_ES";
+		
+		Results<User> users = userService.findAll(locale, 1, 5);
 
-		for(User c : clientes.getPage()) {
+		for(User c : users.getPage()) {
 			logger.info(c);
 		}
 	}
@@ -31,48 +34,52 @@ public class ClienteServiceTest {
 	public void testFindById() throws Exception{
 
 		logger.traceEntry("Testing findById...");
-		User cliente = new User();
-		cliente = clienteService.findById(1l);
+		String locale = "es_ES";
+		User user = new User();
+		user = userService.findById(1l, locale);
 
-		logger.info(cliente);
+		logger.info(user);
 
 	}
 
 	public void testFindByNick() throws Exception{
 
 		logger.traceEntry("Testing findByNickname...");
-		User cliente = new User();
-		cliente = clienteService.findByNick("user1");
+		String locale = "es_ES";
+		User user = new User();
+		user = userService.findByNick("bookworm88", locale);
 
-		logger.info(cliente);
+		logger.info(user);
 	}
 
 	public void testFindByEmail() throws Exception{
 
-		logger.traceEntry("Testing findByNickname...");
-		User cliente = new User();
-		cliente = clienteService.findByEmail("aa@gmail.com");
-		logger.info(cliente);
+		logger.traceEntry("Testing findByEmail...");
+		String locale = "es_ES";
+		User user = new User();
+		user = userService.findByEmail("laura.gomez@example.es", locale);
+		logger.info(user);
 	}
 
-	public void testRegistrar() throws Exception{
+	public void testRegister() throws Exception{
 
-		logger.traceEntry("Testing create...");
+		logger.traceEntry("Testing register...");
 
-		User c = new User();
+		User user = new User();
 
-		c.setNickname("yorch");
-		c.setNombre("Jorge");
-		c.setApellido1("Olea");
-		c.setApellido2(null);
-		c.setDniNie("34567890D");
-		c.setEmail("jorgeoleacasanova@gmail.com");
-		c.setTelefono("768098654");
-		c.setPassword("abc123.");
+		user.setNickname("yorch");
+		user.setName("Jorge");
+		user.setLastName("Olea");
+		user.setSecondLastName("Casanova");
+		user.setNationalId("34567890D");
+		user.setEmail("jorgeoleacasanova@gmail.com");
+		user.setPhoneNumber("768098654");
+		user.setPassword("abc123.");
+		user.setCreatedAt(new Date(System.currentTimeMillis()));
 
-		clienteService.registrar(c);
+		userService.register(user);
 
-		logger.trace("Guardado el cliente: "+c);
+		logger.trace("The following user created an account: "+user);
 
 
 	}
@@ -80,10 +87,11 @@ public class ClienteServiceTest {
 	public void testDelete() throws Exception{
 
 		logger.traceEntry("Testing delete...");
-		User c = new User();
-		c.setId(9l);
-		clienteService.delete(c.getId());
-		logger.trace("Eliminado el cliente: "+c);
+		String locale = "es_ES";
+		User user = new User();
+		user.setId(10l);
+		userService.delete(user.getId(), locale);
+		logger.trace("Deleted client: "+user);
 
 	}
 
@@ -93,11 +101,11 @@ public class ClienteServiceTest {
 
 		logger.traceEntry("Testing update...");
 
-		cliente = clienteService.findById(4l);
+		cliente = userService.findById(4l);
 
 		if(cliente.getId() != null) {
 			cliente.setNombre("Ana");
-			clienteService.update(cliente);
+			userService.update(cliente);
 			logger.trace("Los datos del cliente han sido actualizados correctamente");
 		}else {
 			logger.trace("No se han encontrado clientes con el id proporcionado");
@@ -110,7 +118,7 @@ public class ClienteServiceTest {
 		logger.traceEntry("Testing updatePassword...");
 		String password = "Escairon718";
 		Long id = 11l;
-		if (clienteService.updatePassword(password, id)) {
+		if (userService.updatePassword(password, id)) {
 			logger.info("Su contraseña ha sido actualizada correctamente");
 		}else{
 			logger.info("Su contraseña no ha sido actualizada");
@@ -123,7 +131,7 @@ public class ClienteServiceTest {
 		logger.trace("Testing Autenticacion de usuario y password correctas...");
 
 
-			User e = clienteService.autenticar("joroleacasanova@gmail.com", "abc123.");
+			User e = userService.autenticar("joroleacasanova@gmail.com", "abc123.");
 
 			if (e!=null) {
 				logger.trace("Autenticación correcta. Todo OK!");
@@ -136,15 +144,15 @@ public class ClienteServiceTest {
 
 	public static void main(String [] args) throws Exception{
 
-		ClienteServiceTest test = new ClienteServiceTest();
+		UserServiceTest test = new UserServiceTest();
 		//test.testFindAll();
 		//test.testFindById();
 		//test.testFindByNick();
-		test.testFindByEmail();
-		//test.testRegistrar();
+		//test.testFindByEmail();
+		//test.testRegister();
 		//test.testUpdate();
 		//test.testUpdatePassword();
-		//test.testDelete();
+		test.testDelete();
 		//test.testAutenticacionOK();
 
 	}
