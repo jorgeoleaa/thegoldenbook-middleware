@@ -7,14 +7,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
-import com.thegoldenbook.dao.UserDAO;
+import com.thegoldenbook.dao.AddressDAO;
 import com.thegoldenbook.dao.DataException;
+import com.thegoldenbook.dao.UserDAO;
+import com.thegoldenbook.dao.impl.AddressDAOImpl;
 import com.thegoldenbook.dao.impl.UserDAOImpl;
-import com.thegoldenbook.model.User;
 import com.thegoldenbook.model.Results;
-import com.thegoldenbook.service.UserService;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.service.MailService;
 import com.thegoldenbook.service.ServiceException;
+import com.thegoldenbook.service.UserService;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class UserServiceImpl implements UserService {
@@ -30,12 +32,14 @@ public class UserServiceImpl implements UserService {
 
 	private MailService mailService = null;
 	private UserDAO userDAO = null;
+	private AddressDAO addressDAO = null;
 	private static Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
 
 	public UserServiceImpl() {
 		userDAO= new UserDAOImpl();
 		mailService = new MailServiceImpl();
+		addressDAO = new AddressDAOImpl();
 	}
 
 	public User findById(Long id, String locale) throws DataException {
@@ -167,6 +171,7 @@ public class UserServiceImpl implements UserService {
 			con = JDBCUtils.getConnection();
 			con.setAutoCommit(false);
 			user = userDAO.findById(con, id, locale);
+			addressDAO.delete(con, user.getAddresses().get(0).getId());
 			c = userDAO.delete(con, id);
 			mailService.send(user.getEmail(), "Account Deletion", "Thank you for being part of this community. We will miss you.");
 			commit = true;
