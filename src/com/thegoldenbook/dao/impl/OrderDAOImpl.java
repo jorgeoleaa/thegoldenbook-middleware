@@ -228,7 +228,7 @@ public class OrderDAOImpl implements OrderDAO{
 		try {
 
 			pst = con.prepareStatement(
-					" update order set "
+					" update `order` set "
 							+ " order_date = ?, "
 							+ " price = ?, "
 							+ " user_id = ?, "
