@@ -217,23 +217,23 @@ public class OrderServiceTest {
 
 	public void testUpdate() throws Exception{
 		logger.info("Testing update...");
-		Order pedido = orderService.findBy(11l);
-		pedido.setTipoEstadoPedidoId(3);
-		pedido.setClienteId(4l);
-		List<OrderItem> pedidos = new ArrayList<OrderItem>();
+		Order order = orderService.findBy(21l, "es_ES");
+		order.setOrderStatusId(3);
+		order.setUserId(4l);
+		List<OrderItem> orderItems = new ArrayList<OrderItem>();
 		OrderItem lp = new OrderItem();
-		lp.setLibroId(3l);
-		lp.setPedidoId(3l);
-		lp.setPrecio(10.00);
-		lp.setUnidades(1);
-		pedidos.add(lp);
-		pedido.setLineas(pedidos);
-		boolean b =	orderService.update(pedido);
+		lp.setBookId(3l);
+		lp.setOrderId(21l);
+		lp.setPrice(10.00);
+		lp.setQuantity(1);
+		orderItems.add(lp);
+		order.setOrderItems(orderItems);
+		boolean b =	orderService.update(order);
 	
 		if(b == false) {
-			logger.info("El pedido no se ha actualizado");
+			logger.info("The order was not updated");
 		}else {
-			logger.info("El pedido se ha actualizado correctamente");
+			logger.info("The order was updated");
 		}
 	}
 	
@@ -263,8 +263,8 @@ public class OrderServiceTest {
 		//test.testFindByCriteriaTipoEstadoPedidoId();
 		//test.testFindByCriteriaMultipleParameters();
 		//test.testFindByEmptyCriteria();
-		test.testCreate();
-		//test.testUpdate();
+		//test.testCreate();
+		test.testUpdate();
 		//test.testDelete();
 		
 	}
