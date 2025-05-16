@@ -302,7 +302,7 @@ public class BookDAOImpl implements BookDAO {
 		try {
 
 			pst = con.prepareStatement(
-					"update book set isbn = ?, title = ?, synopsis = ?, publication_date = ?, average_media = ?, stock = ?, price = ?, literary_genre_id = ?, reading_age_group = ?, language_id = ?, format_id = ? "
+					"update book set isbn = ?, title = ?, synopsis = ?, publication_date = ?, average_rating = ?, stock = ?, price = ?, reading_age_group_id = ?, language_id = ?, format_id = ? "
 							+ " where id = ? ");
 
 			int i = 1;
