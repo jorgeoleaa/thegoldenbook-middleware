@@ -128,18 +128,16 @@ public class UserServiceTest {
 	
 	public void testAutenticacionOK() throws Exception{
 
-		logger.trace("Testing Autenticacion de usuario y password correctas...");
+		logger.trace("Testing authentication with correct username and password...");
 
+		User user = userService.authenticate("jorgeoleacasanova@gmail.com", "abc123.", "en_US");
 
-			User e = userService.autenticar("joroleacasanova@gmail.com", "abc123.");
-
-			if (e!=null) {
-				logger.trace("Autenticación correcta. Todo OK!");
-				logger.trace(e);
-			} else {
-				logger.trace("Fallo en el método de autenticación con usuario y password correctos.");
-			}
-		
+		if (user != null) {
+		    logger.trace("Authentication successful. All good!");
+		    logger.trace(user);
+		} else {
+		    logger.trace("Authentication method failed with correct username and password.");
+		}
 	}
 
 	public static void main(String [] args) throws Exception{
@@ -152,8 +150,8 @@ public class UserServiceTest {
 		//test.testRegister();
 		//test.testUpdate();
 		//test.testUpdatePassword();
-		test.testDelete();
-		//test.testAutenticacionOK();
+		//test.testDelete();
+		test.testAutenticacionOK();
 
 	}
 
