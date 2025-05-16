@@ -36,7 +36,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 		try {
 
-			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name")
+			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.id, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name ")
 					.append(" from review r ")
 					.append(" inner join book b on b.id = r.book_id ")
 					.append(" inner join book_author ba on ba.book_id = b.id ")
@@ -139,7 +139,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 		try {
 
-			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name ")
+			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.id, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name ")
 					.append(" from review r ")
 					.append(" inner join book b on b.id = r.book_id ")
 					.append(" inner join book_author ba on ba.book_id = b.id ")
@@ -186,7 +186,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 		try {
 
-			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name ")
+			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.id, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name ")
 					.append(" from review r ")
 					.append(" inner join book b on b.id = r.book_id ")
 					.append(" inner join book_author ba on ba.book_id = b.id ")
@@ -318,18 +318,18 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 		Review review = new Review();
 		int i = 1;
-
-		review.setUserId(rs.getLong(i++));
-		review.setNickname(rs.getString(i++));
-		review.setUserName(rs.getString(i++));
-		review.setUserLastName(rs.getString(i++));
-		review.setUserSecondLastName(rs.getString(i++));
+		
 		review.setBookId(rs.getLong(i++));
 		review.setBookName(rs.getString(i++));
 		review.setAuthorId(rs.getLong(i++));
 		review.setAuthorName(rs.getString(i++));
 		review.setAuthorLastName(rs.getString(i++));
 		review.setAuthorSecondLastName(rs.getString(i++));
+		review.setUserId(rs.getLong(i++));
+		review.setNickname(rs.getString(i++));
+		review.setUserName(rs.getString(i++));
+		review.setUserLastName(rs.getString(i++));
+		review.setUserSecondLastName(rs.getString(i++));
 		review.setRating(rs.getDouble(i++));
 		review.setSubject(rs.getString(i++));
 		review.setBody(rs.getString(i++));
@@ -347,7 +347,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 		ResultSet rs = null;
 		Review v = null;
 		try {
-			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name ")
+			StringBuilder query = new StringBuilder(" select r.book_id, b.title, a.id, a.name, a.last_name, a.second_last_name, r.user_id, u.nickname, u.name, u.last_name, u.second_last_name, r.rating, r.subject, r.body, r.published_date, r.language_id, ll.name ")
 					.append(" from review r ")
 					.append(" inner join book b on b.id = r.book_id ")
 					.append(" inner join book_author ba on ba.book_id = b.id ")
@@ -357,6 +357,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 					.append(" inner join language_language ll on ll.language_id1 = l.id ")
 					.append(" inner join language l2 on l2.id = ll.language_id ")
 					.append(" where l2.locale = ? and b.id = ? and u.id = ? ");
+			
+			
+			
 
 
 			pst = con.prepareStatement(query.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
