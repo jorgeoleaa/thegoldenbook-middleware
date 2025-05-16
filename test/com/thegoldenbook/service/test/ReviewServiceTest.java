@@ -32,171 +32,68 @@ public class ReviewServiceTest {
 	    }
 	}
 
-	public void testFindByCriteriaClienteId() throws Exception{
-		logger.traceEntry("Testing findByCriteria...");
-		ReviewCriteria valoracion = new ReviewCriteria();
-		valoracion.setClienteId(3l);
-		Results<Review> resultados = reviewService.findByValoracionCriteria(valoracion, 1, 5);
+	public void testFindByCriteria() throws Exception {
+	    logger.traceEntry("Testing findByCriteria...");
+	    ReviewCriteria reviewCriteria = new ReviewCriteria();
+//	    reviewCriteria.setStartDate(DateUtils.getDateTime(2023, 6, 1, 0, 0, 0)); 
+//	    reviewCriteria.setEndDate(DateUtils.getDateTime(2025, 8, 25, 0, 0, 0));
+	    
+	    reviewCriteria.setLocale("es_ES");
+	    
+	    reviewCriteria.setAscDesc(Boolean.TRUE);
+	    Results<Review> results = reviewService.findByReviewCriteria(reviewCriteria, 1, 5);
 
-		if(resultados.getPage().isEmpty()) {
-			logger.trace("No se han encontrado resultados con los parámetros de búsqueda introducidos");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-
-		}
-
+	    if (results.getPage().isEmpty()) {
+	        logger.trace("No reviews were found that match the provided text criteria");
+	    } else {
+	        for (Review review : results.getPage()) {
+	            logger.info(review);
+	        }
+	    }
 	}
 
-	public void testFindByCriteriaLibroId() throws Exception{
-		logger.traceEntry("Testing findByCriteria...");
-		ReviewCriteria valoracion = new ReviewCriteria();
-		valoracion.setLibroId(4l);
-		Results<Review> resultados = reviewService.findByValoracionCriteria(valoracion, 1, 5);
+	public void testFindByUser() throws Exception {
+	    logger.traceEntry("Testing findByUserId...");
+	    Results<Review> results = reviewService.findByUser(2L, 1, 5, "es_ES");
 
-		if(resultados.getPage().isEmpty()) {
-			logger.trace("No se han encontrado resultados con los parámetros de búsqueda introducidos");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-
-		}
-
+	    if (results.getPage().isEmpty()) {
+	        logger.trace("No reviews were found using the provided client ID");
+	    } else {
+	        for (Review review : results.getPage()) {
+	            logger.info(review);
+	        }
+	    }
 	}
 
+	public void testFindByBook() throws Exception {
+	    logger.traceEntry("Testing findByBookId...");
+	    Results<Review> results = reviewService.findByBook(2L, 1, 5, "es_ES");
 
-	public void testFindByCriteriaFechaDesde() throws Exception{
-		logger.traceEntry("Testing findByCriteriaFechaDesde...");
-		ReviewCriteria c = new ReviewCriteria();
-		c.setFechaDesde(DateUtils.getDate(2023, 8, 25));
-		Results<Review> resultados = reviewService.findByValoracionCriteria(c, 1, 5);
-
-		if(resultados.getPage() == null) {
-			logger.trace("No se han encontrado valoraciones publicadas a partir de la fecha proporcionada");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-		}
+	    if (results.getPage().isEmpty()) {
+	        logger.trace("No reviews were found using the provided book ID");
+	    } else {
+	        for (Review review : results.getPage()) {
+	            logger.info(review);
+	        }
+	    }
 	}
 
-	public void testFindByCriteriaFechaHasta() throws Exception{
-		logger.traceEntry("Testing findByCriteriaFechaHasta...");
-		ReviewCriteria c = new ReviewCriteria();
-		c.setFechaHasta(DateUtils.getDate(2023, 2, 20));
-		Results<Review> resultados = reviewService.findByValoracionCriteria(c, 1, 10);
-
-		if(resultados.getPage() == null) {
-			logger.trace("No se han encontrado valoraciones publicadas anteriormente a la fecha proporcionada");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-		}
-	}
-
-
-	public void testFindByCriteriaPalabra() throws Exception{
-		logger.traceEntry("Testing findByCriteriaPalabra...");
-		ReviewCriteria c = new ReviewCriteria();
-		c.setPalabra("interesante");
-		Results<Review> resultados = reviewService.findByValoracionCriteria(c, 1, 5);
-
-		if(resultados.getPage() == null) {
-			logger.trace("No se han encontrado valoraciones que contengan la cadena de texto proporcionada");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-		}
-	}
-
-	public void testFindByCriteriaMultipleParameters() throws Exception{
-		logger.traceEntry("Testing findByCriteriaPalabra...");
-		ReviewCriteria c = new ReviewCriteria();
-		//c.setClienteId(2l);
-		//c.setPalabra("interesante");
-		c.setFechaDesde(DateUtils.getDateTime(2023, 6, 1, 0, 0, 0)); 
-		c.setFechaHasta(DateUtils.getDateTime(2023, 8, 25, 0, 0, 0));
-		//c.setLibroId(4l);
-		c.setAscDesc(Boolean.TRUE);
-		Results<Review> resultados = reviewService.findByValoracionCriteria(c, 1, 5);
-
-		if(resultados.getPage().isEmpty()) {
-			logger.trace("No se han encontrado valoraciones que contengan la cadena de texto proporcionada");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-		}
-	}
-
-	public void testFindByEmptyCriteria() throws Exception{
-		logger.traceEntry("Tepublic void testFindByReview() throws Exception {\n"
-				+ "    logger.traceEntry(\"Testing findByReview...\");\n"
-				+ "    Review review = reviewService.findByReview(2L, 3L, \"en_US\");\n"
-				+ "    if (review == null) {\n"
-				+ "        logger.trace(\"No reviews were found using the provided data\");\n"
-				+ "    } else {\n"
-				+ "        logger.info(review);\n"
-				+ "    }\n"
-				+ "}\n"
-				+ "sting FindByEmptyCriteria...");
-		ReviewCriteria c = new ReviewCriteria();
-		Results<Review>valoraciones = reviewService.findByValoracionCriteria(c, 1, 10);
-
-		if(valoraciones.getPage().isEmpty()) {
-			logger.trace("No se han encontrado resultados");
-		}else {
-			for(Review v : valoraciones.getPage()) {
-				logger.info(v);
-			}
-		}
-	}
-
-
-	public void testFindByCliente() throws Exception{
-		logger.traceEntry("Testing findByClienteId...");
-		Results<Review> resultados = reviewService.findByCliente(2l, 1, 5);
-
-		if(resultados.getPage().isEmpty()) {
-			logger.trace("No se han encontrado valoraciones a partir del ID de cliente proporcionado");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-		}
-	}
-
-	public void testFindByLibro() throws Exception{
-		logger.traceEntry("Testing findByLibroId...");
-		Results<Review> resultados = reviewService.findByLibro(8l, 1, 5);
-
-		if(resultados.getPage().isEmpty()) {
-			logger.trace("No se han encontrado valoraciones a partir del ID del libro proporcionado");
-		}else {
-			for(Review v : resultados.getPage()) {
-				logger.info(v);
-			}
-		}
-	}
 
 	public void testCreate() throws Exception{
 		logger.traceEntry("Testing create...");
 		
-		String locale = "it";
+		String locale = "es_ES";
 		
-		Review v = new Review();
-		v.setClienteId(1l);
-		v.setLibroId(1l);
-		v.setNumeroEstrellas(4.0d);
-		v.setAsunto("Una buena lectura");
-		v.setCuerpo("Un libro muy interesante!");
-		v.setFechaPublicacion(new Date());
-		reviewService.create(v, locale);
-		logger.info("Creada correctamente la valoración: "+v);
+		Review review = new Review();
+		review.setUserId(12l);
+		review.setBookId(1l);
+		review.setRating(4.0d);
+		review.setSubject("Una buena lectura");
+		review.setBody("Un libro muy interesante!");
+		review.setPublicationDate(new Date(System.currentTimeMillis()));
+		review.setLanguageId(2);
+		reviewService.create(review, locale);
+		logger.info("Review created correctly "+review);
 	}
 
 	public void testDelete() throws Exception{
@@ -230,17 +127,11 @@ public class ReviewServiceTest {
 
 	public static void main(String [] args) throws Exception{
 		ReviewServiceTest test = new ReviewServiceTest();
-		test.testFindByReview();
-		//test.testFindByCriteriaClienteId();
-		//test.testFindByCriteriaLibroId();
-		//test.testFindByCriteriaFechaDesde();
-		//test.testFindByCriteriaFechaHasta();
-		//test.testFindByCriteriaPalabra();
-		//test.testFindByCriteriaMultipleParameters();
-		//test.testFindByEmptyCriteria();
-		//test.testFindByCliente();
-		//test.testFindByLibro();
-		//test.testCreate();
+		//test.testFindByReview();
+		//test.testFindByCriteria();
+		//test.testFindByUser();
+		//test.testFindByBook();
+		test.testCreate();
 		//test.testDelete();
 		//test.testUpdate();
 //		test.testCalcularMedia();
