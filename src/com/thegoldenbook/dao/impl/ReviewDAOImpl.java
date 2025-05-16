@@ -291,16 +291,17 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 		try {
 
-			pst = con.prepareStatement("insert into review (user_id, book_id, rating, subject, body, published_date) "
-					+ " values(?,?,?,?,?,?)");
+			pst = con.prepareStatement("insert into review (book_id, user_id, rating, subject, body, published_date, language_id) "
+			        + "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 			int i = 1;
-			pst.setLong(i++, review.getUserId());
 			pst.setLong(i++, review.getBookId());
+			pst.setLong(i++, review.getUserId());
 			pst.setDouble(i++, review.getRating());
 			pst.setString(i++, review.getSubject());
 			pst.setString(i++, review.getBody());
-			pst.setTimestamp(i, new Timestamp(review.getPublicationDate().getTime()));
+			pst.setTimestamp(i++, new Timestamp(review.getPublicationDate().getTime()));
+			pst.setInt(i++, review.getLanguageId());
 
 			pst.executeUpdate();
 
