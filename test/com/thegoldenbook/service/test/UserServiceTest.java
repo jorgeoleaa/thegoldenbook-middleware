@@ -97,32 +97,32 @@ public class UserServiceTest {
 
 	public void testUpdate() throws Exception{
 
-		User cliente = new User();
+		User client = new User();
 
 		logger.traceEntry("Testing update...");
 
-		cliente = userService.findById(4l);
+		client = userService.findById(4L, "en_US");
 
-		if(cliente.getId() != null) {
-			cliente.setNombre("Ana");
-			userService.update(cliente);
-			logger.trace("Los datos del cliente han sido actualizados correctamente");
-		}else {
-			logger.trace("No se han encontrado clientes con el id proporcionado");
+		if (client.getId() != null) {
+		    client.setName("Ana");
+		    userService.update(client);
+		    logger.trace("The client's data has been successfully updated");
+		} else {
+		    logger.trace("No client found with the provided ID");
 		}
-
 		
 	}
 
 	public void testUpdatePassword() throws Exception{
 		logger.traceEntry("Testing updatePassword...");
 		String password = "Escairon718";
-		Long id = 11l;
+		Long id = 12L;
 		if (userService.updatePassword(password, id)) {
-			logger.info("Su contraseña ha sido actualizada correctamente");
-		}else{
-			logger.info("Su contraseña no ha sido actualizada");
+		    logger.info("Your password has been successfully updated");
+		} else {
+		    logger.info("Your password has not been updated");
 		}
+
 			
 	}
 	
@@ -130,7 +130,7 @@ public class UserServiceTest {
 
 		logger.trace("Testing authentication with correct username and password...");
 
-		User user = userService.authenticate("jorgeoleacasanova@gmail.com", "abc123.", "en_US");
+		User user = userService.authenticate("jorgeoleacasanova@gmail.com", "Escairon718", "en_US");
 
 		if (user != null) {
 		    logger.trace("Authentication successful. All good!");
@@ -148,10 +148,10 @@ public class UserServiceTest {
 		//test.testFindByNick();
 		//test.testFindByEmail();
 		//test.testRegister();
-		//test.testUpdate();
+		test.testUpdate();
 		//test.testUpdatePassword();
 		//test.testDelete();
-		test.testAutenticacionOK();
+		//test.testAutenticacionOK();
 
 	}
 
