@@ -96,33 +96,31 @@ public class ReviewServiceTest {
 		logger.info("Review created correctly "+review);
 	}
 
-	public void testDelete() throws Exception{
-		logger.traceEntry("Testing delete...");
-		if(reviewService.delete(2l, 1l)) {
-			logger.trace("Valoración eliminada correctamente");
-		}else {
-			logger.trace("La valoración no se ha eliminado correctamente");
-		}
+	public void testDelete() throws Exception {
+	    logger.traceEntry("Testing delete...");
+	    if (reviewService.delete(12L, 1L)) {
+	        logger.trace("Review deleted successfully");
+	    } else {
+	        logger.trace("The review was not deleted successfully");
+	    }
 	}
 
-	public void testUpdate() throws Exception{
-		logger.traceEntry("Testing update...");
-		Review v = reviewService.findByValoracion(2l, 1l);
-		v.setCuerpo("holaaa");
-		//v.setAsunto("No se que acaba de ");
-		
-		if(reviewService.update(v)) {
-			logger.trace("La valoración se ha actualizado correctamente");
-		}else {
-			logger.trace("La valoración no se ha actualizado");
-		}
-
+	public void testUpdate() throws Exception {
+	    logger.traceEntry("Testing update...");
+	    Review review = reviewService.findByReview(1L, 12L, "es_ES");
+	    review.setBody("Es un buen libro");
+	    
+	    if (reviewService.update(review)) {
+	        logger.trace("The review was updated successfully");
+	    } else {
+	        logger.trace("The review was not updated");
+	    }
 	}
 	
-	public void testCalcularMedia() throws Exception{
-		Results<Review> valoraciones = reviewService.findByLibro(8l, 1, Integer.MAX_VALUE);
-		double valoracionMedia = reviewService.calcularMedia(valoraciones.getPage());
-		logger.trace(valoracionMedia);
+	public void testCalculateAverage() throws Exception{
+		Results<Review> reviews = reviewService.findByBook(1l, 1, Integer.MAX_VALUE, "es_ES");
+		double averageRating = reviewService.calculateAverage(reviews.getPage());
+		logger.trace(averageRating);
 	}
 
 	public static void main(String [] args) throws Exception{
@@ -131,9 +129,9 @@ public class ReviewServiceTest {
 		//test.testFindByCriteria();
 		//test.testFindByUser();
 		//test.testFindByBook();
-		test.testCreate();
+		//test.testCreate();
 		//test.testDelete();
 		//test.testUpdate();
-//		test.testCalcularMedia();
+		test.testCalculateAverage();;
 	}
 }
