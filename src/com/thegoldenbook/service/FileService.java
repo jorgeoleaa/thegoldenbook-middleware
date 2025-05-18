@@ -25,7 +25,7 @@ public interface FileService {
 	
 	public void uploadImages(Book libro, String locale, List<File> selectedFiles);
 	
-	public List<File> getProfileImageByUserId(Long userId);
+	public List<File> getProfileImageByUserId(Long userId, String locale);
 	
 	public void uploadProfileImage (Long userId, byte[] arrayImage) throws FileNotFoundException, IOException;
 }
