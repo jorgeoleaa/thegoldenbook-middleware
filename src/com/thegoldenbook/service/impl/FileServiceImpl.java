@@ -110,14 +110,14 @@ public class FileServiceImpl implements FileService{
 		    return imageFiles;
 	}
 	
-	public List<File> getProfileImageByUserId(Long userId) {
+	public List<File> getProfileImageByUserId(Long userId, String locale) {
 		
 		List<File> images = new ArrayList<File>();
 		
 		User user = new User();
 		
 		try {
-			user = userService.findById(userId);
+			user = userService.findById(userId, locale);
 		}catch(TheGoldenBookException pe) {
 			logger.error(pe.getMessage(), pe);
 		}
