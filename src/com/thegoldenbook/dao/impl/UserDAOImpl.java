@@ -6,17 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thegoldenbook.dao.UserDAO;
-import com.thegoldenbook.dao.DataException;
 import com.thegoldenbook.dao.AddressDAO;
-import com.thegoldenbook.model.User;
+import com.thegoldenbook.dao.DataException;
+import com.thegoldenbook.dao.UserDAO;
 import com.thegoldenbook.model.Address;
 import com.thegoldenbook.model.Results;
+import com.thegoldenbook.model.User;
 import com.thegoldenbook.util.JDBCUtils;
 
 public class UserDAOImpl implements UserDAO {
@@ -245,7 +246,7 @@ public class UserDAOImpl implements UserDAO {
 			pst.setString(i++, c.getPhoneNumber());
 			pst.setString(i++, c.getPassword());
 			pst.setString(i++, c.getOauthToken());
-			pst.setDate(i++, c.getCreatedAt());
+			pst.setDate(i++, new java.sql.Date(System.currentTimeMillis()));
 
 			int insertedRows = pst.executeUpdate();
 
