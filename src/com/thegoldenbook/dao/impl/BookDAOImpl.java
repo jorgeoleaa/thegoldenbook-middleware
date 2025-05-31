@@ -487,12 +487,12 @@ public class BookDAOImpl implements BookDAO {
 		book.setAverageRating(JDBCUtils.getNullableDouble(rs, i++));
 		book.setStock(rs.getInt(i++));
 		book.setPrice(rs.getDouble(i++));
-		book.setReadingAgeGropuId(rs.getInt(i++));
-		book.setReadingAgeGroupName(rs.getString(i++));
-		book.setFormatId(rs.getInt(i++));
-		book.setFormatName(rs.getString(i++));
 		book.setLanguageId(rs.getInt(i++));
 		book.setLanguageName(rs.getString(i++));
+		book.setFormatId(rs.getInt(i++));
+		book.setFormatName(rs.getString(i++));
+		book.setReadingAgeGropuId(rs.getInt(i++));
+		book.setReadingAgeGroupName(rs.getString(i++));
 		book.setAuthors(authorDAO.findByBook(con, book.getId()));
 		book.setSubjects(subjectDAO.findByBook(con, locale, book.getId()));
 		book.setLiteraryGenres(literaryGenreDAO.findByBook(con, locale, book.getId()));
