@@ -173,6 +173,22 @@ public class BookCriteria extends AbstractCriteria{
 	public static String getOrderByStock() {
 		return ORDER_BY_STOCK;
 	}
-
+	
+	public String toCacheKey() {
+        return "books:" +
+        		(isbn != null ? isbn: "_") + ":" +
+                (title != null ? title: "_") + ":" +
+                (minPrice != null ? minPrice : "_") + ":" +
+                (maxPrice != null ? maxPrice : "_") + ":" +
+                (minUnits != null ? minUnits : "_") + ":" +
+                (maxUnits != null ? maxUnits : "_") + ":" +
+                (startDate != null ? startDate.toString() : "_") + ":" +
+                (endDate != null ? endDate.toString() : "_") + ":" +
+                (readingAgeGroupId != null ? readingAgeGroupId : "_") + ":" +
+                (languageId != null ? languageId : "_") + ":" +
+                (formatId != null ? formatId : "_") + ":" +
+                (locale != null ? locale : "_") + ":";
+                
+	}
 	
 }
