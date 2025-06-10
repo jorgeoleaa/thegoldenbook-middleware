@@ -119,4 +119,15 @@ public class OrderCriteria extends AbstractCriteria {
 		return ORDER_BY_STATUS;
 	}
 	
+	public String toCacheKey() {
+		return "orders:" + 
+				(startDate != null ? startDate: "_") + ":" +
+				(endDate != null ? endDate: "_") + ":" +
+				(minPrice != null ? minPrice: "_") + ":" +
+				(maxPrice != null ? maxPrice: "_") + ":" +
+				(userId != null ? userId: "_") + ":" +
+				(orderStatusId != null ? orderStatusId: "_") + ":" +
+				(locale != null ? locale: "_") + ":";
+	}
+	
 }
